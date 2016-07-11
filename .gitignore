@@ -1,3 +1,4 @@
 node_modules
+config/default.json
 
-sounds/
+sounds/*.mp3
