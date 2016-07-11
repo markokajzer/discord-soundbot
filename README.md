@@ -27,6 +27,8 @@ Click on the link and allow your bot to join one of your Discord servers.
 
 Currently you have to create your own sounds as .mp3 files and put the in the `sounds/` directory. Your bot will automatically use new sounds, no need to restart.
 
+Play a random sound with `!random`.
+
 ### Playing sounds
 
 Type `!sounds` to get a list of all sounds that are available to your bot.
@@ -35,3 +37,4 @@ Play any sound by prefixing it with `!`, e.g. `!playmysound`.
 ## Todo
 
 + Add possibility to add and remove sounds
+  + PM the bot a wav or mp3 file < 1MB and it will add it to the soundboard.
