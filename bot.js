@@ -1,8 +1,9 @@
-var fs = require('fs');
-var Discord = require('discord.js');
+let config  = require('config'),
+    fs      = require('fs'),
+    Discord = require('discord.js');
 
 console.log('Use the following URL to let the bot join your server!');
-console.log('https://discordapp.com/oauth2/authorize?client_id=201081661658628097&scope=bot');
+console.log(`https://discordapp.com/oauth2/authorize?client_id=${config.get('client_id')}&scope=bot`);
 
 var bot = new Discord.Client();
 
@@ -69,4 +70,4 @@ function playSound(voiceChannel, sound) {
   });
 }
 
-bot.loginWithToken('MjAxMDgxNzU3NjQ5MzM4MzY4.CmJ2yQ.9J9EVru6wpWSrVZZ3SToktwg3lY');
+bot.loginWithToken(config.get('token'));
