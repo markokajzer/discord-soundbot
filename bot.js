@@ -39,6 +39,14 @@ bot.on('message', (message) => {
     return;
   }
 
+  // List available sounds
+  if(message.content === '!random') {
+    let random = sounds[Math.floor(Math.random() * sounds.length)];
+    playSound(voiceChannel, random);
+    return;
+  }
+
+
   // If file sound exists, play it
   let sound = message.content.split('!')[1];
   if(sounds.includes(sound)) {
