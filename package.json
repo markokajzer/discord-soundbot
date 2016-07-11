@@ -1,0 +1,25 @@
+{
+  "name": "dicord_sounds_bot",
+  "version": "1.0.0",
+  "description": "A Discord bot to play sounds",
+  "main": "bot.js",
+  "dependencies": {
+    "config": "^1.21.0",
+    "discord.js": "^8.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "mp3",
+    "sounds"
+  ],
+  "author": "Marko Kajzer",
+  "license": "MIT"
+}
