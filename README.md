@@ -1,5 +1,5 @@
-DISCORD SOUND BOT
-=================
+Discord Soundbot
+================
 
 A Bot for Discord to play your favorite sounds or music.
 
