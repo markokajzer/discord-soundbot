@@ -1,5 +1,5 @@
 {
-  "name": "dicord_sound_bot",
+  "name": "dicord_soundbot",
   "version": "1.0.0",
   "description": "A Discord Bot to play sounds",
   "main": "bot.js",
@@ -12,7 +12,8 @@
     "start": "node bot.js"
   },
   "repository": {
-    "type": "git"
+    "type": "git",
+    "url": "https://github.com/markokajzer/discord-soundbot"
   },
   "keywords": [
     "discord",
