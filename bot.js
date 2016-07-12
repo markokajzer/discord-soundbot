@@ -33,10 +33,10 @@ bot.on('message', (message) => {
     let sound = message.content.replace('!remove ', '');
     if(sounds.includes(sound)) {
       removeSound(sound);
-      bot.sendMessage(message.channel.id, `${sound} removed!`)
+      bot.sendMessage(message.channel.id, `${sound} removed!`);
     }
     else {
-      bot.sendMessage(message.channel.id, `${sound} not found!`)
+      bot.sendMessage(message.channel.id, `${sound} not found!`);
     }
     return;
   }
@@ -74,7 +74,7 @@ function listAvailableSounds(sounds, channel) {
   bot.sendMessage(channel, message);
 }
 
-function removeSound(sound, channel) {
+function removeSound(sound) {
   let file = `sounds/${sound}.mp3`;
   fs.unlink(file);
 }
