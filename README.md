@@ -34,7 +34,14 @@ Play a random sound with `!random`.
 Type `!sounds` to get a list of all sounds that are available to your bot.
 Play any sound by prefixing it with `!`, e.g. `!playmysound`.
 
+### Removing sounds
+
+You can delete sounds by typing `!remove <name>`. The bot will respond with the status of the deletion in the channel of the message.
+
 ## Todo
 
-+ Add possibility to add and remove sounds
++ Add possibility to add sounds
   + PM the bot a wav or mp3 file < 1MB and it will add it to the soundboard.
++ Use queue to store sounds
++ Fix crashing on PM
++ Deploy to DigitalOcean

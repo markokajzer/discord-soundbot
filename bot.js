@@ -28,6 +28,19 @@ bot.on('message', (message) => {
     return;
   }
 
+  // Remove sounds
+  if(message.content.startsWith('!remove ')) {
+    let sound = message.content.replace('!remove ', '');
+    if(sounds.includes(sound)) {
+      removeSound(sound);
+      bot.sendMessage(message.channel.id, `${sound} removed!`)
+    }
+    else {
+      bot.sendMessage(message.channel.id, `${sound} not found!`)
+    }
+    return;
+  }
+
   // Abort if user is not connected to any voice channel
   let voiceChannel = message.author.voiceChannel;
   if(voiceChannel === null) {
@@ -59,6 +72,11 @@ function listAvailableSounds(sounds, channel) {
     return sound;
   });
   bot.sendMessage(channel, message);
+}
+
+function removeSound(sound, channel) {
+  let file = `sounds/${sound}.mp3`;
+  fs.unlink(file);
 }
 
 function playSound(voiceChannel, sound) {
