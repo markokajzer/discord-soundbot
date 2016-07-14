@@ -23,25 +23,35 @@ https://discordapp.com/oauth2/authorize?client_id={YOUR_CLIENT_ID}&scope=bot
 
 Click on the link and allow your bot to join one of your Discord servers.
 
+## Commands
+
+Type `!commands` to print the following list of available commands.
+
+```
+!commands         Show this message
+!sounds           Show available sounds
+!<sound>          Play the specified sound
+!random           Play random sounds
+!stop             Stop playing
+!remove <sound>   Remove specified sound
+```
+
 ### Adding sounds
 
 Currently you have to create your own sounds as .mp3 files and put the in the `sounds/` directory. Your bot will automatically use new sounds, no need to restart.
 
-Play a random sound with `!random`.
-
 ### Playing sounds
 
-Type `!sounds` to get a list of all sounds that are available to your bot.
-Play any sound by prefixing it with `!`, e.g. `!playmysound`.
+Type `!sounds` to get a list of all sounds that are available to your bot. Play any sound by prefixing it with `!`, e.g. `!mysound`. Play a random sound with `!random`.
+
+All sounds will be added to a queue and played in succession. To halt the playback, type `!stop`.
 
 ### Removing sounds
 
-You can delete sounds by typing `!remove <name>`. The bot will respond with the status of the deletion in the channel of the message.
+You can delete sounds by typing `!remove <sound>`. The bot will respond with the status of the deletion in the channel of the message.
 
 ## Todo
 
 + Add possibility to add sounds
   + PM the bot a wav or mp3 file < 1MB and it will add it to the soundboard.
-+ Use queue to store sounds
-+ Fix crashing on PM
 + Deploy to DigitalOcean
