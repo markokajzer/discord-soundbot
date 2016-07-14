@@ -21,19 +21,19 @@ bot.on('message', (message) => {
   });
   sounds = sounds.map((sound) => sound.split('.')[0]);
 
-  // List available sounds
   // Show list of commands
   if(message.content === '!commands') {
     listCommands(message.channel.id);
     return;
   }
 
+  // Show list of available sounds
   if(message.content === '!sounds') {
     listAvailableSounds(sounds, message.channel.id);
     return;
   }
 
-  // Remove sounds
+  // Remove specified sound
   if(message.content.startsWith('!remove ')) {
     let sound = message.content.replace('!remove ', '');
     if(sounds.includes(sound)) {
@@ -65,7 +65,7 @@ bot.on('message', (message) => {
     return;
   }
 
-  // If sound specified and exists, play it
+  // Play it if sound specified and exists
   let sound = message.content.split('!')[1];
   if(sounds.includes(sound)) {
     playSound(voiceChannel, sound);
