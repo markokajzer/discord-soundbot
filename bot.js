@@ -6,6 +6,7 @@ console.log('Use the following URL to let the bot join your server!');
 console.log(`https://discordapp.com/oauth2/authorize?client_id=${config.get('client_id')}&scope=bot`);
 
 let bot = new Discord.Client();
+let queue = [];
 
 bot.on('message', (message) => {
   // Only listen for messages starting with '!'
@@ -75,25 +76,38 @@ function removeSound(sound) {
   fs.unlink(file);
 }
 
+function playNext(connection) {
+  // Play one sound of queue
+  let file = queue.shift();
+  connection.playFile(file, (_, intent) => {
+    intent.on('end', () => {
+      if(queue.length > 0) {
+        playNext(connection);
+      }
+      else {
+        bot.leaveVoiceChannel(connection);
+      }
+    });
+  });
+}
+
 function playSound(voiceChannel, sound) {
   let file = `sounds/${sound}.mp3`;
+  queue.push(file);
   bot.joinVoiceChannel(voiceChannel, (error, connection) => {
     if(error) {
       console.log('Error occurred!');
       console.log(error);
+      bot.leaveVoiceChannel(connection);
     }
     else {
-      // Disallow interruption of sounds
+      // Disallow interruption of sounds, add to queue instead
       if(connection.playing) {
         return;
       }
 
-      // Play the sound
-      connection.playFile(file, (_, intent) => {
-        intent.on('end', () => {
-          bot.leaveVoiceChannel(connection);
-        });
-      });
+      // Work through queue
+      playNext(connection);
     }
   });
 }
