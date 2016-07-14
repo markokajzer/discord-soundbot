@@ -1,11 +1,11 @@
-let config  = require('config'),
-    fs      = require('fs'),
-    Discord = require('discord.js');
+let config  = require('config');
+let fs      = require('fs');
+let Discord = require('discord.js');
 
 console.log('Use the following URL to let the bot join your server!');
 console.log(`https://discordapp.com/oauth2/authorize?client_id=${config.get('client_id')}&scope=bot`);
 
-var bot = new Discord.Client();
+let bot = new Discord.Client();
 
 bot.on('message', (message) => {
   // Only listen for messages starting with '!'
