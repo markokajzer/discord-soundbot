@@ -1,8 +1,0 @@
-{
-  "extends": "../../.jshintrc",
-  "node": true,
-  "globals": {
-    "$": true,
-    "GM_addStyle": true
-  }
-}
