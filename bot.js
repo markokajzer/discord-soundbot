@@ -87,6 +87,11 @@ function playSound(voiceChannel, sound) {
       console.log(error);
     }
     else {
+      // Disallow interruption of sounds
+      if(connection.playing) {
+        return;
+      }
+
       connection.playFile(file, (_, intent) => {
         intent.on('end', () => {
           bot.leaveVoiceChannel(connection);
