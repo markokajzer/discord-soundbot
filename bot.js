@@ -19,18 +19,16 @@ bot.on('message', (message) => {
     return;
   }
 
-  // Get stored sounds
-  let sounds = fs.readdirSync('sounds/');
-  sounds = sounds.filter((sound) => {
-    return sound.indexOf('.mp3') >= 0;
-  });
-  sounds = sounds.map((sound) => sound.split('.')[0]);
-
   // Show list of commands
   if(message.content === '!commands') {
     listCommands(message.channel.id);
     return;
   }
+
+  // Get stored sounds
+  let sounds = fs.readdirSync('sounds/');
+  sounds = sounds.filter((sound) => sound.includes('.mp3'));
+  sounds = sounds.map((sound) => sound.split('.')[0]);
 
   // Show list of available sounds
   if(message.content === '!sounds') {
