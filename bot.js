@@ -22,6 +22,12 @@ bot.on('message', (message) => {
   sounds = sounds.map((sound) => sound.split('.')[0]);
 
   // List available sounds
+  // Show list of commands
+  if(message.content === '!commands') {
+    listCommands(message.channel.id);
+    return;
+  }
+
   if(message.content === '!sounds') {
     listAvailableSounds(sounds, message.channel.id);
     return;
@@ -65,6 +71,17 @@ bot.on('message', (message) => {
     playSound(voiceChannel, sound);
   }
 });
+
+function listCommands(channel) {
+  let message = '\`\`\`';
+  message += '!commands         Show this message\n';
+  message += '!sounds           Show available sounds\n';
+  message += '!random           Play random sound\n';
+  message += '!stop             Stop playing\n';
+  message += '!remove <sound>   Remove specified sound\n';
+  message += '\`\`\`';
+  bot.sendMessage(channel, message);
+}
 
 function listAvailableSounds(sounds, channel) {
   let message = sounds.map((sound) => sound);
