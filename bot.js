@@ -58,6 +58,12 @@ bot.on('message', (message) => {
     return;
   }
 
+  // Stop playing
+  if(message.content === '!stop') {
+    bot.leaveVoiceChannel(voiceChannel);
+    return;
+  }
+
   // Play random sound
   if(message.content === '!random') {
     let random = sounds[Math.floor(Math.random() * sounds.length)];
