@@ -92,6 +92,7 @@ function playSound(voiceChannel, sound) {
         return;
       }
 
+      // Play the sound
       connection.playFile(file, (_, intent) => {
         intent.on('end', () => {
           bot.leaveVoiceChannel(connection);
