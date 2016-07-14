@@ -85,6 +85,7 @@ function listCommands(channel) {
   let message = '\`\`\`';
   message += '!commands         Show this message\n';
   message += '!sounds           Show available sounds\n';
+  message += '!<sound>          Play the specified sound\n';
   message += '!random           Play random sound\n';
   message += '!stop             Stop playing\n';
   message += '!remove <sound>   Remove specified sound\n';
