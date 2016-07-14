@@ -9,6 +9,11 @@ let bot = new Discord.Client();
 let queue = [];
 
 bot.on('message', (message) => {
+  // Abort when PM
+  if(message.channel instanceof Discord.PMChannel) {
+    return;
+  }
+
   // Only listen for messages starting with '!'
   if(!message.content.startsWith('!')) {
     return;
