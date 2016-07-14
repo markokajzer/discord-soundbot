@@ -18,9 +18,7 @@ bot.on('message', (message) => {
   sounds = sounds.filter((sound) => {
     return sound.indexOf('.mp3') >= 0;
   });
-  sounds = sounds.map((sound) => {
-    return sound.split('.')[0];
-  });
+  sounds = sounds.map((sound) => sound.split('.')[0]);
 
   // List available sounds
   if(message.content === '!sounds') {
@@ -68,9 +66,7 @@ bot.on('message', (message) => {
 });
 
 function listAvailableSounds(sounds, channel) {
-  let message = sounds.map((sound) => {
-    return sound;
-  });
+  let message = sounds.map((sound) => sound);
   bot.sendMessage(channel, message);
 }
 
