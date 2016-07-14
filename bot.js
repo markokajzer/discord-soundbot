@@ -40,8 +40,9 @@ bot.on('message', (message) => {
     return;
   }
 
-  // Abort if user is not connected to any voice channel
   let voiceChannel = message.author.voiceChannel;
+
+  // Abort if user is not connected to any voice channel
   if(voiceChannel === null) {
     return;
   }
@@ -51,15 +52,14 @@ bot.on('message', (message) => {
     return;
   }
 
-  // List available sounds
+  // Play random sound
   if(message.content === '!random') {
     let random = sounds[Math.floor(Math.random() * sounds.length)];
     playSound(voiceChannel, random);
     return;
   }
 
-
-  // If file sound exists, play it
+  // If sound specified and exists, play it
   let sound = message.content.split('!')[1];
   if(sounds.includes(sound)) {
     playSound(voiceChannel, sound);
