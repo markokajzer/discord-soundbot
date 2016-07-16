@@ -61,9 +61,10 @@ bot.on('message', (message) => {
     return;
   }
 
-  // Stop playing
+  // Stop playing and clear queue
   if(message.content === '!stop') {
     bot.leaveVoiceChannel(voiceChannel);
+    queue = [];
     return;
   }
 
