@@ -7,6 +7,8 @@ A Bot for Discord to play your favorite sounds or music.
 
 ### Installation guide
 
+The bot uses FFmpeg to decode audio files, so don't forget to install it.
+
 To use this bot you first have to create your own [Discord Application](https://discordapp.com/developers/applications/me). Click on `New Application`, enter a name for your app and press the `Create Application` button on the bottom right. Now press on the button `Create a Bot User` for your bot token.
 
 Now create a default.json file inside of the config folder according to the example. Enter the `Client/Application ID` and the `Token` into the which you can find inside your Discord application under `APP DETAILS` and `APP BOT USER` respectively.
