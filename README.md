@@ -8,7 +8,7 @@ A Bot for Discord to play your favorite sounds or music.
 ### Requirements
 
 + Due to compatibility with ES2015, **Node.js v6.0.0** or newer is required.
-+ Refering to the [discord.js library](http://discordjs.readthedocs.io/en/latest/troubleshooting.html) three more requirements are needed to use voice functionality:
++ Refering to the [discord.js library](http://discordjs.readthedocs.io/en/latest/troubleshooting.html), three more requirements are needed to use voice functionality:
   + **FFmpeg**
   + **Python 2.7.x**
   + C++ compiler tool for your platform: **build-essential** (Linux), **Xcode Command Line Tools** (Mac OS)
@@ -63,4 +63,3 @@ You can delete sounds by typing `!remove <sound>`. The bot will respond with the
 
 + Add possibility to add sounds
   + PM the bot a wav or mp3 file < 1MB and it will add it to the soundboard.
-+ Deploy to DigitalOcean
