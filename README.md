@@ -62,5 +62,6 @@ You can delete sounds by typing `!remove <sound>`. The bot will respond with the
 ## Todo
 
 + Add possibility to add sounds
-  + PM the bot a wav or mp3 file < 1MB and it will add it to the soundboard.
-+ Answer to !sounds in PMChannel.
+  + PM the bot a wav or mp3 file < 1MB and it will add it to the soundboard
++ Answer to !sounds in PMChannel
++ Queue should play in correct channels
