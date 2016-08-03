@@ -5,9 +5,12 @@ A Bot for Discord to play your favorite sounds or music.
 
 ## Usage
 
-### Installation guide
+### Requirements
 
-The bot uses FFmpeg to decode audio files, so don't forget to install it.
++ The bot uses **FFmpeg** to decode audio files, so don't forget to install it.
++ Due to compatibility with ES2015, **Node.js v6.0.0** or newer is required.
+
+### Installation guide
 
 To use this bot you first have to create your own [Discord Application](https://discordapp.com/developers/applications/me). Click on `New Application`, enter a name for your app and press the `Create Application` button on the bottom right. Now press on the button `Create a Bot User` for your bot token.
 
