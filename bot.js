@@ -10,7 +10,7 @@ let queue = [];
 
 bot.on('message', (message) => {
   // Abort when PM
-  if(message.channel instanceof Discord.PMChannel) {
+  if(message.channel instanceof Discord.DMChannel) {
     return;
   }
 
