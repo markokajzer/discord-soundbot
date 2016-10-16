@@ -49,7 +49,7 @@ bot.on('message', (message) => {
     return;
   }
 
-  let voiceChannel = message.author.voiceChannel;
+  let voiceChannel = message.member.voiceChannel;
 
   // Abort if user is not connected to any voice channel
   if(voiceChannel === null) {
@@ -63,7 +63,7 @@ bot.on('message', (message) => {
 
   // Stop playing and clear queue
   if(message.content === '!stop') {
-    bot.leaveVoiceChannel(voiceChannel);
+    voiceChannel.leave();
     queue = [];
     return;
   }
