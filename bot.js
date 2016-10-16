@@ -32,7 +32,7 @@ bot.on('message', (message) => {
 
   // Show list of available sounds
   if(message.content === '!sounds') {
-    listAvailableSounds(sounds, message.author.id);
+    listAvailableSounds(sounds, message.author);
     return;
   }
 
@@ -98,7 +98,7 @@ function listCommands(user) {
 
 function listAvailableSounds(sounds, user) {
   let message = sounds.map((sound) => sound);
-  bot.sendMessage(user, message);
+  user.sendMessage(message);
 }
 
 function removeSound(sound) {
