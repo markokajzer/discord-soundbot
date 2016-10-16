@@ -140,4 +140,4 @@ function playSound(voiceChannel, sound) {
   });
 }
 
-bot.loginWithToken(config.get('token'));
+bot.login(config.get('token'));
