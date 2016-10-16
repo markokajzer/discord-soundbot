@@ -21,7 +21,7 @@ bot.on('message', (message) => {
 
   // Show list of commands
   if(message.content === '!commands') {
-    listCommands(message.author.id);
+    listCommands(message.author);
     return;
   }
 
@@ -83,15 +83,17 @@ bot.on('message', (message) => {
 });
 
 function listCommands(user) {
-  let message = '\`\`\`';
-  message += '!commands         Show this message\n';
-  message += '!sounds           Show available sounds\n';
-  message += '!<sound>          Play the specified sound\n';
-  message += '!random           Play random sound\n';
-  message += '!stop             Stop playing\n';
-  message += '!remove <sound>   Remove specified sound\n';
-  message += '\`\`\`';
-  bot.sendMessage(user, message);
+  let message = [
+    '```',
+    '!commands         Show this message',
+    '!sounds           Show available sounds',
+    '!<sound>          Play the specified sound',
+    '!random           Play random sound',
+    '!stop             Stop playing',
+    '!remove <sound>   Remove specified sound',
+    '```'
+  ];
+  user.sendMessage(message.join('\n'));
 }
 
 function listAvailableSounds(sounds, user) {
