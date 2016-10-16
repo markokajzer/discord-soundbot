@@ -41,10 +41,10 @@ bot.on('message', (message) => {
     let sound = message.content.replace('!remove ', '');
     if(sounds.includes(sound)) {
       removeSound(sound);
-      bot.sendMessage(message.channel.id, `${sound} removed!`);
+      message.channel.sendMessage(`${sound} removed!`);
     }
     else {
-      bot.sendMessage(message.channel.id, `${sound} not found!`);
+      message.channel.sendMessage(`${sound} not found!`);
     }
     return;
   }
