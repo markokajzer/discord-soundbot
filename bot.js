@@ -1,11 +1,11 @@
-let config  = require('config');
-let fs      = require('fs');
-let Discord = require('discord.js');
+const config  = require('config');
+const fs      = require('fs');
+const Discord = require('discord.js');
 
 console.log('Use the following URL to let the bot join your server!');
 console.log(`https://discordapp.com/oauth2/authorize?client_id=${config.get('client_id')}&scope=bot`);
 
-let bot = new Discord.Client();
+const bot = new Discord.Client();
 let queue = [];
 
 bot.on('message', (message) => {
