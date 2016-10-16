@@ -56,7 +56,7 @@ bot.on('message', (message) => {
     return;
   }
 
-  // Abort if users request was on another channel
+  // Abort if users request was on another server
   if(voiceChannel.server.id !== message.channel.server.id) {
     return;
   }
