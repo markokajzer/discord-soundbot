@@ -58,12 +58,6 @@ bot.on('message', (message) => {
     return;
   }
 
-  // Abort if users request was on another server
-  // TODO CHECK FOR THIS BUG
-  // if(voiceChannel.server.id !== message.channel.server.id) {
-  //  return;
-  // }
-
   // Stop playing and clear queue
   if (message.content === '!stop') {
     voiceChannel.leave();
