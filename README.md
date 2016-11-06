@@ -7,8 +7,8 @@ A Bot for Discord to play your favorite sounds or music.
 
 ### Requirements
 
-+ Due to compatibility with ES2015, **Node.js v6.0.0** or newer is required.
-+ For voice functionality you need **FFmpeg**.
++ As per [discord.js](https://github.com/hydrabolt/discord.js#installation), **Node.js v6.0.0** or newer is required.
++ Due to using voice functionality **FFmpeg** is required.
 
 
 ### Installation guide
@@ -17,7 +17,7 @@ To use this bot you first have to create your own [Discord Application](https://
 
 Now create a default.json file inside of the config folder according to the example. Enter the `Client/Application ID` and the `Token` into the which you can find inside your Discord application under `APP DETAILS` and `APP BOT USER` respectively.
 
-Install the bots dependencies with `npm install` as usual.  
+Install the bots dependencies with `npm install` as usual.
 Finally, run the bot with `node bot.js` or `npm start`.
 
 The bot will print a message to your console, which should look a little bit like this
