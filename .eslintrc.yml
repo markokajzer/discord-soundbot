@@ -24,3 +24,7 @@ rules:
     - error
     - multi-or-nest
     - consistent
+
+  no-plusplus:
+    - error
+    - allowForLoopAfterthoughts: true
