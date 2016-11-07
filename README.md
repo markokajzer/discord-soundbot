@@ -39,7 +39,7 @@ Type `!commands` to print the following list of available commands.
 !mostplayed       Show 15 most used sounds
 !<sound>          Play the specified sound
 !random           Play random sounds
-!stop             Stop playing
+!stop             Stop playing and clear queue
 !remove <sound>   Remove specified sound
 ```
 
