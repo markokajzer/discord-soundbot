@@ -8,8 +8,6 @@ console.log(`https://discordapp.com/oauth2/authorize?client_id=${config.get('cli
 const bot = new Discord.Client();
 let queue = [];
 
-bot.login(config.get('token'));
-
 bot.on('message', (message) => {
   // Abort when PM
   if (message.channel instanceof Discord.DMChannel) {
@@ -132,3 +130,5 @@ function playSound(voiceChannel, sound) {
     console.log(error);
   });
 }
+
+bot.login(config.get('token'));
