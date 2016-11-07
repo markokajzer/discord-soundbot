@@ -91,6 +91,7 @@ function listCommands(user) {
     '```',
     '!commands         Show this message',
     '!sounds           Show available sounds',
+    '!mostplayed       Show 15 most used sounds',
     '!<sound>          Play the specified sound',
     '!random           Play random sound',
     '!stop             Stop playing',
