@@ -10,14 +10,12 @@ let queue = [];
 
 bot.on('message', (message) => {
   // Abort when PM
-  if (message.channel instanceof Discord.DMChannel) {
+  if (message.channel instanceof Discord.DMChannel)
     return;
-  }
 
   // Only listen for messages starting with '!'
-  if (!message.content.startsWith('!')) {
+  if (!message.content.startsWith('!'))
     return;
-  }
 
   // Show list of commands
   if (message.content === '!commands') {
@@ -66,15 +64,17 @@ bot.on('message', (message) => {
   // Play random sound
   if (message.content === '!random') {
     const random = sounds[Math.floor(Math.random() * sounds.length)];
-    playSound(voiceChannel, random);
+    addToQueue(voiceChannel, random);
     return;
   }
 
   // Play it if sound specified and exists
   const sound = message.content.split('!')[1];
-  if (sounds.includes(sound)) {
-    playSound(voiceChannel, sound);
-  }
+  if (sounds.includes(sound))
+    addToQueue(voiceChannel, sound);
+
+  if (bot.voiceConnections.array().length === 0)
+    playSoundQueue();
 });
 
 function listCommands(user) {
@@ -101,30 +101,23 @@ function removeSound(sound) {
   fs.unlink(file);
 }
 
-function playNext(connection) {
-  // Play one sound of queue
-  const file = queue.shift();
-  const dispatcher = connection.playFile(file);
-  dispatcher.on('end', () => {
-    if (queue.length > 0) {
-      playNext(connection);
-    } else {
-      connection.disconnect();
-    }
-  });
+function addToQueue(voiceChannel, sound) {
+  queue.push({ name: sound, channel: voiceChannel.id });
 }
 
-function playSound(voiceChannel, sound) {
-  const file = `sounds/${sound}.mp3`;
-  queue.push(file);
+function playSoundQueue() {
+  const nextSound = queue.shift();
+  const file = `sounds/${nextSound.name}.mp3`;
+  const voiceChannel = bot.channels.get(nextSound.channel);
   voiceChannel.join().then((connection) => {
-    // Disallow interruption of sounds, add to queue only instead
-    if (connection.speaking) {
-      return;
-    }
-
     // Work through queue
-    playNext(connection);
+    const dispatcher = connection.playFile(file);
+    dispatcher.on('end', () => {
+      if (queue.length > 0)
+        playSoundQueue();
+      else
+        connection.disconnect();
+    });
   }).catch((error) => {
     console.log('Error occured!');
     console.log(error);

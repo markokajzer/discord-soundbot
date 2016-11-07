@@ -19,3 +19,8 @@ rules:
   comma-dangle:
     - error
     - never
+
+  curly:
+    - error
+    - multi-or-nest
+    - consistent
