@@ -78,12 +78,13 @@ bot.on('message', (message) => {
 
   // Add sound to queue if exists
   const sound = message.content.split('!')[1];
-  if (sounds.includes(sound))
+  if (sounds.includes(sound)) {
     addToQueue(voiceChannel, sound);
 
-  // Work through queue
-  if (bot.voiceConnections.array().length === 0)
-    playSoundQueue();
+    // Work through queue
+    if (bot.voiceConnections.array().length === 0)
+      playSoundQueue();
+  }
 });
 
 function listCommands(user) {
