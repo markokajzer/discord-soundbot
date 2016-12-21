@@ -6,6 +6,7 @@ const Discord = require('discord.js');
 
 const db = low('db.json', { storage: fileAsync });
 db.defaults({ counts: [] }).value();
+db.defaults({ joinSounds: [] }).value();
 
 const bot = new Discord.Client();
 let queue = [];
@@ -14,7 +15,8 @@ let queue = [];
 bot.on('voiceStateUpdate', (oldMember, newMember) => {
   if (oldMember.id !== bot.user.id &&
       oldMember.voiceChannelID === null && newMember.voiceChannelID !== null) {
-    addToQueue(bot.channels.get(newMember.voiceChannelID), 'onlygame');
+    addToQueue(bot.channels.get(newMember.voiceChannelID),
+      db.get('joinSounds').find({ user: newMember.id }).value().sound);
     if (bot.voiceConnections.array().length === 0) playSoundQueue();
   }
 });
@@ -82,6 +84,14 @@ bot.on('message', (message) => {
   if (message.content === '!random') {
     const random = sounds[Math.floor(Math.random() * sounds.length)];
     addToQueue(voiceChannel, random);
+    return;
+  }
+
+  // Set as JoinSound if exists
+  if (message.content.startsWith('!joinsound ')) {
+    const sound = message.content.replace('!joinsound ', '');
+    if (sounds.includes(sound))
+      setJoinSound(message.author, sound);
     return;
   }
 
@@ -172,6 +182,14 @@ function updateCount(playedSound) {
   } else {
     db.get('counts').push({ name: playedSound, count: 1 }).value();
   }
+}
+
+function setJoinSound(joinUser, joinSound) {
+  const user = db.get('joinSounds').find({ user: joinUser.id }).value();
+  if (user)
+    db.get('joinSounds').find({ user: joinUser.id }).assign({ sound: joinSound }).value();
+  else
+    db.get('joinSounds').push({ user: joinUser.id, sound: joinSound }).value();
 }
 
 bot.login(config.get('token'));
