@@ -44,6 +44,12 @@ bot.on('message', (message) => {
     return;
   }
 
+  // Remove joinSound
+  if (message.content === '!removejoinsound') {
+    db.get('joinSounds').remove({ user: message.author.id }).value();
+    return;
+  }
+
   // Get stored sounds
   let sounds = fs.readdirSync('sounds/');
   sounds = sounds.filter(sound => sound.includes('.mp3'));
