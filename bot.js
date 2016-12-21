@@ -30,13 +30,13 @@ bot.on('message', (message) => {
 
   // Show list of commands
   if (message.content === '!commands') {
-    listCommands(message.author);
+    message.author.sendMessage(commandsList());
     return;
   }
 
   // Show number of times the sounds have been played
   if (message.content === '!mostplayed') {
-    listMostPlayed(message.channel.id);
+    message.channel.sendMessage(mostPlayedList());
     return;
   }
 
@@ -47,7 +47,7 @@ bot.on('message', (message) => {
 
   // Show list of available sounds
   if (message.content === '!sounds') {
-    listAvailableSounds(sounds, message.author);
+    message.author.sendMessage(sounds.map(sound => sound));
     return;
   }
 
@@ -96,8 +96,8 @@ bot.on('message', (message) => {
   }
 });
 
-function listCommands(user) {
-  const message = [
+function commandsList() {
+  return [
     '```',
     '!commands         Show this message',
     '!sounds           Show available sounds',
@@ -108,10 +108,9 @@ function listCommands(user) {
     '!remove <sound>   Remove specified sound',
     '```'
   ];
-  user.sendMessage(message.join('\n'));
 }
 
-function listMostPlayed(channelId) {
+function mostPlayedList() {
   const sounds = db.get('counts').sortBy('count').reverse().take(15).value();
   const message = ['```'];
 
@@ -124,7 +123,7 @@ function listMostPlayed(channelId) {
     message.push(`${sound.name}:${spacesForSound}${spacesForCount}${sound.count}`);
   });
   message.push('```');
-  bot.channels.get(channelId).sendMessage(message.join('\n'));
+  message.join('\n');
 }
 
 function findLongestWord(array) {
@@ -132,11 +131,6 @@ function findLongestWord(array) {
   for (let i = 1; i < array.length; i++)
     if (array[indexOfLongestWord].length < array[i].length) indexOfLongestWord = i;
   return array[indexOfLongestWord];
-}
-
-function listAvailableSounds(sounds, user) {
-  const message = sounds.map(sound => sound);
-  user.sendMessage(message);
 }
 
 function removeSound(sound) {
