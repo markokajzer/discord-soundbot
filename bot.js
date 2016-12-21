@@ -10,6 +10,15 @@ db.defaults({ counts: [] }).value();
 const bot = new Discord.Client();
 let queue = [];
 
+// Play recorded sound if joined a channel
+bot.on('voiceStateUpdate', (oldMember, newMember) => {
+  if (oldMember.id !== bot.user.id &&
+      oldMember.voiceChannelID === null && newMember.voiceChannelID !== null) {
+    addToQueue(bot.channels.get(newMember.voiceChannelID), 'onlygame');
+    if (bot.voiceConnections.array().length === 0) playSoundQueue();
+  }
+});
+
 bot.on('message', (message) => {
   // Abort when PM
   if (message.channel instanceof Discord.DMChannel)
