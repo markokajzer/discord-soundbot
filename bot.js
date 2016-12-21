@@ -14,7 +14,9 @@ let queue = [];
 // Play recorded sound if joined a channel
 bot.on('voiceStateUpdate', (oldMember, newMember) => {
   if (oldMember.id !== bot.user.id &&
-      oldMember.voiceChannelID === null && newMember.voiceChannelID !== null) {
+      ((oldMember.voiceChannelID === null && newMember.voiceChannelID !== null) ||
+       (oldMember.voiceChannelID === bot.guilds.first().afkChannelID)) &&
+      db.get('joinSounds').find({ user: newMember.id }).value() !== undefined) {
     addToQueue(bot.channels.get(newMember.voiceChannelID),
       db.get('joinSounds').find({ user: newMember.id }).value().sound);
     if (bot.voiceConnections.array().length === 0) playSoundQueue();
