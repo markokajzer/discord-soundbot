@@ -117,7 +117,7 @@ function commandsList() {
     '!stop             Stop playing and clear queue',
     '!remove <sound>   Remove specified sound',
     '```'
-  ];
+  ].join('\n');
 }
 
 function mostPlayedList() {
@@ -133,7 +133,7 @@ function mostPlayedList() {
     message.push(`${sound.name}:${spacesForSound}${spacesForCount}${sound.count}`);
   });
   message.push('```');
-  message.join('\n');
+  return message.join('\n');
 }
 
 function findLongestWord(array) {
