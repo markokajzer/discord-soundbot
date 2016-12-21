@@ -67,6 +67,14 @@ bot.on('message', (message) => {
     return;
   }
 
+  // Set as JoinSound if exists
+  if (message.content.startsWith('!joinsound ')) {
+    const sound = message.content.replace('!joinsound ', '');
+    if (sounds.includes(sound))
+      setJoinSound(message.author, sound);
+    return;
+  }
+
   const voiceChannel = message.member.voiceChannel;
 
   // Abort if user is not connected to any voice channel
@@ -86,14 +94,6 @@ bot.on('message', (message) => {
   if (message.content === '!random') {
     const random = sounds[Math.floor(Math.random() * sounds.length)];
     addToQueue(voiceChannel, random);
-    return;
-  }
-
-  // Set as JoinSound if exists
-  if (message.content.startsWith('!joinsound ')) {
-    const sound = message.content.replace('!joinsound ', '');
-    if (sounds.includes(sound))
-      setJoinSound(message.author, sound);
     return;
   }
 
