@@ -71,18 +71,6 @@ class Util {
       this.db.get('counts').push({ name: playedSound, count: 1 }).value();
     }
   }
-
-  setJoinSound(joinUser, joinSound) {
-    const user = this.db.get('joinSounds').find({ user: joinUser.id }).value();
-    if (user)
-      this.db.get('joinSounds').find({ user: joinUser.id }).assign({ sound: joinSound }).value();
-    else
-      this.db.get('joinSounds').push({ user: joinUser.id, sound: joinSound }).value();
-  }
-
-  removeJoinSound(joinUser) {
-    this.db.get('joinSounds').remove({ user: joinUser.id }).value();
-  }
 }
 
 module.exports = new Util();

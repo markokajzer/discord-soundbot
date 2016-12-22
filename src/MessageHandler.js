@@ -10,15 +10,10 @@ class MessageHandler {
       message.author.sendMessage(Util.commandsList());
     } else if (message.content === '!mostplayed') {
       message.channel.sendMessage(Util.mostPlayedList());
-    } else if (message.content === '!removejoinsound') {
-      Util.removeJoinSound(message.author);
     } else {
       const sounds = Util.getSounds();
       if (message.content === '!sounds') {
         message.author.sendMessage(sounds.map(sound => sound));
-      } else if (message.content.startsWith('!joinsound ')) {
-        const sound = message.content.replace('!joinsound ', '');
-        if (sounds.includes(sound)) Util.setJoinSound(message.author, sound);
       } else {
         const voiceChannel = message.member.voiceChannel;
         if (voiceChannel === undefined) {

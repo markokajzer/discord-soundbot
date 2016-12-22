@@ -13,31 +13,13 @@ class SoundBot extends Discord.Client {
     this.messageHandler = new MessageHandler(this);
 
     this.db.defaults({ counts: [] }).value();
-    this.db.defaults({ joinSounds: [] }).value();
     this._addEventListeners();
+
     this.login(config.get('token'));
   }
 
   _addEventListeners() {
-    this.on('voiceStateUpdate', this._voiceStateUpdateListener);
     this.on('message', this._messageListener);
-  }
-
-  // Play joinsound if joined a channel
-  _voiceStateUpdateListener(oldMember, newMember) {
-    // This is superbad, but db needs to be reevaluated
-    // Without this we get the joinsound that was there during startup
-    this.db = low('db.json', { storage: fileAsync });
-    if (oldMember.id !== this.user.id &&
-        ((oldMember.voiceChannelID === null && newMember.voiceChannelID !== null) ||
-         (oldMember.voiceChannelID === this.guilds.first().afkChannelID)) &&
-        this.db.get('joinSounds').find({ user: newMember.id }).value() !== undefined) {
-      this.addToQueue(this.channels.get(newMember.voiceChannelID),
-        this.db.get('joinSounds').find({ user: newMember.id }).value().sound);
-
-      if (this.voiceConnections.array().length === 0)
-        this.playSoundQueue();
-    }
   }
 
   _messageListener(message) {
