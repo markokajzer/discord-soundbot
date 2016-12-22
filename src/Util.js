@@ -24,6 +24,7 @@ class Util {
       '!<sound>          Play the specified sound',
       '!random           Play random sound',
       '!stop             Stop playing and clear queue',
+      '!add              Add the attached sound',
       '!remove <sound>   Remove specified sound',
       '```'
     ].join('\n');

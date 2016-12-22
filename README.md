@@ -40,12 +40,13 @@ Type `!commands` to print the following list of available commands.
 !<sound>          Play the specified sound
 !random           Play random sounds
 !stop             Stop playing and clear queue
+!add              Add the attached sound
 !remove <sound>   Remove specified sound
 ```
 
 ### Adding sounds
 
-Currently you have to create your own sounds as .mp3 files and put the in the `sounds/` directory. Your bot will automatically use new sounds, no need to restart.
+You can add sounds to the bot by typing `!add` and attaching a file. The file has to be an .mp3 file of less than 1MB.
 
 ### Playing sounds
 
@@ -56,9 +57,3 @@ All sounds will be added to a queue and played in succession. To halt the playba
 ### Removing sounds
 
 You can delete sounds by typing `!remove <sound>`. The bot will respond with the status of the deletion in the channel of the message.
-
-## Todo
-
-+ Add possibility to add sounds
-  + PM the bot a wav or mp3 file < 1MB and it will add it to the soundboard.
-+ Delete sound messages
