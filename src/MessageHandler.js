@@ -10,6 +10,8 @@ class MessageHandler {
       message.author.sendMessage(Util.commandsList());
     } else if (message.content === '!mostplayed') {
       message.channel.sendMessage(Util.mostPlayedList());
+    } else if (message.content === '!add' && message.attachments.size > 0) {
+      Util.addSounds(message.attachments, message.channel);
     } else {
       const sounds = Util.getSounds();
       if (message.content === '!sounds') {
@@ -23,8 +25,7 @@ class MessageHandler {
           this.bot.queue = [];
         } else if (message.content.startsWith('!remove ')) {
           const sound = message.content.replace('!remove ', '');
-          const result = Util.removeSound(sound);
-          message.channel.sendMessage(result);
+          Util.removeSound(sound, message.channel);
         } else if (message.content === '!random') {
           const random = sounds[Math.floor(Math.random() * sounds.length)];
           this.bot.addToQueue(voiceChannel, random);

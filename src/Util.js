@@ -1,4 +1,5 @@
 const fs = require('fs');
+const https = require('https');
 const low = require('lowdb');
 const fileAsync = require('lowdb/lib/file-async');
 
@@ -51,13 +52,46 @@ class Util {
     return array[indexOfLongestWord];
   }
 
-  removeSound(sound) {
+  addSounds(attachments, channel) {
+    attachments.forEach(attachment => this._addSound(attachment, channel));
+  }
+
+  _addSound(attachment, channel) {
+    if (attachment.filesize > 1000000) {
+      channel.sendMessage(`${attachment.filename.split('.')[0]} added!`);
+      return;
+    }
+
+    if (!attachment.filename.endsWith('.mp3')) {
+      channel.sendMessage('Sound has to be mp3!');
+      return;
+    }
+
+    const filename = attachment.filename.split('.')[0];
+    if (this.getSounds().includes(filename)) {
+      channel.sendMessage(`${filename} already exists!`);
+      return;
+    }
+
+    https.get(attachment.url, (response) => {
+      if (response.statusCode === 200) {
+        const file = fs.createWriteStream(`./sounds/${attachment.filename}`);
+        response.pipe(file);
+        channel.sendMessage(`${filename} added!`);
+      }
+    }).on('error', (error) => {
+      console.error(error);
+      channel.sendMessage('Something went wrong!');
+    });
+  }
+
+  removeSound(sound, channel) {
     const file = `sounds/${sound}.mp3`;
     try {
       fs.unlinkSync(file);
-      return `${sound} removed!`;
+      channel.sendMessage(`${sound} removed!`);
     } catch (error) {
-      return `${sound} not found!`;
+      channel.sendMessage(`${sound} not found!`);
     }
   }
 
