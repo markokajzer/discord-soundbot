@@ -1,4 +1,8 @@
-## 0.4.0 (2016-11-07)
+## 0.5.0 (2016-12-29)
+
++ Added `!rename` command
+
+## 0.4.0 (2016-12-23)
 
 + Added `!add` command which saves an attached .mp3 file and adds it to sounds
 

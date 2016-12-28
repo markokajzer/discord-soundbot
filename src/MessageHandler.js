@@ -15,6 +15,9 @@ class MessageHandler {
     } else if (message.content.startsWith('!remove ')) {
       const sound = message.content.replace('!remove ', '');
       Util.removeSound(sound, message.channel);
+    } else if (message.content.startsWith('!rename ')) {
+      const [oldsound, newsound] = message.content.replace('!rename ', '').split(' ');
+      Util.renameSound(oldsound, newsound, message.channel);
     } else {
       const sounds = Util.getSounds();
       if (message.content === '!sounds') {
