@@ -1,4 +1,8 @@
-## 0.6.0 (2017-02-26)
+## 0.7.0 (2017-02-27)
+
++ Added possibility to delete `!<sound>` messages after playthrough.
+
+## 0.6.0 (2017-02-27)
 
 + Made accepted file formats configurable. ([`#3`](https://github.com/markokajzer/discord-soundbot/issues/3))
 + Made accepted file size configurable.

@@ -31,11 +31,11 @@ class MessageHandler {
           this.bot.queue = [];
         } else if (message.content === '!random') {
           const random = sounds[Math.floor(Math.random() * sounds.length)];
-          this.bot.addToQueue(voiceChannel, random);
+          this.bot.addToQueue(voiceChannel.id, random, message);
         } else {
           const sound = message.content.split('!')[1];
           if (sounds.includes(sound)) {
-            this.bot.addToQueue(voiceChannel, sound);
+            this.bot.addToQueue(voiceChannel.id, sound, message);
             if (this.bot.voiceConnections.array().length === 0) this.bot.playSoundQueue();
           }
         }

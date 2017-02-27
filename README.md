@@ -58,3 +58,12 @@ All sounds will be added to a queue and played in succession. To halt the playba
 ### Removing sounds
 
 You can delete sounds by typing `!remove <sound>`. The bot will respond with the status of the deletion in the channel of the message.
+
+
+## Configuration
+
+You can configure the accepted file formats (via the `extensions` array) as well as the size of the accepted files (via the `size` given in bytes).
+
+The bot can also automatically delete `!<sound>` messages for you to reduce channel spam. For this, set `deleteMessages` to `true`.
+
+Check `config/default-example.json` for an example config.
