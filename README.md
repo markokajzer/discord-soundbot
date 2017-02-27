@@ -27,7 +27,7 @@ Use the following URL to let the bot join your server!
 https://discordapp.com/oauth2/authorize?client_id={YOUR_CLIENT_ID}&scope=bot
 ```
 
-Click on the link and allow your bot to join one of your Discord servers.
+Follow the link and allow your bot to join one of your Discord servers.
 
 ## Commands
 
@@ -53,7 +53,7 @@ You can add sounds to the bot by typing `!add` and attaching a file. The file ha
 
 Type `!sounds` to get a list of all sounds that are available to your bot. Play any sound by prefixing it with `!`, e.g. `!mysound`. Play a random sound with `!random`.
 
-All sounds will be added to a queue and played in succession. To halt the playback, type `!stop`.
+All sounds will be added to a queue and played in succession. To halt the playback and empty the queue type `!stop`.
 
 ### Removing sounds
 
