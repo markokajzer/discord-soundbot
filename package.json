@@ -1,6 +1,6 @@
 {
   "name": "dicord_soundbot",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "A Discord Bot to play sounds",
   "main": "bot.js",
   "dependencies": {
