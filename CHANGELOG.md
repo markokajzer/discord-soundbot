@@ -1,3 +1,8 @@
+## 0.6.0 (2017-02-26)
+
++ Made accepted file formats configurable. ([`#3`](https://github.com/markokajzer/discord-soundbot/issues/3))
++ Made accepted file size configurable.
+
 ## 0.5.0 (2016-12-29)
 
 + Added `!rename` command

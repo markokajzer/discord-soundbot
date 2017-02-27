@@ -1,4 +1,6 @@
 {
   "client_id": "YOUR_CLIENT/APPLICATION_ID",
-  "token": "YOUR_APP_BOT_USER_TOKEN"
+  "token": "YOUR_APP_BOT_USER_TOKEN",
+  "extensions": [".mp3", ".wav"],
+  "size": 1000000
 }

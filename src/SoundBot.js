@@ -34,7 +34,7 @@ class SoundBot extends Discord.Client {
 
   playSoundQueue() {
     const nextSound = this.queue.shift();
-    const file = `sounds/${nextSound.name}.mp3`;
+    const file = Util.getPathForSound(nextSound.name);
     const voiceChannel = this.channels.get(nextSound.channel);
 
     voiceChannel.join().then((connection) => {

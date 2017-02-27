@@ -1,3 +1,4 @@
+const config = require('config');
 const fs = require('fs');
 const https = require('https');
 const low = require('lowdb');
@@ -8,11 +9,24 @@ class Util {
     this.db = low('db.json', { storage: fileAsync });
   }
 
-  getSounds() {
-    let sounds = fs.readdirSync('sounds/');
-    sounds = sounds.filter(sound => sound.includes('.mp3'));
-    sounds = sounds.map(sound => sound.split('.')[0]);
+  getSoundsWithExtension() {
+    const files = fs.readdirSync('sounds/');
+    let sounds = files.filter(sound => config.get('extensions').some(ext => sound.endsWith(ext)));
+    sounds = sounds.map(sound => ({ name: sound.split('.')[0], extension: sound.split('.')[1] }));
     return sounds;
+  }
+
+  getSounds() {
+    const sounds = this.getSoundsWithExtension();
+    return sounds.map(sound => sound.name);
+  }
+
+  getExtensionForSound(name) {
+    return this.getSoundsWithExtension().find(sound => sound.name === name).extension;
+  }
+
+  getPathForSound(sound) {
+    return `sounds/${sound}.${this.getExtensionForSound(sound)}`;
   }
 
   commandsList() {
@@ -35,8 +49,8 @@ class Util {
     const sounds = this.db.get('counts').sortBy('count').reverse().take(15).value();
     const message = ['```'];
 
-    const longestSound = this.findLongestWord(sounds.map(sound => sound.name));
-    const longestCount = this.findLongestWord(sounds.map(sound => String(sound.count)));
+    const longestSound = this._findLongestWord(sounds.map(sound => sound.name));
+    const longestCount = this._findLongestWord(sounds.map(sound => String(sound.count)));
 
     sounds.forEach((sound) => {
       const spacesForSound = ' '.repeat(longestSound.length - sound.name.length + 1);
@@ -47,7 +61,7 @@ class Util {
     return message.join('\n');
   }
 
-  findLongestWord(array) {
+  _findLongestWord(array) {
     let indexOfLongestWord = 0;
     for (let i = 1; i < array.length; i++)
       if (array[indexOfLongestWord].length < array[i].length) indexOfLongestWord = i;
@@ -59,13 +73,13 @@ class Util {
   }
 
   _addSound(attachment, channel) {
-    if (attachment.filesize > 1000000) {
-      channel.sendMessage(`${attachment.filename.split('.')[0]} added!`);
+    if (attachment.filesize > config.get('size')) {
+      channel.sendMessage(`${attachment.filename.split('.')[0]} is too big!`);
       return;
     }
 
-    if (!attachment.filename.endsWith('.mp3')) {
-      channel.sendMessage('Sound has to be mp3!');
+    if (!config.get('extensions').some(ext => attachment.filename.endsWith(ext))) {
+      channel.sendMessage('Sound has to be in accepted format!');
       return;
     }
 
@@ -88,8 +102,9 @@ class Util {
   }
 
   renameSound(oldName, newName, channel) {
-    const oldFile = `sounds/${oldName}.mp3`;
-    const newFile = `sounds/${newName}.mp3`;
+    const extension = this.getExtensionForSound(oldName);
+    const oldFile = `sounds/${oldName}.${extension}`;
+    const newFile = `sounds/${newName}.${extension}`;
     try {
       fs.renameSync(oldFile, newFile);
       channel.sendMessage(`${oldName} renamed to ${newName}!`);
@@ -99,8 +114,8 @@ class Util {
   }
 
   removeSound(sound, channel) {
-    const file = `sounds/${sound}.mp3`;
     try {
+      const file = this.getPathForSound(sound);
       fs.unlinkSync(file);
       channel.sendMessage(`${sound} removed!`);
     } catch (error) {
