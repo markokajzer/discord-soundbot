@@ -66,4 +66,4 @@ You can configure the accepted file formats (via the `extensions` array) as well
 
 The bot can also automatically delete `!<sound>` messages for you to reduce channel spam. For this, set `deleteMessages` to `true`.
 
-Check `config/default-example.json` for an example config.
+Check `config/default-example.json` for an example config and create a new file `default.json` with your desired configuration inside the `config` folder.
