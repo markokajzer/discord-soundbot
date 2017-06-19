@@ -43,6 +43,7 @@ Type `!commands` to print the following list of available commands.
 !add                   Add the attached sound
 !rename <old> <new>    Rename specified sound
 !remove <sound>        Remove specified sound
+!link                  Shows discord bot link
 ```
 
 ### Adding sounds
