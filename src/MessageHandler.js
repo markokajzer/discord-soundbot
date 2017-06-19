@@ -1,4 +1,5 @@
 const Util = require('./Util.js');
+const config = require('config');
 
 class MessageHandler {
   constructor(bot) {
@@ -32,6 +33,8 @@ class MessageHandler {
         } else if (message.content === '!random') {
           const random = sounds[Math.floor(Math.random() * sounds.length)];
           this.bot.addToQueue(voiceChannel.id, random, message);
+        } else if (message.content === '!link') {
+          message.reply(`Here's the link to invite this bot to another server! <https://discordapp.com/oauth2/authorize?client_id=${config.get('client_id')}&scope=bot>`);
         } else {
           const sound = message.content.split('!')[1];
           if (sounds.includes(sound)) {
