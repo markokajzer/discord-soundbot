@@ -41,6 +41,7 @@ class Util {
       '!add                   Add the attached sound',
       '!rename <old> <new>    Rename specified sound',
       '!remove <sound>        Remove specified sound',
+      '!link                  Shows discord bot link',
       '```'
     ].join('\n');
   }

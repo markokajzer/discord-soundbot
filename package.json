@@ -4,10 +4,15 @@
   "description": "A Discord Bot to play sounds",
   "main": "bot.js",
   "dependencies": {
+    "bufferutil": "^3.0.1",
+    "cleverbot": "^1.0.1",
     "config": "^1.21.0",
     "discord.js": "^11.1.0",
+    "libsodium": "^0.5.1",
+    "libsodium-wrappers": "^0.5.1",
     "lowdb": "^0.14.0",
-    "node-opus": "^0.2.2"
+    "node-opus": "^0.2.2",
+    "opusscript": "0.0.3"
   },
   "optionalDependencies": {
     "erlpack": "hammerandchisel/erlpack",
