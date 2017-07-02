@@ -74,18 +74,18 @@ class Util {
 
   _addSound(attachment, channel) {
     if (attachment.filesize > config.get('size')) {
-      channel.sendMessage(`${attachment.filename.split('.')[0]} is too big!`);
+      channel.send(`${attachment.filename.split('.')[0]} is too big!`);
       return;
     }
 
     if (!config.get('extensions').some(ext => attachment.filename.endsWith(ext))) {
-      channel.sendMessage('Sound has to be in accepted format!');
+      channel.send('Sound has to be in accepted format!');
       return;
     }
 
     const filename = attachment.filename.split('.')[0];
     if (this.getSounds().includes(filename)) {
-      channel.sendMessage(`${filename} already exists!`);
+      channel.send(`${filename} already exists!`);
       return;
     }
 
@@ -93,11 +93,11 @@ class Util {
       if (response.statusCode === 200) {
         const file = fs.createWriteStream(`./sounds/${attachment.filename}`);
         response.pipe(file);
-        channel.sendMessage(`${filename} added!`);
+        channel.send(`${filename} added!`);
       }
     }).on('error', (error) => {
       console.error(error);
-      channel.sendMessage('Something went wrong!');
+      channel.send('Something went wrong!');
     });
   }
 
@@ -107,9 +107,9 @@ class Util {
     const newFile = `sounds/${newName}.${extension}`;
     try {
       fs.renameSync(oldFile, newFile);
-      channel.sendMessage(`${oldName} renamed to ${newName}!`);
+      channel.send(`${oldName} renamed to ${newName}!`);
     } catch (error) {
-      channel.sendMessage(`${oldName} not found!`);
+      channel.send(`${oldName} not found!`);
     }
   }
 
@@ -117,9 +117,9 @@ class Util {
     try {
       const file = this.getPathForSound(sound);
       fs.unlinkSync(file);
-      channel.sendMessage(`${sound} removed!`);
+      channel.send(`${sound} removed!`);
     } catch (error) {
-      channel.sendMessage(`${sound} not found!`);
+      channel.send(`${sound} not found!`);
     }
   }
 

@@ -7,9 +7,9 @@ class MessageHandler {
 
   handle(message) {
     if (message.content === '!commands') {
-      message.author.sendMessage(Util.commandsList());
+      message.author.send(Util.commandsList());
     } else if (message.content === '!mostplayed') {
-      message.channel.sendMessage(Util.mostPlayedList());
+      message.channel.send(Util.mostPlayedList());
     } else if (message.content === '!add' && message.attachments.size > 0) {
       Util.addSounds(message.attachments, message.channel);
     } else if (message.content.startsWith('!remove ')) {
@@ -21,7 +21,7 @@ class MessageHandler {
     } else {
       const sounds = Util.getSounds();
       if (message.content === '!sounds') {
-        message.author.sendMessage(sounds.map(sound => sound));
+        message.author.send(sounds.map(sound => sound));
       } else {
         const voiceChannel = message.member.voiceChannel;
         if (voiceChannel === undefined) {
