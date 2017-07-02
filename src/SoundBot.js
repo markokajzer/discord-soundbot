@@ -19,7 +19,15 @@ class SoundBot extends Discord.Client {
   }
 
   _addEventListeners() {
+    this.on('ready', this._readyListener);
     this.on('message', this._messageListener);
+  }
+
+  _readyListener() {
+    if (Util.avatarExists())
+      this.user.setAvatar('./config/avatar.png');
+    else
+      this.user.setAvatar(null);
   }
 
   _messageListener(message) {

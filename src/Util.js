@@ -29,6 +29,10 @@ class Util {
     return `sounds/${sound}.${this.getExtensionForSound(sound)}`;
   }
 
+  avatarExists() {
+    return fs.existsSync('./config/avatar.png');
+  }
+
   commandsList() {
     return [
       '```',

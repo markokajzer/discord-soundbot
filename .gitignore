@@ -5,3 +5,4 @@ sounds/*
 !sounds/.keep
 
 db.json
+config/*.png
