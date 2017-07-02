@@ -11,7 +11,6 @@
   },
   "optionalDependencies": {
     "erlpack": "hammerandchisel/erlpack",
-    "sodium": "^2.0.1",
     "uws": "^0.14.0"
   },
   "devDependencies": {},
