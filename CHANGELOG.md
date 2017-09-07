@@ -1,3 +1,7 @@
+## 0.8.0 (2017-09-07)
+
++ Added possibility to add / remove avatar for the bot.
+
 ## 0.7.0 (2017-02-27)
 
 + Added possibility to delete `!<sound>` messages after playthrough.
