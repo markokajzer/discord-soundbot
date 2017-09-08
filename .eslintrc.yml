@@ -32,3 +32,13 @@ rules:
   no-underscore-dangle:
     - error
     - allowAfterThis: true
+
+  class-methods-use-this:
+    - off
+
+  no-mixed-operators:
+    - error
+    - allowSamePrecedence: true
+
+  prefer-destructuring:
+    - off

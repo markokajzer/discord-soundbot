@@ -9,31 +9,31 @@ class Util {
     this.db = low('db.json', { storage: fileAsync });
   }
 
-  getSoundsWithExtension() {
+  avatarExists() {
+    return fs.existsSync('./config/avatar.png');
+  }
+
+  getSounds() {
+    const sounds = this._getSoundsWithExtension();
+    return sounds.map(sound => sound.name);
+  }
+
+  _getSoundsWithExtension() {
     const files = fs.readdirSync('sounds/');
     let sounds = files.filter(sound => config.get('extensions').some(ext => sound.endsWith(ext)));
     sounds = sounds.map(sound => ({ name: sound.split('.')[0], extension: sound.split('.')[1] }));
     return sounds;
   }
 
-  getSounds() {
-    const sounds = this.getSoundsWithExtension();
-    return sounds.map(sound => sound.name);
-  }
-
-  getExtensionForSound(name) {
-    return this.getSoundsWithExtension().find(sound => sound.name === name).extension;
-  }
-
   getPathForSound(sound) {
-    return `sounds/${sound}.${this.getExtensionForSound(sound)}`;
+    return `sounds/${sound}.${this._getExtensionForSound(sound)}`;
   }
 
-  avatarExists() {
-    return fs.existsSync('./config/avatar.png');
+  _getExtensionForSound(name) {
+    return this._getSoundsWithExtension().find(sound => sound.name === name).extension;
   }
 
-  commandsList() {
+  getListOfCommands() {
     return [
       '```',
       '!commands              Show this message',
@@ -49,19 +49,20 @@ class Util {
     ].join('\n');
   }
 
-  mostPlayedList() {
+  getMostPlayedSounds() {
+    // eslint-disable-next-line
     const sounds = this.db.get('counts').sortBy('count').reverse().take(15).value();
-    const message = ['```'];
-
     const longestSound = this._findLongestWord(sounds.map(sound => sound.name));
     const longestCount = this._findLongestWord(sounds.map(sound => String(sound.count)));
 
+    const message = ['```'];
     sounds.forEach((sound) => {
       const spacesForSound = ' '.repeat(longestSound.length - sound.name.length + 1);
       const spacesForCount = ' '.repeat(longestCount.length - String(sound.count).length);
       message.push(`${sound.name}:${spacesForSound}${spacesForCount}${sound.count}`);
     });
     message.push('```');
+
     return message.join('\n');
   }
 
@@ -99,16 +100,14 @@ class Util {
         response.pipe(file);
         channel.send(`${filename} added!`);
       }
-    }).on('error', (error) => {
-      console.error(error);
-      channel.send('Something went wrong!');
-    });
+    }).on('error', () => channel.send('Something went wrong!'));
   }
 
   renameSound(oldName, newName, channel) {
-    const extension = this.getExtensionForSound(oldName);
+    const extension = this._getExtensionForSound(oldName);
     const oldFile = `sounds/${oldName}.${extension}`;
     const newFile = `sounds/${newName}.${extension}`;
+
     try {
       fs.renameSync(oldFile, newFile);
       channel.send(`${oldName} renamed to ${newName}!`);
