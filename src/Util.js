@@ -44,17 +44,19 @@ class Util {
   getListOfCommands() {
     return [
       '```',
-      '!commands              Show this message',
-      '!sounds                Show available sounds',
-      '!mostplayed            Show 15 most used sounds',
-      '!<sound>               Play the specified sound',
-      '!random                Play random sound',
-      '!stop                  Stop playing and clear queue',
-      '!add                   Add the attached sound',
-      '!rename <old> <new>    Rename specified sound',
-      '!remove <sound>        Remove specified sound',
-      '!ignore <user>         Ignore specified user',
-      '!unignore <user>       Unignore specified user',
+      `Use the prefix "${config.get('prefix')}" with the following commands:`,
+      '',
+      'commands              Show this message',
+      'sounds                Show available sounds',
+      'mostplayed            Show 15 most used sounds',
+      '<sound>               Play the specified sound',
+      'random                Play random sound',
+      'stop                  Stop playing and clear queue',
+      'add                   Add the attached sound',
+      'rename <old> <new>    Rename specified sound',
+      'remove <sound>        Remove specified sound',
+      'ignore <user>         Ignore specified user',
+      'unignore <user>       Unignore specified user',
       '```'
     ].join('\n');
   }

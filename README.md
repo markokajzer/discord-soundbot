@@ -72,10 +72,12 @@ Users can be ignore from using **any** command by the `!ignore <user>` command w
 
 ## Configuration
 
+The bots prefix can be configured via `prefix`.
+
 You can configure the accepted file formats (via the `extensions` array) as well as the size of the accepted files (via the `size` given in bytes).
 
 The bot can also automatically delete `!<sound>` messages for you to reduce channel spam. For this, set `deleteMessages` to `true`.
 
-Check `config/default-example.json` for an example config and create a new file `default.json` with your desired configuration inside the `config` folder.
-
 To add an avatar to your bot, add a file called `avatar.png` to the `config/` folder and restart the bot. To remove the avatar, delete `avatar.png` and restart the bot.
+
+Check `config/default-example.json` for an example config and create a new file `default.json` with your desired configuration inside the `config` folder.

@@ -1,3 +1,7 @@
+## 0.10.0 (2017-09-11)
+
++ Added prefix configuration
+
 ## 0.9.0 (2017-09-10)
 
 + Added ignoring of users via ID
