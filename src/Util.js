@@ -12,7 +12,8 @@ class Util {
     this.usage = {
       rename: 'Usage: !rename <old> <new>',
       remove: 'Usage: !remove <sound>',
-      ignore: 'Usage: !ignore <user>'
+      ignore: 'Usage: !ignore <user>',
+      unignore: 'Usage: !unignore'
     };
   }
 
@@ -53,6 +54,7 @@ class Util {
       '!rename <old> <new>    Rename specified sound',
       '!remove <sound>        Remove specified sound',
       '!ignore <user>         Ignore specified user',
+      '!unignore <user>       Unignore specified user',
       '```'
     ].join('\n');
   }
@@ -152,14 +154,32 @@ class Util {
       return;
     }
 
-    const user = input[0];
-    const alreadyIgnored = this.db.get('ignoreList').find({ id: user }).value();
-    if (!alreadyIgnored) {
-      this.db.get('ignoreList').push({ id: user }).write();
+    this._ignoreSwitch('ignore', input, message);
+  }
+
+  unignoreUser(input, message) {
+    if (input.length !== 1) {
+      message.channel.send(this.usage.unignore);
+      return;
     }
 
-    const actualUser = message.guild.member(user);
-    message.channel.send(`${actualUser || user} ignored!`);
+    this._ignoreSwitch('unignore', input, message);
+  }
+
+  _ignoreSwitch(command, input, message) {
+    const id = input[0];
+    const alreadyIgnored = this.userIgnored(id);
+    let messageAddition = '';
+
+    if (command === 'ignore' && !alreadyIgnored) {
+      this.db.get('ignoreList').push({ id }).write();
+    } else if (command === 'unignore') {
+      this.db.get('ignoreList').remove({ id }).write();
+      messageAddition += 'no longer ';
+    }
+
+    const name = message.guild.member(id);
+    message.channel.send(`${name || id} ${messageAddition}ignored!`);
   }
 
   userIgnored(id) {

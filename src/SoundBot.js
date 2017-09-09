@@ -55,6 +55,9 @@ class SoundBot extends Discord.Client {
       case '!ignore':
         Util.ignoreUser(input, message);
         break;
+      case '!unignore':
+        Util.unignoreUser(input, message);
+        break;
       default:
         this.handleSoundCommands(message);
         break;
