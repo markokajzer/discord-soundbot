@@ -1,3 +1,7 @@
+## 0.9.0 (2017-09-10)
+
++ Added ignoring of users via ID
+
 ## 0.8.0 (2017-09-07)
 
 + Added possibility to add / remove avatar for the bot.
