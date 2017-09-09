@@ -43,6 +43,8 @@ Type `!commands` to print the following list of available commands.
 !add                   Add the attached sound
 !rename <old> <new>    Rename specified sound
 !remove <sound>        Remove specified sound
+!ignore <user>         Ignore specified user
+!unignore <user>       Unignore specified user
 ```
 
 ### Adding sounds
@@ -55,9 +57,17 @@ Type `!sounds` to get a list of all sounds that are available to your bot. Play 
 
 All sounds will be added to a queue and played in succession. To halt the playback and empty the queue type `!stop`.
 
+### Renaming sounds
+
+Sounds can be renamed by using `!rename <old> <new>`. The bot will respond with a status update.
+
 ### Removing sounds
 
 You can delete sounds by typing `!remove <sound>`. The bot will respond with the status of the deletion in the channel of the message.
+
+### Ignoring users
+
+Users can be ignore from using **any** command by the `!ignore <user>` command while specifying their respective ID. The user will be mentioned by the bot in the channel of the message.
 
 
 ## Configuration
