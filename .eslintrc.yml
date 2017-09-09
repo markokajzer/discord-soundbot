@@ -42,3 +42,6 @@ rules:
 
   prefer-destructuring:
     - off
+
+  no-case-declarations:
+    - off
