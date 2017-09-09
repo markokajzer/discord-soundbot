@@ -1,6 +1,4 @@
 const config = require('config');
-const low = require('lowdb');
-const fileAsync = require('lowdb/lib/file-async');
 const Discord = require('discord.js');
 const Util = require('./Util.js');
 
@@ -8,14 +6,8 @@ class SoundBot extends Discord.Client {
   constructor() {
     super();
 
-    this.db = low('db.json', { storage: fileAsync });
-    this.db.defaults({ counts: [] }).value();
-
     this.queue = [];
-
     this._addEventListeners();
-
-    this.login(config.get('token'));
   }
 
   _addEventListeners() {
@@ -34,6 +26,10 @@ class SoundBot extends Discord.Client {
     if (message.channel instanceof Discord.DMChannel) return; // Abort when DM
     if (!message.content.startsWith('!')) return; // Abort when not prefix
     this.handle(message);
+  }
+
+  start() {
+    this.login(config.get('token'));
   }
 
   handle(message) {
@@ -102,4 +98,4 @@ class SoundBot extends Discord.Client {
   }
 }
 
-module.exports = new SoundBot();
+module.exports = SoundBot;
