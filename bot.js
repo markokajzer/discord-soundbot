@@ -1,10 +1,11 @@
 const config = require('config');
 const low = require('lowdb');
-const fileAsync = require('lowdb/lib/file-async');
+const FileSync = require('lowdb/adapters/FileSync');
 const SoundBot = require('./src/SoundBot.js');
 
-const db = low('db.json', { storage: fileAsync });
-db.defaults({ counts: [], ignoreList: [] }).value();
+const adapter = new FileSync('db.json');
+const db = low(adapter);
+db.defaults({ counts: [], ignoreList: [] }).write();
 
 const bot = new SoundBot();
 bot.start();

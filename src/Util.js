@@ -2,11 +2,13 @@ const config = require('config');
 const fs = require('fs');
 const https = require('https');
 const low = require('lowdb');
-const fileAsync = require('lowdb/lib/file-async');
+const FileSync = require('lowdb/adapters/FileSync');
+
+const adapter = new FileSync('db.json');
 
 class Util {
   constructor() {
-    this.db = low('db.json', { storage: fileAsync });
+    this.db = low(adapter);
     this.usage = {
       rename: 'Usage: !rename <old> <new>',
       remove: 'Usage: !remove <sound>'
@@ -144,13 +146,14 @@ class Util {
 
   updateCount(playedSound) {
     const sound = this.db.get('counts').find({ name: playedSound }).value();
-    if (sound) {
-      this.db.get('counts').find({ name: playedSound }).value().count =
-        this.db.get('counts').find({ name: playedSound }).value().count + 1;
-      this.db.write();
-    } else {
-      this.db.get('counts').push({ name: playedSound, count: 1 }).value();
+
+    if (!sound) {
+      this.db.get('counts').push({ name: playedSound, count: 1 }).write();
+      return;
     }
+
+    const newValue = this.db.get('counts').find({ name: playedSound }).value().count + 1;
+    this.db.get('counts').find({ name: playedSound }).assign({ count: newValue }).write();
   }
 }
 

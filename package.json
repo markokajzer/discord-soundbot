@@ -6,7 +6,7 @@
   "dependencies": {
     "config": "^1.21.0",
     "discord.js": "^11.2.0",
-    "lowdb": "^0.14.0",
+    "lowdb": "^1.0.0",
     "node-opus": "^0.2.6"
   },
   "optionalDependencies": {
