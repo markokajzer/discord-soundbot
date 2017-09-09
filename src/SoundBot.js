@@ -36,6 +36,9 @@ class SoundBot extends Discord.Client {
       case '!commands':
         message.author.send(Util.getListOfCommands());
         break;
+      case '!sounds':
+        message.author.send(Util.getSounds().map(sound => sound));
+        break;
       case '!mostplayed':
         message.channel.send(Util.getMostPlayedSounds());
         break;
@@ -47,9 +50,6 @@ class SoundBot extends Discord.Client {
         break;
       case '!remove':
         Util.removeSound(input, message.channel);
-        break;
-      case '!sounds':
-        message.author.send(Util.getSounds().map(sound => sound));
         break;
       default:
         this.handleSoundCommands(message);
