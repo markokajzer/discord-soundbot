@@ -162,9 +162,9 @@ class Util {
     message.channel.send(`${actualUser || user} ignored!`);
   }
 
-  userIgnored(user) {
-    const userToIgnore = this.db.get('ignoreList').find({ id: user }).value();
-    return !!userToIgnore;
+  userIgnored(id) {
+    const user = this.db.get('ignoreList').find({ id }).value();
+    return !!user;
   }
 
   updateCount(playedSound) {
