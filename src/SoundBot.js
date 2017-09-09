@@ -16,10 +16,8 @@ class SoundBot extends Discord.Client {
   }
 
   _readyListener() {
-    if (Util.avatarExists())
-      this.user.setAvatar('./config/avatar.png');
-    else
-      this.user.setAvatar(null);
+    const avatar = Util.avatarExists() ? './config/avatar.png' : null;
+    this.user.setAvatar(avatar);
   }
 
   _messageListener(message) {
@@ -83,13 +81,14 @@ class SoundBot extends Discord.Client {
       const dispatcher = connection.playFile(file);
       dispatcher.on('end', () => {
         Util.updateCount(nextSound.name);
-        if (config.get('deleteMessages') === true)
-          nextSound.message.delete();
+        if (config.get('deleteMessages') === true) nextSound.message.delete();
 
-        if (this.queue.length > 0)
-          this.playSoundQueue();
-        else
+        if (this.queue.length === 0) {
           connection.disconnect();
+          return;
+        }
+
+        this.playSoundQueue();
       });
     }).catch((error) => {
       console.log('Error occured!');

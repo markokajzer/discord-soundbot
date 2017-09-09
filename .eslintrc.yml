@@ -22,7 +22,7 @@ rules:
 
   curly:
     - error
-    - multi-or-nest
+    - multi-line
     - consistent
 
   no-plusplus:
