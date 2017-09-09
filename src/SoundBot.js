@@ -1,6 +1,4 @@
 const config = require('config');
-const low = require('lowdb');
-const fileAsync = require('lowdb/lib/file-async');
 const Discord = require('discord.js');
 const Util = require('./Util.js');
 
@@ -8,14 +6,8 @@ class SoundBot extends Discord.Client {
   constructor() {
     super();
 
-    this.db = low('db.json', { storage: fileAsync });
-    this.db.defaults({ counts: [] }).value();
-
     this.queue = [];
-
     this._addEventListeners();
-
-    this.login(config.get('token'));
   }
 
   _addEventListeners() {
@@ -24,10 +16,8 @@ class SoundBot extends Discord.Client {
   }
 
   _readyListener() {
-    if (Util.avatarExists())
-      this.user.setAvatar('./config/avatar.png');
-    else
-      this.user.setAvatar(null);
+    const avatar = Util.avatarExists() ? './config/avatar.png' : null;
+    this.user.setAvatar(avatar);
   }
 
   _messageListener(message) {
@@ -36,46 +26,71 @@ class SoundBot extends Discord.Client {
     this.handle(message);
   }
 
+  start() {
+    this.login(config.get('token'));
+  }
+
   handle(message) {
-    if (message.content === '!commands') {
-      message.author.send(Util.getListOfCommands());
-    } else if (message.content === '!mostplayed') {
-      message.channel.send(Util.getMostPlayedSounds());
-    } else if (message.content === '!add' && message.attachments.size > 0) {
-      Util.addSounds(message.attachments, message.channel);
-    } else if (message.content.startsWith('!remove ')) {
-      const sound = message.content.replace('!remove ', '');
-      Util.removeSound(sound, message.channel);
-    } else if (message.content.startsWith('!rename ')) {
-      const [oldsound, newsound] = message.content.replace('!rename ', '').split(' ');
-      Util.renameSound(oldsound, newsound, message.channel);
-    } else {
-      const sounds = Util.getSounds();
-      if (message.content === '!sounds') {
-        message.author.send(sounds.map(sound => sound));
-      } else {
-        const voiceChannel = message.member.voiceChannel;
-        if (voiceChannel === undefined) {
-          message.reply('Join a voice channel first!');
-        } else if (message.content === '!stop') {
-          voiceChannel.leave();
-          this.queue = [];
-        } else if (message.content === '!random') {
-          const random = sounds[Math.floor(Math.random() * sounds.length)];
-          this.addToQueue(voiceChannel.id, random, message);
-        } else {
-          const sound = message.content.split('!')[1];
-          if (sounds.includes(sound)) {
-            this.addToQueue(voiceChannel.id, sound, message);
-            if (this.voiceConnections.array().length === 0) this.playSoundQueue();
-          }
+    const [command, ...input] = message.content.split(' ');
+    switch (command) {
+      case '!commands':
+        message.author.send(Util.getListOfCommands());
+        break;
+      case '!mostplayed':
+        message.channel.send(Util.getMostPlayedSounds());
+        break;
+      case '!add':
+        if (message.attachments) Util.addSounds(message.attachments, message.channel);
+        break;
+      case '!rename':
+        Util.renameSound(input, message.channel);
+        break;
+      case '!remove':
+        Util.removeSound(input, message.channel);
+        break;
+      case '!sounds':
+        message.author.send(Util.getSounds().map(sound => sound));
+        break;
+      default:
+        this.handleSoundCommands(message);
+        break;
+    }
+  }
+
+  handleSoundCommands(message) {
+    const sounds = Util.getSounds();
+    const voiceChannel = message.member.voiceChannel;
+
+    if (voiceChannel === undefined) {
+      message.reply('Join a voice channel first!');
+      return;
+    }
+
+    switch (message.content) {
+      case '!stop':
+        voiceChannel.leave();
+        this.queue = [];
+        break;
+      case '!random':
+        const random = sounds[Math.floor(Math.random() * sounds.length)];
+        this.addToQueue(voiceChannel.id, random, message);
+        break;
+      default:
+        const sound = message.content.substring(1);
+        if (sounds.includes(sound)) {
+          this.addToQueue(voiceChannel.id, sound, message);
+          if (!this._currentlyPlaying()) this.playSoundQueue();
         }
-      }
+        break;
     }
   }
 
   addToQueue(voiceChannel, sound, message) {
     this.queue.push({ name: sound, channel: voiceChannel, message });
+  }
+
+  _currentlyPlaying() {
+    return this.voiceConnections.array().length > 0;
   }
 
   playSoundQueue() {
@@ -87,13 +102,14 @@ class SoundBot extends Discord.Client {
       const dispatcher = connection.playFile(file);
       dispatcher.on('end', () => {
         Util.updateCount(nextSound.name);
-        if (config.get('deleteMessages') === true)
-          nextSound.message.delete();
+        if (config.get('deleteMessages') === true) nextSound.message.delete();
 
-        if (this.queue.length > 0)
-          this.playSoundQueue();
-        else
+        if (this.queue.length === 0) {
           connection.disconnect();
+          return;
+        }
+
+        this.playSoundQueue();
       });
     }).catch((error) => {
       console.log('Error occured!');
@@ -102,4 +118,4 @@ class SoundBot extends Discord.Client {
   }
 }
 
-module.exports = new SoundBot();
+module.exports = SoundBot;
