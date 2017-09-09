@@ -45,3 +45,7 @@ rules:
 
   no-case-declarations:
     - off
+
+  no-param-reassign:
+    - error
+    - props: false

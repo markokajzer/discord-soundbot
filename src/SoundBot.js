@@ -6,6 +6,7 @@ class SoundBot extends Discord.Client {
   constructor() {
     super();
 
+    this.prefix = config.get('prefix');
     this.queue = [];
     this._addEventListeners();
   }
@@ -22,8 +23,10 @@ class SoundBot extends Discord.Client {
 
   _messageListener(message) {
     if (message.channel instanceof Discord.DMChannel) return; // Abort when DM
-    if (!message.content.startsWith('!')) return; // Abort when not prefix
+    if (!message.content.startsWith(this.prefix)) return; // Abort when not prefix
     if (Util.userIgnored(message.author.id)) return;
+
+    message.content = message.content.substring(this.prefix.length);
     this.handle(message);
   }
 
@@ -34,28 +37,28 @@ class SoundBot extends Discord.Client {
   handle(message) {
     const [command, ...input] = message.content.split(' ');
     switch (command) {
-      case '!commands':
+      case 'commands':
         message.author.send(Util.getListOfCommands());
         break;
-      case '!sounds':
+      case 'sounds':
         message.author.send(Util.getSounds().map(sound => sound));
         break;
-      case '!mostplayed':
+      case 'mostplayed':
         message.channel.send(Util.getMostPlayedSounds());
         break;
-      case '!add':
+      case 'add':
         if (message.attachments) Util.addSounds(message.attachments, message.channel);
         break;
-      case '!rename':
+      case 'rename':
         Util.renameSound(input, message.channel);
         break;
-      case '!remove':
+      case 'remove':
         Util.removeSound(input, message.channel);
         break;
-      case '!ignore':
+      case 'ignore':
         Util.ignoreUser(input, message);
         break;
-      case '!unignore':
+      case 'unignore':
         Util.unignoreUser(input, message);
         break;
       default:
@@ -74,16 +77,17 @@ class SoundBot extends Discord.Client {
     }
 
     switch (message.content) {
-      case '!stop':
+      case 'stop':
         voiceChannel.leave();
         this.queue = [];
         break;
-      case '!random':
+      case 'random':
         const random = sounds[Math.floor(Math.random() * sounds.length)];
         this.addToQueue(voiceChannel.id, random, message);
         break;
       default:
-        const sound = message.content.substring(1);
+        const sound = message.content;
+        console.log(sound);
         if (sounds.includes(sound)) {
           this.addToQueue(voiceChannel.id, sound, message);
           if (!this._currentlyPlaying()) this.playSoundQueue();
