@@ -23,6 +23,7 @@ class SoundBot extends Discord.Client {
   _messageListener(message) {
     if (message.channel instanceof Discord.DMChannel) return; // Abort when DM
     if (!message.content.startsWith('!')) return; // Abort when not prefix
+    if (Util.userIgnored(message.author.id)) return;
     this.handle(message);
   }
 
@@ -50,6 +51,9 @@ class SoundBot extends Discord.Client {
         break;
       case '!remove':
         Util.removeSound(input, message.channel);
+        break;
+      case '!ignore':
+        Util.ignoreUser(input, message);
         break;
       default:
         this.handleSoundCommands(message);
