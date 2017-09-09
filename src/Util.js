@@ -7,6 +7,10 @@ const fileAsync = require('lowdb/lib/file-async');
 class Util {
   constructor() {
     this.db = low('db.json', { storage: fileAsync });
+    this.usage = {
+      rename: 'Usage: !rename <old> <new>',
+      remove: 'Usage: !remove <sound>'
+    };
   }
 
   avatarExists() {
@@ -104,7 +108,13 @@ class Util {
     }).on('error', () => channel.send('Something went wrong!'));
   }
 
-  renameSound(oldName, newName, channel) {
+  renameSound(input, channel) {
+    if (input.length !== 2) {
+      channel.send(this.usage.rename);
+      return;
+    }
+
+    const [oldName, newName] = input;
     const extension = this._getExtensionForSound(oldName);
     const oldFile = `sounds/${oldName}.${extension}`;
     const newFile = `sounds/${newName}.${extension}`;
@@ -117,13 +127,18 @@ class Util {
     }
   }
 
-  removeSound(sound, channel) {
+  removeSound(input, channel) {
+    if (input.length !== 1) {
+      channel.send(this.usage.remove);
+      return;
+    }
+
     try {
-      const file = this.getPathForSound(sound);
+      const file = this.getPathForSound(input[0]);
       fs.unlinkSync(file);
-      channel.send(`${sound} removed!`);
+      channel.send(`${input} removed!`);
     } catch (error) {
-      channel.send(`${sound} not found!`);
+      channel.send(`${input} not found!`);
     }
   }
 
