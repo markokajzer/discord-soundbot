@@ -87,7 +87,6 @@ class SoundBot extends Discord.Client {
         break;
       default:
         const sound = message.content;
-        console.log(sound);
         if (sounds.includes(sound)) {
           this.addToQueue(voiceChannel.id, sound, message);
           if (!this._currentlyPlaying()) this.playSoundQueue();
