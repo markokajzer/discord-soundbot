@@ -40,6 +40,12 @@ class SoundBot extends Discord.Client {
       case 'commands':
         message.author.send(Util.getListOfCommands());
         break;
+      case 'link':
+        message.reply([
+          `Here ya go, invite me somewhere else!`,
+          `<https://discordapp.com/oauth2/authorize?client_id=${config.get('client_id')}&scope=bot>`,
+        ]);
+        break;
       case 'sounds':
         message.author.send(Util.getSounds().map(sound => sound));
         break;
