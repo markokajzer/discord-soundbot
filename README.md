@@ -35,6 +35,7 @@ Type `!commands` to print the following list of available commands.
 
 ```
 !commands              Show this message
+!link                  Show an invitation link
 !sounds                Show available sounds
 !mostplayed            Show 15 most used sounds
 !<sound>               Play the specified sound
