@@ -1,3 +1,7 @@
+## 0.12.0 (2017-12-20)
+
++ Added `lastadded` command
+
 ## 0.11.0 (2017-12-20)
 
 + Added `stayInChannel` configuration option

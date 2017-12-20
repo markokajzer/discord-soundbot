@@ -49,3 +49,8 @@ rules:
   no-param-reassign:
     - error
     - props: false
+
+  arrow-body-style:
+    - error
+    - as-needed
+    - requireReturnForObjectLiteral: true
