@@ -29,7 +29,9 @@ class Util {
   _getSoundsWithExtension() {
     const files = fs.readdirSync('sounds/');
     let sounds = files.filter(sound => config.get('extensions').some(ext => sound.endsWith(ext)));
-    sounds = sounds.map(sound => ({ name: sound.split('.')[0], extension: sound.split('.')[1] }));
+    sounds = sounds.map((sound) => {
+      return { name: sound.split('.')[0], extension: sound.split('.')[1] };
+    });
     return sounds;
   }
 
@@ -49,6 +51,7 @@ class Util {
       'commands              Show this message',
       'sounds                Show available sounds',
       'mostplayed            Show 15 most used sounds',
+      'lastadded             Show 5 last added sounds',
       '<sound>               Play the specified sound',
       'random                Play random sound',
       'stop                  Stop playing and clear queue',
@@ -115,6 +118,20 @@ class Util {
       }
     }).on('error', () => channel.send('Something went wrong!'));
   }
+
+  lastAdded() {
+    let sounds = this._getSoundsWithExtension();
+    sounds = sounds.map((sound) => {
+      return {
+        name: sound.name,
+        creation: fs.statSync(this.getPathForSound(sound.name)).birthtime
+      };
+    });
+    sounds = sounds.sort((a, b) => new Date(b.creation) - new Date(a.creation));
+    sounds = sounds.slice(0, 5);
+    return sounds.map(sound => sound.name);
+  }
+
 
   renameSound(input, channel) {
     if (input.length !== 2) {

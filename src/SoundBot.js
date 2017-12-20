@@ -46,6 +46,9 @@ class SoundBot extends Discord.Client {
       case 'mostplayed':
         message.channel.send(Util.getMostPlayedSounds());
         break;
+      case 'lastadded':
+        message.channel.send(['```', ...Util.lastAdded(), '```'].join('\n'));
+        break;
       case 'add':
         if (message.attachments) Util.addSounds(message.attachments, message.channel);
         break;
