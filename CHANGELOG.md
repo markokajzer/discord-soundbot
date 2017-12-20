@@ -1,3 +1,7 @@
+## 0.11.0 (2017-12-20)
+
++ Added `stayInChannel` configuration option
+
 ## 0.10.0 (2017-09-11)
 
 + Added prefix configuration

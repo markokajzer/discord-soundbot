@@ -100,7 +100,7 @@ class SoundBot extends Discord.Client {
   }
 
   _currentlyPlaying() {
-    return this.voiceConnections.array().length > 0;
+    return this.voiceConnections.some(connection => connection.speaking);
   }
 
   playSoundQueue() {
@@ -115,7 +115,7 @@ class SoundBot extends Discord.Client {
         if (config.get('deleteMessages') === true) nextSound.message.delete();
 
         if (this.queue.length === 0) {
-          connection.disconnect();
+          if (!config.get('stayInChannel')) connection.disconnect();
           return;
         }
 
