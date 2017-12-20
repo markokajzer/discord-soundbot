@@ -4,5 +4,6 @@
   "prefix": "!",
   "extensions": [".mp3", ".wav"],
   "size": 1000000,
-  "deleteMessages": false
+  "deleteMessages": false,
+  "stayInChannel": false
 }
