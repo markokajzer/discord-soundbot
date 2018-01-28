@@ -3,24 +3,34 @@ Discord Soundbot
 
 A Bot for Discord to play your favorite sounds or music.
 
-## Usage
+## Installation
 
-### Requirements
-
-+ As per [discord.js](https://github.com/hydrabolt/discord.js#installation), **Node.js v6.0.0** or newer is required.
-+ Due to using voice functionality **FFmpeg** is required.
-
-
-### Installation guide
+### General
 
 To use this bot you first have to create your own [Discord Application](https://discordapp.com/developers/applications/me). Click on `New Application`, enter a name for your app and press the `Create Application` button on the bottom right. Now press on the button `Create a Bot User` for your bot token.
 
 Now create a default.json file inside of the config folder according to the example. Enter the `Client/Application ID` and the `Token` into the config. You can find both inside your Discord application under `APP DETAILS` and `APP BOT USER` respectively.
 
-Install the bots dependencies with `npm install` as usual.
-Finally, run the bot with `node bot.js` or `npm start`.
+### Building
 
-The bot will print a message to your console, which should look a little bit like this
+The bot can be installed via Docker or manually.
+
+#### Building via Docker
+
++ Simply clone the repo and run `docker build -t soundbot .` inside the folder.
++ Afterwards start the bot via `docker run soundbot`.
++ To run the container in the background use `docker run -d soundbot`.
+
+#### Building manually
+
++ As per [discord.js](https://github.com/hydrabolt/discord.js#installation), **Node.js v6.0.0** or newer is required.
++ Due to using voice functionality **FFmpeg** is required.
++ Install the bots dependencies with `npm install` as usual.
++ Finally, run the bot with `node bot.js` or `npm start`.
+
+#### Adding the bot to your server
+
+In both cases the bot will print a message to your console which should look a little bit like this
 
 ```
 Use the following URL to let the bot join your server!
