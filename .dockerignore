@@ -1,0 +1,11 @@
+.git
+.gitignore
+
+node_modules
+
+db.json
+config/default-example.json
+.eslintrc.yml
+
+CHANGELOG.md
+README.md
