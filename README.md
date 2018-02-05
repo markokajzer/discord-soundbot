@@ -25,7 +25,7 @@ The bot can be installed via Docker or manually.
 
 + As per [discord.js](https://github.com/hydrabolt/discord.js#installation), **Node.js v6.0.0** or newer is required.
 + Due to using voice functionality **FFmpeg** is required.
-+ Install the bots dependencies with `npm install` as usual.
++ Install the bot's dependencies with `npm install` as usual.
 + Finally, run the bot with `node bot.js` or `npm start`.
 
 #### Adding the bot to your server
