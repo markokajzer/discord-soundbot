@@ -1,6 +1,7 @@
 ## 0.13.0 (2018-03-07)
 
 + Added `game` option
++ Added `leave` alias for `stop` command
 
 ## 0.12.0 (2017-12-20)
 
