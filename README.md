@@ -24,7 +24,7 @@ The bot can be installed via Docker or manually.
 #### Building manually
 
 + As per [discord.js](https://github.com/hydrabolt/discord.js#installation), **Node.js v6.0.0** or newer is required.
-+ Due to using voice functionality **FFmpeg** is required.
++ Due to using voice functionality **FFmpeg** is required. Install it manually, or with `npm install ffmpeg-binaries`.
 + Install the bot's dependencies with `npm install` as usual.
 + Finally, run the bot with `node bot.js` or `npm start`.
 
@@ -44,18 +44,19 @@ Follow the link and allow your bot to join one of your Discord servers.
 Type `!commands` to print the following list of available commands.
 
 ```
-!commands              Show this message
-!sounds                Show available sounds
-!mostplayed            Show 15 most used sounds
-!lastadded             Show 5 last added sounds
-!<sound>               Play the specified sound
-!random                Play random sounds
-!stop                  Stop playing and clear queue
-!add                   Add the attached sound
-!rename <old> <new>    Rename specified sound
-!remove <sound>        Remove specified sound
-!ignore <user>         Ignore specified user
-!unignore <user>       Unignore specified user
+!commands             Show this message
+!sounds               Show available sounds
+!mostplayed           Show 15 most used sounds
+!lastadded            Show 5 last added sounds
+!<sound>              Play the specified sound
+!random               Play random sounds
+!stop                 Stop playing and clear queue
+!leave                Leave the channel
+!add                  Add the attached sound
+!rename <old> <new>   Rename specified sound
+!remove <sound>       Remove specified sound
+!ignore <user>        Ignore specified user
+!unignore <user>      Unignore specified user
 ```
 
 ### Adding sounds
@@ -91,7 +92,7 @@ The bot can also automatically delete `!<sound>` messages for you to reduce chan
 
 To add an avatar to your bot, add a file called `avatar.png` to the `config/` folder and restart the bot. To remove the avatar, delete `avatar.png` and restart the bot.
 
-To let the bot stay in the channel after playing sounds to reduce noise, you can set the `stayInChannel` configuration option.
+To let the bot stay in the channel after playing sounds to reduce noise, you can set the `stayInChannel` configuration option. You can order the bot to leave the channel with `!leave`.
 
 You can set the bot's activity via the `game` options.
 
