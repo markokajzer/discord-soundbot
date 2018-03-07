@@ -7,7 +7,9 @@ class SoundBot extends Discord.Client {
     super();
 
     this.prefix = config.get('prefix');
+    this.speaking = false;
     this.queue = [];
+
     this._addEventListeners();
   }
 
@@ -121,6 +123,8 @@ class SoundBot extends Discord.Client {
     const file = Util.getPathForSound(nextSound.name);
     const voiceChannel = this.channels.get(nextSound.channel);
 
+    this.speaking = true;
+
     voiceChannel.join().then((connection) => {
       const dispatcher = connection.playFile(file);
       dispatcher.on('end', () => {
@@ -128,6 +132,7 @@ class SoundBot extends Discord.Client {
         if (config.get('deleteMessages') === true) nextSound.message.delete();
 
         if (this.queue.length === 0) {
+          this.speaking = false;
           if (!config.get('stayInChannel')) connection.disconnect();
           return;
         }
