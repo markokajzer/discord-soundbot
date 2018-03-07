@@ -7,9 +7,9 @@ A Bot for Discord to play your favorite sounds or music.
 
 ### General
 
-To use this bot you first have to create your own [Discord Application](https://discordapp.com/developers/applications/me). Click on `New Application`, enter a name for your app and press the `Create Application` button on the bottom right. Now press on the button `Create a Bot User` for your bot token.
+To use this bot you first have to create your own [Discord Application](https://discordapp.com/developers/applications/me). Click on `New App`, enter a name for your app and press the `Create App` button on the bottom right. Now press on the button `Create a Bot User` for your bot token.
 
-Now create a default.json file inside of the config folder according to the example. Enter the `Client/Application ID` and the `Token` into the config. You can find both inside your Discord application under `APP DETAILS` and `APP BOT USER` respectively.
+Now create a default.json file inside of the config folder according to the example. Enter the `Client ID` and the `Token` into the config. You can find both inside your Discord application under `APP DETAILS` and `APP BOT USER` respectively.
 
 ### Building
 
