@@ -1,3 +1,7 @@
+## 0.13.0 (2018-03-07)
+
++ Added `game` option
+
 ## 0.12.0 (2017-12-20)
 
 + Added `lastadded` command

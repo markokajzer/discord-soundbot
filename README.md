@@ -93,4 +93,6 @@ To add an avatar to your bot, add a file called `avatar.png` to the `config/` fo
 
 To let the bot stay in the channel after playing sounds to reduce noise, you can set the `stayInChannel` configuration option.
 
+You can set the bot's activity via the `game` options.
+
 Check `config/default-example.json` for an example config and create a new file `default.json` with your desired configuration inside the `config` folder.
