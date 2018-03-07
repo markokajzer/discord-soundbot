@@ -1,10 +1,10 @@
 {
-  "client_id": "YOUR_CLIENT/APPLICATION_ID",
+  "client_id": "YOUR_CLIENT_ID",
   "token": "YOUR_APP_BOT_USER_TOKEN",
   "prefix": "!",
   "extensions": [".mp3", ".wav"],
   "size": 1000000,
   "deleteMessages": false,
   "stayInChannel": false,
-  "game": null
+  "game": ""
 }
