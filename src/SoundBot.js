@@ -13,6 +13,10 @@ class SoundBot extends Discord.Client {
     this._addEventListeners();
   }
 
+  start() {
+    this.login(config.get('token'));
+  }
+
   _addEventListeners() {
     this.on('ready', this._readyListener);
     this.on('message', this._messageListener);
@@ -38,14 +42,10 @@ class SoundBot extends Discord.Client {
     if (Util.userIgnored(message.author.id)) return;
 
     message.content = message.content.substring(this.prefix.length);
-    this.handle(message);
+    this._handle(message);
   }
 
-  start() {
-    this.login(config.get('token'));
-  }
-
-  handle(message) {
+  _handle(message) {
     const [command, ...input] = message.content.split(' ');
     switch (command) {
       case 'commands':
@@ -76,12 +76,12 @@ class SoundBot extends Discord.Client {
         Util.unignoreUser(input, message);
         break;
       default:
-        this.handleSoundCommands(message);
+        this._handleSoundCommands(message);
         break;
     }
   }
 
-  handleSoundCommands(message) {
+  _handleSoundCommands(message) {
     const sounds = Util.getSounds();
     const voiceChannel = message.member.voiceChannel;
 
@@ -103,22 +103,18 @@ class SoundBot extends Discord.Client {
       default:
         const sound = message.content;
         if (sounds.includes(sound)) {
-          this.addToQueue(voiceChannel.id, sound, message);
-          if (!this._currentlyPlaying()) this.playSoundQueue();
+          this._addToQueue(voiceChannel.id, sound, message);
+          if (!this.speaking) this._playSoundQueue();
         }
         break;
     }
   }
 
-  addToQueue(voiceChannel, sound, message) {
+  _addToQueue(voiceChannel, sound, message) {
     this.queue.push({ name: sound, channel: voiceChannel, message });
   }
 
-  _currentlyPlaying() {
-    return this.voiceConnections.some(connection => connection.speaking);
-  }
-
-  playSoundQueue() {
+  _playSoundQueue() {
     const nextSound = this.queue.shift();
     const file = Util.getPathForSound(nextSound.name);
     const voiceChannel = this.channels.get(nextSound.channel);
@@ -126,8 +122,7 @@ class SoundBot extends Discord.Client {
     this.speaking = true;
 
     voiceChannel.join().then((connection) => {
-      const dispatcher = connection.playFile(file);
-      dispatcher.on('end', () => {
+      connection.playFile(file).on('end', () => {
         Util.updateCount(nextSound.name);
         if (config.get('deleteMessages') === true) nextSound.message.delete();
 
@@ -137,7 +132,7 @@ class SoundBot extends Discord.Client {
           return;
         }
 
-        this.playSoundQueue();
+        this._playSoundQueue();
       });
     }).catch((error) => {
       console.log('Error occured!');
