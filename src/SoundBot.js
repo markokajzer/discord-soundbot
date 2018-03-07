@@ -89,6 +89,7 @@ class SoundBot extends Discord.Client {
     }
 
     switch (message.content) {
+      case 'leave':
       case 'stop':
         voiceChannel.leave();
         this.queue = [];
