@@ -23,17 +23,17 @@ class SoundBot extends Discord.Client {
   }
 
   _readyListener() {
+    this._setActivity();
     this._setAvatar();
-    this._setGame();
+  }
+
+  _setActivity() {
+    this.user.setActivity(config.get('game'));
   }
 
   _setAvatar() {
     const avatar = Util.avatarExists() ? './config/avatar.png' : null;
     this.user.setAvatar(avatar);
-  }
-
-  _setGame() {
-    this.user.setActivity(config.get('game'));
   }
 
   _messageListener(message) {
