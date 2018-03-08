@@ -2,6 +2,8 @@ const config = require('config');
 const Discord = require('discord.js');
 const Util = require('./Util.js');
 
+require('./Message.js');
+
 class SoundBot extends Discord.Client {
   constructor() {
     super();
@@ -37,8 +39,8 @@ class SoundBot extends Discord.Client {
   }
 
   _messageListener(message) {
-    if (message.channel instanceof Discord.DMChannel) return; // Abort when DM
-    if (!message.content.startsWith(this.prefix)) return; // Abort when not prefix
+    if (message.isDirectMessage()) return;
+    if (!message.hasPrefix(this.prefix)) return;
     if (Util.userIgnored(message.author.id)) return;
 
     message.content = message.content.substring(this.prefix.length);
