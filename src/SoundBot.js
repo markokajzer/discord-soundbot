@@ -100,7 +100,7 @@ class SoundBot extends Discord.Client {
         break;
       case 'random':
         const random = sounds[Math.floor(Math.random() * sounds.length)];
-        this.addToQueue(voiceChannel.id, random, message);
+        this._addToQueue(voiceChannel.id, random, message);
         break;
       default:
         const sound = message.content;
