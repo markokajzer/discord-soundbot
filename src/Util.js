@@ -1,4 +1,5 @@
-const config = require('config');
+const config = require('../config/config.json');
+
 const fs = require('fs');
 const https = require('https');
 const low = require('lowdb');
@@ -28,7 +29,7 @@ class Util {
 
   _getSoundsWithExtension() {
     const files = fs.readdirSync('sounds/');
-    let sounds = files.filter(sound => config.get('extensions').some(ext => sound.endsWith(ext)));
+    let sounds = files.filter(sound => config.acceptedExtensions.some(ext => sound.endsWith(ext)));
     sounds = sounds.map((sound) => {
       return { name: sound.split('.')[0], extension: sound.split('.')[1] };
     });
@@ -46,7 +47,7 @@ class Util {
   getListOfCommands() {
     return [
       '```',
-      `Use the prefix "${config.get('prefix')}" with the following commands:`,
+      `Use the prefix "${config.prefix}" with the following commands:`,
       '',
       'commands             Show this message',
       'sounds               Show available sounds',
@@ -95,12 +96,12 @@ class Util {
   }
 
   _addSound(attachment, channel) {
-    if (attachment.filesize > config.get('size')) {
+    if (attachment.filesize > config.maximumFileSize) {
       channel.send(`${attachment.filename.split('.')[0]} is too big!`);
       return;
     }
 
-    if (!config.get('extensions').some(ext => attachment.filename.endsWith(ext))) {
+    if (!config.acceptedExtensions.some(ext => attachment.filename.endsWith(ext))) {
       channel.send('Sound has to be in accepted format!');
       return;
     }

@@ -1,4 +1,5 @@
-const config = require('config');
+const config = require('../config/config.json');
+
 const Discord = require('discord.js');
 const Util = require('./Util.js');
 
@@ -8,7 +9,7 @@ class SoundBot extends Discord.Client {
   constructor() {
     super();
 
-    this.prefix = config.get('prefix');
+    this.prefix = config.prefix;
     this.speaking = false;
     this.queue = [];
 
@@ -16,7 +17,7 @@ class SoundBot extends Discord.Client {
   }
 
   start() {
-    this.login(config.get('token'));
+    this.login(config.token);
   }
 
   _addEventListeners() {
@@ -30,7 +31,7 @@ class SoundBot extends Discord.Client {
   }
 
   _setActivity() {
-    this.user.setActivity(config.get('game'));
+    this.user.setActivity(config.game);
   }
 
   _setAvatar() {
@@ -126,19 +127,19 @@ class SoundBot extends Discord.Client {
     voiceChannel.join().then((connection) => {
       connection.playFile(file).on('end', () => {
         Util.updateCount(nextSound.name);
-        if (config.get('deleteMessages') === true) nextSound.message.delete();
+        if (config.deleteMessages) nextSound.message.delete();
 
         if (this.queue.length === 0) {
           this.speaking = false;
-          if (!config.get('stayInChannel')) connection.disconnect();
+          if (!config.stayInChannel) connection.disconnect();
           return;
         }
 
         this._playSoundQueue();
       });
     }).catch((error) => {
-      console.log('Error occured!');
-      console.log(error);
+      console.log('Error occured!');  // eslint-disable-line no-console
+      console.log(error);             // eslint-disable-line no-console
     });
   }
 }

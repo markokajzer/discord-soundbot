@@ -84,16 +84,11 @@ Users can be ignore from using **any** command by the `!ignore <user>` command w
 
 ## Configuration
 
-The bots prefix can be configured via `prefix`.
-
-You can configure the accepted file formats (via the `extensions` array) as well as the size of the accepted files (via the `size` given in bytes).
-
-The bot can also automatically delete `!<sound>` messages for you to reduce channel spam. For this, set `deleteMessages` to `true`.
+Check `config/config.example.json` for an example configuration and create a new file `config.json` with your desired configuration inside the `config` folder.
++ The bots prefix can be configured via `prefix`.
++ You can configure the accepted file formats (via the `acceptedExtensions` array) as well as the size of the accepted files (via the `maxiumumFileSize` given in bytes).
++ The bot can also automatically delete `!<sound>` messages for you to reduce channel spam. For this, set `deleteMessages` to `true`.
++ To let the bot stay in the channel after playing sounds to reduce noise, you can set the `stayInChannel` configuration option. You can order the bot to leave the channel with `!leave`.
++ You can set the bot's activity via the `game` options.
 
 To add an avatar to your bot, add a file called `avatar.png` to the `config/` folder and restart the bot. To remove the avatar, delete `avatar.png` and restart the bot.
-
-To let the bot stay in the channel after playing sounds to reduce noise, you can set the `stayInChannel` configuration option. You can order the bot to leave the channel with `!leave`.
-
-You can set the bot's activity via the `game` options.
-
-Check `config/default-example.json` for an example config and create a new file `default.json` with your desired configuration inside the `config` folder.

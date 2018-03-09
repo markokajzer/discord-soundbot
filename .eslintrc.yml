@@ -54,3 +54,7 @@ rules:
     - error
     - as-needed
     - requireReturnForObjectLiteral: true
+
+  no-multi-spaces:
+    - error
+    - ignoreEOLComments: true

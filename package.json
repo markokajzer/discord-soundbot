@@ -17,7 +17,6 @@
   "author": "Marko Kajzer",
   "license": "MIT",
   "dependencies": {
-    "config": "^1.21.0",
     "discord.js": "^11.3.2",
     "lowdb": "^1.0.0",
     "node-opus": "^0.2.6"
