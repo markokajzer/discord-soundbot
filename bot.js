@@ -1,4 +1,5 @@
-const config = require('config');
+const config = require('./config/config.json');
+
 const low = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
 const SoundBot = require('./src/SoundBot.js');
@@ -12,7 +13,7 @@ bot.start();
 
 const message = [
   'Use the following URL to let the bot join your server!',
-  `https://discordapp.com/oauth2/authorize?client_id=${config.get('client_id')}&scope=bot`
+  `https://discordapp.com/oauth2/authorize?client_id=${config.client_id}&scope=bot`
 ].join('\n');
 
 console.log(message); // eslint-disable-line no-console

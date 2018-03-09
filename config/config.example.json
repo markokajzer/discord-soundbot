@@ -2,8 +2,8 @@
   "client_id": "YOUR_CLIENT_ID",
   "token": "YOUR_APP_BOT_USER_TOKEN",
   "prefix": "!",
-  "extensions": [".mp3", ".wav"],
-  "size": 1000000,
+  "acceptedExtensions": [".mp3", ".wav"],
+  "maximumFileSize": 1000000,
   "deleteMessages": false,
   "stayInChannel": false,
   "game": ""
