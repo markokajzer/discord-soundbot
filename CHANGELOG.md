@@ -1,6 +1,7 @@
 ## master (unreleased)
 
 + Removed `config` dependency
++ Sanitize sound names
 
 ## 0.13.0 (2018-03-07)
 

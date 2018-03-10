@@ -61,11 +61,11 @@ Type `!commands` to print the following list of available commands.
 
 ### Adding sounds
 
-You can add sounds to the bot by typing `!add` and attaching a file. Accepted file formats and a limit to the size are configurable.
+You can add sounds to the bot by typing `!add` and attaching a file. Accepted file formats and a limit to the size are configurable. The name of the sound can only contain alphanumeric characters.
 
 ### Playing sounds
 
-Type `!sounds` to get a list of all sounds that are available to your bot. Play any sound by prefixing it with `!`, e.g. `!onlygame`. Play a random sound with `!random`.
+Type `!sounds` to get a list of all sounds that are available to your bot. Play any sound by prefixing it with `!`, e.g. `!rickroll`. Play a random sound with `!random`.
 
 All sounds will be added to a queue and played in succession. To halt the playback and empty the queue type `!stop`.
 
