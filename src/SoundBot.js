@@ -1,9 +1,9 @@
 const config = require('../config/config.json');
 
 const Discord = require('discord.js');
-const Util = require('./Util.js');
-
 require('./Message.js');
+
+const Util = require('./Util.js');
 
 class SoundBot extends Discord.Client {
   constructor() {
@@ -101,26 +101,26 @@ class SoundBot extends Discord.Client {
         break;
       case 'random':
         const random = sounds[Math.floor(Math.random() * sounds.length)];
-        this._addToQueue(voiceChannel.id, random, message);
+        this._addToQueue(random, voiceChannel, message);
         break;
       default:
         const sound = message.content;
         if (sounds.includes(sound)) {
-          this._addToQueue(voiceChannel.id, sound, message);
+          this._addToQueue(sound, voiceChannel, message);
           if (!this.speaking) this._playSoundQueue();
         }
         break;
     }
   }
 
-  _addToQueue(voiceChannel, sound, message) {
-    this.queue.push({ name: sound, channel: voiceChannel, message });
+  _addToQueue(sound, voiceChannel, message) {
+    this.queue.push({ name: sound, channel: voiceChannel, message: message });
   }
 
   _playSoundQueue() {
     const nextSound = this.queue.shift();
     const file = Util.getPathForSound(nextSound.name);
-    const voiceChannel = this.channels.get(nextSound.channel);
+    const voiceChannel = nextSound.channel;
 
     this.speaking = true;
 
