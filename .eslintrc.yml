@@ -6,55 +6,43 @@ parserOptions:
   ecmaVersion: 6
 
 rules:
+  arrow-body-style:
+    - error
+    - as-needed
+    - requireReturnForObjectLiteral: true
+  class-methods-use-this:
+    - off
+  comma-dangle:
+    - error
+    - never
+  curly:
+    - error
+    - multi-line
+    - consistent
   max-len:
     - error
     - 100
     - 2
     - ignoreComments: true
-
-  comma-dangle:
-    - error
-    - never
-
-  curly:
-    - error
-    - multi-line
-    - consistent
-
-  no-plusplus:
-    - error
-    - allowForLoopAfterthoughts: true
-
-  no-underscore-dangle:
-    - error
-    - allowAfterThis: true
-
-  class-methods-use-this:
+  no-case-declarations:
     - off
-
   no-mixed-operators:
     - error
     - allowSamePrecedence: true
-
-  prefer-destructuring:
-    - off
-
-  no-case-declarations:
-    - off
-
-  no-param-reassign:
-    - error
-    - props: false
-
-  arrow-body-style:
-    - error
-    - as-needed
-    - requireReturnForObjectLiteral: true
-
   no-multi-spaces:
     - error
     - ignoreEOLComments: true
-
+  no-param-reassign:
+    - error
+    - props: false
+  no-plusplus:
+    - error
+    - allowForLoopAfterthoughts: true
+  no-underscore-dangle:
+    - error
+    - allowAfterThis: true
   object-shorthand:
     - error
     - consistent
+  prefer-destructuring:
+    - off
