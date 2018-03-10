@@ -101,22 +101,29 @@ class Util {
       return;
     }
 
-    if (!config.acceptedExtensions.some(ext => attachment.filename.endsWith(ext))) {
-      channel.send('Sound has to be in accepted format!');
+    const fileName = attachment.filename.toLowerCase();
+    if (!config.acceptedExtensions.some(ext => fileName.endsWith(ext))) {
+      const extensions = config.acceptedExtensions.join(', ');
+      channel.send(`Sound has to be in accepted format, one of ${extensions}!`);
       return;
     }
 
-    const filename = attachment.filename.split('.')[0];
-    if (this.getSounds().includes(filename)) {
-      channel.send(`${filename} already exists!`);
+    const soundName = fileName.split('.')[0];
+    if (soundName.match(/[^a-z0-9]/)) {
+      channel.send('Filename has to be in accepted format!');
+      return;
+    }
+
+    if (this.getSounds().includes(soundName)) {
+      channel.send(`${soundName} already exists!`);
       return;
     }
 
     https.get(attachment.url, (response) => {
       if (response.statusCode === 200) {
-        const file = fs.createWriteStream(`./sounds/${attachment.filename}`);
+        const file = fs.createWriteStream(`./sounds/${fileName}`);
         response.pipe(file);
-        channel.send(`${filename} added!`);
+        channel.send(`${soundName} added!`);
       }
     }).on('error', () => channel.send('Something went wrong!'));
   }
