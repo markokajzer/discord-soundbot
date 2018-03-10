@@ -1,3 +1,7 @@
+## master (unreleased)
+
++ Removed `config` dependency
+
 ## 0.13.0 (2018-03-07)
 
 + Added `game` option

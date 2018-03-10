@@ -5,10 +5,6 @@ extends: "airbnb-base"
 parserOptions:
   ecmaVersion: 6
 
-env:
-  browser: true
-  jquery: true
-
 rules:
   max-len:
     - error
@@ -58,3 +54,7 @@ rules:
   no-multi-spaces:
     - error
     - ignoreEOLComments: true
+
+  object-shorthand:
+    - error
+    - consistent
