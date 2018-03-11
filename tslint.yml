@@ -16,6 +16,9 @@ rules:
     - ignore-same-line
   interface-name:
     - false
+  no-unused-variable:
+    - true
+    - check-parameters
   object-literal-shorthand:
     - false
   object-literal-sort-keys:
