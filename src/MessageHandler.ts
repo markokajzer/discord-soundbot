@@ -1,54 +1,30 @@
-const config = require('../config/config.json');
+import config from '../config/config.json';
 
-const Discord = require('discord.js');
-require('./Message.js');
+import Discord from 'discord.js';
 
-const Util = require('./Util.js');
+import Util from './Util';
 
-class SoundBot extends Discord.Client {
-  constructor() {
-    super();
+export default class MessageHandler {
+  private prefix: string;
+  private speaking: boolean;
+  private queue: Array<{ name: string, channel: Discord.VoiceChannel, message: Discord.Message }>;
 
-    this.prefix = config.prefix;
+  constructor(prefix: string) {
+    this.prefix = prefix;
     this.speaking = false;
     this.queue = [];
-
-    this._addEventListeners();
   }
 
-  start() {
-    this.login(config.token);
-  }
-
-  _addEventListeners() {
-    this.on('ready', this._readyListener);
-    this.on('message', this._messageListener);
-  }
-
-  _readyListener() {
-    this._setActivity();
-    this._setAvatar();
-  }
-
-  _setActivity() {
-    this.user.setActivity(config.game);
-  }
-
-  _setAvatar() {
-    const avatar = Util.avatarExists() ? './config/avatar.png' : null;
-    this.user.setAvatar(avatar);
-  }
-
-  _messageListener(message) {
+  public handle(message: Discord.Message) {
     if (message.isDirectMessage()) return;
     if (!message.hasPrefix(this.prefix)) return;
     if (Util.userIgnored(message.author.id)) return;
 
     message.content = message.content.substring(this.prefix.length);
-    this._handle(message);
+    this.handleMessage(message);
   }
 
-  _handle(message) {
+  private handleMessage(message: Discord.Message) {
     const [command, ...input] = message.content.split(' ');
     switch (command) {
       case 'commands':
@@ -64,13 +40,13 @@ class SoundBot extends Discord.Client {
         message.channel.send(['```', ...Util.lastAdded(), '```'].join('\n'));
         break;
       case 'add':
-        if (message.attachments) Util.addSounds(message.attachments, message.channel);
+        if (message.attachments) Util.addSounds(message.attachments, message.channel as Discord.TextChannel);
         break;
       case 'rename':
-        Util.renameSound(input, message.channel);
+        Util.renameSound(input, message.channel as Discord.TextChannel);
         break;
       case 'remove':
-        Util.removeSound(input, message.channel);
+        Util.removeSound(input, message.channel as Discord.TextChannel);
         break;
       case 'ignore':
         Util.ignoreUser(input, message);
@@ -79,12 +55,12 @@ class SoundBot extends Discord.Client {
         Util.unignoreUser(input, message);
         break;
       default:
-        this._handleSoundCommands(message);
+        this.handleSoundCommands(message);
         break;
     }
   }
 
-  _handleSoundCommands(message) {
+  private handleSoundCommands(message: Discord.Message) {
     const sounds = Util.getSounds();
     const voiceChannel = message.member.voiceChannel;
 
@@ -101,30 +77,30 @@ class SoundBot extends Discord.Client {
         break;
       case 'random':
         const random = sounds[Math.floor(Math.random() * sounds.length)];
-        this._addToQueue(random, voiceChannel, message);
+        this.addToQueue(random, voiceChannel, message);
         break;
       default:
         const sound = message.content;
         if (sounds.includes(sound)) {
-          this._addToQueue(sound, voiceChannel, message);
-          if (!this.speaking) this._playSoundQueue();
+          this.addToQueue(sound, voiceChannel, message);
+          if (!this.speaking) this.playSoundQueue();
         }
         break;
     }
   }
 
-  _addToQueue(sound, voiceChannel, message) {
+  private addToQueue(sound: string, voiceChannel: Discord.VoiceChannel, message: Discord.Message) {
     this.queue.push({ name: sound, channel: voiceChannel, message: message });
   }
 
-  _playSoundQueue() {
-    const nextSound = this.queue.shift();
+  private playSoundQueue() {
+    const nextSound = this.queue.shift()!;
     const file = Util.getPathForSound(nextSound.name);
     const voiceChannel = nextSound.channel;
 
     this.speaking = true;
 
-    voiceChannel.join().then((connection) => {
+    voiceChannel.join().then(connection => {
       connection.playFile(file).on('end', () => {
         Util.updateCount(nextSound.name);
         if (config.deleteMessages) nextSound.message.delete();
@@ -135,13 +111,11 @@ class SoundBot extends Discord.Client {
           return;
         }
 
-        this._playSoundQueue();
+        this.playSoundQueue();
       });
-    }).catch((error) => {
-      console.log('Error occured!');  // eslint-disable-line no-console
-      console.log(error);             // eslint-disable-line no-console
+    }).catch(error => {
+      console.log('Error occured!');  // tslint:disable-line no-console
+      console.log(error);             // tslint:disable-line no-console
     });
   }
 }
-
-module.exports = SoundBot;

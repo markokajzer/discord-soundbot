@@ -2,7 +2,6 @@
   "name": "dicord_soundbot",
   "version": "0.13.0",
   "description": "A Discord Bot to play sounds",
-  "main": "bot.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/markokajzer/discord-soundbot"
@@ -11,8 +10,10 @@
     "discord",
     "bot",
     "soundboard",
+    "sounds",
     "mp3",
-    "sounds"
+    "typescript",
+    "nodejs"
   ],
   "author": "Marko Kajzer",
   "license": "MIT",
@@ -27,14 +28,20 @@
     "zlib-sync": "^0.1.4"
   },
   "devDependencies": {
-    "eslint": "^4.6.1",
-    "eslint-config-airbnb-base": "^12.0.0",
-    "eslint-plugin-import": "^2.7.0"
+    "@types/lowdb": "^1.0.0",
+    "@types/node": "^8.9.5",
+    "tslint": "^5.9.1",
+    "typescript": "^2.7.2"
   },
   "engines": {
     "node": ">=6.0.0"
   },
   "scripts": {
-    "start": "node bot.js"
+    "clean": "rm -rf dist/",
+    "build": "tsc -p tsconfig.json",
+    "lint": "tslint -p tsconfig.json",
+    "serve": "node dist/bot.js",
+    "start": "npm run build && npm run serve",
+    "release": "npm run build && npm run lint"
   }
 }
