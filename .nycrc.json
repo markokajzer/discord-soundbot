@@ -1,0 +1,16 @@
+{
+  "include": [
+    "src/**"
+  ],
+  "extension": [
+    ".ts"
+  ],
+  "exclude": [
+    "bot.ts"
+  ],
+  "reporter": [
+    "html"
+  ],
+  "report-dir": "./coverage",
+  "temp-directory": "./coverage/.nyc_output"
+}
