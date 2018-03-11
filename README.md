@@ -25,7 +25,7 @@ The bot can be installed via Docker or manually.
 
 + As per [discord.js](https://github.com/discordjs/discord.js/tree/11.3.2#installation), **Node.js v6.0.0** or newer is required.
 + Due to using voice functionality **FFmpeg** is required. Install it manually, or with `npm install ffmpeg-binaries`.
-+ Install the bot's dependencies with `npm install --production` as usual.
++ Install the bot's dependencies with `npm install` as usual.
 + Finally, run the bot with `npm start`.
 
 ### Adding the bot to your server
