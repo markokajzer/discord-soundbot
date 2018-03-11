@@ -1,0 +1,28 @@
+---
+
+defaultSeverity: error
+extends:
+  - tslint:recommended
+
+rules:
+  array-type:
+    - true
+    - generic
+  arrow-parens:
+    - true
+    - ban-single-arg-parens
+  curly:
+    - true
+    - ignore-same-line
+  interface-name:
+    - false
+  object-literal-shorthand:
+    - false
+  object-literal-sort-keys:
+    - false
+  quotemark:
+    - true
+    - single
+    - avoid-escape
+  trailing-comma:
+    - false

@@ -1,11 +1,12 @@
 .git
 .gitignore
 
+dist
 node_modules
 
+config/config.example.json
+
 db.json
-config/default-example.json
-.eslintrc.yml
 
 CHANGELOG.md
 README.md
