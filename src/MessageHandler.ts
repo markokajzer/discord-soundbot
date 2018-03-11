@@ -1,6 +1,7 @@
 import config from '../config/config.json';
 
 import Discord from 'discord.js';
+import './discord/Message';
 
 import Util from './Util';
 
@@ -18,7 +19,7 @@ export default class MessageHandler {
   public handle(message: Discord.Message) {
     if (message.isDirectMessage()) return;
     if (!message.hasPrefix(this.prefix)) return;
-    if (Util.userIgnored(message.author.id)) return;
+    if (Util.userIgnored(message.author)) return;
 
     message.content = message.content.substring(this.prefix.length);
     this.handleMessage(message);
@@ -37,22 +38,22 @@ export default class MessageHandler {
         message.channel.send(Util.getMostPlayedSounds());
         break;
       case 'lastadded':
-        message.channel.send(['```', ...Util.lastAdded(), '```'].join('\n'));
+        message.channel.send(['```', ...Util.getLastAddedSounds(), '```'].join('\n'));
         break;
       case 'add':
-        if (message.attachments) Util.addSounds(message.attachments, message.channel as Discord.TextChannel);
+        Util.addSounds(message);
         break;
       case 'rename':
-        Util.renameSound(input, message.channel as Discord.TextChannel);
+        Util.renameSound(message, input);
         break;
       case 'remove':
-        Util.removeSound(input, message.channel as Discord.TextChannel);
+        Util.removeSound(message, input);
         break;
       case 'ignore':
-        Util.ignoreUser(input, message);
+        Util.ignoreUser(message, input);
         break;
       case 'unignore':
-        Util.unignoreUser(input, message);
+        Util.unignoreUser(message, input);
         break;
       default:
         this.handleSoundCommands(message);
@@ -64,7 +65,7 @@ export default class MessageHandler {
     const sounds = Util.getSounds();
     const voiceChannel = message.member.voiceChannel;
 
-    if (voiceChannel === undefined) {
+    if (!voiceChannel) {
       message.reply('Join a voice channel first!');
       return;
     }

@@ -23,10 +23,6 @@ class Util {
     };
   }
 
-  public avatarExists() {
-    return fs.existsSync('./config/avatar.png');
-  }
-
   public getSounds() {
     const sounds = this.getSoundsWithExtension();
     return sounds.map(sound => sound.name);
@@ -75,11 +71,14 @@ class Util {
     return message.join('\n');
   }
 
-  public addSounds(attachments: Discord.Collection<string, Discord.MessageAttachment>, channel: Discord.TextChannel) {
-    attachments.forEach(attachment => this.addSound(attachment, channel));
+  public addSounds(message: Discord.Message) {
+    message.attachments.forEach(attachment => {
+      const result = this.addSound(attachment);
+      message.channel.send(result);
+    });
   }
 
-  public lastAdded() {
+  public getLastAddedSounds() {
     const soundsWithExtension = this.getSoundsWithExtension();
     let lastAddedSounds = soundsWithExtension.map(sound => {
       return {
@@ -93,9 +92,9 @@ class Util {
     return lastAddedSounds.map(sound => sound.name);
   }
 
-  public renameSound(input: Array<string>, channel: Discord.TextChannel) {
+  public renameSound(message: Discord.Message, input: Array<string>) {
     if (input.length !== 2) {
-      channel.send(this.usage.rename);
+      message.channel.send(this.usage.rename);
       return;
     }
 
@@ -106,48 +105,71 @@ class Util {
 
     try {
       fs.renameSync(oldFile, newFile);
-      channel.send(`${oldName} renamed to ${newName}!`);
+      message.channel.send(`${oldName} renamed to ${newName}!`);
     } catch (error) {
-      channel.send(`${oldName} not found!`);
+      message.channel.send(`${oldName} not found!`);
     }
   }
 
-  public removeSound(input: Array<string>, channel: Discord.TextChannel) {
+  public removeSound(message: Discord.Message, input: Array<string>) {
     if (input.length !== 1) {
-      channel.send(this.usage.remove);
+      message.channel.send(this.usage.remove);
       return;
     }
 
     try {
       const file = this.getPathForSound(input[0]);
       fs.unlinkSync(file);
-      channel.send(`${input} removed!`);
+      message.channel.send(`${input} removed!`);
     } catch (error) {
-      channel.send(`${input} not found!`);
+      message.channel.send(`${input} not found!`);
     }
   }
 
-  public ignoreUser(input: Array<string>, message: Discord.Message) {
+  public ignoreUser(message: Discord.Message, input: Array<string>) {
     if (input.length !== 1) {
       message.channel.send(this.usage.ignore);
       return;
     }
 
-    this.ignoreSwitch('ignore', input, message);
+    const id = input[0];
+    const user = message.guild.member(id);
+
+    if (!user) {
+      message.channel.send('User not found on this server.');
+      return;
+    }
+
+    const alreadyIgnored = this.userIgnored(user);
+    if (!alreadyIgnored) {
+      this.db.get('ignoreList').push({ id: user.id }).write();
+    }
+
+    message.channel.send(`${user.displayName} ignored!`);
   }
 
-  public unignoreUser(input: Array<string>, message: Discord.Message) {
+  public unignoreUser(message: Discord.Message, input: Array<string>) {
     if (input.length !== 1) {
       message.channel.send(this.usage.unignore);
       return;
     }
 
-    this.ignoreSwitch('unignore', input, message);
+    const id = input[0];
+    const user = message.guild.member(id);
+
+    if (!user) {
+      message.channel.send('User not found on this server.');
+      return;
+    }
+
+    this.db.get('ignoreList').remove({ id: user.id }).write();
+
+    message.channel.send(`${user.displayName} no longer ignored!`);
   }
 
-  public userIgnored(id: string) {
-    const user = this.db.get('ignoreList').find({ id }).value();
-    return !!user;
+  public userIgnored(user: Discord.User | Discord.GuildMember) {
+    const userToCheck = this.db.get('ignoreList').find({ id: user.id }).value();
+    return !!userToCheck;
   }
 
   public updateCount(playedSound: string) {
@@ -182,53 +204,33 @@ class Util {
     return array[indexOfLongestWord];
   }
 
-  private addSound(attachment: Discord.MessageAttachment, channel: Discord.TextChannel) {
+  private addSound(attachment: Discord.MessageAttachment) {
     if (attachment.filesize > config.maximumFileSize) {
-      channel.send(`${attachment.filename.split('.')[0]} is too big!`);
-      return;
+      return `${attachment.filename.split('.')[0]} is too big!`;
     }
 
     const fileName = attachment.filename.toLowerCase();
     if (!config.acceptedExtensions.some(ext => fileName.endsWith(ext))) {
       const extensions = config.acceptedExtensions.join(', ');
-      channel.send(`Sound has to be in accepted format, one of ${extensions}!`);
-      return;
+      return `Sound has to be in accepted format, one of ${extensions}!`;
     }
 
     const soundName = fileName.split('.')[0];
     if (soundName.match(/[^a-z0-9]/)) {
-      channel.send('Filename has to be in accepted format!');
-      return;
+      return 'Filename has to be in accepted format!';
     }
 
     if (this.getSounds().includes(soundName)) {
-      channel.send(`${soundName} already exists!`);
-      return;
+      return `${soundName} already exists!`;
     }
 
     https.get(attachment.url, response => {
       if (response.statusCode === 200) {
         const file = fs.createWriteStream(`./sounds/${fileName}`);
         response.pipe(file);
-        channel.send(`${soundName} added!`);
+        return `${soundName} added!`;
       }
-    }).on('error', () => channel.send('Something went wrong!'));
-  }
-
-  private ignoreSwitch(command: string, input: Array<string>, message: Discord.Message) {
-    const id = input[0];
-    const alreadyIgnored = this.userIgnored(id);
-    let messageAddition = '';
-
-    if (command === 'ignore' && !alreadyIgnored) {
-      this.db.get('ignoreList').push({ id }).write();
-    } else if (command === 'unignore') {
-      this.db.get('ignoreList').remove({ id }).write();
-      messageAddition += 'no longer ';
-    }
-
-    const name = message.guild.member(id);
-    message.channel.send(`${name || id} ${messageAddition}ignored!`);
+    }).on('error', () => 'Something went wrong!');
   }
 }
 

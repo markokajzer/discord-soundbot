@@ -1,10 +1,9 @@
-import config from '../config/config.json';
+import fs from 'fs';
 
 import Discord from 'discord.js';
-import './Discord/Message';
 
+import config from '../config/config.json';
 import MessageHandler from './MessageHandler';
-import Util from './Util';
 
 export default class SoundBot extends Discord.Client {
   private messageHandler = new MessageHandler(config.prefix);
@@ -33,11 +32,15 @@ export default class SoundBot extends Discord.Client {
   }
 
   private setAvatar() {
-    const avatar = Util.avatarExists() ? './config/avatar.png' : '';
+    const avatar = this.avatarExists() ? './config/avatar.png' : '';
     this.user.setAvatar(avatar);
   }
 
   private messageListener(message: Discord.Message) {
     this.messageHandler.handle(message);
+  }
+
+  private avatarExists() {
+    return fs.existsSync('./config/avatar.png');
   }
 }
