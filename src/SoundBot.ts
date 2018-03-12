@@ -1,5 +1,4 @@
 import fs from 'fs';
-
 import Discord from 'discord.js';
 
 import config from '../config/config.json';

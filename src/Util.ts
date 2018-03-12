@@ -2,7 +2,6 @@ import config from '../config/config.json';
 
 import fs from 'fs';
 import https from 'https';
-
 import Discord from 'discord.js';
 
 import low from 'lowdb';
