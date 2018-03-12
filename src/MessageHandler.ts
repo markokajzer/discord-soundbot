@@ -53,6 +53,12 @@ export default class MessageHandler {
       case 'unignore':
         Util.unignoreUser(message, input);
         break;
+      case 'leave':
+      case 'stop':
+        const current = this.queue.current();
+        this.queue.clear();
+        if (current) current.channel.leave();
+        break;
       default:
         this.handleSoundCommands(message);
         break;
@@ -67,24 +73,18 @@ export default class MessageHandler {
     }
 
     const sounds = Util.getSounds();
+    let sound: string;
     switch (message.content) {
-      case 'leave':
-      case 'stop':
-        voiceChannel.leave();
-        this.queue.clear();
-        break;
       case 'random':
-        const random = sounds[Math.floor(Math.random() * sounds.length)];
-        this.queue.add(new QueueItem(random, voiceChannel, message));
+        sound = sounds[Math.floor(Math.random() * sounds.length)];
         break;
       default:
-        const sound = message.content;
+        sound = message.content;
         if (!sounds.includes(sound)) return;
-
-        this.queue.add(new QueueItem(sound, voiceChannel, message));
         break;
     }
 
+    this.queue.add(new QueueItem(sound, voiceChannel, message));
     if (this.queue.isStartable()) this.queue.start();
   }
 }

@@ -30,6 +30,10 @@ export default class SoundQueue {
     return this.queue.length === 0;
   }
 
+  public current() {
+    return this.queue[0];
+  }
+
   private playNext() {
     const next = this.next();
     const file = Util.getPathForSound(next.sound);
@@ -52,6 +56,6 @@ export default class SoundQueue {
   }
 
   private next() {
-    return this.queue[0];
+    return this.current();
   }
 }
