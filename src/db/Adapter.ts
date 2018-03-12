@@ -1,11 +1,11 @@
 import low from 'lowdb';
 import FileSync from 'lowdb/adapters/FileSync';
-const adapter = new FileSync('db.json');
 
 export default class Adapter {
   private db: any;
 
   constructor() {
+    const adapter = new FileSync('db.json');
     this.db = low(adapter);
     this.ensureDefaults();
   }
