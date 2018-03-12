@@ -1,4 +1,4 @@
-import { DMChannel, Message } from 'discord.js';
+import { DMChannel, GroupDMChannel, Message } from 'discord.js';
 
 declare module 'discord.js' {
   interface Message {
@@ -7,10 +7,10 @@ declare module 'discord.js' {
   }
 }
 
-Message.prototype.hasPrefix = function(prefix: string) {
+Message.prototype.hasPrefix = function (prefix: string) {
   return this.content.startsWith(prefix);
 };
 
-Message.prototype.isDirectMessage = function() {
-  return this.channel instanceof DMChannel;
+Message.prototype.isDirectMessage = function () {
+  return (this.channel instanceof DMChannel) || (this.channel instanceof GroupDMChannel);
 };
