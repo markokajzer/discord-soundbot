@@ -3,6 +3,9 @@ import './discord/Message';
 
 import QueueItem from './queue/QueueItem';
 import SoundQueue from './queue/SoundQueue';
+
+import * as Commands from './commands/Commands';
+
 import Util from './Util';
 
 export default class MessageHandler {
@@ -27,7 +30,7 @@ export default class MessageHandler {
     const [command, ...input] = message.content.split(' ');
     switch (command) {
       case 'commands':
-        message.author.send(Util.getListOfCommands());
+        new Commands.CommandList(message).run();
         break;
       case 'sounds':
         message.author.send(Util.getSounds().map(sound => sound));
