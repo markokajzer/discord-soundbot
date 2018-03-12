@@ -5,6 +5,7 @@ import https from 'https';
 import { MessageAttachment } from 'discord.js';
 
 import BaseCommand from './BaseCommand';
+
 import Util from '../Util';
 
 export class AddSoundCommand extends BaseCommand {
