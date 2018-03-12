@@ -42,7 +42,7 @@ export default class MessageHandler {
         message.channel.send(['```', ...Util.getLastAddedSounds(), '```'].join('\n'));
         break;
       case 'add':
-        Util.addSounds(message);
+        new Commands.AddSound(message).run();
         break;
       case 'rename':
         Util.renameSound(message, input);
