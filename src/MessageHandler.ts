@@ -51,10 +51,10 @@ export default class MessageHandler {
         Util.removeSound(message, input);
         break;
       case 'ignore':
-        Util.ignoreUser(message, input);
+        new Commands.Ignore(message, Util.db, input).run();
         break;
       case 'unignore':
-        Util.unignoreUser(message, input);
+        new Commands.Unignore(message, Util.db, input).run();
         break;
       case 'leave':
       case 'stop':
