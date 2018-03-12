@@ -6,16 +6,14 @@ import Discord from 'discord.js';
 import Adapter from './db/Adapter';
 
 class Util {
-  private db: Adapter;
+  public db: Adapter;
   private readonly usage: any;
 
   constructor() {
     this.db = new Adapter();
     this.usage = {
       rename: 'Usage: !rename <old> <new>',
-      remove: 'Usage: !remove <sound>',
-      ignore: 'Usage: !ignore <user>',
-      unignore: 'Usage: !unignore'
+      remove: 'Usage: !remove <sound>'
     };
   }
 
@@ -93,44 +91,7 @@ class Util {
     }
   }
 
-  public ignoreUser(message: Discord.Message, input: Array<string>) {
-    if (input.length !== 1) {
-      message.channel.send(this.usage.ignore);
-      return;
-    }
-
-    const id = input[0];
-    const user = message.guild.member(id);
-
-    if (!user) {
-      message.channel.send('User not found on this server.');
-      return;
-    }
-
-    const alreadyIgnored = this.isIgnoredUser(user);
-    if (!alreadyIgnored) this.db.addIgnoredUser(user.id);
-    message.channel.send(`${user.displayName} ignored!`);
-  }
-
-  public unignoreUser(message: Discord.Message, input: Array<string>) {
-    if (input.length !== 1) {
-      message.channel.send(this.usage.unignore);
-      return;
-    }
-
-    const id = input[0];
-    const user = message.guild.member(id);
-
-    if (!user) {
-      message.channel.send('User not found on this server.');
-      return;
-    }
-
-    this.db.removeIgnoredUser(user.id);
-    message.channel.send(`${user.displayName} no longer ignored!`);
-  }
-
-  public isIgnoredUser(user: Discord.User | Discord.GuildMember) {
+  public isIgnoredUser(user: Discord.User) {
     const userToCheck = this.db.isIgnoredUser(user.id);
     return !!userToCheck;
   }
