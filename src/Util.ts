@@ -1,7 +1,6 @@
 import config from '../config/config.json';
 
 import fs from 'fs';
-import https from 'https';
 import Discord from 'discord.js';
 
 import Adapter from './db/Adapter';
@@ -44,13 +43,6 @@ class Util {
     message.push('```');
 
     return message.join('\n');
-  }
-
-  public addSounds(message: Discord.Message) {
-    message.attachments.forEach(attachment => {
-      const result = this.addSound(attachment);
-      message.channel.send(result);
-    });
   }
 
   public getLastAddedSounds() {
@@ -165,35 +157,6 @@ class Util {
       if (array[indexOfLongestWord].length < array[i].length) indexOfLongestWord = i;
     }
     return array[indexOfLongestWord];
-  }
-
-  private addSound(attachment: Discord.MessageAttachment) {
-    if (attachment.filesize > config.maximumFileSize) {
-      return `${attachment.filename.split('.')[0]} is too big!`;
-    }
-
-    const fileName = attachment.filename.toLowerCase();
-    if (!config.acceptedExtensions.some(ext => fileName.endsWith(ext))) {
-      const extensions = config.acceptedExtensions.join(', ');
-      return `Sound has to be in accepted format, one of ${extensions}!`;
-    }
-
-    const soundName = fileName.split('.')[0];
-    if (soundName.match(/[^a-z0-9]/)) {
-      return 'Filename has to be in accepted format!';
-    }
-
-    if (this.getSounds().includes(soundName)) {
-      return `${soundName} already exists!`;
-    }
-
-    https.get(attachment.url, response => {
-      if (response.statusCode === 200) {
-        const file = fs.createWriteStream(`./sounds/${fileName}`);
-        response.pipe(file);
-        return `${soundName} added!`;
-      }
-    }).on('error', () => 'Something went wrong!');
   }
 }
 
