@@ -75,8 +75,7 @@ class Util {
   }
 
   public isIgnoredUser(user: Discord.User) {
-    const userToCheck = this.db.isIgnoredUser(user.id);
-    return !!userToCheck;
+    return this.db.isIgnoredUser(user.id);
   }
 
   public updateCount(playedSound: string) {

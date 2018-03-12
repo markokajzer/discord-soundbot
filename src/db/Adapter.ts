@@ -15,7 +15,8 @@ export default class Adapter {
   }
 
   public isIgnoredUser(userID: string) {
-    return this.db.get('ignoreList').find({ id: userID }).value();
+    const user = this.db.get('ignoreList').find({ id: userID }).value();
+    return !!user;
   }
 
   public removeIgnoredUser(userID: string) {
