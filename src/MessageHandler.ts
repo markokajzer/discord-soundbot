@@ -1,19 +1,17 @@
-import config from '../config/config.json';
-
 import Discord from 'discord.js';
 import './discord/Message';
 
+import QueueItem from './queue/QueueItem';
+import SoundQueue from './queue/SoundQueue';
 import Util from './Util';
 
 export default class MessageHandler {
   private prefix: string;
-  private speaking: boolean;
-  private queue: Array<{ name: string, channel: Discord.VoiceChannel, message: Discord.Message }>;
+  private queue: SoundQueue;
 
   constructor(prefix: string) {
     this.prefix = prefix;
-    this.speaking = false;
-    this.queue = [];
+    this.queue = new SoundQueue();
   }
 
   public handle(message: Discord.Message) {
@@ -62,61 +60,31 @@ export default class MessageHandler {
   }
 
   private handleSoundCommands(message: Discord.Message) {
-    const sounds = Util.getSounds();
     const voiceChannel = message.member.voiceChannel;
-
     if (!voiceChannel) {
       message.reply('Join a voice channel first!');
       return;
     }
 
+    const sounds = Util.getSounds();
     switch (message.content) {
       case 'leave':
       case 'stop':
         voiceChannel.leave();
-        this.queue = [];
+        this.queue.clear();
         break;
       case 'random':
         const random = sounds[Math.floor(Math.random() * sounds.length)];
-        this.addToQueue(random, voiceChannel, message);
+        this.queue.add(new QueueItem(random, voiceChannel, message));
         break;
       default:
         const sound = message.content;
-        if (sounds.includes(sound)) {
-          this.addToQueue(sound, voiceChannel, message);
-          if (!this.speaking) this.playSoundQueue();
-        }
+        if (!sounds.includes(sound)) return;
+
+        this.queue.add(new QueueItem(sound, voiceChannel, message));
         break;
     }
-  }
 
-  private addToQueue(sound: string, voiceChannel: Discord.VoiceChannel, message: Discord.Message) {
-    this.queue.push({ name: sound, channel: voiceChannel, message: message });
-  }
-
-  private playSoundQueue() {
-    const nextSound = this.queue.shift()!;
-    const file = Util.getPathForSound(nextSound.name);
-    const voiceChannel = nextSound.channel;
-
-    this.speaking = true;
-
-    voiceChannel.join().then(connection => {
-      connection.playFile(file).on('end', () => {
-        Util.updateCount(nextSound.name);
-        if (config.deleteMessages) nextSound.message.delete();
-
-        if (this.queue.length === 0) {
-          this.speaking = false;
-          if (!config.stayInChannel) connection.disconnect();
-          return;
-        }
-
-        this.playSoundQueue();
-      });
-    }).catch(error => {
-      console.log('Error occured!');  // tslint:disable-line no-console
-      console.log(error);             // tslint:disable-line no-console
-    });
+    if (this.queue.isStartable()) this.queue.start();
   }
 }

@@ -1,13 +1,14 @@
+import config from '../config/config.json';
+
 import fs from 'fs';
 import Discord from 'discord.js';
 
-import config from '../config/config.json';
 import MessageHandler from './MessageHandler';
 
 export default class SoundBot extends Discord.Client {
   private messageHandler = new MessageHandler(config.prefix);
 
-  public constructor() {
+  constructor() {
     super();
     this.addEventListeners();
   }
