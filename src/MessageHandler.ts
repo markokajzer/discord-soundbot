@@ -17,7 +17,7 @@ export default class MessageHandler {
   public handle(message: Discord.Message) {
     if (message.isDirectMessage()) return;
     if (!message.hasPrefix(this.prefix)) return;
-    if (Util.userIgnored(message.author)) return;
+    if (Util.isIgnoredUser(message.author)) return;
 
     message.content = message.content.substring(this.prefix.length);
     this.handleMessage(message);
