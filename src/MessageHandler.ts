@@ -36,7 +36,7 @@ export default class MessageHandler {
         message.author.send(Util.getSounds().map(sound => sound));
         break;
       case 'mostplayed':
-        message.channel.send(Util.getMostPlayedSounds());
+        new Commands.MostPlayed(message, Util.db).run();
         break;
       case 'lastadded':
         message.channel.send(['```', ...Util.getLastAddedSounds(), '```'].join('\n'));

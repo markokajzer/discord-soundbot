@@ -26,23 +26,6 @@ class Util {
     return `sounds/${sound}.${this.getExtensionForSound(sound)}`;
   }
 
-  public getMostPlayedSounds() {
-    const sounds = this.db.getMostPlayedSounds();
-
-    const longestSound = this.findLongestWord(sounds.map(sound => sound.name));
-    const longestCount = this.findLongestWord(sounds.map(sound => String(sound.count)));
-
-    const message = ['```'];
-    sounds.forEach(sound => {
-      const spacesForSound = ' '.repeat(longestSound.length - sound.name.length + 1);
-      const spacesForCount = ' '.repeat(longestCount.length - String(sound.count).length);
-      message.push(`${sound.name}:${spacesForSound}${spacesForCount}${sound.count}`);
-    });
-    message.push('```');
-
-    return message.join('\n');
-  }
-
   public getLastAddedSounds() {
     const soundsWithExtension = this.getSoundsWithExtension();
     let lastAddedSounds = soundsWithExtension.map(sound => {
@@ -110,14 +93,6 @@ class Util {
 
   private getExtensionForSound(name: string) {
     return this.getSoundsWithExtension().find(sound => sound.name === name)!.extension;
-  }
-
-  private findLongestWord(array: Array<string>) {
-    let indexOfLongestWord = 0;
-    for (let i = 1; i < array.length; i++) {
-      if (array[indexOfLongestWord].length < array[i].length) indexOfLongestWord = i;
-    }
-    return array[indexOfLongestWord];
   }
 }
 
