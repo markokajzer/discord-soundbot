@@ -1,11 +1,5 @@
 import config from '../config/config.json';
 
-import low from 'lowdb';
-import FileSync from 'lowdb/adapters/FileSync';
-const adapter = new FileSync('db.json');
-const db = low(adapter);
-db.defaults({ counts: [], ignoreList: [] }).write();
-
 import SoundQueue from './queue/SoundQueue';
 import MessageHandler from './MessageHandler';
 import SoundBot from './SoundBot';

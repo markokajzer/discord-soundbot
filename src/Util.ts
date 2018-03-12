@@ -4,16 +4,14 @@ import fs from 'fs';
 import https from 'https';
 import Discord from 'discord.js';
 
-import low from 'lowdb';
-import FileSync from 'lowdb/adapters/FileSync';
-const adapter = new FileSync('db.json');
+import Adapter from './db/Adapter';
 
 class Util {
-  private db: any;
+  private db: Adapter;
   private readonly usage: any;
 
   constructor() {
-    this.db = low(adapter);
+    this.db = new Adapter();
     this.usage = {
       rename: 'Usage: !rename <old> <new>',
       remove: 'Usage: !remove <sound>',
@@ -54,8 +52,8 @@ class Util {
   }
 
   public getMostPlayedSounds() {
-    const sounds: Array<{ name: string, count: number }> =
-      this.db.get('counts').sortBy('count').reverse().take(15).value();
+    const sounds = this.db.getMostPlayedSounds();
+
     const longestSound = this.findLongestWord(sounds.map(sound => sound.name));
     const longestCount = this.findLongestWord(sounds.map(sound => String(sound.count)));
 
@@ -139,11 +137,8 @@ class Util {
       return;
     }
 
-    const alreadyIgnored = this.userIgnored(user);
-    if (!alreadyIgnored) {
-      this.db.get('ignoreList').push({ id: user.id }).write();
-    }
-
+    const alreadyIgnored = this.isIgnoredUser(user);
+    if (!alreadyIgnored) this.db.addIgnoredUser(user.id);
     message.channel.send(`${user.displayName} ignored!`);
   }
 
@@ -161,26 +156,17 @@ class Util {
       return;
     }
 
-    this.db.get('ignoreList').remove({ id: user.id }).write();
-
+    this.db.removeIgnoredUser(user.id);
     message.channel.send(`${user.displayName} no longer ignored!`);
   }
 
-  public userIgnored(user: Discord.User | Discord.GuildMember) {
-    const userToCheck = this.db.get('ignoreList').find({ id: user.id }).value();
+  public isIgnoredUser(user: Discord.User | Discord.GuildMember) {
+    const userToCheck = this.db.isIgnoredUser(user.id);
     return !!userToCheck;
   }
 
   public updateCount(playedSound: string) {
-    const sound = this.db.get('counts').find({ name: playedSound }).value();
-
-    if (!sound) {
-      this.db.get('counts').push({ name: playedSound, count: 1 }).write();
-      return;
-    }
-
-    const newValue = this.db.get('counts').find({ name: playedSound }).value().count + 1;
-    this.db.get('counts').find({ name: playedSound }).assign({ count: newValue }).write();
+    this.db.updateSoundCount(playedSound);
   }
 
   private getSoundsWithExtension(): Array<{ name: string, extension: string }> {
