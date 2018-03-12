@@ -23,6 +23,10 @@ rules:
     - false
   object-literal-sort-keys:
     - false
+  ordered-imports:
+    severity: warning
+    options:
+      - true
   quotemark:
     - true
     - single
