@@ -30,8 +30,9 @@ export default class MessageHandler {
   private handleMessage(message: Discord.Message) {
     const [command, ...input] = message.content.split(' ');
     switch (command) {
+      case 'help':
       case 'commands':
-        new Commands.CommandList(message).run();
+        new Commands.Help(message).run();
         break;
       case 'sounds':
         message.author.send(SoundUtil.getSounds().map(sound => sound));
