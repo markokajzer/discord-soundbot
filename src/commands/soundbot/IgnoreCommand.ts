@@ -1,4 +1,4 @@
-import IgnoreBaseCommand from './IgnoreBaseCommand';
+import IgnoreBaseCommand from '../base/IgnoreBaseCommand';
 
 export class IgnoreCommand extends IgnoreBaseCommand {
   public readonly USAGE = 'Usage: !ignore <user>';
