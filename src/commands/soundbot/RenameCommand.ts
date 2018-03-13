@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-import { Message } from 'discord.js';
+import { Message, Permissions } from 'discord.js';
 
 import BaseCommand from '../base/BaseCommand';
 import CommandUsage from '../base/CommandUsage';
@@ -17,6 +17,8 @@ export class RenameCommand extends BaseCommand implements CommandUsage {
   }
 
   public run() {
+    if (!this.message.member.hasPermission(Permissions.FLAGS.ADMINISTRATOR!)) return;
+
     if (this.input.length !== 2) {
       this.message.channel.send(this.USAGE);
       return;
