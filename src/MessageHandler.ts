@@ -35,7 +35,7 @@ export default class MessageHandler {
         new Commands.Help(message).run();
         break;
       case 'sounds':
-        message.author.send(SoundUtil.getSounds().map(sound => sound));
+        new Commands.Sounds(message).run();
         break;
       case 'mostplayed':
         new Commands.MostPlayed(message, Util.db).run();

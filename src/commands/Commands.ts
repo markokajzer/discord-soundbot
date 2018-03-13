@@ -2,6 +2,7 @@ import { AddCommand as Add } from './soundbot/AddCommand';
 import { RenameCommand as Rename } from './soundbot/RenameCommand';
 import { RemoveCommand as Remove } from './soundbot/RemoveCommand';
 
+import { SoundsCommand as Sounds } from './soundbot/SoundsCommand';
 import { HelpCommand as Help } from './soundbot/HelpCommand';
 import { LastAddedCommand as LastAdded } from './soundbot/LastAddedCommand';
 import { MostPlayedCommand as MostPlayed } from './soundbot/MostPlayedCommand';
@@ -13,7 +14,7 @@ import { StopCommand as Stop } from './soundbot/StopCommand';
 
 export {
   Add, Rename, Remove,
-  Help, LastAdded, MostPlayed,
+  Sounds, Help, LastAdded, MostPlayed,
   Ignore, Unignore,
   Stop
 };
