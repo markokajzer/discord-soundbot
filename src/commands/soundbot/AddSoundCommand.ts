@@ -1,12 +1,12 @@
-import config from '../../config/config.json';
+import config from '../../../config/config.json';
 
 import fs from 'fs';
 import https from 'https';
 import { MessageAttachment } from 'discord.js';
 
-import BaseCommand from './BaseCommand';
+import BaseCommand from '../base/BaseCommand';
 
-import Util from '../Util';
+import Util from '../../Util';
 
 export class AddSoundCommand extends BaseCommand {
   public run() {

@@ -1,8 +1,8 @@
 import { Message } from 'discord.js';
 
-import BaseCommand from './BaseCommand';
+import BaseCommand from '../base/BaseCommand';
 
-import Adapter from '../db/Adapter';
+import Adapter from '../../db/Adapter';
 
 export class MostPlayedCommand extends BaseCommand {
   private db: Adapter;

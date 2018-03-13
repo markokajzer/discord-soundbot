@@ -1,6 +1,6 @@
-import { prefix } from '../../config/config.json';
+import { prefix } from '../../../config/config.json';
 
-import BaseCommand from './BaseCommand';
+import BaseCommand from '../base/BaseCommand';
 
 export class CommandListCommand extends BaseCommand {
   public run() {
