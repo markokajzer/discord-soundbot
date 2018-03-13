@@ -22,13 +22,13 @@ export class RemoveCommand extends BaseCommand implements CommandUsage {
     }
 
     const sound = this.input[0];
-    const file = SoundUtil.getPathForSound(sound);
-
-    try {
-      fs.unlinkSync(file);
-      this.message.channel.send(`${sound} removed!`);
-    } catch (error) {
+    if (!SoundUtil.soundExists(sound)) {
       this.message.channel.send(`${sound} not found!`);
+      return;
     }
+
+    const file = SoundUtil.getPathForSound(sound);
+    fs.unlinkSync(file);
+    this.message.channel.send(`${sound} removed!`);
   }
 }

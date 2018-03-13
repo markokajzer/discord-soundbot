@@ -35,9 +35,9 @@ export class AddCommand extends BaseCommand {
         resolve('Filename has to be in accepted format!');
       }
 
-      if (SoundUtil.getSounds().includes(soundName)) {
         resolve(`${soundName} already exists!`);
       }
+    if (SoundUtil.soundExists(soundName)) {
 
       https.get(attachment.url, response => {
         if (response.statusCode === 200) {

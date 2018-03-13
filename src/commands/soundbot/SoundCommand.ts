@@ -22,7 +22,7 @@ export class SoundCommand extends BaseCommand {
     }
 
     const sound = this.message.content;
-    if (!SoundUtil.getSounds().includes(sound)) return;
+    if (!SoundUtil.soundExists(sound)) return;
 
     this.queue.add(new QueueItem(sound, voiceChannel, this.message));
   }
