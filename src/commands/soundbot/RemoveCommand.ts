@@ -1,4 +1,5 @@
 import fs from 'fs';
+
 import { Message } from 'discord.js';
 
 import BaseCommand from '../base/BaseCommand';
