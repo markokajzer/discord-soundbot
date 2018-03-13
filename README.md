@@ -10,6 +10,7 @@ If you still need any help after reading the guide, feel free to [join my Discor
 Have fun!
 
 
+
 ## Installation
 
 ### General
@@ -46,6 +47,7 @@ https://discordapp.com/oauth2/authorize?client_id={YOUR_CLIENT_ID}&scope=bot
 
 Follow the link and allow your bot to join one of your Discord servers.
 
+
 ## Commands
 
 Type `!commands` to print the following list of available commands.
@@ -75,6 +77,10 @@ You can add sounds to the bot by typing `!add` and attaching a file. Accepted fi
 Type `!sounds` to get a list of all sounds that are available to your bot. Play any sound by prefixing it with `!`, e.g. `!rickroll`. Play a random sound with `!random`.
 
 All sounds will be added to a queue and played in succession. To halt the playback and empty the queue type `!stop`.
+
+### Searching sounds
+
+When your library of sounds gets too big and you forget what kinds of sounds you added, you can search for specific sounds with `!search <tag>`.
 
 ### Renaming sounds
 
