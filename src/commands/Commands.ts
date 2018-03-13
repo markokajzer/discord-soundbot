@@ -5,6 +5,8 @@ import { RemoveCommand as Remove } from './soundbot/RemoveCommand';
 import { RandomCommand as Random } from './soundbot/RandomCommand';
 import { SoundCommand as Sound } from './soundbot/SoundCommand';
 
+import { SearchCommand as Search } from './soundbot/SearchCommand';
+
 import { SoundsCommand as Sounds } from './soundbot/SoundsCommand';
 import { HelpCommand as Help } from './soundbot/HelpCommand';
 import { LastAddedCommand as LastAdded } from './soundbot/LastAddedCommand';
@@ -18,6 +20,7 @@ import { StopCommand as Stop } from './soundbot/StopCommand';
 export {
   Add, Rename, Remove,
   Sound, Random,
+  Search,
   Sounds, Help, LastAdded, MostPlayed,
   Ignore, Unignore,
   Stop
