@@ -1,6 +1,6 @@
 {
-  "name": "dicord_soundbot",
-  "version": "0.13.0",
+  "name": "dicord-soundbot",
+  "version": "1.0.0-dev",
   "description": "A Discord Bot to play sounds",
   "repository": {
     "type": "git",
