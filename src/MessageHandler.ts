@@ -29,6 +29,9 @@ export default class MessageHandler {
     this.handleMessage(message);
   }
 
+  // @REVIEW Want to extract this to a CommandHandler class that maps trigger -> Command
+  // How to handle different size of arguments between commands?
+  // Always pass message, input, queue, db and ignore params that the command does not use?
   private handleMessage(message: Discord.Message) {
     const [command, ...input] = message.content.split(' ');
     switch (command) {

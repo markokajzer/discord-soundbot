@@ -1,13 +1,18 @@
 ## master (unreleased)
 
-+ Removed `config` dependency
-+ Sanitize sound names
++ Added `!search` command
++ Sanitize sound on `!add`, `!remove`
+
+##### Under the hood
+
 + Moved to TypeScript
++ Complete rewrite
++ Removed `config` dependency
 
 ## 0.13.0 (2018-03-07)
 
 + Added `game` option
-+ Added `leave` alias for `stop` command
++ Added `!leave` alias for `!stop` command
 
 ## 0.12.0 (2017-12-20)
 
