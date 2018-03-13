@@ -2,6 +2,7 @@ import config from '../../config/config.json';
 
 import fs from 'fs';
 
+// @REVIEW All static class feels off
 export default class SoundUtil {
   public static getSounds() {
     const sounds = this.getSoundsWithExtension();
@@ -19,6 +20,10 @@ export default class SoundUtil {
 
   public static getExtensionForSound(name: string) {
     return this.getSoundsWithExtension().find(sound => sound.name === name)!.extension;
+  }
+
+  public static soundExists(name: string) {
+    return this.getSounds().includes(name);
   }
 
   private static getSoundsFromSoundFolder() {
