@@ -1,9 +1,9 @@
 import { Message, VoiceChannel } from 'discord.js';
 
 export default class QueueItem {
-  public sound: string;
-  public channel: VoiceChannel;
-  public message: Message;
+  public readonly sound: string;
+  public readonly channel: VoiceChannel;
+  public readonly message: Message;
 
   constructor(sound: string, channel: VoiceChannel, message: Message) {
     this.sound = sound;

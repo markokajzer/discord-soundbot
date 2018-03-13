@@ -6,10 +6,11 @@ import Discord from 'discord.js';
 import MessageHandler from './MessageHandler';
 
 export default class SoundBot extends Discord.Client {
-  private messageHandler = new MessageHandler(config.prefix);
+  private readonly messageHandler: MessageHandler;
 
-  constructor() {
+  constructor(messageHandler: MessageHandler) {
     super();
+    this.messageHandler = messageHandler;
     this.addEventListeners();
   }
 

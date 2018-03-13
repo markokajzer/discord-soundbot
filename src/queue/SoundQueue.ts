@@ -5,57 +5,57 @@ import Util from '../Util';
 
 export default class SoundQueue {
   private queue: Array<QueueItem>;
+  private current: QueueItem | null;
 
   constructor() {
     this.queue = [];
+    this.current = null;
   }
 
   public add(item: QueueItem) {
     this.queue.push(item);
   }
 
-  public isStartable() {
-    return this.queue.length === 1;
-  }
-
   public start() {
-    this.playNext();
+    if (this.isStartable()) this.playNext();
   }
 
   public clear() {
-    this.queue.length = 0;
+    this.queue = [];
   }
 
   public isEmpty() {
     return this.queue.length === 0;
   }
 
-  public current() {
-    return this.queue[0];
+  public getCurrent() {
+    return this.current;
+  }
+
+  private isStartable() {
+    return this.current === null;
   }
 
   private playNext() {
-    const next = this.next();
-    const file = Util.getPathForSound(next.sound);
-    const voiceChannel = next.channel;
+    this.current = this.shift();
+    const file = Util.getPathForSound(this.current.sound);
+    const voiceChannel = this.current.channel;
 
     voiceChannel.join().then(connection => {
       connection.playFile(file).on('end', () => {
-        Util.updateCount(next.sound);
-        if (config.deleteMessages) next.message.delete();
+        Util.updateCount(this.current!.sound);
+        if (config.deleteMessages) this.current!.message.delete();
 
-        this.queue.shift();
-
+        this.current = null;
         if (!this.isEmpty()) this.playNext();
         if (this.isEmpty() && !config.stayInChannel) connection.disconnect();
       });
     }).catch(error => {
-      console.log('Error occured!');  // tslint:disable-line no-console
-      console.log(error);             // tslint:disable-line no-console
+      console.error('Error occured!', '\n', error);
     });
   }
 
-  private next() {
-    return this.current();
+  private shift() {
+    return this.queue.shift()!;
   }
 }

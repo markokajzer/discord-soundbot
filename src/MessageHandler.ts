@@ -6,12 +6,12 @@ import SoundQueue from './queue/SoundQueue';
 import Util from './Util';
 
 export default class MessageHandler {
-  private prefix: string;
-  private queue: SoundQueue;
+  private readonly prefix: string;
+  private readonly queue: SoundQueue;
 
-  constructor(prefix: string) {
+  constructor(queue: SoundQueue, prefix: string) {
+    this.queue = queue;
     this.prefix = prefix;
-    this.queue = new SoundQueue();
   }
 
   public handle(message: Discord.Message) {
@@ -55,7 +55,7 @@ export default class MessageHandler {
         break;
       case 'leave':
       case 'stop':
-        const current = this.queue.current();
+        const current = this.queue.getCurrent();
         this.queue.clear();
         if (current) current.channel.leave();
         break;
@@ -85,6 +85,6 @@ export default class MessageHandler {
     }
 
     this.queue.add(new QueueItem(sound, voiceChannel, message));
-    if (this.queue.isStartable()) this.queue.start();
+    this.queue.start();
   }
 }
