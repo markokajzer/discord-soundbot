@@ -7,6 +7,7 @@ import SoundQueue from './queue/SoundQueue';
 import * as Commands from './commands/Commands';
 
 import Util from './Util';
+import SoundUtil from './util/SoundUtil';
 
 export default class MessageHandler {
   private readonly prefix: string;
@@ -33,22 +34,22 @@ export default class MessageHandler {
         new Commands.CommandList(message).run();
         break;
       case 'sounds':
-        message.author.send(Util.getSounds().map(sound => sound));
+        message.author.send(SoundUtil.getSounds().map(sound => sound));
         break;
       case 'mostplayed':
         new Commands.MostPlayed(message, Util.db).run();
         break;
       case 'lastadded':
-        message.channel.send(['```', ...Util.getLastAddedSounds(), '```'].join('\n'));
+        new Commands.LastAdded(message).run();
         break;
       case 'add':
-        new Commands.AddSound(message).run();
+        new Commands.Add(message).run();
         break;
       case 'rename':
-        Util.renameSound(message, input);
+        new Commands.Rename(message, input).run();
         break;
       case 'remove':
-        Util.removeSound(message, input);
+        new Commands.Remove(message, input).run();
         break;
       case 'ignore':
         new Commands.Ignore(message, Util.db, input).run();
@@ -73,7 +74,7 @@ export default class MessageHandler {
       return;
     }
 
-    const sounds = Util.getSounds();
+    const sounds = SoundUtil.getSounds();
     let sound: string;
     switch (message.content) {
       case 'random':
