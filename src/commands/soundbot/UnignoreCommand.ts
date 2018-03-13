@@ -4,10 +4,12 @@ export class UnignoreCommand extends IgnoreBaseCommand {
   public readonly USAGE = 'Usage: !unignore <user>';
 
   public run() {
-    const user = this.getUserFromInput();
-    if (!user) return;
+    const users = this.getUsersFromMentions();
+    if (!users) return;
 
-    this.db.removeIgnoredUser(user.id);
-    this.message.channel.send(`${user.displayName} no longer ignored!`);
+    users.forEach(user => {
+      this.db.removeIgnoredUser(user.id);
+      this.message.channel.send(`${user.username} no longer ignored!`);
+    });
   }
 }

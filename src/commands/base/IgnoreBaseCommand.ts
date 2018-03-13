@@ -8,24 +8,20 @@ import DatabaseAdapter from '../../db/DatabaseAdapter';
 export default abstract class IgnoreBaseCommand extends BaseCommand implements CommandUsage {
   public USAGE = '';
   protected readonly db: DatabaseAdapter;
-  protected readonly input: Array<string>;
 
-  constructor(message: Message, db: DatabaseAdapter, input: Array<string>) {
+  constructor(message: Message, db: DatabaseAdapter) {
     super(message);
     this.db = db;
-    this.input = input;
   }
 
-  protected getUserFromInput() {
-    if (this.input.length !== 1) {
+  protected getUsersFromMentions() {
+    const users = this.message.mentions.users;
+    if (users.size < 1) {
       this.message.channel.send(this.USAGE);
+      this.message.channel.send('User not found on this server.');
       return;
     }
 
-    const id = this.input.shift()!;
-    const user = this.message.guild.member(id);
-    if (user) return user;
-
-    this.message.channel.send('User not found on this server.');
+    return users;
   }
 }
