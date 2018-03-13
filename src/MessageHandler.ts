@@ -1,13 +1,9 @@
 import Discord from 'discord.js';
 import './discord/Message';
 
-import QueueItem from './queue/QueueItem';
-import SoundQueue from './queue/SoundQueue';
-
 import * as Commands from './commands/Commands';
-
+import SoundQueue from './queue/SoundQueue';
 import Util from './Util';
-import SoundUtil from './util/SoundUtil';
 
 export default class MessageHandler {
   private readonly prefix: string;
@@ -62,32 +58,12 @@ export default class MessageHandler {
       case 'stop':
         new Commands.Stop(message, this.queue).run();
         break;
-      default:
-        this.handleSoundCommands(message);
-        break;
-    }
-  }
-
-  private handleSoundCommands(message: Discord.Message) {
-    const voiceChannel = message.member.voiceChannel;
-    if (!voiceChannel) {
-      message.reply('Join a voice channel first!');
-      return;
-    }
-
-    const sounds = SoundUtil.getSounds();
-    let sound: string;
-    switch (message.content) {
       case 'random':
-        sound = sounds[Math.floor(Math.random() * sounds.length)];
+        new Commands.Random(message, this.queue).run();
         break;
       default:
-        sound = message.content;
-        if (!sounds.includes(sound)) return;
+        new Commands.Sound(message, this.queue).run();
         break;
     }
-
-    this.queue.add(new QueueItem(sound, voiceChannel, message));
-    this.queue.start();
   }
 }

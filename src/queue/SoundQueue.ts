@@ -15,9 +15,6 @@ export default class SoundQueue {
 
   public add(item: QueueItem) {
     this.queue.push(item);
-  }
-
-  public start() {
     if (this.isStartable()) this.playNext();
   }
 
