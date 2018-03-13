@@ -88,6 +88,10 @@ You can delete sounds by typing `!remove <sound>`. The bot will respond with the
 
 Users can be ignore from using **any** command by the `!ignore <user>` command while specifying their respective ID. The user will be mentioned by the bot in the channel of the message.
 
+### Restricted commands
+
+The commands `!rename`, `!remove`, `!ignore` and `!unignore` are restricted and can only be accessed by Administrators.
+
 
 ## Configuration
 
