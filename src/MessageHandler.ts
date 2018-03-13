@@ -1,19 +1,17 @@
-import config from '../config/config.json';
-
 import Discord from 'discord.js';
 import './discord/Message';
 
+import QueueItem from './queue/QueueItem';
+import SoundQueue from './queue/SoundQueue';
 import Util from './Util';
 
 export default class MessageHandler {
-  private prefix: string;
-  private speaking: boolean;
-  private queue: Array<{ name: string, channel: Discord.VoiceChannel, message: Discord.Message }>;
+  private readonly prefix: string;
+  private readonly queue: SoundQueue;
 
-  constructor(prefix: string) {
+  constructor(queue: SoundQueue, prefix: string) {
+    this.queue = queue;
     this.prefix = prefix;
-    this.speaking = false;
-    this.queue = [];
   }
 
   public handle(message: Discord.Message) {
@@ -55,6 +53,12 @@ export default class MessageHandler {
       case 'unignore':
         Util.unignoreUser(message, input);
         break;
+      case 'leave':
+      case 'stop':
+        const current = this.queue.getCurrent();
+        this.queue.clear();
+        if (current) current.channel.leave();
+        break;
       default:
         this.handleSoundCommands(message);
         break;
@@ -62,61 +66,25 @@ export default class MessageHandler {
   }
 
   private handleSoundCommands(message: Discord.Message) {
-    const sounds = Util.getSounds();
     const voiceChannel = message.member.voiceChannel;
-
     if (!voiceChannel) {
       message.reply('Join a voice channel first!');
       return;
     }
 
+    const sounds = Util.getSounds();
+    let sound: string;
     switch (message.content) {
-      case 'leave':
-      case 'stop':
-        voiceChannel.leave();
-        this.queue = [];
-        break;
       case 'random':
-        const random = sounds[Math.floor(Math.random() * sounds.length)];
-        this.addToQueue(random, voiceChannel, message);
+        sound = sounds[Math.floor(Math.random() * sounds.length)];
         break;
       default:
-        const sound = message.content;
-        if (sounds.includes(sound)) {
-          this.addToQueue(sound, voiceChannel, message);
-          if (!this.speaking) this.playSoundQueue();
-        }
+        sound = message.content;
+        if (!sounds.includes(sound)) return;
         break;
     }
-  }
 
-  private addToQueue(sound: string, voiceChannel: Discord.VoiceChannel, message: Discord.Message) {
-    this.queue.push({ name: sound, channel: voiceChannel, message: message });
-  }
-
-  private playSoundQueue() {
-    const nextSound = this.queue.shift()!;
-    const file = Util.getPathForSound(nextSound.name);
-    const voiceChannel = nextSound.channel;
-
-    this.speaking = true;
-
-    voiceChannel.join().then(connection => {
-      connection.playFile(file).on('end', () => {
-        Util.updateCount(nextSound.name);
-        if (config.deleteMessages) nextSound.message.delete();
-
-        if (this.queue.length === 0) {
-          this.speaking = false;
-          if (!config.stayInChannel) connection.disconnect();
-          return;
-        }
-
-        this.playSoundQueue();
-      });
-    }).catch(error => {
-      console.log('Error occured!');  // tslint:disable-line no-console
-      console.log(error);             // tslint:disable-line no-console
-    });
+    this.queue.add(new QueueItem(sound, voiceChannel, message));
+    this.queue.start();
   }
 }

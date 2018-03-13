@@ -16,6 +16,9 @@ rules:
     - ignore-same-line
   interface-name:
     - false
+  no-console:
+    - true
+    - log
   no-unused-variable:
     - true
     - check-parameters
