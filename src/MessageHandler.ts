@@ -2,22 +2,28 @@ import Discord from 'discord.js';
 import './discord/Message';
 
 import * as Commands from './commands/Commands';
+
+import DatabaseAdapter from './db/DatabaseAdapter';
 import SoundQueue from './queue/SoundQueue';
-import Util from './Util';
 
 export default class MessageHandler {
-  private readonly prefix: string;
   private readonly queue: SoundQueue;
+  private readonly db: DatabaseAdapter;
+  private readonly prefix: string;
 
-  constructor(queue: SoundQueue, prefix: string) {
+  constructor(queue: SoundQueue, db: DatabaseAdapter, prefix: string) {
     this.queue = queue;
+    this.db = db;
     this.prefix = prefix;
   }
 
   public handle(message: Discord.Message) {
     if (message.isDirectMessage()) return;
     if (!message.hasPrefix(this.prefix)) return;
-    if (Util.isIgnoredUser(message.author)) return;
+
+    // @REVIEW Move this check to User.isIgnored?
+    // Then user knows about db :/
+    if (this.db.isIgnoredUser(message.author.id)) return;
 
     message.content = message.content.substring(this.prefix.length);
     this.handleMessage(message);
@@ -34,7 +40,7 @@ export default class MessageHandler {
         new Commands.Sounds(message).run();
         break;
       case 'mostplayed':
-        new Commands.MostPlayed(message, Util.db).run();
+        new Commands.MostPlayed(message, this.db).run();
         break;
       case 'lastadded':
         new Commands.LastAdded(message).run();
@@ -52,10 +58,10 @@ export default class MessageHandler {
         new Commands.Search(message, input).run();
         break;
       case 'ignore':
-        new Commands.Ignore(message, Util.db, input).run();
+        new Commands.Ignore(message, this.db, input).run();
         break;
       case 'unignore':
-        new Commands.Unignore(message, Util.db, input).run();
+        new Commands.Unignore(message, this.db, input).run();
         break;
       case 'leave':
       case 'stop':
