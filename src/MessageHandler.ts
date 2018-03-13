@@ -42,9 +42,6 @@ export default class MessageHandler {
       case 'sounds':
         new Commands.Sounds(message).run();
         break;
-      case 'mostplayed':
-        new Commands.MostPlayed(message, this.db).run();
-        break;
       case 'lastadded':
         new Commands.LastAdded(message).run();
         break;
@@ -60,11 +57,14 @@ export default class MessageHandler {
       case 'search':
         new Commands.Search(message, input).run();
         break;
+      case 'mostplayed':
+        new Commands.MostPlayed(message, this.db).run();
+        break;
       case 'ignore':
-        new Commands.Ignore(message, this.db, input).run();
+        new Commands.Ignore(message, this.db).run();
         break;
       case 'unignore':
-        new Commands.Unignore(message, this.db, input).run();
+        new Commands.Unignore(message, this.db).run();
         break;
       case 'leave':
       case 'stop':

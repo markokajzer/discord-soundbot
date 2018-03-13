@@ -4,11 +4,12 @@ export class IgnoreCommand extends IgnoreBaseCommand {
   public readonly USAGE = 'Usage: !ignore <user>';
 
   public run() {
-    const user = this.getUserFromInput();
-    if (!user) return;
+    const users = this.getUsersFromMentions();
+    if (!users) return;
 
-    const alreadyIgnored = this.db.isIgnoredUser(user.id);
-    if (!alreadyIgnored) this.db.addIgnoredUser(user.id);
-    this.message.channel.send(`${user.displayName} ignored!`);
+    users.forEach(user => {
+      this.db.addIgnoredUser(user.id);
+      this.message.channel.send(`${user.username} ignored!`);
+    });
   }
 }
