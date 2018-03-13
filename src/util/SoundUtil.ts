@@ -9,11 +9,8 @@ export default class SoundUtil {
   }
 
   public static getSoundsWithExtension(): Array<{ name: string, extension: string }> {
-    const files = fs.readdirSync('sounds/');
-    const sounds = files.filter(sound => config.acceptedExtensions.some(ext => sound.endsWith(ext)));
-    return sounds.map(sound => {
-      return { name: sound.split('.')[0], extension: sound.split('.')[1] };
-    });
+    const sounds = this.getSoundsFromSoundFolder();
+    return sounds.map(this.getSoundWithExtension);
   }
 
   public static getPathForSound(sound: string) {
@@ -22,5 +19,16 @@ export default class SoundUtil {
 
   public static getExtensionForSound(name: string) {
     return this.getSoundsWithExtension().find(sound => sound.name === name)!.extension;
+  }
+
+  private static getSoundsFromSoundFolder() {
+    const files = fs.readdirSync('sounds/');
+    return files.filter(sound =>
+      config.acceptedExtensions.some(extension => sound.endsWith(extension)));
+  }
+
+  private static getSoundWithExtension(sound: string) {
+    const [name, extension] = sound.split('.');
+    return { name: name, extension: extension };
   }
 }
