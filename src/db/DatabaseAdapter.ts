@@ -11,7 +11,9 @@ export default class DatabaseAdapter {
   }
 
   public addIgnoredUser(userID: string) {
-    this.db.get('ignoreList').push({ id: userID }).write();
+    if (!this.isIgnoredUser(userID)) {
+      this.db.get('ignoreList').push({ id: userID }).write();
+    }
   }
 
   public isIgnoredUser(userID: string) {
