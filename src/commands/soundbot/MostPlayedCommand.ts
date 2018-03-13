@@ -2,12 +2,12 @@ import { Message } from 'discord.js';
 
 import BaseCommand from '../base/BaseCommand';
 
-import Adapter from '../../db/Adapter';
+import DatabaseAdapter from '../../db/DatabaseAdapter';
 
 export class MostPlayedCommand extends BaseCommand {
-  private db: Adapter;
+  private db: DatabaseAdapter;
 
-  constructor(message: Message, db: Adapter) {
+  constructor(message: Message, db: DatabaseAdapter) {
     super(message);
     this.db = db;
   }
