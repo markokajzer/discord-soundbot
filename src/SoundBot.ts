@@ -1,6 +1,7 @@
 import config from '../config/config.json';
 
 import fs from 'fs';
+
 import Discord from 'discord.js';
 
 import MessageHandler from './MessageHandler';
