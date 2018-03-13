@@ -5,12 +5,10 @@ import { token, game } from '../config/config.json'
 import SoundBot from  '../src/SoundBot';
 import MessageHandler from '../src/MessageHandler';
 
-describe('SoundBot', () => {
+xdescribe('SoundBot', () => {
   let bot: SoundBot;
 
-  beforeEach(() => {
-    bot = new SoundBot();
-  });
+  beforeEach(() => {});
 
   describe('#login', () => {
     beforeEach(() => {
