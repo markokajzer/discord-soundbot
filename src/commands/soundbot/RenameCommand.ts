@@ -22,12 +22,14 @@ export class RenameCommand extends BaseCommand implements CommandUsage {
     }
 
     const [oldName, newName] = this.input;
-    if (!SoundUtil.getSounds().includes(oldName)) {
+    const sounds = SoundUtil.getSounds();
+
+    if (!sounds.includes(oldName)) {
       this.message.channel.send(`${oldName} not found!`);
       return;
     }
 
-    if (SoundUtil.getSounds().includes(newName)) {
+    if (sounds.includes(newName)) {
       this.message.channel.send(`${newName} already exists!`);
       return;
     }
