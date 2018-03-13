@@ -48,6 +48,9 @@ export default class MessageHandler {
       case 'remove':
         new Commands.Remove(message, input).run();
         break;
+      case 'search':
+        new Commands.Search(message, input).run();
+        break;
       case 'ignore':
         new Commands.Ignore(message, Util.db, input).run();
         break;
