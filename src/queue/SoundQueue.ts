@@ -1,6 +1,7 @@
 import config from '../../config/config.json';
 
 import QueueItem from './QueueItem';
+import SoundUtil from '../util/SoundUtil';
 import Util from '../Util';
 
 export default class SoundQueue {
@@ -38,7 +39,7 @@ export default class SoundQueue {
 
   private playNext() {
     this.current = this.shift();
-    const file = Util.getPathForSound(this.current.sound);
+    const file = SoundUtil.getPathForSound(this.current.sound);
     const voiceChannel = this.current.channel;
 
     voiceChannel.join().then(connection => {
