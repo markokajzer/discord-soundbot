@@ -2,7 +2,7 @@ import { prefix } from '../../../config/config.json';
 
 import BaseCommand from '../base/BaseCommand';
 
-export class CommandListCommand extends BaseCommand {
+export class HelpCommand extends BaseCommand {
   public run() {
     this.message.author.send(this.getListOfCommands());
   }
