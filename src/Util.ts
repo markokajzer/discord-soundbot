@@ -6,7 +6,7 @@ import Discord from 'discord.js';
 import Adapter from './db/Adapter';
 
 class Util {
-  public db: Adapter;
+  public readonly db: Adapter;
   private readonly usage: any;
 
   constructor() {
