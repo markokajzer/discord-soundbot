@@ -1,14 +1,16 @@
 import config from '../../config/config.json';
 
+import DatabaseAdapter from '../db/DatabaseAdapter';
 import QueueItem from './QueueItem';
 import SoundUtil from '../util/SoundUtil';
-import Util from '../Util';
 
 export default class SoundQueue {
-  private queue: Array<QueueItem>;
+  private readonly db: DatabaseAdapter;
+  private readonly queue: Array<QueueItem>;
   private current: QueueItem | null;
 
-  constructor() {
+  constructor(db: DatabaseAdapter) {
+    this.db = db;
     this.queue = [];
     this.current = null;
   }
@@ -19,7 +21,7 @@ export default class SoundQueue {
   }
 
   public clear() {
-    this.queue = [];
+    this.queue.length = 0;
   }
 
   public isEmpty() {
@@ -41,7 +43,7 @@ export default class SoundQueue {
 
     voiceChannel.join().then(connection => {
       connection.playFile(file).on('end', () => {
-        Util.updateCount(this.current!.sound);
+        this.db.updateSoundCount(this.current!.sound);
         if (config.deleteMessages) this.current!.message.delete();
 
         this.current = null;

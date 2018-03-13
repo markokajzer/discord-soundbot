@@ -1,7 +1,7 @@
 import low from 'lowdb';
 import FileSync from 'lowdb/adapters/FileSync';
 
-export default class Adapter {
+export default class DatabaseAdapter {
   private db: any;
 
   constructor() {

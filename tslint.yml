@@ -29,7 +29,8 @@ rules:
   ordered-imports:
     severity: warning
     options:
-      - true
+      - grouped-imports: true
+        module-source-path: basename
   quotemark:
     - true
     - single

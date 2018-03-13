@@ -3,14 +3,14 @@ import { Message } from 'discord.js';
 import BaseCommand from './BaseCommand';
 import CommandUsage from './CommandUsage';
 
-import Adapter from '../../db/Adapter';
+import DatabaseAdapter from '../../db/DatabaseAdapter';
 
 export default abstract class IgnoreBaseCommand extends BaseCommand implements CommandUsage {
   public USAGE = '';
-  protected db: Adapter;
-  protected input: Array<string>;
+  protected readonly db: DatabaseAdapter;
+  protected readonly input: Array<string>;
 
-  constructor(message: Message, db: Adapter, input: Array<string>) {
+  constructor(message: Message, db: DatabaseAdapter, input: Array<string>) {
     super(message);
     this.db = db;
     this.input = input;
