@@ -6,9 +6,9 @@ import { MessageAttachment } from 'discord.js';
 
 import BaseCommand from '../base/BaseCommand';
 
-import Util from '../../Util';
+import SoundUtil from '../../util/SoundUtil';
 
-export class AddSoundCommand extends BaseCommand {
+export class AddCommand extends BaseCommand {
   public run() {
     this.message.attachments.forEach(attachment => {
       this.addSound(attachment).then(result => {
@@ -34,7 +34,7 @@ export class AddSoundCommand extends BaseCommand {
         resolve('Filename has to be in accepted format!');
       }
 
-      if (Util.getSounds().includes(soundName)) {
+      if (SoundUtil.getSounds().includes(soundName)) {
         resolve(`${soundName} already exists!`);
       }
 
