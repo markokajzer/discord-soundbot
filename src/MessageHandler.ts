@@ -58,9 +58,7 @@ export default class MessageHandler {
         break;
       case 'leave':
       case 'stop':
-        const current = this.queue.getCurrent();
-        this.queue.clear();
-        if (current) current.channel.leave();
+        new Commands.Stop(message, this.queue).run();
         break;
       default:
         this.handleSoundCommands(message);
