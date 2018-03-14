@@ -20,9 +20,6 @@ export default class MessageHandler {
   public handle(message: Discord.Message) {
     if (message.isDirectMessage()) return;
     if (!message.hasPrefix(this.prefix)) return;
-
-    // @REVIEW Move this check to User.isIgnored?
-    // Then user knows about db :/
     if (this.db.isIgnoredUser(message.author.id)) return;
 
     message.content = message.content.substring(this.prefix.length);
