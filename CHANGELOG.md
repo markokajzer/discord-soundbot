@@ -2,6 +2,7 @@
 
 + Added `!search` command
 + Sanitize sound on `!add`, `!remove`
++ Restricted access to `!rename`, `!remove`, `!ignore`, `!unignore`
 
 ##### Under the hood
 
