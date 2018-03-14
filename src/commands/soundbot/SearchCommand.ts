@@ -28,6 +28,11 @@ export class SearchCommand extends BaseCommand implements CommandUsage {
     }
 
     const results = SoundUtil.getSounds().filter(sound => sound.includes(tag));
+    if (results.length === 0) {
+      this.message.author.send('No sounds found.');
+      return;
+    }
+
     this.message.author.send(results.join('\n'));
   }
 }
