@@ -1,14 +1,8 @@
 import config from '../config/config.json';
 
-import DatabaseAdapter from './db/DatabaseAdapter';
-import MessageHandler from './MessageHandler';
 import SoundBot from './SoundBot';
-import SoundQueue from './queue/SoundQueue';
 
-const db = new DatabaseAdapter();
-const queue = new SoundQueue(db);
-const messageHandler = new MessageHandler(queue, db, config.prefix);
-const bot = new SoundBot(messageHandler);
+const bot = new SoundBot();
 bot.start();
 
 const message = [

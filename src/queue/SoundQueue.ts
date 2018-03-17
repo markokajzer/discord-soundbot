@@ -9,7 +9,7 @@ export default class SoundQueue {
   private readonly queue: Array<QueueItem>;
   private current: QueueItem | null;
 
-  constructor(db: DatabaseAdapter) {
+  constructor(db = new DatabaseAdapter()) {
     this.db = db;
     this.queue = [];
     this.current = null;
