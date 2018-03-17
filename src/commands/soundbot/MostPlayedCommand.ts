@@ -36,10 +36,6 @@ export class MostPlayedCommand extends BaseCommand {
   }
 
   private findLongestWord(array: Array<string>) {
-    let indexOfLongestWord = 0;
-    for (let i = 1; i < array.length; i++) {
-      if (array[indexOfLongestWord].length < array[i].length) indexOfLongestWord = i;
-    }
-    return array[indexOfLongestWord];
+    return array.reduce((a, b) => a.length > b.length ? a : b);
   }
 }
