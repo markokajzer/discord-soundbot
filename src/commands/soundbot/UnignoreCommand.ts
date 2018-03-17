@@ -13,7 +13,7 @@ export class UnignoreCommand extends IgnoreBaseCommand {
 
     users.forEach(user => {
       this.db.removeIgnoredUser(user.id);
-      this.message.channel.send(`${user.username} no longer ignored!`);
+      this.message.channel.send(`No longer ignoring ${user.username}!`);
     });
   }
 }
