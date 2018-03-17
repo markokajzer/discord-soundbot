@@ -1,3 +1,5 @@
+import config from '../config/config.json';
+
 import Discord from 'discord.js';
 import './discord/Message';
 
@@ -11,7 +13,7 @@ export default class MessageHandler {
   private readonly db: DatabaseAdapter;
   private readonly prefix: string;
 
-  constructor(queue: SoundQueue, db: DatabaseAdapter, prefix: string) {
+  constructor(queue = new SoundQueue(), db = new DatabaseAdapter(), prefix = config.prefix) {
     this.queue = queue;
     this.db = db;
     this.prefix = prefix;
