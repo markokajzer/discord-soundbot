@@ -16,7 +16,7 @@ export class IgnoreCommand extends IgnoreBaseCommand {
 
     users.forEach(user => {
       this.db.addIgnoredUser(user.id);
-      this.message.channel.send(`${user.username} ignored!`);
+      this.message.channel.send(`Ignoring ${user.username}!`);
     });
   }
 }
