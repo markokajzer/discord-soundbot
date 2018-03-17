@@ -35,7 +35,10 @@ export class AddCommand extends BaseCommand {
           response.pipe(file);
           resolve(`${soundName} added!`);
         }
-      }).on('error', () => reject('Something went wrong!'));
+      }).on('error', error => {
+        console.error(error);
+        reject('Something went wrong!');
+      });
     });
   }
 }
