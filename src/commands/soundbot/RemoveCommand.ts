@@ -3,12 +3,11 @@ import fs from 'fs';
 import { Message, Permissions } from 'discord.js';
 
 import BaseCommand from '../base/BaseCommand';
-import CommandUsage from '../base/CommandUsage';
 
 import SoundUtil from '../../util/SoundUtil';
 
-export class RemoveCommand extends BaseCommand implements CommandUsage {
-  public readonly USAGE = 'Usage: !remove <sound>';
+export class RemoveCommand extends BaseCommand {
+  protected readonly USAGE = 'Usage: !remove <sound>';
   private readonly input: Array<string>;
 
   constructor(message: Message, input: Array<string>) {

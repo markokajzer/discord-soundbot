@@ -1,12 +1,10 @@
 import { Message } from 'discord.js';
 
 import BaseCommand from './BaseCommand';
-import CommandUsage from './CommandUsage';
 
 import DatabaseAdapter from '../../db/DatabaseAdapter';
 
-export default abstract class IgnoreBaseCommand extends BaseCommand implements CommandUsage {
-  public USAGE = '';
+export default abstract class IgnoreBaseCommand extends BaseCommand {
   protected readonly db: DatabaseAdapter;
 
   constructor(message: Message, db: DatabaseAdapter) {

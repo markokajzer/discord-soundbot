@@ -1,12 +1,11 @@
 import { Message } from 'discord.js';
 
 import BaseCommand from '../base/BaseCommand';
-import CommandUsage from '../base/CommandUsage';
 
 import SoundUtil from '../../util/SoundUtil';
 
-export class SearchCommand extends BaseCommand implements CommandUsage {
-  public readonly USAGE = 'Usage: !search <tag>';
+export class SearchCommand extends BaseCommand {
+  protected readonly USAGE = 'Usage: !search <tag>';
   private readonly MINIMUM_TAG_LENGTH = 3;
   private readonly input: Array<string>;
 
