@@ -3,12 +3,11 @@ import fs from 'fs';
 import { Message, Permissions } from 'discord.js';
 
 import BaseCommand from '../base/BaseCommand';
-import CommandUsage from '../base/CommandUsage';
 
 import SoundUtil from '../../util/SoundUtil';
 
-export class RenameCommand extends BaseCommand implements CommandUsage {
-  public readonly USAGE = 'Usage: !rename <old> <new>';
+export class RenameCommand extends BaseCommand {
+  protected readonly USAGE = 'Usage: !rename <old> <new>';
   private readonly input: Array<string>;
 
   constructor(message: Message, input: Array<string>) {
