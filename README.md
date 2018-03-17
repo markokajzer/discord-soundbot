@@ -3,6 +3,7 @@ Discord Soundbot
 
 A Bot for Discord to play your favorite sounds or music.
 
+
 ## Installation
 
 ### General
@@ -92,3 +93,8 @@ Check `config/config.example.json` for an example configuration and create a new
 + You can set the bot's activity via the `game` options.
 
 To add an avatar to your bot, add a file called `avatar.png` to the `config/` folder and restart the bot. To remove the avatar, delete `avatar.png` and restart the bot.
+
+
+## Contributing
+
+This bot is a dear passion project of mine. If you have any suggestions for new features or improvements, feel free to open an issue. I'll be glad to look into it!
