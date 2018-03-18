@@ -1,10 +1,14 @@
 import { prefix } from '../../../config/config.json';
 
+import { Message } from 'discord.js';
+
 import BaseCommand from '../base/BaseCommand';
 
-export class HelpCommand extends BaseCommand {
-  public run() {
-    this.message.author.send(this.getFormattedListOfCommands());
+export default class HelpCommand extends BaseCommand {
+  public readonly TRIGGERS = ['commands', 'help'];
+
+  public run(message: Message) {
+    message.author.send(this.getFormattedListOfCommands());
   }
 
   private getFormattedListOfCommands() {

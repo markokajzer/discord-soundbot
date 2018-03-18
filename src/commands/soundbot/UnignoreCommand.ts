@@ -1,19 +1,32 @@
-import { Permissions } from 'discord.js';
+import { Message, Permissions } from 'discord.js';
 
-import IgnoreBaseCommand from '../base/IgnoreBaseCommand';
+import BaseCommand from '../base/BaseCommand';
 
-export class UnignoreCommand extends IgnoreBaseCommand {
+import DatabaseAdapter from '../../db/DatabaseAdapter';
+
+export default class UnignoreCommand extends BaseCommand {
+  public readonly TRIGGERS = ['unignore'];
   public readonly USAGE = 'Usage: !unignore <user>';
+  private readonly db: DatabaseAdapter;
 
-  public run() {
-    if (!this.message.member.hasPermission(Permissions.FLAGS.ADMINISTRATOR!)) return;
+  constructor(db: DatabaseAdapter) {
+    super();
+    this.db = db;
+  }
 
-    const users = this.getUsersFromMentions();
-    if (!users) return;
+  public run(message: Message) {
+    if (!message.member.hasPermission(Permissions.FLAGS.ADMINISTRATOR!)) return;
+
+    const users = message.mentions.users;
+    if (users.size < 1) {
+      message.channel.send(this.USAGE);
+      message.channel.send('User not found on this server.');
+      return;
+    }
 
     users.forEach(user => {
       this.db.removeIgnoredUser(user.id);
-      this.message.channel.send(`No longer ignoring ${user.username}!`);
+      message.channel.send(`No longer ignoring ${user.username}!`);
     });
   }
 }

@@ -4,13 +4,11 @@ import BaseCommand from '../base/BaseCommand';
 
 import SoundUtil from '../../util/SoundUtil';
 
-export class SoundsCommand extends BaseCommand {
-  constructor(message: Message) {
-    super(message);
-  }
+export default class SoundsCommand extends BaseCommand {
+  public readonly TRIGGERS = ['sounds'];
 
-  public run() {
+  public run(message: Message) {
     const response = SoundUtil.getSounds().join('\n');
-    this.message.author.send(response);
+    message.author.send(response);
   }
 }
