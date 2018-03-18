@@ -14,9 +14,10 @@ export class AddCommand extends BaseCommand {
   }
 
   private saveValidAttachment(attachment: MessageAttachment, validator = new AttachmentValidator()) {
-    const error = validator.validAttachment(attachment);
-    if (error) {
-      this.message.channel.send(error);
+    try {
+      validator.validateAttachment(attachment);
+    } catch (error) {
+      this.message.channel.send(error.message);
       return;
     }
 

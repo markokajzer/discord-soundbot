@@ -11,39 +11,38 @@ export default class AttachmentValidator {
     this.acceptedExtensions = acceptedExtensions;
   }
 
-  public validAttachment(attachment: MessageAttachment) {
+  public validateAttachment(attachment: MessageAttachment) {
     const fileName = attachment.filename.toLowerCase();
     const soundName = fileName.substring(0, fileName.lastIndexOf('.'));
 
-    const error = this.hasValidExtension(fileName) ||
-                  this.hasValidName(soundName) ||
-                  this.hasValidSize(attachment.filesize, soundName) ||
-                  this.hasUniqueName(soundName);
-    return error;
+    this.validateExtension(fileName);
+    this.validateName(soundName);
+    this.validateSize(attachment.filesize, soundName);
+    this.validateUniqueness(soundName);
   }
 
-  private hasValidExtension(fileName: string) {
+  private validateExtension(fileName: string) {
     if (!this.acceptedExtensions.some(ext => fileName.endsWith(ext))) {
       const extensions = this.acceptedExtensions.join(', ');
-      return `Sound has to be in accepted format, one of [${extensions}]!`;
+      throw new Error(`Sound has to be in accepted format, one of [${extensions}]!`);
     }
   }
 
-  private hasValidName(soundName: string) {
+  private validateName(soundName: string) {
     if (soundName.match(/[^a-z0-9]/)) {
-      return 'Filename has to be all letters and numbers!';
+      throw new Error('Filename has to be all letters and numbers!');
     }
   }
 
-  private hasValidSize(filesize: number, soundName: string) {
+  private validateSize(filesize: number, soundName: string) {
     if (filesize > config.maximumFileSize) {
-      return `${soundName} is too big!`;
+      throw new Error(`${soundName} is too big!`);
     }
   }
 
-  private hasUniqueName(soundName: string) {
+  private validateUniqueness(soundName: string) {
     if (SoundUtil.soundExists(soundName)) {
-      return `${soundName} already exists!`;
+      throw new Error(`${soundName} already exists!`);
     }
   }
 }
