@@ -30,6 +30,7 @@ export default class AddCommand extends BaseCommand {
     return new Promise((resolve, reject) => {
       const fileName = attachment.filename.toLowerCase();
       const soundName = fileName.split('.')[0];
+
       https.get(attachment.url, response => {
         if (response.statusCode === 200) {
           const file = fs.createWriteStream(`./sounds/${fileName}`);
