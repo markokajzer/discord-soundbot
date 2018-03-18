@@ -8,7 +8,7 @@ RUN apk add --no-cache --quiet build-base ffmpeg git make python
 WORKDIR /app
 COPY . /app
 COPY package*.json ./
-RUN npm install --only=production --quiet
+RUN npm install --quiet
 
 # Cleanup
 RUN apk del --silent build-base
