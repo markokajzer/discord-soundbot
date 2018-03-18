@@ -3,11 +3,11 @@ import https from 'https';
 
 import { Message, MessageAttachment } from 'discord.js';
 
-import BaseCommand from '../base/BaseCommand';
+import ICommand from '../base/ICommand';
 
 import AttachmentValidator from '../helpers/AttachmentValidator';
 
-export default class AddCommand extends BaseCommand {
+export default class AddCommand implements ICommand {
   public readonly TRIGGERS = ['add'];
 
   public run(message: Message) {

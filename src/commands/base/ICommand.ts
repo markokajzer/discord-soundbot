@@ -1,5 +1,8 @@
 import { Message } from 'discord.js';
 
 export default interface ICommand {
-  run(message: Message): void;
+  readonly TRIGGERS: Array<string>;
+  readonly USAGE?: string;
+
+  run(message: Message, params?: Array<string>): void;
 }

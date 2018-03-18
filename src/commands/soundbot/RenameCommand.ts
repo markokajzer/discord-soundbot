@@ -2,24 +2,23 @@ import fs from 'fs';
 
 import { Message, Permissions } from 'discord.js';
 
-import BaseCommand from '../base/BaseCommand';
+import ICommand from '../base/ICommand';
 
 import SoundUtil from '../../util/SoundUtil';
 
-export default class RenameCommand extends BaseCommand {
+export default class RenameCommand implements ICommand {
   public readonly TRIGGERS = ['rename'];
-  protected readonly USAGE = 'Usage: !rename <old> <new>';
+  public readonly USAGE = 'Usage: !rename <old> <new>';
 
-  public run(message: Message) {
+  public run(message: Message, params: Array<string>) {
     if (!message.member.hasPermission(Permissions.FLAGS.ADMINISTRATOR!)) return;
 
-    const input = message.content.split(' ');
-    if (input.length !== 2) {
+    if (params.length !== 2) {
       message.channel.send(this.USAGE);
       return;
     }
 
-    const [oldName, newName] = input;
+    const [oldName, newName] = params;
     const sounds = SoundUtil.getSounds();
 
     if (!sounds.includes(oldName)) {

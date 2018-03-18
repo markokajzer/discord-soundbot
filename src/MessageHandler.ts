@@ -1,6 +1,6 @@
 import config from '../config/config.json';
 
-import Discord from 'discord.js';
+import { Message } from 'discord.js';
 import './discord/Message';
 
 import CommandCollection from './commands/CommandCollection';
@@ -11,20 +11,24 @@ export default class MessageHandler {
   private readonly commands: CommandCollection;
   private readonly prefix: string;
 
-  constructor(db = new DatabaseAdapter(), commands = new CommandCollection(db), prefix = config.prefix) {
+  constructor(db = new DatabaseAdapter(), commands = new CommandCollection(), prefix = config.prefix) {
     this.db = db;
     this.commands = commands;
     this.prefix = prefix;
   }
 
-  public handle(message: Discord.Message) {
-    if (message.isDirectMessage()) return;
-    if (!message.hasPrefix(this.prefix)) return;
-    if (this.db.isIgnoredUser(message.author.id)) return;
+  public handle(message: Message) {
+    if (!this.isValidMessage(message)) return;
 
     message.content = message.content.substring(this.prefix.length);
+    const [command, ...params] = message.content.split(' ');
 
-    const command = message.content.split(' ')[0];
-    this.commands.execute(command, message);
+    this.commands.execute(command, params, message);
+  }
+
+  private isValidMessage(message: Message) {
+    return !message.isDirectMessage() &&
+           message.hasPrefix(this.prefix) &&
+           !this.db.isIgnoredUser(message.author.id);
   }
 }

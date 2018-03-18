@@ -2,24 +2,23 @@ import fs from 'fs';
 
 import { Message, Permissions } from 'discord.js';
 
-import BaseCommand from '../base/BaseCommand';
+import ICommand from '../base/ICommand';
 
 import SoundUtil from '../../util/SoundUtil';
 
-export default class RemoveCommand extends BaseCommand {
+export default class RemoveCommand implements ICommand {
   public readonly TRIGGERS = ['remove'];
-  protected readonly USAGE = 'Usage: !remove <sound>';
+  public readonly USAGE = 'Usage: !remove <sound>';
 
-  public run(message: Message) {
+  public run(message: Message, params: Array<string>) {
     if (!message.member.hasPermission(Permissions.FLAGS.ADMINISTRATOR!)) return;
 
-    const input = message.content.split(' ');
-    if (input.length !== 1) {
+    if (params.length !== 1) {
       message.channel.send(this.USAGE);
       return;
     }
 
-    const sound = input.shift()!;
+    const sound = params.shift()!;
     if (!SoundUtil.soundExists(sound)) {
       message.channel.send(`${sound} not found!`);
       return;
