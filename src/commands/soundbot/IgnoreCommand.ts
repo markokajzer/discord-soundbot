@@ -1,22 +1,32 @@
-import { Permissions } from 'discord.js';
+import { Message, Permissions } from 'discord.js';
 
-import IgnoreBaseCommand from '../base/IgnoreBaseCommand';
+import BaseCommand from '../base/BaseCommand';
 
-export class IgnoreCommand extends IgnoreBaseCommand {
+import DatabaseAdapter from '../../db/DatabaseAdapter';
+
+export default class IgnoreCommand extends BaseCommand {
+  public readonly TRIGGERS = ['ignore'];
   public readonly USAGE = 'Usage: !ignore <user>';
+  private readonly db: DatabaseAdapter;
 
-  public run() {
-    // @REVIEW How to extract this method into a Interface / Mixin, so that
-    // all restricted Commands can have call the same method instead of this duplication
-    // Another subclass could be potentially bad.
-    if (!this.message.member.hasPermission(Permissions.FLAGS.ADMINISTRATOR!)) return;
+  constructor(db: DatabaseAdapter) {
+    super();
+    this.db = db;
+  }
 
-    const users = this.getUsersFromMentions();
-    if (!users) return;
+  public run(message: Message) {
+    if (!message.member.hasPermission(Permissions.FLAGS.ADMINISTRATOR!)) return;
+
+    const users = message.mentions.users;
+    if (users.size < 1) {
+      message.channel.send(this.USAGE);
+      message.channel.send('User not found on this server.');
+      return;
+    }
 
     users.forEach(user => {
       this.db.addIgnoredUser(user.id);
-      this.message.channel.send(`Ignoring ${user.username}!`);
+      message.channel.send(`Ignoring ${user.username}!`);
     });
   }
 }

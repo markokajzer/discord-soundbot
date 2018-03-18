@@ -1,29 +1,29 @@
 import fs from 'fs';
 import https from 'https';
 
-import { MessageAttachment } from 'discord.js';
+import { Message, MessageAttachment } from 'discord.js';
 
 import BaseCommand from '../base/BaseCommand';
 
 import AttachmentValidator from '../helpers/AttachmentValidator';
 
-export class AddCommand extends BaseCommand {
-  public run() {
-    this.message.attachments.forEach(attachment =>
-      this.saveValidAttachment(attachment));
+export default class AddCommand extends BaseCommand {
+  public readonly TRIGGERS = ['add'];
+
+  public run(message: Message) {
+    message.attachments.forEach(attachment =>
+      message.channel.send(this.saveValidAttachment(attachment)));
   }
 
   private saveValidAttachment(attachment: MessageAttachment, validator = new AttachmentValidator()) {
     try {
       validator.validateAttachment(attachment);
     } catch (error) {
-      this.message.channel.send(error.message);
-      return;
+      return error.message;
     }
 
-    this.addSound(attachment)
-      .then(result => this.message.channel.send(result))
-      .catch(result => this.message.channel.send(result));
+    this.addSound(attachment).then(result => result)
+                             .catch(result => result);
   }
 
   private addSound(attachment: MessageAttachment) {

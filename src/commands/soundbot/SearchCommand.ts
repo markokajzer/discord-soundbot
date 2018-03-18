@@ -4,34 +4,30 @@ import BaseCommand from '../base/BaseCommand';
 
 import SoundUtil from '../../util/SoundUtil';
 
-export class SearchCommand extends BaseCommand {
+export default class SearchCommand extends BaseCommand {
+  public readonly TRIGGERS = ['search'];
   protected readonly USAGE = 'Usage: !search <tag>';
   private readonly MINIMUM_TAG_LENGTH = 3;
-  private readonly input: Array<string>;
 
-  constructor(message: Message, input: Array<string>) {
-    super(message);
-    this.input = input;
-  }
-
-  public run() {
-    if (this.input.length !== 1) {
-      this.message.channel.send(this.USAGE);
+  public run(message: Message) {
+    const input = message.content.split(' ');
+    if (input.length !== 1) {
+      message.channel.send(this.USAGE);
       return;
     }
 
-    const tag = this.input[0];
+    const tag = input.shift()!;
     if (tag.length < this.MINIMUM_TAG_LENGTH) {
-      this.message.channel.send('Search tag too short!');
+      message.channel.send('Search tag too short!');
       return;
     }
 
     const results = SoundUtil.getSounds().filter(sound => sound.includes(tag));
-    if (results.length === 0) {
-      this.message.author.send('No sounds found.');
+    if (!results.length) {
+      message.author.send('No sounds found.');
       return;
     }
 
-    this.message.author.send(results.join('\n'));
+    message.author.send(results.join('\n'));
   }
 }

@@ -6,31 +6,27 @@ import BaseCommand from '../base/BaseCommand';
 
 import SoundUtil from '../../util/SoundUtil';
 
-export class RemoveCommand extends BaseCommand {
+export default class RemoveCommand extends BaseCommand {
+  public readonly TRIGGERS = ['remove'];
   protected readonly USAGE = 'Usage: !remove <sound>';
-  private readonly input: Array<string>;
 
-  constructor(message: Message, input: Array<string>) {
-    super(message);
-    this.input = input;
-  }
+  public run(message: Message) {
+    if (!message.member.hasPermission(Permissions.FLAGS.ADMINISTRATOR!)) return;
 
-  public run() {
-    if (!this.message.member.hasPermission(Permissions.FLAGS.ADMINISTRATOR!)) return;
-
-    if (this.input.length !== 1) {
-      this.message.channel.send(this.USAGE);
+    const input = message.content.split(' ');
+    if (input.length !== 1) {
+      message.channel.send(this.USAGE);
       return;
     }
 
-    const sound = this.input[0];
+    const sound = input.shift()!;
     if (!SoundUtil.soundExists(sound)) {
-      this.message.channel.send(`${sound} not found!`);
+      message.channel.send(`${sound} not found!`);
       return;
     }
 
     const file = SoundUtil.getPathForSound(sound);
     fs.unlinkSync(file);
-    this.message.channel.send(`${sound} removed!`);
+    message.channel.send(`${sound} removed!`);
   }
 }
