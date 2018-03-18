@@ -1,22 +1,21 @@
 import { Message } from 'discord.js';
 
-import BaseCommand from '../base/BaseCommand';
+import ICommand from '../base/ICommand';
 
 import SoundUtil from '../../util/SoundUtil';
 
-export default class SearchCommand extends BaseCommand {
+export default class SearchCommand implements ICommand {
   public readonly TRIGGERS = ['search'];
-  protected readonly USAGE = 'Usage: !search <tag>';
+  public readonly USAGE = 'Usage: !search <tag>';
   private readonly MINIMUM_TAG_LENGTH = 3;
 
-  public run(message: Message) {
-    const input = message.content.split(' ');
-    if (input.length !== 1) {
+  public run(message: Message, params: Array<string>) {
+    if (params.length !== 1) {
       message.channel.send(this.USAGE);
       return;
     }
 
-    const tag = input.shift()!;
+    const tag = params.shift()!;
     if (tag.length < this.MINIMUM_TAG_LENGTH) {
       message.channel.send('Search tag too short!');
       return;

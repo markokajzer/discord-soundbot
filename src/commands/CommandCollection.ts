@@ -3,7 +3,6 @@ import { Collection, Message } from 'discord.js';
 import DatabaseAdapter from '../db/DatabaseAdapter';
 import SoundQueue from '../queue/SoundQueue';
 
-import BaseCommand from './base/BaseCommand';
 import ICommand from './base/ICommand';
 
 import AddCommand from './soundbot/AddCommand';
@@ -28,20 +27,20 @@ import UnignoreCommand from './soundbot/UnignoreCommand';
 export default class CommandCollection extends Collection<string, ICommand> {
   private readonly soundCommand: SoundCommand;
 
-  constructor(db = new DatabaseAdapter(), queue = new SoundQueue()) {
+  constructor(queue = new SoundQueue(), db = new DatabaseAdapter()) {
     super();
     this.soundCommand = new SoundCommand(queue);
     this.initializeCommands(queue, db);
   }
 
-  public execute(command: string, message: Message) {
+  public execute(command: string, params: Array<string>, message: Message) {
     if (this.has(command)) {
       message.content = message.content.substring(command.length + 1);
-      this.get(command)!.run(message);
+      this.get(command)!.run(message, params);
       return;
     }
 
-    this.soundCommand.run(message);
+    this.soundCommand.run(message, params);
   }
 
   private initializeCommands(queue: SoundQueue, db: DatabaseAdapter) {
@@ -66,7 +65,7 @@ export default class CommandCollection extends Collection<string, ICommand> {
     ].forEach(command => this.registerTriggers(command));
   }
 
-  private registerTriggers(command: BaseCommand) {
+  private registerTriggers(command: ICommand) {
     command.TRIGGERS.forEach(trigger => this.set(trigger, command));
   }
 }

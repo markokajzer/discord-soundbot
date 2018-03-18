@@ -2,7 +2,6 @@ import config from '../../config/config.json';
 
 import fs from 'fs';
 
-// @REVIEW All static class feels off
 export default class SoundUtil {
   public static getSounds() {
     const sounds = this.getSoundsWithExtension();
