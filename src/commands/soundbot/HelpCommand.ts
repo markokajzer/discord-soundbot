@@ -2,9 +2,9 @@ import { prefix } from '../../../config/config.json';
 
 import { Message } from 'discord.js';
 
-import BaseCommand from '../base/BaseCommand';
+import ICommand from '../base/ICommand';
 
-export default class HelpCommand extends BaseCommand {
+export default class HelpCommand implements ICommand {
   public readonly TRIGGERS = ['commands', 'help'];
 
   public run(message: Message) {

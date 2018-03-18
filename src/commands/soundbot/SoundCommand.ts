@@ -1,26 +1,23 @@
 import { Message } from 'discord.js';
 
-import BaseCommand from '../base/BaseCommand';
+import ICommand from '../base/ICommand';
 
 import QueueItem from '../../queue/QueueItem';
 import SoundQueue from '../../queue/SoundQueue';
 import SoundUtil from '../../util/SoundUtil';
+import VoiceChannelFinder from '../helpers/VoiceChannelFinder';
 
-export default class SoundCommand extends BaseCommand {
+export default class SoundCommand implements ICommand {
   public readonly TRIGGERS = [];
   private readonly queue: SoundQueue;
 
   constructor(queue: SoundQueue) {
-    super();
     this.queue = queue;
   }
 
-  public run(message: Message) {
-    const voiceChannel = message.member.voiceChannel;
-    if (!voiceChannel) {
-      message.reply('Join a voice channel first!');
-      return;
-    }
+  public run(message: Message, _: Array<string>, voiceChannelFinder = new VoiceChannelFinder()) {
+    const voiceChannel = voiceChannelFinder.getVoiceChannelFromMessageAuthor(message);
+    if (!voiceChannel) return;
 
     const sound = message.content;
     if (!SoundUtil.soundExists(sound)) return;

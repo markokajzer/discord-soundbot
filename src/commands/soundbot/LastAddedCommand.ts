@@ -2,12 +2,13 @@ import fs from 'fs';
 
 import { Message } from 'discord.js';
 
-import BaseCommand from '../base/BaseCommand';
+import ICommand from '../base/ICommand';
 
 import SoundUtil from '../../util/SoundUtil';
 
-export default class LastAddedCommand extends BaseCommand {
+export default class LastAddedCommand implements ICommand {
   public readonly TRIGGERS = ['lastadded'];
+  private readonly AMOUNT = 5;
 
   public run(message: Message) {
     message.channel.send(['```', ...this.getLastAddedSounds(), '```'].join('\n'));
@@ -21,9 +22,10 @@ export default class LastAddedCommand extends BaseCommand {
         creation: fs.statSync(SoundUtil.getPathForSound(sound.name)).birthtime
       };
     });
-    lastAddedSounds = lastAddedSounds.sort((a, b) =>
-      new Date(b.creation).valueOf() - new Date(a.creation).valueOf());
-    lastAddedSounds = lastAddedSounds.slice(0, 5);
+
+    lastAddedSounds = lastAddedSounds.sort(
+      (a, b) => new Date(b.creation).valueOf() - new Date(a.creation).valueOf()
+    ).slice(0, this.AMOUNT);
     return lastAddedSounds.map(sound => sound.name);
   }
 }
