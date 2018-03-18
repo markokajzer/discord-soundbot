@@ -6,33 +6,29 @@ import BaseCommand from '../base/BaseCommand';
 
 import SoundUtil from '../../util/SoundUtil';
 
-export class RenameCommand extends BaseCommand {
+export default class RenameCommand extends BaseCommand {
+  public readonly TRIGGERS = ['rename'];
   protected readonly USAGE = 'Usage: !rename <old> <new>';
-  private readonly input: Array<string>;
 
-  constructor(message: Message, input: Array<string>) {
-    super(message);
-    this.input = input;
-  }
+  public run(message: Message) {
+    if (!message.member.hasPermission(Permissions.FLAGS.ADMINISTRATOR!)) return;
 
-  public run() {
-    if (!this.message.member.hasPermission(Permissions.FLAGS.ADMINISTRATOR!)) return;
-
-    if (this.input.length !== 2) {
-      this.message.channel.send(this.USAGE);
+    const input = message.content.split(' ');
+    if (input.length !== 2) {
+      message.channel.send(this.USAGE);
       return;
     }
 
-    const [oldName, newName] = this.input;
+    const [oldName, newName] = input;
     const sounds = SoundUtil.getSounds();
 
     if (!sounds.includes(oldName)) {
-      this.message.channel.send(`${oldName} not found!`);
+      message.channel.send(`${oldName} not found!`);
       return;
     }
 
     if (sounds.includes(newName)) {
-      this.message.channel.send(`${newName} already exists!`);
+      message.channel.send(`${newName} already exists!`);
       return;
     }
 
@@ -41,6 +37,6 @@ export class RenameCommand extends BaseCommand {
     const newFile = `sounds/${newName}.${extension}`;
     fs.renameSync(oldFile, newFile);
 
-    this.message.channel.send(`${oldName} renamed to ${newName}!`);
+    message.channel.send(`${oldName} renamed to ${newName}!`);
   }
 }

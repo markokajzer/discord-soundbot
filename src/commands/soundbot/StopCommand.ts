@@ -4,15 +4,17 @@ import BaseCommand from '../base/BaseCommand';
 
 import SoundQueue from '../../queue/SoundQueue';
 
-export class StopCommand extends BaseCommand {
+export default class StopCommand extends BaseCommand {
+  public readonly TRIGGERS = ['leave', 'stop'];
+
   private readonly queue: SoundQueue;
 
-  constructor(message: Message, queue: SoundQueue) {
-    super(message);
+  constructor(queue: SoundQueue) {
+    super();
     this.queue = queue;
   }
 
-  public run() {
+  public run(_: Message) {
     const current = this.queue.getCurrent();
     this.queue.clear();
     if (current) current.channel.leave();

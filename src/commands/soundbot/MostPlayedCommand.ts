@@ -4,16 +4,17 @@ import BaseCommand from '../base/BaseCommand';
 
 import DatabaseAdapter from '../../db/DatabaseAdapter';
 
-export class MostPlayedCommand extends BaseCommand {
+export default class MostPlayedCommand extends BaseCommand {
+  public readonly TRIGGERS = ['mostplayed'];
   private db: DatabaseAdapter;
 
-  constructor(message: Message, db: DatabaseAdapter) {
-    super(message);
+  constructor(db: DatabaseAdapter) {
+    super();
     this.db = db;
   }
 
-  public run() {
-    this.message.channel.send(this.getMostPlayedSounds());
+  public run(message: Message) {
+    message.channel.send(this.getMostPlayedSounds());
   }
 
   private getMostPlayedSounds() {

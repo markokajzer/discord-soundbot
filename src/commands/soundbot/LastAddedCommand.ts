@@ -1,12 +1,16 @@
 import fs from 'fs';
 
+import { Message } from 'discord.js';
+
 import BaseCommand from '../base/BaseCommand';
 
 import SoundUtil from '../../util/SoundUtil';
 
-export class LastAddedCommand extends BaseCommand {
-  public run() {
-    this.message.channel.send(['```', ...this.getLastAddedSounds(), '```'].join('\n'));
+export default class LastAddedCommand extends BaseCommand {
+  public readonly TRIGGERS = ['lastadded'];
+
+  public run(message: Message) {
+    message.channel.send(['```', ...this.getLastAddedSounds(), '```'].join('\n'));
   }
 
   private getLastAddedSounds() {
