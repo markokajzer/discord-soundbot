@@ -24,10 +24,6 @@ export default class SoundQueue {
     this.queue.length = 0;
   }
 
-  public isEmpty() {
-    return this.queue.length === 0;
-  }
-
   public getCurrent() {
     return this.current;
   }
@@ -48,7 +44,7 @@ export default class SoundQueue {
 
         this.current = null;
         if (!this.isEmpty()) this.playNext();
-        if (this.isEmpty() && !config.stayInChannel) connection.disconnect();
+        if (this.isEmpty() && !this.current && !config.stayInChannel) connection.disconnect();
       });
     }).catch(error => {
       console.error('Error occured!', '\n', error);
@@ -57,5 +53,9 @@ export default class SoundQueue {
 
   private shift() {
     return this.queue.shift()!;
+  }
+
+  private isEmpty() {
+    return this.queue.length === 0;
   }
 }
