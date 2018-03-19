@@ -4,11 +4,17 @@ import { Message, Permissions } from 'discord.js';
 
 import ICommand from '../base/ICommand';
 
+import DatabaseAdapter from '../../db/DatabaseAdapter';
 import SoundUtil from '../../util/SoundUtil';
 
 export default class RenameCommand implements ICommand {
   public readonly TRIGGERS = ['rename'];
   public readonly USAGE = 'Usage: !rename <old> <new>';
+  private readonly db: DatabaseAdapter;
+
+  constructor(db: DatabaseAdapter) {
+    this.db = db;
+  }
 
   public run(message: Message, params: Array<string>) {
     if (!message.member.hasPermission(Permissions.FLAGS.ADMINISTRATOR!)) return;
@@ -35,6 +41,7 @@ export default class RenameCommand implements ICommand {
     const oldFile = `sounds/${oldName}.${extension}`;
     const newFile = `sounds/${newName}.${extension}`;
     fs.renameSync(oldFile, newFile);
+    this.db.renameSound(oldName, newName);
 
     message.channel.send(`${oldName} renamed to ${newName}!`);
   }

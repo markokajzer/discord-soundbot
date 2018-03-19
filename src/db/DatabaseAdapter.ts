@@ -34,6 +34,14 @@ export default class DatabaseAdapter {
     this.updateCount(playedSound);
   }
 
+  public removeSound(sound: string) {
+    this.db.get('sounds').remove({ name: sound }).write();
+  }
+
+  public renameSound(oldName: string, newName: string) {
+    this.db.get('sounds').find({ name: oldName }).assign({ name: newName }).write();
+  }
+
   public addTags(sound: string, tags: Array<string>) {
     if (!this.soundExists(sound)) this.addNewSound(sound);
     tags.forEach(tag => this.addTag(sound, tag));

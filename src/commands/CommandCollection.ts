@@ -54,8 +54,8 @@ export default class CommandCollection extends Collection<string, ICommand> {
   private initializeCommands(queue: SoundQueue, db: DatabaseAdapter) {
     [
       new AddCommand(),
-      new RenameCommand(),
-      new RemoveCommand(),
+      new RenameCommand(db),
+      new RemoveCommand(db),
 
       new RandomCommand(queue),
 

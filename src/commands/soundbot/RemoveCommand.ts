@@ -4,11 +4,17 @@ import { Message, Permissions } from 'discord.js';
 
 import ICommand from '../base/ICommand';
 
+import DatabaseAdapter from '../../db/DatabaseAdapter';
 import SoundUtil from '../../util/SoundUtil';
 
 export default class RemoveCommand implements ICommand {
   public readonly TRIGGERS = ['remove'];
   public readonly USAGE = 'Usage: !remove <sound>';
+  private readonly db: DatabaseAdapter;
+
+  constructor(db: DatabaseAdapter) {
+    this.db = db;
+  }
 
   public run(message: Message, params: Array<string>) {
     if (!message.member.hasPermission(Permissions.FLAGS.ADMINISTRATOR!)) return;
@@ -26,6 +32,8 @@ export default class RemoveCommand implements ICommand {
 
     const file = SoundUtil.getPathForSound(sound);
     fs.unlinkSync(file);
+    this.db.removeSound(sound);
+
     message.channel.send(`${sound} removed!`);
   }
 }
