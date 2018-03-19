@@ -27,7 +27,7 @@ export default class TagCommand implements ICommand {
     }
 
     if (!params.length) {
-      message.channel.send(`Tags for ${sound}: [${this.db.listTags(sound)}]`);
+      message.author.send(`Tags for ${sound}: [${this.db.listTags(sound)}]`);
       return;
     }
 
