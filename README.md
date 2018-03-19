@@ -55,6 +55,7 @@ Type `!commands` to print the following list of available commands.
 ```
 !commands             Show this message
 !sounds               Show available sounds
+!tag <sound> <tag>    Add tag to sound
 !search <tag>         Search for specific sound
 !add                  Add the attached sound
 !<sound>              Play the specified sound
@@ -80,9 +81,13 @@ Type `!sounds` to get a list of all sounds that are available to your bot. Play 
 
 All sounds will be added to a queue and played in succession. To halt the playback and empty the queue type `!stop`.
 
-### Searching sounds
+### Tagging and searching sounds
 
-When your library of sounds gets too big and you forget what kinds of sounds you added, you can search for specific sounds with `!search <tag>`.
+When your library of sounds gets too big and you forget what kinds of sounds you have, you can add tags to sounds.
+
+You can add tags to sounds with `!tag <sound> <tag>`. You can specify one or more sounds. You can get the tags of a sound with `!tag <sound>`. You can also remove all tags from a sound with `!tag <sound> clear`.
+
+To search for specific sounds use `!search <tag>`. It will look for the name of the sound as well as tags that you might have added to the sound.
 
 ### Renaming sounds
 
@@ -102,7 +107,7 @@ Use `!avatar` and attach an image to set the bot's avatar. You can remove the av
 
 ### Restricted commands
 
-The commands `!rename`, `!remove`, `!ignore`, `!unignore` and `!avatar` are restricted and can only be accessed by Administrators.
+The commands `!rename`, `!remove`, `!ignore`, `!unignore`, `!avatar` and `!tag <sound> clear` are restricted and can only be accessed by administrators.
 
 
 ## Configuration

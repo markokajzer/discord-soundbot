@@ -15,6 +15,7 @@ import SoundCommand from './soundbot/SoundCommand';
 
 import SoundsCommand from './soundbot/SoundsCommand';
 import SearchCommand from './soundbot/SearchCommand';
+import TagCommand from './soundbot/TagCommand';
 
 import StopCommand from './soundbot/StopCommand';
 
@@ -59,7 +60,8 @@ export default class CommandCollection extends Collection<string, ICommand> {
       new RandomCommand(queue),
 
       new SoundsCommand(),
-      new SearchCommand(),
+      new SearchCommand(db),
+      new TagCommand(db),
 
       new StopCommand(queue),
 

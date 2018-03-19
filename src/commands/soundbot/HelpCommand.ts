@@ -18,6 +18,7 @@ export default class HelpCommand implements ICommand {
       '',
       'commands             Show this message',
       'sounds               Show available sounds',
+      'tag <sound> <tag>    Add tag to sound',
       'search <tag>         Search for specific sound',
       'add                  Add the attached sound',
       '<sound>              Play the specified sound',

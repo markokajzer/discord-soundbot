@@ -26,7 +26,7 @@ export default class DatabaseAdapter {
   }
 
   public getMostPlayedSounds(limit = 15): Array<{ name: string, count: number }> {
-    return this.db.get('counts').sortBy('count').reverse().take(limit).value();
+    return this.db.get('sounds').sortBy('count').reverse().take(limit).value();
   }
 
   public updateSoundCount(playedSound: string) {
@@ -34,20 +34,46 @@ export default class DatabaseAdapter {
     this.updateCount(playedSound);
   }
 
+  public addTags(sound: string, tags: Array<string>) {
+    if (!this.soundExists(sound)) this.addNewSound(sound);
+    tags.forEach(tag => this.addTag(sound, tag));
+  }
+
+  public listTags(sound: string) {
+    return this.db.get('sounds').find({ name: sound }).value().tags;
+  }
+
+  public removeTags(sound: string) {
+    this.db.get('sounds').find({ name: sound }).assign({ tags: [] }).write();
+  }
+
+  public soundsWithTag(tag: string): Array<string>  {
+    return this.db.get('sounds').value().filter((sound: any) => sound.tags.includes(tag))
+                                        .map((sound: any) => sound.name);
+  }
+
   private ensureDefaults() {
-    this.db.defaults({ counts: [], ignoreList: [] }).write();
+    this.db.defaults({ sounds: [], ignoreList: [] }).write();
   }
 
   private soundExists(sound: string) {
-    return this.db.get('counts').find({ name: sound }).value() !== undefined;
+    return this.db.get('sounds').find({ name: sound }).value() !== undefined;
   }
 
   private addNewSound(sound: string) {
-    this.db.get('counts').push({ name: sound, count: 0 }).write();
+    this.db.get('sounds').push({ name: sound, count: 0, tags: [] }).write();
   }
 
   private updateCount(sound: string) {
-    const newValue = this.db.get('counts').find({ name: sound }).value().count + 1;
-    this.db.get('counts').find({ name: sound }).assign({ count: newValue }).write();
+    const newValue = this.db.get('sounds').find({ name: sound }).value().count + 1;
+    this.db.get('sounds').find({ name: sound }).assign({ count: newValue }).write();
+  }
+
+  private addTag(sound: string, tag: string) {
+    const tags = this.db.get('sounds').find({ name: sound }).value().tags;
+    if (tags.includes(tag)) return;
+    tags.push(tag);
+
+    this.db.get('sounds').find({ name: sound }).assign({ tags: tags }).write();
   }
 }

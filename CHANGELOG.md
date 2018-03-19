@@ -1,12 +1,14 @@
-## 1.1.0 (unreleased)
+## 1.0.0 (2018-03-19)
 
 + Added `!avatar` command to set avatar via message attachment
   + If no attachment was sent, the avatar will send a link to the current avatar
   + Use `!avatar remove` to remove the avatar
-
-## 1.0.0 (2018-03-19)
-
++ Added `!tag` command to add tags to sounds
+  + Use `!tag <sound>` to list the tags of a sound
+  + Use `!tag <sound> <tag1> ... <tagN>` to add tags to a sound
+  + Use `!tag <sound> clear` to remove all tags of a sound
 + Added `!search` command
+  + Tags are included in the `!search` command
 + Sanitize sound on `!add`, `!remove`
 + Restricted access to `!rename`, `!remove`, `!ignore`, `!unignore`
 
