@@ -4,7 +4,7 @@
     "**/*.test.ts"
   ],
   "helpers": [
-    "support/*.js",
+    "support/*.ts",
     "helpers/**/*.ts"
   ],
   "stopSpecOnExpectationFailure": false,
