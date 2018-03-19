@@ -1,4 +1,4 @@
-## master (unreleased)
+## 1.0.0 (2018-03-19)
 
 + Added `!search` command
 + Sanitize sound on `!add`, `!remove`
