@@ -44,7 +44,7 @@
     "clean": "rm -rf dist",
     "build": "tsc -p tsconfig.json",
     "lint": "tslint -p tsconfig.json",
-    "test": "TS_NODE_TYPE_CHECK=1 nyc jasmine --config=./test/support/jasmine.json",
+    "test": "nyc jasmine --config=./test/support/jasmine.json",
     "serve": "node dist/bot.js",
     "start": "npm run build && npm run serve",
     "release": "npm run build && npm run lint && npm run test"
