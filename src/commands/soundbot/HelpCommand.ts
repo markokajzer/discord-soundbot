@@ -30,6 +30,7 @@ export default class HelpCommand implements ICommand {
       'lastadded            Show 5 last added sounds',
       'ignore <user>        Ignore specified user',
       'unignore <user>      Unignore specified user',
+      'avatar [remove]      Set, show or remove the avatar',
       '```'
     ].join('\n');
   }

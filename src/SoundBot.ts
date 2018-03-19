@@ -1,16 +1,17 @@
 import config from '../config/config.json';
 
-import fs from 'fs';
-
 import Discord from 'discord.js';
 
+import CommandCollection from './commands/CommandCollection';
 import MessageHandler from './MessageHandler';
 
 export default class SoundBot extends Discord.Client {
+  private readonly commands: CommandCollection;
   private readonly messageHandler: MessageHandler;
 
-  constructor(messageHandler = new MessageHandler()) {
+  constructor(commands = new CommandCollection(), messageHandler = new MessageHandler(commands)) {
     super();
+    this.commands = commands;
     this.messageHandler = messageHandler;
     this.addEventListeners();
   }
@@ -26,23 +27,14 @@ export default class SoundBot extends Discord.Client {
 
   private readyListener() {
     this.setActivity();
-    this.setAvatar();
+    this.commands.registerUserCommands(this.user);
   }
 
   private setActivity() {
     this.user.setActivity(config.game);
   }
 
-  private setAvatar() {
-    const avatar = this.avatarExists() ? './config/avatar.png' : '';
-    this.user.setAvatar(avatar);
-  }
-
   private messageListener(message: Discord.Message) {
     this.messageHandler.handle(message);
-  }
-
-  private avatarExists() {
-    return fs.existsSync('./config/avatar.png');
   }
 }

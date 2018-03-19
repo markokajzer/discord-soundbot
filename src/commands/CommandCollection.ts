@@ -1,10 +1,11 @@
-import { Collection, Message } from 'discord.js';
+import { ClientUser, Collection, Message } from 'discord.js';
 
 import DatabaseAdapter from '../db/DatabaseAdapter';
 import SoundQueue from '../queue/SoundQueue';
 
 import ICommand from './base/ICommand';
 
+// tslint:disable ordered-imports
 import AddCommand from './soundbot/AddCommand';
 import RenameCommand from './soundbot/RenameCommand';
 import RemoveCommand from './soundbot/RemoveCommand';
@@ -24,6 +25,8 @@ import MostPlayedCommand from './soundbot/MostPlayedCommand';
 import IgnoreCommand from './soundbot/IgnoreCommand';
 import UnignoreCommand from './soundbot/UnignoreCommand';
 
+import AvatarCommand from './soundbot/AvatarCommand';
+
 export default class CommandCollection extends Collection<string, ICommand> {
   private readonly soundCommand: SoundCommand;
 
@@ -31,6 +34,10 @@ export default class CommandCollection extends Collection<string, ICommand> {
     super();
     this.soundCommand = new SoundCommand(queue);
     this.initializeCommands(queue, db);
+  }
+
+  public registerUserCommands(user: ClientUser) {
+    this.registerTriggers(new AvatarCommand(user));
   }
 
   public execute(command: string, params: Array<string>, message: Message) {
