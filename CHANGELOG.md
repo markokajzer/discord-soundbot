@@ -1,3 +1,9 @@
+## 1.1.0 (unreleased)
+
++ Added `!avatar` command to set avatar via message attachment
+  + If no attachment was sent, the avatar will send a link to the current avatar
+  + Use `!avatar remove` to remove the avatar
+
 ## 1.0.0 (2018-03-19)
 
 + Added `!search` command

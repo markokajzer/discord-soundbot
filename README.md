@@ -67,6 +67,7 @@ Type `!commands` to print the following list of available commands.
 !lastadded            Show 5 last added sounds
 !ignore <user>        Ignore specified user
 !unignore <user>      Unignore specified user
+!avatar [remove]       Set, show or remove the avatar
 ```
 
 ### Adding sounds
@@ -93,11 +94,15 @@ You can delete sounds by typing `!remove <sound>`. The bot will respond with the
 
 ### Ignoring users
 
-Users can be ignore from using **any** command by the `!ignore <user>` command while specifying their respective ID. The user will be mentioned by the bot in the channel of the message.
+Users can be ignore from using **any** command by the `!ignore <user>` command while specifying their respective ID. The user will be mentioned by the bot in the channel of the message. Use `!unignore <user>` to allow the user to interact with the bot again.
+
+### Setting an avatar
+
+Use `!avatar` and attach an image to set the bot's avatar. You can remove the avatar to go back to the default by using the optional `remove` parameter as in `!avatar remove`.
 
 ### Restricted commands
 
-The commands `!rename`, `!remove`, `!ignore` and `!unignore` are restricted and can only be accessed by Administrators.
+The commands `!rename`, `!remove`, `!ignore`, `!unignore` and `!avatar` are restricted and can only be accessed by Administrators.
 
 
 ## Configuration
@@ -108,8 +113,6 @@ Check `config/config.example.json` for an example configuration and create a new
 + The bot can also automatically delete `!<sound>` messages for you to reduce channel spam. For this, set `deleteMessages` to `true`.
 + To let the bot stay in the channel after playing sounds to reduce noise, you can set the `stayInChannel` configuration option. You can order the bot to leave the channel with `!leave`.
 + You can set the bot's activity via the `game` options.
-
-To add an avatar to your bot, add a file called `avatar.png` to the `config/` folder and restart the bot. To remove the avatar, delete `avatar.png` and restart the bot.
 
 
 ## Contributing

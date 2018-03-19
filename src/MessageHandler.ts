@@ -11,7 +11,7 @@ export default class MessageHandler {
   private readonly commands: CommandCollection;
   private readonly prefix: string;
 
-  constructor(db = new DatabaseAdapter(), commands = new CommandCollection(), prefix = config.prefix) {
+  constructor(commands: CommandCollection, db = new DatabaseAdapter(), prefix = config.prefix) {
     this.db = db;
     this.commands = commands;
     this.prefix = prefix;
