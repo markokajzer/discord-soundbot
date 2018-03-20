@@ -31,10 +31,10 @@ import AvatarCommand from './soundbot/AvatarCommand';
 export default class CommandCollection extends Collection<string, ICommand> {
   private readonly soundCommand: SoundCommand;
 
-  constructor(queue = new SoundQueue(), db = new DatabaseAdapter()) {
+  constructor(db = new DatabaseAdapter(), queue = new SoundQueue(db)) {
     super();
     this.soundCommand = new SoundCommand(queue);
-    this.initializeCommands(queue, db);
+    this.initializeCommands(db, queue);
   }
 
   public registerUserCommands(user: ClientUser) {
@@ -51,7 +51,7 @@ export default class CommandCollection extends Collection<string, ICommand> {
     this.soundCommand.run(message, params);
   }
 
-  private initializeCommands(queue: SoundQueue, db: DatabaseAdapter) {
+  private initializeCommands(db: DatabaseAdapter, queue: SoundQueue) {
     [
       new AddCommand(),
       new RenameCommand(db),
