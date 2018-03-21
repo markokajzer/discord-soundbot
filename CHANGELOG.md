@@ -1,3 +1,7 @@
+## 1.0.1 (2018-03-20)
+
++ Fixed a bug that caused tags not to be saved properly
+
 ## 1.0.0 (2018-03-19)
 
 + Added `!avatar` command to set avatar via message attachment
