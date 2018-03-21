@@ -1,46 +1,35 @@
-import fs from 'fs';
-import https from 'https';
-
 import { Message, MessageAttachment } from 'discord.js';
 
 import ICommand from '../base/ICommand';
 
 import AttachmentValidator from '../helpers/AttachmentValidator';
+import SoundDownloader from '../helpers/SoundDownloader';
 
 export default class AddCommand implements ICommand {
   public readonly TRIGGERS = ['add'];
+  private readonly validator: AttachmentValidator;
+  private readonly downloader: SoundDownloader;
+
+  constructor(validator = new AttachmentValidator(), downloader = new SoundDownloader()) {
+    this.validator = validator;
+    this.downloader = downloader;
+  }
 
   public run(message: Message) {
     message.attachments.forEach(attachment =>
-      message.channel.send(this.saveValidAttachment(attachment)));
+      this.saveValidAttachment(attachment).then(result => message.channel.send(result))
+                                          .catch(result => message.channel.send(result)));
   }
 
-  private saveValidAttachment(attachment: MessageAttachment, validator = new AttachmentValidator()) {
-    try {
-      validator.validateAttachment(attachment);
-    } catch (error) {
-      return error.message;
-    }
-
-    this.addSound(attachment).then(result => result)
-                             .catch(result => result);
+  private saveValidAttachment(attachment: MessageAttachment) {
+    return this.validator.validateAttachment(attachment)
+      .then(() => this.addSound(attachment));
   }
 
   private addSound(attachment: MessageAttachment) {
-    return new Promise((resolve, reject) => {
-      const fileName = attachment.filename.toLowerCase();
-      const soundName = fileName.split('.')[0];
+    const fileName = attachment.filename.toLowerCase();
+    const soundName = fileName.split('.')[0];
 
-      https.get(attachment.url, response => {
-        if (response.statusCode === 200) {
-          const file = fs.createWriteStream(`./sounds/${fileName}`);
-          response.pipe(file);
-          resolve(`${soundName} added!`);
-        }
-      }).on('error', error => {
-        console.error(error);
-        reject('Something went wrong!');
-      });
-    });
+    return this.downloader.downloadSound(soundName, fileName, attachment.url);
   }
 }
