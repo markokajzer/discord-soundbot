@@ -1,7 +1,7 @@
 Discord Soundbot
 ================
 
-A bot for Discord to play your favorite sounds or music. You can also add / rename / remove sounds, ignore certain users, and more!
+A soundboard bot for Discord to play your favorite sounds or music. You can also add / rename / remove sounds, ignore certain users, and more!
 
 This is a *self-hosted* bot which means that you have to install and start the bot yourself. This is due to the bot being heavily involved with voice functionality. But don't sweat it! You can find a thorough installation and configuration guide in this README!
 
@@ -17,7 +17,7 @@ Have fun!
 
 To use this bot you first have to create your own [Discord Application](https://discordapp.com/developers/applications/me). Click on `New App`, enter a name for your app and press the `Create App` button on the bottom right. Now press on the button `Create a Bot User` for your bot token.
 
-Now create a default.json file inside of the config folder according to the example. Enter the `Client ID` and the `Token` into the config. You can find both inside your Discord application under `APP DETAILS` and `APP BOT USER` respectively.
+Now create a config.json file inside of the config folder according to the example. Enter the `Client ID` and the `Token` into the config. You can find both inside your Discord application under `APP DETAILS` and `APP BOT USER` respectively.
 
 ### Building
 
