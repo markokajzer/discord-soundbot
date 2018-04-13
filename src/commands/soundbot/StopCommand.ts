@@ -13,9 +13,9 @@ export default class StopCommand implements ICommand {
     this.queue = queue;
   }
 
-  public run(_: Message) {
-    const current = this.queue.getCurrent();
+  public run(message: Message) {
     this.queue.clear();
-    if (current) current.channel.leave();
+    const voiceConnection = message.guild.voiceConnection;
+    if (voiceConnection) voiceConnection.disconnect();
   }
 }
