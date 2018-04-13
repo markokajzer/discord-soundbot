@@ -11,6 +11,6 @@ COPY package*.json ./
 RUN npm install --quiet
 
 # Cleanup
-RUN apk del --silent build-base
+RUN apk del --quiet build-base
 
 CMD ["npm", "start"]
