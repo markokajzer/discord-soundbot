@@ -26,10 +26,6 @@ export default class SoundQueue {
     this.queue.length = 0;
   }
 
-  public getCurrent() {
-    return this.current;
-  }
-
   private isStartable() {
     return this.current === null;
   }
