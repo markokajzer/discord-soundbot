@@ -5,7 +5,6 @@ import ICommand from '../base/ICommand';
 import DatabaseAdapter from '../../db/DatabaseAdapter';
 import SoundUtil from '../../util/SoundUtil';
 
-
 export default class SearchCommand implements ICommand {
   public readonly TRIGGERS = ['search'];
   public readonly USAGE = 'Usage: !search <tag>';
