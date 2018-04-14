@@ -5,40 +5,19 @@ import SoundQueue from '../queue/SoundQueue';
 
 import ICommand from './base/ICommand';
 
-// tslint:disable ordered-imports
-import AddCommand from './soundbot/AddCommand';
-import RenameCommand from './soundbot/RenameCommand';
-import RemoveCommand from './soundbot/RemoveCommand';
-
-import RandomCommand from './soundbot/RandomCommand';
-import SoundCommand from './soundbot/SoundCommand';
-
-import SoundsCommand from './soundbot/SoundsCommand';
-import SearchCommand from './soundbot/SearchCommand';
-import TagCommand from './soundbot/TagCommand';
-
-import StopCommand from './soundbot/StopCommand';
-
-import HelpCommand from './soundbot/HelpCommand';
-import LastAddedCommand from './soundbot/LastAddedCommand';
-import MostPlayedCommand from './soundbot/MostPlayedCommand';
-
-import IgnoreCommand from './soundbot/IgnoreCommand';
-import UnignoreCommand from './soundbot/UnignoreCommand';
-
-import AvatarCommand from './soundbot/AvatarCommand';
+import * as Commands from './Commands';
 
 export default class CommandCollection extends Collection<string, ICommand> {
-  private readonly soundCommand: SoundCommand;
+  private readonly soundCommand: Commands.SoundCommand;
 
   constructor(db = new DatabaseAdapter(), queue = new SoundQueue(db)) {
     super();
-    this.soundCommand = new SoundCommand(queue);
+    this.soundCommand = new Commands.SoundCommand(queue);
     this.initializeCommands(db, queue);
   }
 
   public registerUserCommands(user: ClientUser) {
-    this.registerTriggers(new AvatarCommand(user));
+    this.registerTriggers(new Commands.AvatarCommand(user));
   }
 
   public execute(command: string, params: Array<string>, message: Message) {
@@ -53,24 +32,24 @@ export default class CommandCollection extends Collection<string, ICommand> {
 
   private initializeCommands(db: DatabaseAdapter, queue: SoundQueue) {
     [
-      new AddCommand(),
-      new RenameCommand(db),
-      new RemoveCommand(db),
+      new Commands.AddCommand(),
+      new Commands.RenameCommand(db),
+      new Commands.RemoveCommand(db),
 
-      new RandomCommand(queue),
+      new Commands.RandomCommand(queue),
 
-      new SoundsCommand(),
-      new SearchCommand(db),
-      new TagCommand(db),
+      new Commands.SoundsCommand(),
+      new Commands.SearchCommand(db),
+      new Commands.TagCommand(db),
 
-      new StopCommand(queue),
+      new Commands.StopCommand(queue),
 
-      new HelpCommand(),
-      new LastAddedCommand(),
-      new MostPlayedCommand(db),
+      new Commands.HelpCommand(),
+      new Commands.LastAddedCommand(),
+      new Commands.MostPlayedCommand(db),
 
-      new IgnoreCommand(db),
-      new UnignoreCommand(db)
+      new Commands.IgnoreCommand(db),
+      new Commands.UnignoreCommand(db)
     ].forEach(command => this.registerTriggers(command));
   }
 
