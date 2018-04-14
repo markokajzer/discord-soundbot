@@ -5,6 +5,8 @@ A Soundboard Bot for Discord to play your favorite sounds or music. You can also
 
 This is a *self-hosted* bot which means that you have to install and start the bot yourself. This is due to the bot being heavily involved with voice functionality. But don't sweat it! You can find a thorough installation and configuration guide in this README!
 
+If you still need any help *after reading this guide*, or you want to stay tuned, feel free to [join my Discord server](https://discord.gg/JBw2BNx).
+
 Have fun!
 
 
@@ -120,6 +122,4 @@ Check `config/config.example.json` for an example configuration and create a new
 
 ## Contributing
 
-This bot is a dear passion project of mine. If you have any suggestions for new features or improvements, feel free to open an issue. I'll be glad to look into it!
-
-If you still need any help after reading the guide, feel free to [join my Discord server](https://discord.gg/tUkH4YB) and shoot me a message.
+This bot is a dear passion project of mine. If you have any suggestions for new features or improvements, feel free to open an issue or talk to me on Discord. I'll be glad to look into it!
