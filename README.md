@@ -7,7 +7,7 @@ A Soundboard Bot for Discord to play your favorite sounds or music. You can also
 
 This is a *self-hosted* bot which means that you have to install and start the bot yourself. This is due to the bot being heavily involved with voice functionality. But don't sweat it! You can find a thorough installation and configuration guide in this README!
 
-If you still need any help *after reading this guide*, or you want to stay tuned, feel free to [join my Discord server](https://discord.gg/JBw2BNx).
+If you still need any help *after reading this guide and the wiki*, or you want to stay tuned, feel free to [join my Discord server](https://discord.gg/JBw2BNx).
 
 Have fun!
 
@@ -17,13 +17,25 @@ Have fun!
 
 ### General
 
-To use this bot you first have to create your own [Discord Application](https://discordapp.com/developers/applications/me). Click on `New App`, enter a name for your app and press the `Create App` button on the bottom right. Now press on the button `Create a Bot User` for your bot token.
+To use this bot, you first have to create your own [Discord Application](https://discordapp.com/developers/applications/me). If you don't know how to do it, [this wiki page](../../wiki/Setting-up-a-Discord-Application) will guide you through every step of the way.
 
-Now create a config.json file inside of the config folder according to the example. Enter the `Client ID` and the `Token` into the config. You can find both inside your Discord application under `APP DETAILS` and `APP BOT USER` respectively.
+
+### Configuration
+
+Check `config/config.example.json` for an example configuration and create a new file `config.json` inside the `config` folder with your desired configuration. For a detailed description on all of the options, see [here](../../wiki/Configuration). Make sure to restart the bot whenever you change the configuration.
+
 
 ### Building
 
-The bot can be installed via Docker or manually.
+The bot can be installed manually or via Docker.	
+
+#### Building manually
+
++ Install **Node.js v6.0.0** or newer and **FFmpeg**.
++ Install the bot's dependencies with `npm install`.
++ Run the bot with `npm start`.
+
+Need more details? You can find more installation guides for [Unix](../../wiki/Unix) (including your Raspberry Pi), [macOS](../../wiki/macOS), and [Windows](../../wiki/Windows).
 
 #### Building via Docker
 
@@ -31,12 +43,6 @@ The bot can be installed via Docker or manually.
 + Afterwards start the bot via `docker run soundbot`.
 + To run the container in the background use `docker run -d soundbot`.
 
-#### Building manually
-
-+ As per [discord.js](https://github.com/discordjs/discord.js/tree/11.3.2#installation), **Node.js v6.0.0** or newer is required.
-+ Due to using voice functionality **FFmpeg** is required. Install it manually, or with `npm install ffmpeg-binaries`.
-+ Install the bot's dependencies with `npm install` as usual.
-+ Finally, run the bot with `npm start`.
 
 ### Adding the bot to your server
 
@@ -47,7 +53,8 @@ Use the following URL to let the bot join your server!
 https://discordapp.com/oauth2/authorize?client_id={YOUR_CLIENT_ID}&scope=bot
 ```
 
-Follow the link and allow your bot to join one of your Discord servers.
+Follow the link and allow your bot to join your Discord server.
+
 
 
 ## Commands
@@ -111,15 +118,6 @@ Use `!avatar` and attach an image to set the bot's avatar. You can remove the av
 
 The commands `!rename`, `!remove`, `!ignore`, `!unignore`, `!avatar` and `!tag <sound> clear` are restricted and can only be accessed by administrators.
 
-
-## Configuration
-
-Check `config/config.example.json` for an example configuration and create a new file `config.json` with your desired configuration inside the `config` folder.
-+ The bots prefix can be configured via `prefix`.
-+ You can configure the accepted file formats (via the `acceptedExtensions` array) as well as the size of the accepted files (via the `maxiumumFileSize` given in bytes).
-+ The bot can also automatically delete `!<sound>` messages for you to reduce channel spam. For this, set `deleteMessages` to `true`. Make sure the bot has the right permissions.
-+ To let the bot stay in the channel after playing sounds to reduce noise, you can set the `stayInChannel` configuration option. You can order the bot to leave the channel with `!leave`.
-+ You can set the bot's activity via the `game` options.
 
 
 ## Contributing
