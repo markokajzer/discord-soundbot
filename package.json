@@ -28,12 +28,8 @@
     "zlib-sync": "^0.1.4"
   },
   "devDependencies": {
-    "@types/jasmine": "^2.8.6",
     "@types/lowdb": "^1.0.0",
     "@types/node": "^8.9.5",
-    "jasmine": "^3.1.0",
-    "nyc": "^11.4.1",
-    "ts-node": "^5.0.1",
     "tslint": "^5.9.1",
     "typescript": "^2.7.2"
   },
@@ -44,9 +40,8 @@
     "clean": "rm -rf dist",
     "build": "tsc -p tsconfig.json",
     "lint": "tslint -p tsconfig.json",
-    "test": "nyc jasmine --config=./test/support/jasmine.json",
     "serve": "node dist/bot.js",
     "start": "npm run build && npm run serve",
-    "release": "npm run build && npm run lint && npm run test"
+    "release": "npm run build && npm run lint"
   }
 }
