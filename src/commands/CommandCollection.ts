@@ -41,6 +41,7 @@ export default class CommandCollection extends Collection<string, ICommand> {
       new Commands.SoundsCommand(),
       new Commands.SearchCommand(db),
       new Commands.TagCommand(db),
+      new Commands.DownloadCommand(),
 
       new Commands.StopCommand(queue),
 
