@@ -18,23 +18,23 @@
   "author": "Marko Kajzer",
   "license": "MIT",
   "dependencies": {
-    "discord.js": "^11.3.2",
+    "discord.js": "^11.4.2",
     "lowdb": "^1.0.0",
-    "node-opus": "^0.2.6"
+    "node-opus": "^0.3.0"
   },
   "optionalDependencies": {
     "erlpack": "discordapp/erlpack",
-    "uws": "^9.14.0",
+    "uws": "9.148.0",
     "zlib-sync": "^0.1.4"
   },
   "devDependencies": {
     "@types/lowdb": "^1.0.0",
     "@types/node": "^8.9.5",
     "tslint": "^5.9.1",
-    "typescript": "^2.7.2"
+    "typescript": "^3.0.1"
   },
   "engines": {
-    "node": ">=6.0.0"
+    "node": "^8.0.0"
   },
   "scripts": {
     "clean": "rm -rf dist",
