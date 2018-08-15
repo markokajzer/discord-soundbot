@@ -16,11 +16,11 @@ export default class SoundCommand implements ICommand {
   }
 
   public run(message: Message, _: Array<string>, voiceChannelFinder = new VoiceChannelFinder()) {
-    const voiceChannel = voiceChannelFinder.getVoiceChannelFromMessageAuthor(message);
-    if (!voiceChannel) return;
-
     const sound = message.content;
     if (!SoundUtil.soundExists(sound)) return;
+
+    const voiceChannel = voiceChannelFinder.getVoiceChannelFromMessageAuthor(message);
+    if (!voiceChannel) return;
 
     this.queue.add(new QueueItem(sound, voiceChannel, message));
   }
