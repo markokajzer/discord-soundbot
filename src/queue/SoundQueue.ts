@@ -22,6 +22,10 @@ export default class SoundQueue {
     if (this.isStartable()) this.playNext();
   }
 
+  public items(): Array<QueueItem> {
+    return this.queue;
+  }
+
   public clear() {
     this.queue.length = 0;
   }

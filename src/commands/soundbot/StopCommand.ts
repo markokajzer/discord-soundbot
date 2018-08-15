@@ -6,7 +6,6 @@ import SoundQueue from '../../queue/SoundQueue';
 
 export default class StopCommand implements ICommand {
   public readonly TRIGGERS = ['leave', 'stop'];
-
   private readonly queue: SoundQueue;
 
   constructor(queue: SoundQueue) {
@@ -14,6 +13,8 @@ export default class StopCommand implements ICommand {
   }
 
   public run(message: Message) {
+    this.queue.items().map(el => el.message).forEach(el => el.delete());
+
     this.queue.clear();
     const voiceConnection = message.guild.voiceConnection;
     if (voiceConnection) voiceConnection.disconnect();
