@@ -6,7 +6,7 @@ import DatabaseAdapter from '../../db/DatabaseAdapter';
 import SoundUtil from '../../util/SoundUtil';
 
 export default class TagCommand implements ICommand {
-  public readonly TRIGGERS = ['tag', 'tags'];
+  public readonly TRIGGERS = ['tag'];
   public readonly USAGE = 'Usage: !tag <sound> [<tag> ... <tagN> | clear]';
   private readonly db: DatabaseAdapter;
 

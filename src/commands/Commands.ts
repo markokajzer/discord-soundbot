@@ -9,6 +9,7 @@ import SoundCommand from './soundbot/SoundCommand';
 import SoundsCommand from './soundbot/SoundsCommand';
 import SearchCommand from './soundbot/SearchCommand';
 import TagCommand from './soundbot/TagCommand';
+import TagsCommand from './soundbot/TagsCommand';
 import DownloadCommand from './soundbot/DownloadCommand';
 
 import StopCommand from './soundbot/StopCommand';
@@ -33,6 +34,7 @@ export {
   SoundsCommand,
   SearchCommand,
   TagCommand,
+  TagsCommand,
   DownloadCommand,
 
   StopCommand,

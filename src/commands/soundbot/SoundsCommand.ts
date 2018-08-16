@@ -11,10 +11,10 @@ export default class SoundsCommand implements ICommand {
     const sounds = SoundUtil.getSounds();
 
     if (!sounds.length) {
-      message.author.send('You don\'t have any sounds yet! Try adding with with the !add command.');
+      message.author.send("You don't have any sounds yet! Try adding one with the !add command.");
       return;
     }
 
-    message.author.send(sounds.join('\n'));
+    message.author.send(['```', ...sounds, '```'].join('\n'));
   }
 }
