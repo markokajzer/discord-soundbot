@@ -4,6 +4,7 @@ declare module '*.json' {
   const prefix: string;
   const acceptedExtensions: Array<string>;
   const maximumFileSize: number;
+  const volume: number;
   const deleteMessages: boolean;
   const stayInChannel: boolean;
   const game: string;

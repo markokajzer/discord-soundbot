@@ -39,7 +39,8 @@ export default class SoundQueue {
     const sound = SoundUtil.getPathForSound(this.current.sound);
 
     this.current.channel.join().then(connection => {
-      connection.playFile(sound).on('end', () => this.onFinishedPlayingSound(connection));
+      connection.playFile(sound, { volume: config.volume })
+                .on('end', () => this.onFinishedPlayingSound(connection));
     }).catch(error => {
       console.error('Error occured!', '\n', error);
     });

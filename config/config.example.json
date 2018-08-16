@@ -4,6 +4,7 @@
   "prefix": "!",
   "acceptedExtensions": [".mp3", ".wav"],
   "maximumFileSize": 1000000,
+  "volume": 1.0,
   "deleteMessages": false,
   "stayInChannel": false,
   "game": ""
