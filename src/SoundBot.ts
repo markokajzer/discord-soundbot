@@ -22,6 +22,7 @@ export default class SoundBot extends Discord.Client {
 
   private addEventListeners() {
     this.on('ready', this.readyListener);
+    this.on('guildCreate', this.joinServerListener);
     this.on('message', this.messageListener);
   }
 
@@ -32,6 +33,30 @@ export default class SoundBot extends Discord.Client {
 
   private setActivity() {
     this.user.setActivity(config.game);
+  }
+
+  private joinServerListener(guild: Discord.Guild) {
+    if (!guild.available) return;
+
+    const channel = this.findFirstWritableChannel(guild);
+    if (!channel) return;
+
+    const welcomeMessage = [
+      '**Thank you for adding me!** 🔥',
+      `- My prefix is \`${config.prefix}\`. Want to change it? Check all configuration options here: **<https://github.com/markokajzer/discord-soundbot/wiki/Configuration>**.`,
+      `- You can see a list of commands with \`${config.prefix}help\`.`,
+      `- Get started by adding a sound. Use \`${config.prefix}add\` and drag in a sound file!`,
+      '- Need more help? Join the support server: **<https://discordapp.com/invite/JBw2BNx>**.'
+    ];
+    channel.send(welcomeMessage.join('\n'));
+  }
+
+  private findFirstWritableChannel(guild: Discord.Guild): Discord.TextChannel | null {
+    const channels = guild.channels.filter(channel =>
+      channel.type === 'text' && channel.permissionsFor(guild.me)!.has('SEND_MESSAGES'));
+
+    if (!channels.size) return null;
+    return (channels.first() as Discord.TextChannel);
   }
 
   private messageListener(message: Discord.Message) {
