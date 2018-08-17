@@ -3,28 +3,30 @@ import { Message } from 'discord.js';
 import ICommand from '../base/ICommand';
 
 import DatabaseAdapter from '../../db/DatabaseAdapter';
+import MessageChunker from '../../message/MessageChunker';
 import SoundUtil from '../../util/SoundUtil';
 
 export default class TagsCommand implements ICommand {
   public readonly TRIGGERS = ['tags'];
   private readonly db: DatabaseAdapter;
+  private readonly chunker: MessageChunker;
 
-  constructor(db: DatabaseAdapter) {
+  constructor(db: DatabaseAdapter, chunker = new MessageChunker()) {
     this.db = db;
+    this.chunker = chunker;
   }
 
-  public run(message: Message) {
+  public run(message: Message, params: Array<string>) {
     const sounds = SoundUtil.getSounds();
-    const reply = this.formattedMessage(sounds, this.findLongestWord(sounds).length);
+    const soundsWithTags = this.formattedMessage(sounds);
 
-    message.author.send(reply);
+    this.chunker.chunkedMessages(soundsWithTags, params)
+                .forEach(chunk => message.author.send(chunk));
   }
 
-  private formattedMessage(sounds: Array<string>, longestSoundLength: number) {
-    const message = ['```'];
-    sounds.forEach(sound => message.push(this.listSoundWithTags(sound, longestSoundLength)));
-    message.push('```');
-    return message.join('\n');
+  private formattedMessage(sounds: Array<string>) {
+    const longestSoundLength = this.findLongestWord(sounds).length;
+    return sounds.map(sound => this.listSoundWithTags(sound, longestSoundLength));
   }
 
   private listSoundWithTags(sound: string, longestSoundLength: number): string {
