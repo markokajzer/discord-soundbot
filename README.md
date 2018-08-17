@@ -3,7 +3,7 @@ Discord Soundbot
 
 [<img title="Join us on Discord" src="https://discordapp.com/api/guilds/236732117524938754/widget.png?style=shield">](https://discord.gg/JBw2BNx)
 
-A Soundboard Bot for Discord to play your favorite sounds or music. You can also add / rename / remove sounds, ignore certain users, and more!
+A Soundboard Bot for Discord to play your favorite sounds or music. You can add and play sounds, ignore users, set an avatar and more!
 
 This is a *self-hosted* bot which means that you have to install and start the bot yourself. This is due to the bot being heavily involved with voice functionality. But don't sweat it! You can find a thorough installation and configuration guide in this README!
 
@@ -17,7 +17,7 @@ Have fun!
 
 ### General
 
-To use this bot, you first have to create your own [Discord Application](https://discordapp.com/developers/applications/me). If you don't know how to do it, [this wiki page](../../wiki/Setting-up-a-Discord-Application) will guide you through every step of the way.
+To use this bot, you first have to create your own [Discord Application](https://discordapp.com/developers/applications). If you don't know how to do it, [this wiki page](../../wiki/Setting-up-a-Discord-Application) will guide you through every step of the way.
 
 
 ### Configuration
@@ -27,7 +27,7 @@ Check `config/config.example.json` for an example configuration and create a new
 
 ### Building
 
-The bot can be installed manually or via Docker.	
+The bot can be installed manually or via Docker.  
 
 #### Building manually
 
@@ -53,32 +53,15 @@ Use the following URL to let the bot join your server!
 https://discordapp.com/oauth2/authorize?client_id={YOUR_CLIENT_ID}&scope=bot
 ```
 
-Follow the link and allow your bot to join your Discord server.
+Follow the link and allow your bot to join your Discord server. The bot will leave a message containing additional information.
 
 
 
 ## Commands
 
-Type `!commands` to print the following list of available commands.
+Type `!help` or `!commands` to print a list of available commands.
 
-```
-!commands             Show this message
-!sounds               Show available sounds
-!tag <sound> <tag>    Add tag to sound
-!search <tag>         Search for specific sound
-!add                  Add the attached sound
-!<sound>              Play the specified sound
-!random               Play random sounds
-!rename <old> <new>   Rename specified sound
-!remove <sound>       Remove specified sound
-!stop                 Stop playing and clear queue
-!leave                Leave the channel
-!mostplayed           Show 15 most used sounds
-!lastadded            Show 5 last added sounds
-!ignore <user>        Ignore specified user
-!unignore <user>      Unignore specified user
-!avatar [remove]       Set, show or remove the avatar
-```
+You can add, rename, download, tag, play, and remove sounds, ignore users, set the avatar, and more.
 
 ### Adding sounds
 
@@ -96,6 +79,8 @@ When your library of sounds gets too big and you forget what kinds of sounds you
 
 You can add tags to sounds with `!tag <sound> <tag>`. You can specify one or more sounds. You can get the tags of a sound with `!tag <sound>`. You can also remove all tags from a sound with `!tag <sound> clear`.
 
+To get all sounds with their respective tags use `!tags`.
+
 To search for specific sounds use `!search <tag>`. It will look for the name of the sound as well as tags that you might have added to the sound.
 
 ### Renaming sounds
@@ -105,6 +90,10 @@ Sounds can be renamed by using `!rename <old> <new>`. The bot will respond with 
 ### Removing sounds
 
 You can delete sounds by typing `!remove <sound>`. The bot will respond with the status of the deletion in the channel of the message.
+
+### Downloading sounds
+
+You can send existing sounds to chat with `!download <sound>` in case you do not have the files anymore.
 
 ### Ignoring users
 

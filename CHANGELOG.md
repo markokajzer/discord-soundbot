@@ -1,3 +1,16 @@
+## 1.1.0 (2018-08-17)
+
++ Added `!download` command
++ Added `!tags` command
++ Added `volume` configuration option
++ Added welcome message when bot first joins a server
++ Ignore `!<sound>` commands if sound does not exist
++ Remove all previous `!<sound>` messages when using `!stop`
++ `!sounds` does not try to send an empty message when no sounds exist
++ `!sounds` sends message in code blocks
++ `!sounds` and `!tags` are chunked if message is too large
++ Updated dependencies
+
 ## 1.0.2 (2018-04-14)
 
 + Fixed bot not leaving channel on `!leave`
@@ -19,9 +32,6 @@
   + Tags are included in the `!search` command
 + Sanitize sound on `!add`, `!remove`
 + Restricted access to `!rename`, `!remove`, `!ignore`, `!unignore`
-
-##### Under the hood
-
 + Moved to TypeScript
 + Complete rewrite
 + Removed `config` dependency
@@ -79,6 +89,6 @@
   + This fixed compatibility issues with the offical Discord API
 + Queueing sounds now also stores the channel in which a sound should be played
 
-## 0.1.0
+## 0.1.0 (2016-08-06)
 
 + Initial Release
