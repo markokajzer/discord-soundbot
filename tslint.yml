@@ -1,6 +1,6 @@
 ---
 
-defaultSeverity: error
+defaultSeverity: warning
 extends:
   - tslint:recommended
 
@@ -35,6 +35,8 @@ rules:
     - true
     - single
     - avoid-escape
+  radix:
+    - false
   space-before-function-paren:
     - true
     - anonymous: always

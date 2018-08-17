@@ -1,6 +1,6 @@
 import config from '../config/config.json';
 
-import SoundBot from './SoundBot';
+import SoundBot from './bot/SoundBot';
 
 const bot = new SoundBot();
 bot.start();

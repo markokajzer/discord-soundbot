@@ -1,7 +1,7 @@
 {
   "name": "discord-soundbot",
   "version": "1.0.2",
-  "description": "A Soundboard Bot for Discord Bot",
+  "description": "A Soundboard for Discord",
   "repository": {
     "type": "git",
     "url": "https://github.com/markokajzer/discord-soundbot"
@@ -40,7 +40,7 @@
     "clean": "rm -rf dist",
     "build": "tsc -p tsconfig.json",
     "lint": "tslint -p tsconfig.json",
-    "serve": "node dist/bot.js",
+    "serve": "node dist/main.js",
     "start": "npm run build && npm run serve",
     "release": "npm run build && npm run lint"
   }

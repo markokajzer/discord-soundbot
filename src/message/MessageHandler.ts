@@ -1,10 +1,10 @@
-import config from '../config/config.json';
+import config from '../../config/config.json';
 
 import { Message } from 'discord.js';
-import './discord/Message';
+import '../discord/Message';
 
-import CommandCollection from './commands/CommandCollection';
-import DatabaseAdapter from './db/DatabaseAdapter';
+import CommandCollection from '../commands/CommandCollection';
+import DatabaseAdapter from '../db/DatabaseAdapter';
 
 export default class MessageHandler {
   private readonly db: DatabaseAdapter;

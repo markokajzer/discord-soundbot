@@ -1,9 +1,9 @@
-import config from '../config/config.json';
+import config from '../../config/config.json';
 
 import Discord from 'discord.js';
 
-import CommandCollection from './commands/CommandCollection';
-import MessageHandler from './MessageHandler';
+import CommandCollection from '../commands/CommandCollection';
+import MessageHandler from '../message/MessageHandler';
 
 export default class SoundBot extends Discord.Client {
   private readonly commands: CommandCollection;
@@ -22,8 +22,8 @@ export default class SoundBot extends Discord.Client {
 
   private addEventListeners() {
     this.on('ready', this.readyListener);
-    this.on('guildCreate', this.joinServerListener);
     this.on('message', this.messageListener);
+    this.on('guildCreate', this.joinServerListener);
   }
 
   private readyListener() {
@@ -33,6 +33,10 @@ export default class SoundBot extends Discord.Client {
 
   private setActivity() {
     this.user.setActivity(config.game);
+  }
+
+  private messageListener(message: Discord.Message) {
+    this.messageHandler.handle(message);
   }
 
   private joinServerListener(guild: Discord.Guild) {
@@ -57,9 +61,5 @@ export default class SoundBot extends Discord.Client {
 
     if (!channels.size) return null;
     return (channels.first() as Discord.TextChannel);
-  }
-
-  private messageListener(message: Discord.Message) {
-    this.messageHandler.handle(message);
   }
 }
