@@ -1,20 +1,25 @@
 import { ClientUser, Collection, Message } from 'discord.js';
 
 import ICommand from './base/ICommand';
+import IUserCommand from './base/IUserCommand';
 
 import * as Commands from './Commands';
 
 export default class CommandCollection extends Collection<string, ICommand> {
+  private readonly commands: Array<ICommand>;
   private readonly soundCommand: Commands.SoundCommand;
 
   constructor(commands: Array<ICommand>) {
     super();
+    this.commands = commands;
     this.soundCommand = commands.find(command => !command.TRIGGERS.length)! as Commands.SoundCommand;
     this.registerCommands(commands);
   }
 
   public registerUserCommands(user: ClientUser) {
-    this.registerTriggers(new Commands.AvatarCommand(user));
+    const userCommands = this.commands.filter(command => (command as IUserCommand).setClientUser);
+    (userCommands as Array<IUserCommand>).forEach(command => command.setClientUser(user));
+    this.registerCommands(userCommands);
   }
 
   public execute(command: string, params: Array<string>, message: Message) {

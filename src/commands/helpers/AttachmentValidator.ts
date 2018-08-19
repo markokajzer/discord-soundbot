@@ -2,12 +2,15 @@ import { MessageAttachment } from 'discord.js';
 
 import config from '../../../config/config.json';
 
+import LocaleService from '../../i18n/LocaleService';
 import SoundUtil from '../../util/SoundUtil';
 
 export default class AttachmentValidator {
+  private readonly localeService: LocaleService;
   private acceptedExtensions: Array<string>;
 
-  constructor(acceptedExtensions = config.acceptedExtensions) {
+  constructor(localeService: LocaleService, acceptedExtensions = config.acceptedExtensions) {
+    this.localeService = localeService;
     this.acceptedExtensions = acceptedExtensions;
   }
 
@@ -18,7 +21,7 @@ export default class AttachmentValidator {
     return Promise.all([
       this.validateExtension(fileName),
       this.validateName(soundName),
-      this.validateSize(attachment.filesize, soundName),
+      this.validateSize(attachment.filesize),
       this.validateUniqueness(soundName),
       Promise.resolve()
     ]);
@@ -27,25 +30,29 @@ export default class AttachmentValidator {
   private validateExtension(fileName: string) {
     if (!this.acceptedExtensions.some(ext => fileName.endsWith(ext))) {
       const extensions = this.acceptedExtensions.join(', ');
-      return Promise.reject(`Sound has to be in accepted format, one of [${extensions}]!`);
+      const message = this.localeService.t('validation.attachment.extension', { extensions });
+      return Promise.reject(message);
     }
   }
 
   private validateName(soundName: string) {
     if (soundName.match(/[^a-z0-9]/)) {
-      return Promise.reject('Filename has to be all letters and numbers!');
+      const message = this.localeService.t('validation.attachment.format');
+      return Promise.reject(message);
     }
   }
 
-  private validateSize(filesize: number, soundName: string) {
+  private validateSize(filesize: number) {
     if (filesize > config.maximumFileSize) {
-      return Promise.reject(`${soundName} is too big!`);
+      const message = this.localeService.t('validation.attachment.size');
+      return Promise.reject(message);
     }
   }
 
   private validateUniqueness(soundName: string) {
     if (SoundUtil.soundExists(soundName)) {
-      return Promise.reject(`${soundName} already exists!`);
+      const message = this.localeService.t('validation.attachment.exists', { name: soundName });
+      return Promise.reject(message);
     }
   }
 }

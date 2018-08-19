@@ -1,0 +1,86 @@
+{
+  "url": "Use the following URL to let the bot join your server!\nhttps://discordapp.com/oauth2/authorize?client_id={clientId}&scope=bot",
+  "welcome": "**Thank you for adding me!** 🔥\n- My prefix is `{prefix}`. Want to change it? Check all configuration options here: **<https://github.com/markokajzer/discord-soundbot/wiki/Configuration>**.\n- You can see a list of commands with `{prefix}help.`\n- Get started by adding a sound. Use `{prefix}add` and drag in a sound file!\n- Need more help? Join the support server: **<https://discordapp.com/invite/JBw2BNx>**.",
+
+  "help": {
+    "headline": "Use the prefix `{prefix}` with the following commands:",
+    "commands": "Show this message",
+    "sounds": "Show available sounds",
+    "add": "Add the attached sound",
+    "play": "Play the specified sound",
+    "random": "Play random sound",
+    "rename": "Rename specified sound",
+    "remove": "Remove specified sound",
+    "download": "Send specified sound to chat",
+    "stop": "Stop playing and clear queue",
+    "leave": "Leave the channel",
+    "tag": {
+      "add": "Add tag to sound",
+      "list": "List tags of specified sound",
+      "clear": "Clear tags of specified sound"
+    },
+    "tags": "List all sounds with tags",
+    "search": "Search sounds with specified tag",
+    "mostplayed": "Show most used sounds",
+    "lastadded": "Show last added sounds",
+    "ignore": "Ignore specified user",
+    "unignore": "Unignore specified user",
+    "avatar": "Set, show or remove the avatar"
+  },
+
+  "helpers": {
+    "messageChunker": {
+      "page": "```Page {current} of {amount}```"
+    },
+    "userFinder": {
+      "error": "User not found on this server."
+    },
+    "voiceChannelFinder": {
+      "error": "Join a voice channel first!"
+    }
+  },
+
+  "validation": {
+    "attachment": {
+      "exists": "{name} already exists!",
+      "extension": "Sound has to be in accepted format, one of [{extensions}]!",
+      "format": "Filename has to be all letters and numbers!",
+      "size": "File is too big!"
+    }
+  },
+
+  "add": {
+    "success": "{name} added!",
+    "error": "Something went wrong!"
+  },
+  "avatar": {
+    "errors": {
+      "noAvatar": "Avatar not set yet. Try adding one with `{prefix}avatar` and an image!",
+      "tooFast": "You are changing your avatar too fast. Try again later."
+    },
+    "url": "Current avatar: {url}"
+  },
+  "ignore": {
+    "ignore": "Ignoring {user}!",
+    "unignore": "No longer ignoring {user}!"
+  },
+  "remove": {
+    "notFound": "{sound} not found!",
+    "success": "{sound} removed!"
+  },
+  "rename": {
+    "exists": "{newName} already exists!",
+    "notFound": "{oldName} not found!",
+    "success": "{oldName} renamed to {newName}!"
+  },
+  "search": {
+    "notFound": "No sounds found."
+  },
+  "sounds": {
+    "notFound": "You don't have any sounds yet! Try adding one with the {prefix}add command."
+  },
+  "tag": {
+    "found": "Tags for {sound}: [{tags}]",
+    "notFound": "{sound} not found!"
+  }
+}

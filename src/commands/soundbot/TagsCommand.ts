@@ -3,8 +3,8 @@ import { Message } from 'discord.js';
 import ICommand from '../base/ICommand';
 
 import DatabaseAdapter from '../../db/DatabaseAdapter';
-import MessageChunker from '../../message/MessageChunker';
 import SoundUtil from '../../util/SoundUtil';
+import MessageChunker from '../helpers/MessageChunker';
 
 export default class TagsCommand implements ICommand {
   public readonly TRIGGERS = ['tags'];

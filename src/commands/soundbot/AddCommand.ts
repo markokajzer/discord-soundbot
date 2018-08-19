@@ -23,13 +23,11 @@ export default class AddCommand implements ICommand {
 
   private saveValidAttachment(attachment: MessageAttachment) {
     return this.validator.validateAttachment(attachment)
-      .then(() => this.addSound(attachment));
+                         .then(() => this.addSound(attachment));
   }
 
   private addSound(attachment: MessageAttachment) {
     const fileName = attachment.filename.toLowerCase();
-    const soundName = fileName.split('.')[0];
-
-    return this.downloader.downloadSound(soundName, fileName, attachment.url);
+    return this.downloader.download(fileName, attachment.url);
   }
 }

@@ -1,24 +1,30 @@
 import { ClientUser, Message, Permissions } from 'discord.js';
 
-import ICommand from '../base/ICommand';
+import config from '../../../config/config.json';
 
-export default class AvatarCommand implements ICommand {
+import IUserCommand from '../base/IUserCommand';
+
+import LocaleService from '../../i18n/LocaleService';
+
+export default class AvatarCommand implements IUserCommand {
   public readonly TRIGGERS = ['avatar'];
+  public readonly NUMBER_OF_PARAMETERS = 1;
   public readonly USAGE = 'Usage: !avatar [remove]';
-  private readonly ERRORS = {
-    NO_AVATAR: 'Avatar not set yet. Try adding one with "!avatar" and an image!',
-    TOO_FAST: 'You are changing your avatar too fast. Try again later.'
-  };
-  private readonly user: ClientUser;
+  private readonly localeService: LocaleService;
+  private user!: ClientUser;
 
-  constructor(user: ClientUser) {
+  constructor(localeService: LocaleService) {
+    this.localeService = localeService;
+  }
+
+  public setClientUser(user: ClientUser) {
     this.user = user;
   }
 
   public run(message: Message, params: Array<string>) {
     if (!message.member.hasPermission(Permissions.FLAGS.ADMINISTRATOR!)) return;
 
-    if (params.length === 1 && params[0] === 'remove') {
+    if (params.length === this.NUMBER_OF_PARAMETERS && params[0] === 'remove') {
       this.user.setAvatar('');
       return;
     }
@@ -34,15 +40,15 @@ export default class AvatarCommand implements ICommand {
     }
 
     this.user.setAvatar(message.attachments.first().url)
-      .catch(() => message.channel.send(this.ERRORS.TOO_FAST));
+             .catch(() => message.channel.send(this.localeService.t('avatar.errors.tooFast')));
   }
 
   private listAvatar(message: Message) {
     if (this.user.avatarURL === null) {
-      message.channel.send(this.ERRORS.NO_AVATAR);
+      message.channel.send(this.localeService.t('avatar.errors.noAvatar', { prefix: config.prefix }));
       return;
     }
 
-    message.channel.send(`Current avatar: ${this.user.avatarURL}`);
+    message.channel.send(this.localeService.t('avatar.url', { url: this.user.avatarURL }));
   }
 }

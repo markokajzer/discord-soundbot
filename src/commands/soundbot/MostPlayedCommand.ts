@@ -17,10 +17,6 @@ export default class MostPlayedCommand implements ICommand {
   }
 
   private getMostPlayedSounds() {
-    return this.prepareMessageFromSounds();
-  }
-
-  private prepareMessageFromSounds() {
     const sounds = this.db.getMostPlayedSounds();
     const longestSoundLength = this.findLongestWord(sounds.map(sound => sound.name)).length;
     const longestCountLength = this.findLongestWord(sounds.map(sound => String(sound.count))).length;
