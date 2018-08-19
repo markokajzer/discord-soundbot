@@ -1,6 +1,6 @@
-import config from '../../config/config.json';
-
 import Discord from 'discord.js';
+
+import config from '../../config/config.json';
 
 import CommandCollection from '../commands/CommandCollection';
 import MessageHandler from '../message/MessageHandler';
@@ -9,7 +9,7 @@ export default class SoundBot extends Discord.Client {
   private readonly commands: CommandCollection;
   private readonly messageHandler: MessageHandler;
 
-  constructor(commands = new CommandCollection(), messageHandler = new MessageHandler(commands)) {
+  constructor(commands: CommandCollection, messageHandler: MessageHandler) {
     super();
     this.commands = commands;
     this.messageHandler = messageHandler;

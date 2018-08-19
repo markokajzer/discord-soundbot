@@ -1,6 +1,6 @@
-import config from '../../config/config.json';
-
 import fs from 'fs';
+
+import config from '../../config/config.json';
 
 export default class SoundUtil {
   public static getSounds() {

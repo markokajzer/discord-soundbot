@@ -26,11 +26,6 @@ rules:
     - false
   object-literal-sort-keys:
     - false
-  ordered-imports:
-    severity: warning
-    options:
-      - grouped-imports: true
-        module-source-path: basename
   quotemark:
     - true
     - single

@@ -11,7 +11,7 @@ export default class TagsCommand implements ICommand {
   private readonly db: DatabaseAdapter;
   private readonly chunker: MessageChunker;
 
-  constructor(db: DatabaseAdapter, chunker = new MessageChunker()) {
+  constructor(db: DatabaseAdapter, chunker: MessageChunker) {
     this.db = db;
     this.chunker = chunker;
   }

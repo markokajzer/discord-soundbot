@@ -1,7 +1,7 @@
-import config from '../../config/config.json';
-
 import { Message } from 'discord.js';
 import '../discord/Message';
+
+import config from '../../config/config.json';
 
 import CommandCollection from '../commands/CommandCollection';
 import DatabaseAdapter from '../db/DatabaseAdapter';
@@ -11,10 +11,10 @@ export default class MessageHandler {
   private readonly commands: CommandCollection;
   private readonly prefix: string;
 
-  constructor(commands: CommandCollection, db = new DatabaseAdapter(), prefix = config.prefix) {
+  constructor(commands: CommandCollection, db: DatabaseAdapter) {
     this.db = db;
     this.commands = commands;
-    this.prefix = prefix;
+    this.prefix = config.prefix;
   }
 
   public handle(message: Message) {

@@ -10,7 +10,7 @@ export default class AddCommand implements ICommand {
   private readonly validator: AttachmentValidator;
   private readonly downloader: SoundDownloader;
 
-  constructor(validator = new AttachmentValidator(), downloader = new SoundDownloader()) {
+  constructor(validator: AttachmentValidator, downloader: SoundDownloader) {
     this.validator = validator;
     this.downloader = downloader;
   }

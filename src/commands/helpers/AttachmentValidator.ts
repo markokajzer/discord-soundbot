@@ -1,6 +1,6 @@
-import config from '../../../config/config.json';
-
 import { MessageAttachment } from 'discord.js';
+
+import config from '../../../config/config.json';
 
 import SoundUtil from '../../util/SoundUtil';
 

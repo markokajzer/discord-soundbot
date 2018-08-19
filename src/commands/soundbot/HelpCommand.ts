@@ -1,6 +1,6 @@
-import { prefix } from '../../../config/config.json';
-
 import { Message } from 'discord.js';
+
+import config from '../../../config/config.json';
 
 import ICommand from '../base/ICommand';
 
@@ -14,7 +14,7 @@ export default class HelpCommand implements ICommand {
   private getFormattedListOfCommands() {
     return [
       '```',
-      `Use the prefix "${prefix}" with the following commands:`,
+      `Use the prefix "${config.prefix}" with the following commands:`,
       '',
       'commands             Show this message',
       'sounds               Show available sounds',

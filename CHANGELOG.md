@@ -1,3 +1,7 @@
+## Untagged (1.2.0)
+
++ Use depencency injection
+
 ## 1.1.0 (2018-08-17)
 
 + Added `!download` command

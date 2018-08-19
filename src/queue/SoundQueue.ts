@@ -1,10 +1,10 @@
-import config from '../../config/config.json';
-
 import { VoiceConnection } from 'discord.js';
 
+import config from '../../config/config.json';
+
 import DatabaseAdapter from '../db/DatabaseAdapter';
-import QueueItem from './QueueItem';
 import SoundUtil from '../util/SoundUtil';
+import QueueItem from './QueueItem';
 
 export default class SoundQueue {
   private readonly db: DatabaseAdapter;

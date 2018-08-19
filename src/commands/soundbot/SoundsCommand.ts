@@ -9,7 +9,7 @@ export default class SoundsCommand implements ICommand {
   public readonly TRIGGERS = ['sounds'];
   private readonly chunker: MessageChunker;
 
-  constructor(chunker = new MessageChunker()) {
+  constructor(chunker: MessageChunker) {
     this.chunker = chunker;
   }
 

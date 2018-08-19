@@ -10,13 +10,15 @@ import VoiceChannelFinder from '../helpers/VoiceChannelFinder';
 export default class RandomCommand implements ICommand {
   public readonly TRIGGERS = ['random'];
   private readonly queue: SoundQueue;
+  private readonly voiceChannelFinder: VoiceChannelFinder;
 
-  constructor(queue: SoundQueue) {
+  constructor(queue: SoundQueue, voiceChannelFinder: VoiceChannelFinder) {
     this.queue = queue;
+    this.voiceChannelFinder = voiceChannelFinder;
   }
 
-  public run(message: Message, _: Array<string>, voiceChannelFinder = new VoiceChannelFinder()) {
-    const voiceChannel = voiceChannelFinder.getVoiceChannelFromMessageAuthor(message);
+  public run(message: Message, _: Array<string>) {
+    const voiceChannel = this.voiceChannelFinder.getVoiceChannelFromMessageAuthor(message);
     if (!voiceChannel) return;
 
     const sounds = SoundUtil.getSounds();
