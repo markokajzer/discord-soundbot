@@ -1,5 +1,7 @@
 ## Untagged (1.2.0)
 
++ Allow localization into other languages
+  + Added German translation
 + Use depencency injection
 
 ## 1.1.0 (2018-08-17)

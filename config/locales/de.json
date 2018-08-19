@@ -1,0 +1,86 @@
+{
+  "url": "Benutze den folgenden Link, um den Bot deinem Server hinzuzufügen!\nhttps://discordapp.com/oauth2/authorize?client_id={clientId}&scope=bot",
+  "welcome": "**Danke, dass du mich hinzugefügt hast!** 🔥\n- Der Prefix ist `{prefix}`. Willst du ihn ändern? Schau dir hier alle Konfigurationsoptionen an: **<https://github.com/markokajzer/discord-soundbot/wiki/Configuration>**.\n- Mit `{prefix}help kannst du eine liste aller Kommandos sehen.`\n- Füge einen Sound hinzu. Benutze `{prefix}add` und ziehe eine Sounddatei ins Chatfenster!\n- Brauchst du mehr Hilfe? Komm auf den Support Discord-Server: **<https://discordapp.com/invite/JBw2BNx>**.",
+
+  "help": {
+    "headline": "Benutze den Prefix `{prefix}` mit den folgenden Kommandos:",
+    "commands": "Zeige diese Nachricht",
+    "sounds": "Zeige alle verfügbaren Sounds",
+    "add": "Füge den beigefügten Sound hinzu",
+    "play": "Spiele den angegebenen Sound",
+    "random": "Spiele einen zufälligen Sound",
+    "rename": "Benenne den angegebenen Sound",
+    "remove": "Lösche den angegebenen Sound",
+    "download": "Sende den angegebenen Sound in den Chat",
+    "stop": "Hör auf zu spielen",
+    "leave": "Verlasse den Channel",
+    "tag": {
+      "add": "Füge dem Sound einen Tag hinzu",
+      "list": "Zeige Tags des angegebenen Sounds",
+      "clear": "Lösche Tags des angegebenen Sounds"
+    },
+    "tags": "Zeige alle Sound mit ihren Tags",
+    "search": "Suche Sounds mit dem angegebenen Tag",
+    "mostplayed": "Zeige die meistgespielten Sounds",
+    "lastadded": "Zeige die zuletzt hinzugefügten Sounds",
+    "ignore": "Ignoriere angegebenen Benutzer",
+    "unignore": "Ignore den angegebenen Benutzer nicht länger",
+    "avatar": "Setze, zeige oder lösche den Avatar"
+  },
+
+  "helpers": {
+    "messageChunker": {
+      "page": "```Seite {current} von {amount}```"
+    },
+    "userFinder": {
+      "error": "Benutzer konnte auf dem Server nicht gefunden werden."
+    },
+    "voiceChannelFinder": {
+      "error": "Gehe zuerst in einen Channel!"
+    }
+  },
+
+  "validation": {
+    "attachment": {
+      "exists": "{name} existiert bereits!",
+      "extension": "Das Format von Sound muss unter den akzeptierten sein ({extensions})!",
+      "format": "Der Name der Datei darf nur aus Zahlen und Buchstaben bestehen!",
+      "size": "Die Datei ist zu groß!"
+    }
+  },
+
+  "add": {
+    "success": "{name} hinzugefügt!",
+    "error": "Etwas ist schiefgelaufen!"
+  },
+  "avatar": {
+    "errors": {
+      "noAvatar": "Avatar noch nicht gesetzt. Versuche einen mit `{prefix}avatar` und einem Bild zu setzen!",
+      "tooFast": "You wechselst den Avatar zu schnell. Versuche es später noch einmal."
+    },
+    "url": "Derzeitiger Avatar: {url}"
+  },
+  "ignore": {
+    "ignore": "Ignoriere {user}!",
+    "unignore": "Ignoriere {user} nicht länger!"
+  },
+  "remove": {
+    "notFound": "{sound} nicht gefunden!",
+    "success": "{sound} gelöscht!"
+  },
+  "rename": {
+    "exists": "{newName} existiert bereits!",
+    "notFound": "{oldName} nicht gefunden!",
+    "success": "{oldName} zu {newName} umbenannt!"
+  },
+  "search": {
+    "notFound": "Kein Sound gefunden."
+  },
+  "sounds": {
+    "notFound": "Du hast noch keine Sounds! Füge einen mit dem {prefix}add Kommando hinzu."
+  },
+  "tag": {
+    "found": "Tags für {sound}: [{tags}]",
+    "notFound": "{sound} nicht gefunden!"
+  }
+}

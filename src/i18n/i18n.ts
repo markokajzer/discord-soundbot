@@ -2,8 +2,7 @@ import i18n = require('i18n');
 import path from 'path';
 
 i18n.configure({
-  locales: ['en'],
-  defaultLocale: 'en',
+  locales: ['en', 'de'],
   directory: path.join(__dirname, '..', '..', 'config', 'locales'),
   objectNotation: true
 });
