@@ -2,9 +2,9 @@ import Discord from 'discord.js';
 
 import config from '../../config/config.json';
 
-import CommandCollection from '../commands/CommandCollection';
 import LocaleService from '../i18n/LocaleService';
-import MessageHandler from '../message/MessageHandler';
+import CommandCollection from './CommandCollection';
+import MessageHandler from './MessageHandler';
 
 export default class SoundBot extends Discord.Client {
   private readonly localeService: LocaleService;

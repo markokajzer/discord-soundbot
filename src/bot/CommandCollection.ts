@@ -1,9 +1,9 @@
 import { ClientUser, Collection, Message } from 'discord.js';
 
-import ICommand from './base/ICommand';
-import IUserCommand from './base/IUserCommand';
+import ICommand from '../commands/base/ICommand';
+import IUserCommand from '../commands/base/IUserCommand';
 
-import * as Commands from './Commands';
+import * as Commands from '../commands/Commands';
 
 export default class CommandCollection extends Collection<string, ICommand> {
   private readonly commands: Array<ICommand>;

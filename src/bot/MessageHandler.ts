@@ -3,8 +3,8 @@ import '../discord/Message';
 
 import config from '../../config/config.json';
 
-import CommandCollection from '../commands/CommandCollection';
 import DatabaseAdapter from '../db/DatabaseAdapter';
+import CommandCollection from './CommandCollection';
 
 export default class MessageHandler {
   private readonly db: DatabaseAdapter;
