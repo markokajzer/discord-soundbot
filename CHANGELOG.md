@@ -2,7 +2,7 @@
 
 + Allow localization into other languages
   + Added German translation
-+ Use depencency injection
++ Use depencency injection via `awilix` package
 
 ## 1.1.0 (2018-08-17)
 

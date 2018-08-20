@@ -31,7 +31,7 @@ The bot can be installed manually or via Docker.
 
 #### Building manually
 
-+ Install **Node.js v6.0.0** or newer and **FFmpeg**.
++ Install **Node.js v8.0.0** or newer and **FFmpeg**.
 + Install the bot's dependencies with `npm install`.
 + Run the bot with `npm start`.
 
@@ -42,6 +42,7 @@ Need more details? You can find more installation guides for [Unix](../../wiki/U
 + Simply clone the repo and run `docker build -t soundbot .` inside the folder.
 + Afterwards start the bot via `docker run soundbot`.
 + To run the container in the background use `docker run -d soundbot`.
++ *Note*: Using this method, the bot will lose all sounds when restarting.
 
 
 ### Adding the bot to your server
@@ -53,7 +54,7 @@ Use the following URL to let the bot join your server!
 https://discordapp.com/oauth2/authorize?client_id={YOUR_CLIENT_ID}&scope=bot
 ```
 
-Follow the link and allow your bot to join your Discord server. The bot will leave a message containing additional information.
+Follow the link and allow the bot to join your Discord server.
 
 
 
