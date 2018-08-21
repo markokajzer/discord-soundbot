@@ -15,7 +15,8 @@ rules:
     - true
     - ignore-same-line
   interface-name:
-    - false
+    - true
+    - always-prefix
   no-console:
     - true
     - log
@@ -40,4 +41,6 @@ rules:
       method: never
       constructor: never
   trailing-comma:
-    - false
+    - true
+    - multiline: never
+      singleline: never
