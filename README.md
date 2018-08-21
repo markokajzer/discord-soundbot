@@ -64,13 +64,16 @@ Type `!help` or `!commands` to print a list of available commands.
 
 You can add, rename, download, tag, play, and remove sounds, ignore users, set the avatar, and more.
 
+*Note*: The commands `!rename`, `!remove`, `!ignore`, `!unignore`, `!avatar` and `!tag <sound> clear` are restricted and can only be accessed by **administrators**.
+
+
 ### Adding sounds
 
 You can add sounds to the bot by typing `!add` and attaching a file. Accepted file formats and a limit to the size are configurable. The name of the sound can only contain alphanumeric characters.
 
 ### Playing sounds
 
-Type `!sounds` to get a list of all sounds that are available to your bot. Play any sound by prefixing it with `!`, e.g. `!rickroll`. Play a random sound with `!random`.
+Type `!sounds` to get a list of all sounds that are available to your bot. Play any sound by prefixing it with your prefix, e.g. `!rickroll`. Play a random sound with `!random`.
 
 All sounds will be added to a queue and played in succession. To halt the playback and empty the queue type `!stop`.
 
@@ -80,9 +83,9 @@ When your library of sounds gets too big and you forget what kinds of sounds you
 
 You can add tags to sounds with `!tag <sound> <tag>`. You can specify one or more sounds. You can get the tags of a sound with `!tag <sound>`. You can also remove all tags from a sound with `!tag <sound> clear`.
 
-To get all sounds with their respective tags use `!tags`.
-
 To search for specific sounds use `!search <tag>`. It will look for the name of the sound as well as tags that you might have added to the sound.
+
+To see all sounds with their respective tags use `!tags`.
 
 ### Renaming sounds
 
@@ -103,10 +106,6 @@ Users can be ignore from using **any** command by the `!ignore <user>` command w
 ### Setting an avatar
 
 Use `!avatar` and attach an image to set the bot's avatar. You can remove the avatar to go back to the default by using the optional `remove` parameter as in `!avatar remove`.
-
-### Restricted commands
-
-The commands `!rename`, `!remove`, `!ignore`, `!unignore`, `!avatar` and `!tag <sound> clear` are restricted and can only be accessed by administrators.
 
 
 
