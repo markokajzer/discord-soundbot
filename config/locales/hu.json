@@ -1,0 +1,86 @@
+{
+  "url": "Használd a következõ linket a bot meghívására \nhttps://discordapp.com/oauth2/authorize?client_id={clientId}&scope=bot",
+  "welcome": "**Köszi szépen hogy ezt a botot használod**\n- A prefix amit használni fogsz az a `{prefix}`. Meg akarod változtatni? Itt találod az összes konfigurációs beállítást **<https://github.com/markokajzer/discord-soundbot/wiki/Configuration>**.\n- Lista az összes elérhetõ parancsról `{prefix}help.`\n- Kezdetbed próbálj meg feltölteni pár hangot. Így tudod `{prefix}add` és csatold a hangfáljt a szöveghez!\n- Kérdésed van? Csatlakozz Discord szerverünkhöz: **<https://discordapp.com/invite/JBw2BNx>**.",
+
+  "help": {
+    "headline": "Elõtag használata `{prefix}` a következõ parancsokkal:",
+    "commands": "Szöveg kimutatása",
+    "sounds": "Elérhetõ hangok",
+    "add": "Szöveghez csatolt hang hozzáadása",
+    "play": "Hang lejátszása",
+    "random": "Véletlen szám lejátszása",
+    "rename": "Hang átnevezése",
+    "remove": "Hang eltávolítása",
+    "download": "Hang elküldése",
+    "stop": "Hang lejátszásának befejezése és várakozólista törlése",
+    "leave": "Szoba elhagyása",
+    "tag": {
+      "add": "Megjegyzés adása a hangokhoz",
+      "list": "Megjegyzések listája a hangokról",
+      "clear": "Megjegyzés törlése"
+    },
+    "tags": "Hangok listája megjegyzésekkel",
+    "search": "Hangok keresése megjegyzés szerint",
+    "mostplayed": "Legtöbbes játszott hang",
+    "lastadded": "Legutóbb játszott hang",
+    "ignore": "Tag figyelmenkívülhagyása",
+    "unignore": "Tag figyelmenkívülhagyásának visszavonása",
+    "avatar": "Beállítani, mutatni vagy törölni az avatárt"
+  },
+
+  "helpers": {
+    "messageChunker": {
+      "page": "```Oldal: {current}/{amount}```"
+    },
+    "userFinder": {
+      "error": "Felhasználó nem található a szerveren."
+    },
+    "voiceChannelFinder": {
+      "error": "Lépj egy szobába elõször!"
+    }
+  },
+
+  "validation": {
+    "attachment": {
+      "exists": "{name} már elérhetõ!",
+      "extension": "A hang egy elfogadott formátumba kell lennije: [{extensions}]!",
+      "format": "A fájlnév csak betû és számkombinációkat tartalmazhat!",
+      "size": "A fájl túl nagy!"
+    }
+  },
+
+  "add": {
+    "success": "{name} hozzáadva!",
+    "error": "Hiba"
+  },
+  "avatar": {
+    "errors": {
+      "noAvatar": "Avatár nincs beállítva jelenleg. Próbálj beállítani egyet a `{prefix}avatar` paranccsal!",
+      "tooFast": "Túl gyorsan változtatot az avatárt. Próbáld meg késõbb."
+    },
+    "url": "Current avatar: {url}"
+  },
+  "ignore": {
+    "ignore": "{user} Figyelmenkívülhagyása",
+    "unignore": "{user} Nincs tovább figyelmenkívülhagyva!"
+  },
+  "remove": {
+    "notFound": "{sound} nem taláható.",
+    "success": "{sound} törölve!"
+  },
+  "rename": {
+    "exists": "{newName} már használja valaki ezt a nevet.",
+    "notFound": "{oldName} nem található.",
+    "success": "{oldName} átnevezve {newName}-re!"
+  },
+  "search": {
+    "notFound": "Nincsenek betöltve hangok."
+  },
+  "sounds": {
+    "notFound": "Még nem adtál fáljokat meg, viszont tudsz megadni {prefix}add paranccsal."
+  },
+  "tag": {
+    "found": "Megjegyzés {sound}: [{tags}]",
+    "notFound": "{sound} nem található!"
+  }
+}

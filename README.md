@@ -112,3 +112,7 @@ Use `!avatar` and attach an image to set the bot's avatar. You can remove the av
 ## Contributing
 
 This bot is a dear passion project of mine. If you have any suggestions for new features or improvements, feel free to open an issue or talk to me on Discord. I'll be glad to look into it!
+
+In particular, thanks to these splendid lads for providing localization:
+
++ Hungarian, [@stroopwafel1337](https://github.com/stroopwafel1337) (aka alma)
