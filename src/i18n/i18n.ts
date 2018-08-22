@@ -3,6 +3,7 @@ import path from 'path';
 
 i18n.configure({
   locales: ['en', 'de', 'hu'],
+  defaultLocale: 'en',
   directory: path.join(__dirname, '..', '..', 'config', 'locales'),
   objectNotation: true
 });
