@@ -1,8 +1,8 @@
 {
   "clientID": "YOUR_CLIENT_ID",
   "token": "YOUR_APP_BOT_USER_TOKEN",
-  "language": "en",
 
+  "language": "en",
   "prefix": "!",
   "acceptedExtensions": [".mp3", ".wav"],
   "maximumFileSize": 1000000,
