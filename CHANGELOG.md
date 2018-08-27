@@ -1,7 +1,10 @@
-## Untagged (1.2.0)
+## 1.2.0 (2018-08-27)
 
 + Allow localization into other languages
+  + Added French translation
   + Added German translation
+  + Added Hungarian translation
+  + Added Japanese translation
 + Use depencency injection via `awilix` package
 
 ## 1.1.0 (2018-08-17)
