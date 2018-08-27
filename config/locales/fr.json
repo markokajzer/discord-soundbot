@@ -1,0 +1,86 @@
+{
+  "url": "Utilisez le lien suivant pour inviter le bot sur votre serveur !\nhttps://discordapp.com/oauth2/authorize?client_id={clientId}&scope=bot",
+  "welcome": "**Merci de m'avoir ajouté !** 🔥\n- Mon préfixe est `{prefix}`. Voulez-vous le changer ? Vous pouvez trouver toutes les options de configuration ici : **<https://github.com/markokajzer/discord-soundbot/wiki/Configuration>**.\n- Vous pouvez afficher la liste des commandes avec : `{prefix}help.`\n- Pour commencer, ajoutez un son. Utilisez `{prefix}add` glissez-déposez un fichier son !\n- Besoin d'aide ? Rejoignez le serveur de support : **<https://discordapp.com/invite/JBw2BNx>**.",
+
+  "help": {
+    "headline": "Utilisez le préfixe `{prefix}` avec les commandes suivantes :",
+    "commands": "Afficher ce message",
+    "sounds": "Afficher la liste des sons disponibles",
+    "add": "Ajouter le son joint (uploadé)",
+    "play": "Jouer le son spécifié",
+    "random": "Jouer un son aléatoire",
+    "rename": "Renommer le son spécifié",
+    "remove": "Supprimer le son spécifié",
+    "download": "Envoyer le son spécifié dant la discussion",
+    "stop": "Arrêter le son et vider la file de lecture",
+    "leave": "Quitter le salon",
+    "tag": {
+      "add": "Ajouter un tag au son",
+      "list": "Affiche la liste des tags associé au son spécifié",
+      "clear": "Supprimer les tags du son spécifié"
+    },
+    "tags": "Affiche la liste de tous les sons avec des tags",
+    "search": "Rechercher les sons qui ont le tags spécifié",
+    "mostplayed": "Affiche la liste des sons les plus joués",
+    "lastadded": "Affiche les sons ajoutés le plus récemment",
+    "ignore": "Ignorer l'utilisateur spécifié",
+    "unignore": "Arrêter d'ignorer l'utilisateur spéficié",
+    "avatar": "Définir, afficher ou supprimer l'avatar"
+  },
+
+  "helpers": {
+    "messageChunker": {
+      "page": "```Page {current} de {amount}```"
+    },
+    "userFinder": {
+      "error": "Utilisateur introuvable sur ce serveur."
+    },
+    "voiceChannelFinder": {
+      "error": "Commencez par rejoindre un salon vocal !"
+    }
+  },
+
+  "validation": {
+    "attachment": {
+      "exists": "{name} existe déjà !",
+      "extension": "Le fichier son doit être dans un des formats suivants : [{extensions}] !",
+      "format": "Le nom de fichier ne doit contenir que des chiffres et des lettres !",
+      "size": "Le fichier est trop gros !"
+    }
+  },
+
+  "add": {
+    "success": "{name} ajouté !",
+    "error": "Oups, une erreur s'est produite !"
+  },
+  "avatar": {
+    "errors": {
+      "noAvatar": "L'avatar n'a pas été défini. Essayez d'en ajouter un avec `{prefix}avatar` et une image !",
+      "tooFast": "Vous changer votre avatar trop rapidement. Réessayez dans quelques instants."
+    },
+    "url": "Avatar en place: {url}"
+  },
+  "ignore": {
+    "ignore": "L'utilisateur {user} est maintenant ignoré !",
+    "unignore": "L'utilisateur {user} n'est plus ignoré !"
+  },
+  "remove": {
+    "notFound": "{sound} introuvable !",
+    "success": "{sound} supprimé !"
+  },
+  "rename": {
+    "exists": "{newName} existe déjà !",
+    "notFound": "{oldName} introuvable !",
+    "success": "{oldName} a été renommé en {newName} !"
+  },
+  "search": {
+    "notFound": "Aucun son trouvé."
+  },
+  "sounds": {
+    "notFound": "Vous n'avez pas encore de sons ! Essayez d'en ajouter avec la commande {prefix}add."
+  },
+  "tag": {
+    "found": "Tags pour {sound}: [{tags}]",
+    "notFound": "{sound} introuvable !"
+  }
+}
