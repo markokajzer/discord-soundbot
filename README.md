@@ -35,14 +35,15 @@ The bot can be installed manually or via Docker.
 + Install the bot's dependencies with `npm install`.
 + Run the bot with `npm start`.
 
-Need more details? You can find more installation guides for [Unix](../../wiki/Unix) (including your Raspberry Pi), [macOS](../../wiki/macOS), and [Windows](../../wiki/Windows).
+Need more details? You can find more detailed installation guides for [Unix](../../wiki/Unix) (including your Raspberry Pi), [macOS](../../wiki/macOS), and [Windows](../../wiki/Windows).
 
 #### Building via Docker
+
+*Note*: Using this method, the bot will lose all sounds when restarting because the Docker container has its own file system.
 
 + Simply clone the repo and run `docker build -t soundbot .` inside the folder.
 + Afterwards start the bot via `docker run soundbot`.
 + To run the container in the background use `docker run -d soundbot`.
-+ *Note*: Using this method, the bot will lose all sounds when restarting.
 
 
 ### Adding the bot to your server
