@@ -8,5 +8,6 @@ declare module '*.json' {
   const volume: number;
   const deleteMessages: boolean;
   const stayInChannel: boolean;
+  const deafen: boolean;
   const game: string;
 }

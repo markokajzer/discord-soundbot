@@ -9,5 +9,6 @@
   "volume": 1.0,
   "deleteMessages": false,
   "stayInChannel": false,
+  "deafen": false,
   "game": ""
 }

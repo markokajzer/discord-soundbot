@@ -39,6 +39,8 @@ export default class SoundQueue {
     const sound = SoundUtil.getPathForSound(this.current.sound);
 
     this.current.channel.join().then(connection => {
+      connection.channel.guild.me.setDeaf(config.deafen);  // Can only deafen while in channel
+
       connection.playFile(sound, { volume: config.volume })
                 .on('end', () => this.onFinishedPlayingSound(connection));
     }).catch(error => {
