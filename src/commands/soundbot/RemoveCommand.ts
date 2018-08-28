@@ -2,7 +2,7 @@ import fs from 'fs';
 
 import { Message, Permissions } from 'discord.js';
 
-import ICommand from '../base/ICommand';
+import ICommand from './base/ICommand';
 
 import DatabaseAdapter from '../../db/DatabaseAdapter';
 import LocaleService from '../../i18n/LocaleService';

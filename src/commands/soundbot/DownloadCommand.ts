@@ -1,6 +1,6 @@
 import { Attachment, Message } from 'discord.js';
 
-import ICommand from '../base/ICommand';
+import ICommand from './base/ICommand';
 
 import SoundUtil from '../../util/SoundUtil';
 

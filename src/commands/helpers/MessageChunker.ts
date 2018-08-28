@@ -3,6 +3,7 @@ import LocaleService from '../../i18n/LocaleService';
 export default class MessageChunker {
   private readonly MAX_MESSAGE_LENGTH = 2000;
   private readonly CODE_MARKER_LENGTH = '```'.length * 2;
+
   private readonly localeService: LocaleService;
 
   constructor(localeService: LocaleService) {

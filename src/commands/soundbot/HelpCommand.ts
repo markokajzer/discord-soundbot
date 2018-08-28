@@ -2,7 +2,7 @@ import { Message } from 'discord.js';
 
 import config from '../../../config/config.json';
 
-import ICommand from '../base/ICommand';
+import ICommand from './base/ICommand';
 
 import LocaleService from '../../i18n/LocaleService';
 

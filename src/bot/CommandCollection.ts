@@ -1,7 +1,7 @@
 import { ClientUser, Collection, Message } from 'discord.js';
 
-import ICommand from '../commands/base/ICommand';
-import IUserCommand from '../commands/base/IUserCommand';
+import ICommand from '../commands/soundbot/base/ICommand';
+import IUserCommand from '../commands/soundbot/base/IUserCommand';
 
 import * as Commands from '../commands/Commands';
 

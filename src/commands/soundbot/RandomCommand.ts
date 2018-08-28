@@ -1,6 +1,6 @@
 import { Message } from 'discord.js';
 
-import ICommand from '../base/ICommand';
+import ICommand from './base/ICommand';
 
 import QueueItem from '../../queue/QueueItem';
 import SoundQueue from '../../queue/SoundQueue';

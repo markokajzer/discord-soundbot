@@ -1,6 +1,6 @@
 import { Message, MessageAttachment } from 'discord.js';
 
-import ICommand from '../base/ICommand';
+import ICommand from './base/ICommand';
 
 import AttachmentValidator from '../helpers/AttachmentValidator';
 import SoundDownloader from '../helpers/SoundDownloader';

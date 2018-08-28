@@ -2,7 +2,7 @@ import { ClientUser, Message, Permissions } from 'discord.js';
 
 import config from '../../../config/config.json';
 
-import IUserCommand from '../base/IUserCommand';
+import IUserCommand from './base/IUserCommand';
 
 import LocaleService from '../../i18n/LocaleService';
 

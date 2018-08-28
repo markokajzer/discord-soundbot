@@ -2,7 +2,7 @@ import fs from 'fs';
 
 import { Message } from 'discord.js';
 
-import ICommand from '../base/ICommand';
+import ICommand from './base/ICommand';
 
 import SoundUtil from '../../util/SoundUtil';
 

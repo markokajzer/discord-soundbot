@@ -26,9 +26,9 @@ container.register({
 });
 
 container.loadModules([
-  'bot/*',
-  'commands/helpers/*',
-  'commands/soundbot/*'
+  'bot/*.js',
+  'commands/helpers/**/*.js',
+  'commands/soundbot/**/*.js'
 ], {
   cwd: 'dist/',
   formatName: 'camelCase',
