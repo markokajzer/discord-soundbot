@@ -270,6 +270,10 @@ has-flag@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/has-flag/-/has-flag-3.0.0.tgz#b5d454dc2199ae225699f3467e5a07f3b955bafd"
 
+html-entities@^1.1.3:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/html-entities/-/html-entities-1.2.1.tgz#0df29351f0721163515dfb9e5543e5f6eed5162f"
+
 i18n@^0.8.3:
   version "0.8.3"
   resolved "https://registry.yarnpkg.com/i18n/-/i18n-0.8.3.tgz#2d8cf1c24722602c2041d01ba6ae5eaa51388f0e"
@@ -340,6 +344,12 @@ lower-case@^1.1.1:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/lower-case/-/lower-case-1.1.4.tgz#9a2cabd1b9e8e0ae993a4bf7d5875c39c42e8eac"
 
+m3u8stream@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/m3u8stream/-/m3u8stream-0.3.0.tgz#9b8255ad48b47d6069e755f22c84fce04c4e2697"
+  dependencies:
+    miniget "^1.1.0"
+
 make-plural@^3.0.3, make-plural@~3.0.3:
   version "3.0.6"
   resolved "https://registry.yarnpkg.com/make-plural/-/make-plural-3.0.6.tgz#2033a03bac290b8f3bb91258f65b9df7e8b01ca7"
@@ -361,6 +371,10 @@ messageformat@^0.3.1:
     make-plural "~3.0.3"
     nopt "~3.0.6"
     watchr "~2.4.13"
+
+miniget@^1.1.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/miniget/-/miniget-1.3.0.tgz#839c81b237c793baa21158081980fe424c05416c"
 
 "minimatch@2 || 3", minimatch@^3.0.4:
   version "3.0.4"
@@ -464,6 +478,10 @@ safefs@^3.1.2:
   resolved "https://registry.yarnpkg.com/safefs/-/safefs-3.2.2.tgz#8170c1444d7038e08caea05a374fae2fa349e15c"
   dependencies:
     graceful-fs "*"
+
+sax@^1.1.3:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
 
 scandirectory@^2.5.0:
   version "2.5.0"
@@ -602,6 +620,15 @@ ws@^4.0.0:
 xregexp@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/xregexp/-/xregexp-2.0.0.tgz#52a63e56ca0b84a7f3a5f3d61872f126ad7a5943"
+
+ytdl-core@^0.24.0:
+  version "0.24.0"
+  resolved "https://registry.yarnpkg.com/ytdl-core/-/ytdl-core-0.24.0.tgz#297703e6d6c825dfab0f614df001ef0f29c8eaef"
+  dependencies:
+    html-entities "^1.1.3"
+    m3u8stream "^0.3.0"
+    miniget "^1.1.0"
+    sax "^1.1.3"
 
 zlib-sync@^0.1.4:
   version "0.1.4"

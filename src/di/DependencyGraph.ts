@@ -20,7 +20,6 @@ container.register({
   db: awilix.asClass(DatabaseAdapter).singleton(),
   queue: awilix.asClass(SoundQueue).singleton(),
 
-  validator: awilix.aliasTo('attachmentValidator'),
   downloader: awilix.aliasTo('soundDownloader'),
   chunker: awilix.aliasTo('messageChunker')
 });

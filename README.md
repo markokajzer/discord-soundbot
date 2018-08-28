@@ -72,6 +72,8 @@ You can add, rename, download, tag, play, and remove sounds, ignore users, set t
 
 You can add sounds to the bot by typing `!add` and attaching a file. Accepted file formats and a limit to the size are configurable. The name of the sound can only contain alphanumeric characters.
 
+You can instead also add a sound from YouTube with `!add <name> <link>`.
+
 ### Playing sounds
 
 Type `!sounds` to get a list of all sounds that are available to your bot. Play any sound by prefixing it with your prefix, e.g. `!rickroll`. Play a random sound with `!random`.

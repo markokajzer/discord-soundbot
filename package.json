@@ -23,7 +23,8 @@
     "discord.js": "^11.4.2",
     "i18n": "^0.8.3",
     "lowdb": "^1.0.0",
-    "node-opus": "^0.3.0"
+    "node-opus": "^0.3.0",
+    "ytdl-core": "^0.24.0"
   },
   "optionalDependencies": {
     "erlpack": "discordapp/erlpack",

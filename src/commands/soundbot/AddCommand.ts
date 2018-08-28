@@ -1,33 +1,24 @@
-import { Message, MessageAttachment } from 'discord.js';
+import { Message } from 'discord.js';
 
 import ICommand from './base/ICommand';
 
-import AttachmentValidator from '../helpers/AttachmentValidator';
-import SoundDownloader from '../helpers/SoundDownloader';
+import AttachmentDownloader from '../helpers/downloader/AttachmentDownloader';
+import IDownloader from '../helpers/downloader/IDownloader';
+import YoutubeDownloader from '../helpers/downloader/YoutubeDownloader';
 
 export default class AddCommand implements ICommand {
   public readonly TRIGGERS = ['add'];
-  private readonly validator: AttachmentValidator;
-  private readonly downloader: SoundDownloader;
+  private readonly attachmentDownloader: AttachmentDownloader;
+  private readonly youtubeDownloader: YoutubeDownloader;
 
-  constructor(validator: AttachmentValidator, downloader: SoundDownloader) {
-    this.validator = validator;
-    this.downloader = downloader;
+  constructor(attachmentDownloader: AttachmentDownloader, youtubeDownloader: YoutubeDownloader) {
+    this.attachmentDownloader = attachmentDownloader;
+    this.youtubeDownloader = youtubeDownloader;
   }
 
   public run(message: Message) {
-    message.attachments.forEach(attachment =>
-      this.saveValidAttachment(attachment).then(result => message.channel.send(result))
-                                          .catch(result => message.channel.send(result)));
-  }
-
-  private saveValidAttachment(attachment: MessageAttachment) {
-    return this.validator.validateAttachment(attachment)
-                         .then(() => this.addSound(attachment));
-  }
-
-  private addSound(attachment: MessageAttachment) {
-    const fileName = attachment.filename.toLowerCase();
-    return this.downloader.download(fileName, attachment.url);
+    let handler = this.attachmentDownloader as IDownloader;
+    if (!message.attachments.size) handler = this.youtubeDownloader;
+    handler.handle(message);
   }
 }

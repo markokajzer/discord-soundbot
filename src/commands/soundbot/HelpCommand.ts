@@ -27,6 +27,7 @@ export default class HelpCommand implements ICommand {
       `commands             ${this.localeService.t('help.commands')}`,
       `sounds               ${this.localeService.t('help.sounds')}`,
       `add                  ${this.localeService.t('help.add')}`,
+      `add <name> <link>    ${this.localeService.t('help.add')}`,
       `<sound>              ${this.localeService.t('help.play')}`,
       `random               ${this.localeService.t('help.random')}`,
       `rename <old> <new>   ${this.localeService.t('help.rename')}`,
