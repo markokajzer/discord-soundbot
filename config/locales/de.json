@@ -4,6 +4,7 @@
 
   "help": {
     "headline": "Benutze den Prefix `{prefix}` mit den folgenden Kommandos:",
+    "welcome": "Zeige Willkommensnachricht",
     "commands": "Zeige diese Nachricht",
     "sounds": "Zeige alle verfügbaren Sounds",
     "add": "Füge den beigefügten Sound hinzu",

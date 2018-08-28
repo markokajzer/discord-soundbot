@@ -39,7 +39,7 @@ container.loadModules([
 });
 
 container.register({
-  commandCollection: awilix.asClass(CommandCollection).inject(() => ({
+  commands: awilix.asClass(CommandCollection).inject(() => ({
     commands: [
       container.cradle.addCommand,
       container.cradle.renameCommand,
@@ -56,6 +56,7 @@ container.register({
 
       container.cradle.stopCommand,
 
+      container.cradle.welcomeCommand,
       container.cradle.helpCommand,
       container.cradle.lastAddedCommand,
       container.cradle.mostPlayedCommand,
@@ -64,8 +65,7 @@ container.register({
 
       container.cradle.avatarCommand
     ]
-  })),
-  commands: awilix.aliasTo('commandCollection')
+  }))
 });
 
 export default container;

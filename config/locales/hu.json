@@ -4,6 +4,7 @@
 
   "help": {
     "headline": "Elõtag használata `{prefix}` a következõ parancsokkal:",
+    "welcome": "Üdvözlõ üzenet megjelenítése",
     "commands": "Szöveg kimutatása",
     "sounds": "Elérhetõ hangok",
     "add": "Szöveghez csatolt hang hozzáadása",

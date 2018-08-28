@@ -4,6 +4,7 @@
 
   "help": {
     "headline": "Use the prefix `{prefix}` with the following commands:",
+    "welcome": "Show welcome message",
     "commands": "Show this message",
     "sounds": "Show available sounds",
     "add": "Add the attached sound",

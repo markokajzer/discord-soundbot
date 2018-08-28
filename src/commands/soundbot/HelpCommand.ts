@@ -23,6 +23,7 @@ export default class HelpCommand implements ICommand {
       '```',
       this.localeService.t('help.headline', { prefix: config.prefix }),
       '',
+      `welcome              ${this.localeService.t('help.welcome')}`,
       `commands             ${this.localeService.t('help.commands')}`,
       `sounds               ${this.localeService.t('help.sounds')}`,
       `add                  ${this.localeService.t('help.add')}`,
