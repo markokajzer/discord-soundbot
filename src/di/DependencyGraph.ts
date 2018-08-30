@@ -18,10 +18,7 @@ container.register({
   localeService: awilix.asClass(LocaleService).singleton(),
 
   db: awilix.asClass(DatabaseAdapter).singleton(),
-  queue: awilix.asClass(SoundQueue).singleton(),
-
-  downloader: awilix.aliasTo('soundDownloader'),
-  chunker: awilix.aliasTo('messageChunker')
+  queue: awilix.asClass(SoundQueue).singleton()
 });
 
 container.loadModules([
@@ -38,6 +35,7 @@ container.loadModules([
 });
 
 container.register({
+  chunker: awilix.aliasTo('messageChunker'),
   commands: awilix.asClass(CommandCollection).inject(() => ({
     commands: [
       container.cradle.addCommand,
