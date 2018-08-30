@@ -8,13 +8,13 @@ import QueueItem from './QueueItem';
 
 export default class SoundQueue {
   private readonly db: DatabaseAdapter;
-  private readonly queue: Array<QueueItem>;
-  private current: QueueItem | null;
+  private queue: Array<QueueItem>;
+  private currentSound: QueueItem | null;
 
   constructor(db: DatabaseAdapter) {
     this.db = db;
     this.queue = [];
-    this.current = null;
+    this.currentSound = null;
   }
 
   public add(item: QueueItem) {
@@ -27,37 +27,50 @@ export default class SoundQueue {
   }
 
   public clear() {
-    this.queue.length = 0;
+    this.queue = [];
   }
 
   private isStartable() {
-    return this.current === null;
+    return this.currentSound === null;
   }
 
   private playNext() {
-    this.current = this.queue.shift()!;
-    const sound = SoundUtil.getPathForSound(this.current.sound);
+    this.currentSound = this.queue.shift()!;
+    const sound = SoundUtil.getPathForSound(this.currentSound.name);
 
-    this.current.channel.join().then(connection => {
-      connection.channel.guild.me.setDeaf(config.deafen);  // Can only deafen while in channel
+    this.currentSound.channel.join()
+      .then(connection => this.deafen(connection))
+      .then(connection => this.playSound(connection, sound))
+      .then(connection => this.onFinishedPlayingSound(connection as VoiceConnection))
+      .catch(error => console.error('Error occured!', '\n', error));
+  }
 
-      connection.playFile(sound, { volume: config.volume })
-                .on('end', () => this.onFinishedPlayingSound(connection));
-    }).catch(error => {
-      console.error('Error occured!', '\n', error);
-    });
+  private deafen(connection: VoiceConnection) {
+    // Can only deafen when in a channel, therefore need connection
+    connection.channel.guild.me.setDeaf(config.deafen);
+    return Promise.resolve(connection);
+  }
+
+  private playSound(connection: VoiceConnection, name: string) {
+    return new Promise(resolve =>
+      connection.playFile(name, { volume: config.volume }).on('end', () => resolve(connection))
+    );
+  }
+
+  private onFinishedPlayingSound(connection: VoiceConnection) {
+    this.db.updateSoundCount(this.currentSound!.name);
+    if (config.deleteMessages) this.currentSound!.message.delete();
+
+    if (!this.isEmpty()) {
+      this.playNext();
+      return;
+    }
+
+    this.currentSound = null;
+    if (!config.stayInChannel) connection.disconnect();
   }
 
   private isEmpty() {
     return this.queue.length === 0;
-  }
-
-  private onFinishedPlayingSound(connection: VoiceConnection) {
-    this.db.updateSoundCount(this.current!.sound);
-    if (config.deleteMessages) this.current!.message.delete();
-
-    this.current = null;
-    if (!this.isEmpty()) this.playNext();
-    if (this.isEmpty() && !this.current && !config.stayInChannel) connection.disconnect();
   }
 }
