@@ -10,4 +10,4 @@ localeService.setLocale(config.language);
 
 const bot = container.cradle.soundBot as SoundBot;
 bot.start();
-console.log(localeService.t('url', { clientId: config.clientID }));  // tslint:disable-line no-console
+console.info(localeService.t('url', { clientId: config.clientID }));
