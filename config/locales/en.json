@@ -47,6 +47,9 @@
       "extension": "Sound has to be in accepted format, one of [{extensions}]!",
       "format": "Filename has to be all letters and numbers!",
       "size": "File is too big!"
+    },
+    "url": {
+      "invalid": "URL is not valid!"
     }
   },
 

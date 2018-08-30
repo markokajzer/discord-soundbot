@@ -47,6 +47,9 @@
       "extension": "Das Format von Sound muss unter den akzeptierten sein ({extensions})!",
       "format": "Der Name der Datei darf nur aus Zahlen und Buchstaben bestehen!",
       "size": "Die Datei ist zu groß!"
+    },
+    "url": {
+      "invalid": "URL ist nicht korrekt!"
     }
   },
 

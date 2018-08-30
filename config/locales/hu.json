@@ -47,6 +47,9 @@
       "extension": "A hang egy elfogadott formátumba kell lennije: [{extensions}]!",
       "format": "A fájlnév csak betû és számkombinációkat tartalmazhat!",
       "size": "A fájl túl nagy!"
+    },
+    "url": {
+      "invalid": "Érvénytelen URL!"
     }
   },
 

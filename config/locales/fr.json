@@ -47,6 +47,9 @@
       "extension": "Le fichier son doit être dans un des formats suivants : [{extensions}] !",
       "format": "Le nom de fichier ne doit contenir que des chiffres et des lettres !",
       "size": "Le fichier est trop gros !"
+    },
+    "url": {
+      "invalid": "L'URL n'est pas valide !"
     }
   },
 

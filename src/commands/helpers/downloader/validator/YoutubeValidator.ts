@@ -21,7 +21,7 @@ export default class YoutubeValidator extends BaseValidator {
 
   private validateUrl(link: string) {
     if (!this.VALID_HOSTS.includes(URL.parse(link).hostname!)) {
-      return Promise.reject('URL is not valid!');
+      return Promise.reject(this.localeService.t('validation.url.invalid'));
     }
   }
 }
