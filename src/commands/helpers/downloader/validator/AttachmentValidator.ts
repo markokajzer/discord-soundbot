@@ -33,15 +33,13 @@ export default class AttachmentValidator extends BaseValidator {
   private validateExtension(fileName: string) {
     if (!this.acceptedExtensions.some(ext => fileName.endsWith(ext))) {
       const extensions = this.acceptedExtensions.join(', ');
-      const message = this.localeService.t('validation.attachment.extension', { extensions });
-      return Promise.reject(message);
+      return Promise.reject(this.localeService.t('validation.attachment.extension', { extensions }));
     }
   }
 
   private validateSize(filesize: number) {
     if (filesize > config.maximumFileSize) {
-      const message = this.localeService.t('validation.attachment.size');
-      return Promise.reject(message);
+      return Promise.reject(this.localeService.t('validation.attachment.size'));
     }
   }
 }

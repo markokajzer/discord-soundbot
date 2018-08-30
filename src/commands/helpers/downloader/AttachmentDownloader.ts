@@ -1,32 +1,53 @@
 import { Message, MessageAttachment } from 'discord.js';
+import fs from 'fs';
+import { IncomingMessage } from 'http';
+import https from 'https';
 
-import IDownloader from './IDownloader';
-
-import SoundDownloader from '../SoundDownloader';
+import LocaleService from '../../../i18n/LocaleService';
+import BaseDownloader from './BaseDownloader';
 import AttachmentValidator from './validator/AttachmentValidator';
 
-export default class AttachmentDownloader implements IDownloader {
-  private readonly validator: AttachmentValidator;
-  private readonly downloader: SoundDownloader;
+export default class AttachmentDownloader extends BaseDownloader {
+  protected readonly validator: AttachmentValidator;
 
-  constructor(attachmentValidator: AttachmentValidator, downloader: SoundDownloader) {
+  constructor(localeService: LocaleService, attachmentValidator: AttachmentValidator) {
+    super(localeService);
     this.validator = attachmentValidator;
-    this.downloader = downloader;
   }
 
   public handle(message: Message) {
     message.attachments.forEach(attachment =>
-      this.saveValidAttachment(attachment).then(result => message.channel.send(result))
-                                          .catch(result => message.channel.send(result)));
-  }
-
-  private saveValidAttachment(attachment: MessageAttachment) {
-    return this.validator.validate(attachment)
-                         .then(() => this.addSound(attachment));
+      this.validator.validate(attachment)
+        .then(() => this.addSound(attachment))
+        .then(response => attachment.message.channel.send(response))
+        .catch(response => attachment.message.channel.send(response)));
   }
 
   private addSound(attachment: MessageAttachment) {
-    const fileName = attachment.filename.toLowerCase();
-    return this.downloader.download(fileName, attachment.url);
+    return this.makeRequest(attachment.url)
+      .then(response => this.saveResponseToFile(response as IncomingMessage, attachment.filename.toLowerCase()))
+      .then(name => Promise.resolve(this.localeService.t('add.success', { name })))
+      .catch(error => this.handleError(error));
+  }
+
+  private makeRequest(url: string) {
+    return new Promise((resolve, reject) => {
+      https.get(url)
+        .on('response', response => resolve(response))
+        .on('error', error => reject(error));
+    });
+  }
+
+  private saveResponseToFile(response: IncomingMessage, filename: string) {
+    if (response.statusCode === 200) {
+      response.pipe(fs.createWriteStream(`./sounds/${filename}`));
+    }
+
+    return Promise.resolve(filename.split('.')[0]);
+  }
+
+  private handleError(error: Error) {
+    console.error(error);
+    return Promise.reject(this.localeService.t('add.error'));
   }
 }
