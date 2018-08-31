@@ -12,7 +12,6 @@ export default class MessageChunker {
 
   public chunkedMessages(toChunk: Array<string>, params: Array<string>): Array<string> {
     const chunks = this.chunkArray(toChunk);
-
     const indexInput = parseInt(params[0]);
     const realIndex = indexInput - 1;
 
@@ -29,16 +28,19 @@ export default class MessageChunker {
   private chunkArray(input: Array<string>): Array<Array<string>> {
     const chunkedInput: Array<Array<string>> = [];
 
+    let LOCALE_PAGE_MASSAGE_LENGTH = this.localeService.translate('helpers.messageChunker.page', { current: 999, amount: 999 }).length; // Generate Locale page message length
+
     let total = 0;
     let temp: Array<string> = [];
     for (const element of input) {
-      if (total + element.length > this.MAX_MESSAGE_LENGTH - this.CODE_MARKER_LENGTH) {
+      if (total + element.length > this.MAX_MESSAGE_LENGTH - (this.CODE_MARKER_LENGTH + LOCALE_PAGE_MASSAGE_LENGTH)) {
         chunkedInput.push(temp);
         temp = [element];
+        total = 0;
         continue;
       }
-
-      total += element.length;
+      
+      total += element.length + 1;
       temp.push(element);
     }
 
