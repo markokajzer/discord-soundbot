@@ -1,9 +1,11 @@
-## 1.3.0 (2018-08-31)
+## 1.3.0 (Untagged)
 
 + Implemented `!add` directly from YouTube
 + Added `!welcome` command
 + Added `deafen` configuration option
 + Fixed Japanese language code
++ Rewrote database logic
++ Fixed chunking of messages
 
 ## 1.2.0 (2018-08-27)
 

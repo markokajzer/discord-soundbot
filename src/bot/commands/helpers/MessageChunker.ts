@@ -15,34 +15,46 @@ export default class MessageChunker {
 
     const indexInput = parseInt(params[0]);
     const realIndex = indexInput - 1;
-
     if (indexInput && realIndex >= 0 && realIndex < chunks.length) {
-      return [
-        this.localeService.t('helpers.messageChunker.page', { current: indexInput, amount: chunks.length }),
-        ['```', ...chunks[realIndex], '```'].join('\n')
-      ];
+      return this.specificChunk(chunks[realIndex], indexInput, chunks.length);
     }
 
     return chunks.map(chunk => ['```', ...chunk, '```'].join('\n'));
   }
 
   private chunkArray(input: Array<string>): Array<Array<string>> {
-    const chunkedInput: Array<Array<string>> = [];
+    const result: Array<Array<string>> = [];
 
-    let total = 0;
+    let totalLength = 0;
     let temp: Array<string> = [];
+
     for (const element of input) {
-      if (total + element.length > this.MAX_MESSAGE_LENGTH - this.CODE_MARKER_LENGTH) {
-        chunkedInput.push(temp);
+      if (this.isChunkSizeAcceptable(totalLength, temp.length, element.length)) {
+        result.push(temp);
         temp = [element];
+        totalLength = element.length;
         continue;
       }
 
-      total += element.length;
       temp.push(element);
+      totalLength += element.length;
     }
 
-    chunkedInput.push(temp);
-    return chunkedInput;
+    result.push(temp);
+    return result;
+  }
+
+  private isChunkSizeAcceptable(numberOfChars: number,
+                                numberOfElements: number,
+                                lengthOfCurrentElement: number) {
+    const currentChunkSize = numberOfChars + (numberOfElements - 1) + lengthOfCurrentElement;
+    return currentChunkSize + this.CODE_MARKER_LENGTH > this.MAX_MESSAGE_LENGTH;
+  }
+
+  private specificChunk(chunk: Array<string>, input: number, amount: number) {
+    return [
+      this.localeService.t('helpers.messageChunker.page', { current: input, amount: amount }),
+      ['```', ...chunk, '```'].join('\n')
+    ];
   }
 }
