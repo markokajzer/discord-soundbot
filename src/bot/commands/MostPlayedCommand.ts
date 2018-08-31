@@ -14,11 +14,16 @@ export default class MostPlayedCommand implements ICommand {
   }
 
   public run(message: Message) {
-    message.channel.send(this.getFormattedMessage());
+    const formattedMessage = this.getFormattedMessage();
+    if (!formattedMessage) return;
+
+    message.channel.send(formattedMessage);
   }
 
   private getFormattedMessage() {
     const sounds = this.db.sounds.mostPlayed();
+    if (!sounds.length) return;
+
     const longestSound = this.findLongestWord(sounds.map(sound => sound.name));
     const longestCount = this.findLongestWord(sounds.map(sound => String(sound.count)));
     return this.formatSounds(sounds, longestSound.length, longestCount.length);
