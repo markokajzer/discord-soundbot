@@ -45,7 +45,7 @@ export default class RenameCommand implements ICommand {
     const oldFile = `sounds/${oldName}.${extension}`;
     const newFile = `sounds/${newName}.${extension}`;
     fs.renameSync(oldFile, newFile);
-    this.db.renameSound(oldName, newName);
+    this.db.sounds.rename(oldName, newName);
 
     message.channel.send(this.localeService.t('rename.success', { oldName, newName }));
   }

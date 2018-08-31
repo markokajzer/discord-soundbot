@@ -36,7 +36,7 @@ export default class RemoveCommand implements ICommand {
 
     const file = SoundUtil.getPathForSound(sound);
     fs.unlinkSync(file);
-    this.db.removeSound(sound);
+    this.db.sounds.remove(sound);
 
     message.channel.send(this.localeService.t('remove.success', { sound }));
   }

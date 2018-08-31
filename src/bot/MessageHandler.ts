@@ -29,6 +29,6 @@ export default class MessageHandler {
   private isValidMessage(message: Message) {
     return !message.isDirectMessage() &&
            message.hasPrefix(this.prefix) &&
-           !this.db.isIgnoredUser(message.author.id);
+           !this.db.ignoreList.exists(message.author.id);
   }
 }

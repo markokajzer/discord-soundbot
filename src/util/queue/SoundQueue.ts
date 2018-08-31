@@ -58,7 +58,7 @@ export default class SoundQueue {
   }
 
   private onFinishedPlayingSound(connection: VoiceConnection) {
-    this.db.updateSoundCount(this.currentSound!.name);
+    this.db.sounds.incrementCount(this.currentSound!.name);
     if (config.deleteMessages) this.currentSound!.message.delete();
 
     if (!this.isEmpty()) {

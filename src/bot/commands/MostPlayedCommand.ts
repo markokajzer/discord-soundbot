@@ -3,6 +3,7 @@ import { Message } from 'discord.js';
 import ICommand from './base/ICommand';
 
 import DatabaseAdapter from '../../util/db/DatabaseAdapter';
+import Sound from '../../util/db/models/Sound';
 
 export default class MostPlayedCommand implements ICommand {
   public readonly TRIGGERS = ['mostplayed'];
@@ -13,30 +14,26 @@ export default class MostPlayedCommand implements ICommand {
   }
 
   public run(message: Message) {
-    message.channel.send(this.getMostPlayedSounds());
+    message.channel.send(this.getFormattedMessage());
   }
 
-  private getMostPlayedSounds() {
-    const sounds = this.db.getMostPlayedSounds();
-    const longestSoundLength = this.findLongestWord(sounds.map(sound => sound.name)).length;
-    const longestCountLength = this.findLongestWord(sounds.map(sound => String(sound.count))).length;
-    return this.formatMessage(sounds, longestSoundLength, longestCountLength);
+  private getFormattedMessage() {
+    const sounds = this.db.sounds.mostPlayed();
+    const longestSound = this.findLongestWord(sounds.map(sound => sound.name));
+    const longestCount = this.findLongestWord(sounds.map(sound => String(sound.count)));
+    return this.formatSounds(sounds, longestSound.length, longestCount.length);
   }
 
   private findLongestWord(array: Array<string>) {
     return array.reduce((a, b) => a.length > b.length ? a : b);
   }
 
-  private formatMessage(sounds: Array<{ name: string, count: number }>,
-                        longestSoundLength: number,
-                        longestCountLength: number) {
-    const message = ['```'];
-    sounds.forEach(sound => {
-      const spacesForSound = ' '.repeat(longestSoundLength - sound.name.length + 1);
-      const spacesForCount = ' '.repeat(longestCountLength - String(sound.count).length);
-      message.push(`${sound.name}:${spacesForSound}${spacesForCount}${sound.count}`);
+  private formatSounds(sounds: Array<Sound>, soundLength: number, countLength: number) {
+    const lines = sounds.map(sound => {
+      const spacesForSound = ' '.repeat(soundLength - sound.name.length + 1);
+      const spacesForCount = ' '.repeat(countLength - String(sound.count).length);
+      return `${sound.name}:${spacesForSound}${spacesForCount}${sound.count}`;
     });
-    message.push('```');
-    return message.join('\n');
+    return ['```', ...lines, '```'].join('\n');
   }
 }

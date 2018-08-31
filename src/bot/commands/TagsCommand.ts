@@ -25,15 +25,15 @@ export default class TagsCommand implements ICommand {
   }
 
   private formattedMessage(sounds: Array<string>) {
-    const longestSoundLength = this.findLongestWord(sounds).length;
-    return sounds.map(sound => this.listSoundWithTags(sound, longestSoundLength));
+    const longestSound = this.findLongestWord(sounds);
+    return sounds.map(sound => this.listSoundWithTags(sound, longestSound.length));
   }
 
-  private listSoundWithTags(sound: string, longestSoundLength: number): string {
-    const tags = this.db.listTags(sound);
+  private listSoundWithTags(sound: string, soundLength: number) {
+    const tags = this.db.sounds.listTags(sound);
     if (!tags.length) return sound;
 
-    const spacesForSound = ' '.repeat(longestSoundLength - sound.length + 1);
+    const spacesForSound = ' '.repeat(soundLength - sound.length + 1);
     return `${sound}:${spacesForSound}${tags.join(', ')}`;
   }
 

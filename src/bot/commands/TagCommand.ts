@@ -31,17 +31,17 @@ export default class TagCommand implements ICommand {
     }
 
     if (!params.length) {
-      const tags = this.db.listTags(sound).join(', ');
+      const tags = this.db.sounds.listTags(sound).join(', ');
       message.author.send(this.localeService.t('tag.found', { sound, tags }));
       return;
     }
 
     if (params[0] === 'clear') {
       if (!message.member.hasPermission(Permissions.FLAGS.ADMINISTRATOR!)) return;
-      this.db.removeTags(sound);
+      this.db.sounds.clearTags(sound);
       return;
     }
 
-    this.db.addTags(sound, params);
+    this.db.sounds.addTags(sound, params);
   }
 }

@@ -50,6 +50,7 @@
     "lint": "tslint -p tsconfig.json",
     "serve": "node dist/main.js",
     "start": "npm run build && npm run serve",
+    "rebuild": "npm run clean && npm run start",
     "release": "npm run build && npm run lint"
   }
 }

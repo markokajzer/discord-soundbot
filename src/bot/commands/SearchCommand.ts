@@ -26,7 +26,7 @@ export default class SearchCommand implements ICommand {
 
     const tag = params.shift()!;
     const results = SoundUtil.getSounds().filter(sound => sound.includes(tag));
-    this.db.soundsWithTag(tag).forEach(sound => results.push(sound));
+    this.db.sounds.withTag(tag).forEach(sound => results.push(sound));
 
     if (!results.length) {
       message.author.send(this.localeService.t('search.notFound'));
