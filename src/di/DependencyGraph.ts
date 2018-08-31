@@ -3,10 +3,10 @@
 import * as awilix from 'awilix';
 
 import CommandCollection from '../bot/CommandCollection';
-import DatabaseAdapter from '../db/DatabaseAdapter';
-import i18n from '../i18n/i18n';
-import LocaleService from '../i18n/LocaleService';
-import SoundQueue from '../queue/SoundQueue';
+import DatabaseAdapter from '../util/db/DatabaseAdapter';
+import i18n from '../util/i18n/i18n';
+import LocaleService from '../util/i18n/LocaleService';
+import SoundQueue from '../util/queue/SoundQueue';
 
 
 const container = awilix.createContainer({
@@ -22,9 +22,7 @@ container.register({
 });
 
 container.loadModules([
-  'bot/*.js',
-  'commands/helpers/**/*.js',
-  'commands/soundbot/**/*.js'
+  'bot/**/*.js'
 ], {
   cwd: 'dist/',
   formatName: 'camelCase',

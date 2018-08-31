@@ -5,18 +5,12 @@
     "target": "es6",
     "strict": true,
     "outDir": "dist",
-    "baseUrl": ".",
-    "paths": {
-      "*": [
-        "node_modules/*",
-        "src/types/*"
-      ]
-    },
     "lib": [
       "es7"
     ]
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "types/*"
   ]
 }

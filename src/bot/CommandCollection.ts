@@ -1,18 +1,17 @@
 import { ClientUser, Collection, Message } from 'discord.js';
 
-import ICommand from '../commands/soundbot/base/ICommand';
-import IUserCommand from '../commands/soundbot/base/IUserCommand';
-
-import * as Commands from '../commands/Commands';
+import ICommand from './commands/base/ICommand';
+import IUserCommand from './commands/base/IUserCommand';
+import SoundCommand from './commands/SoundCommand';
 
 export default class CommandCollection extends Collection<string, ICommand> {
   private readonly commands: Array<ICommand>;
-  private readonly soundCommand: Commands.SoundCommand;
+  private readonly soundCommand: SoundCommand;
 
   constructor(commands: Array<ICommand>) {
     super();
     this.commands = commands;
-    this.soundCommand = commands.find(command => !command.TRIGGERS.length)! as Commands.SoundCommand;
+    this.soundCommand = commands.find(command => !command.TRIGGERS.length)! as SoundCommand;
     this.registerCommands(commands);
   }
 
