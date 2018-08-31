@@ -4,6 +4,9 @@ defaultSeverity: warning
 extends:
   - tslint:recommended
 
+linterOptions:
+  exclude: config/*
+
 rules:
   array-type:
     - true
