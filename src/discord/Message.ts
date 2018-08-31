@@ -1,6 +1,7 @@
 import { DMChannel, GroupDMChannel, Message } from 'discord.js';
 
 declare module 'discord.js' {
+  // tslint:disable-next-line interface-name
   interface Message {
     hasPrefix(prefix: string): boolean;
     isDirectMessage(): boolean;
