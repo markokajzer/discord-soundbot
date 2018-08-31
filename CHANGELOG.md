@@ -1,3 +1,10 @@
+## 1.3.0 (2018-08-31)
+
++ Implemented `!add` directly from YouTube
++ Added `!welcome` command
++ Added `deafen` configuration option
++ Fixed Japanese language code
+
 ## 1.2.0 (2018-08-27)
 
 + Allow localization into other languages

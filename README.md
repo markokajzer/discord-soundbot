@@ -61,7 +61,7 @@ Follow the link and allow the bot to join your Discord server.
 
 ## Commands
 
-Type `!help` or `!commands` to print a list of available commands.
+Type `!help` or `!commands` to print a list of available commands. To see the welcome message again, use `!welcome`.
 
 You can add, rename, download, tag, play, and remove sounds, ignore users, set the avatar, and more.
 
