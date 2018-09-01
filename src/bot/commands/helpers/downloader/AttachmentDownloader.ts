@@ -3,7 +3,7 @@ import fs from 'fs';
 import { IncomingMessage } from 'http';
 import https from 'https';
 
-import LocaleService from '../../../../util/i18n/LocaleService';
+import LocaleService from '@util/i18n/LocaleService';
 import BaseDownloader from './BaseDownloader';
 import AttachmentValidator from './validator/AttachmentValidator';
 

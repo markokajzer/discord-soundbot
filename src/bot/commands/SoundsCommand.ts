@@ -1,11 +1,11 @@
 import { Message } from 'discord.js';
 
-import config from '../../../config/config.json';
+import config from '@config/config.json';
 
 import ICommand from './base/ICommand';
 
-import LocaleService from '../../util/i18n/LocaleService';
-import SoundUtil from '../../util/SoundUtil';
+import LocaleService from '@util/i18n/LocaleService';
+import SoundUtil from '@util/SoundUtil';
 import MessageChunker from './helpers/MessageChunker';
 
 export default class SoundsCommand implements ICommand {

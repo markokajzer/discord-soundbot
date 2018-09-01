@@ -1,10 +1,10 @@
 import { ClientUser, Message, Permissions } from 'discord.js';
 
-import config from '../../../config/config.json';
+import config from '@config/config.json';
 
 import IUserCommand from './base/IUserCommand';
 
-import LocaleService from '../../util/i18n/LocaleService';
+import LocaleService from '@util/i18n/LocaleService';
 
 export default class AvatarCommand implements IUserCommand {
   public readonly TRIGGERS = ['avatar'];

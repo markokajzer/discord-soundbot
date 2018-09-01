@@ -1,9 +1,9 @@
-import config from '../config/config.json';
+import config from '@config/config.json';
 
 import container from './di/DependencyGraph';
 
+import LocaleService from '@util/i18n/LocaleService';
 import SoundBot from './bot/SoundBot';
-import LocaleService from './util/i18n/LocaleService';
 
 const localeService = container.cradle.localeService as LocaleService;
 localeService.setLocale(config.language);

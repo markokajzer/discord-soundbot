@@ -1,6 +1,6 @@
 import { Message } from 'discord.js';
 
-import LocaleService from '../../../util/i18n/LocaleService';
+import LocaleService from '@util/i18n/LocaleService';
 
 export default class UserFinder {
   private readonly localeService: LocaleService;

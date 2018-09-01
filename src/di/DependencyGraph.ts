@@ -1,13 +1,10 @@
-/* tslint:disable no-consecutive-blank-lines */
-
 import * as awilix from 'awilix';
 
+import DatabaseAdapter from '@util/db/DatabaseAdapter';
+import i18n from '@util/i18n/i18n';
+import LocaleService from '@util/i18n/LocaleService';
+import SoundQueue from '@util/queue/SoundQueue';
 import CommandCollection from '../bot/CommandCollection';
-import DatabaseAdapter from '../util/db/DatabaseAdapter';
-import i18n from '../util/i18n/i18n';
-import LocaleService from '../util/i18n/LocaleService';
-import SoundQueue from '../util/queue/SoundQueue';
-
 
 const container = awilix.createContainer({
   injectionMode: awilix.InjectionMode.CLASSIC
@@ -24,7 +21,7 @@ container.register({
 container.loadModules([
   'bot/**/*.js'
 ], {
-  cwd: 'dist/',
+  cwd: 'dist/src/',
   formatName: 'camelCase',
   resolverOptions: {
     lifetime: awilix.Lifetime.SINGLETON,

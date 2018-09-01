@@ -1,8 +1,8 @@
 import Discord from 'discord.js';
 
-import config from '../../config/config.json';
+import config from '@config/config.json';
 
-import LocaleService from '../util/i18n/LocaleService';
+import LocaleService from '@util/i18n/LocaleService';
 import CommandCollection from './CommandCollection';
 import MessageHandler from './MessageHandler';
 

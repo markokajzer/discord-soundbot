@@ -1,9 +1,9 @@
 import { VoiceConnection } from 'discord.js';
 
-import config from '../../../config/config.json';
+import config from '@config/config.json';
 
-import DatabaseAdapter from '../../util/db/DatabaseAdapter';
-import SoundUtil from '../../util/SoundUtil';
+import DatabaseAdapter from '@util/db/DatabaseAdapter';
+import SoundUtil from '@util/SoundUtil';
 import QueueItem from './QueueItem';
 
 export default class SoundQueue {

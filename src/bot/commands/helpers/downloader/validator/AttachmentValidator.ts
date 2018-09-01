@@ -1,8 +1,8 @@
 import { MessageAttachment } from 'discord.js';
 
-import config from '../../../../../../config/config.json';
+import config from '@config/config.json';
 
-import LocaleService from '../../../../../util/i18n/LocaleService';
+import LocaleService from '@util/i18n/LocaleService';
 import BaseValidator from './BaseValidator';
 
 export default class AttachmentValidator extends BaseValidator {

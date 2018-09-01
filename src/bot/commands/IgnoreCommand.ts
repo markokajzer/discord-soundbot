@@ -2,8 +2,8 @@ import { Message, Permissions } from 'discord.js';
 
 import ICommand from './base/ICommand';
 
-import DatabaseAdapter from '../../util/db/DatabaseAdapter';
-import LocaleService from '../../util/i18n/LocaleService';
+import DatabaseAdapter from '@util/db/DatabaseAdapter';
+import LocaleService from '@util/i18n/LocaleService';
 import UserFinder from './helpers/UserFinder';
 
 export default class IgnoreCommand implements ICommand {

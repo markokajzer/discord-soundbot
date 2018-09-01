@@ -1,5 +1,5 @@
-import LocaleService from '../../../../../util/i18n/LocaleService';
-import SoundUtil from '../../../../../util/SoundUtil';
+import LocaleService from '@util/i18n/LocaleService';
+import SoundUtil from '@util/SoundUtil';
 
 export default abstract class BaseValidator {
   protected readonly localeService: LocaleService;

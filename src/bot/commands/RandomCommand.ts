@@ -2,9 +2,9 @@ import { Message } from 'discord.js';
 
 import ICommand from './base/ICommand';
 
-import QueueItem from '../../util/queue/QueueItem';
-import SoundQueue from '../../util/queue/SoundQueue';
-import SoundUtil from '../../util/SoundUtil';
+import QueueItem from '@util/queue/QueueItem';
+import SoundQueue from '@util/queue/SoundQueue';
+import SoundUtil from '@util/SoundUtil';
 import VoiceChannelFinder from './helpers/VoiceChannelFinder';
 
 export default class RandomCommand implements ICommand {

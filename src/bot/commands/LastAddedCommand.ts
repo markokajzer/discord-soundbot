@@ -4,7 +4,7 @@ import { Message } from 'discord.js';
 
 import ICommand from './base/ICommand';
 
-import SoundUtil from '../../util/SoundUtil';
+import SoundUtil from '@util/SoundUtil';
 
 export default class LastAddedCommand implements ICommand {
   public readonly TRIGGERS = ['lastadded'];

@@ -1,4 +1,4 @@
-import LocaleService from '../../../util/i18n/LocaleService';
+import LocaleService from '@util/i18n/LocaleService';
 
 export default class MessageChunker {
   private readonly MAX_MESSAGE_LENGTH = 2000;

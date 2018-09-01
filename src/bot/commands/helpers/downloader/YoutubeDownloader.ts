@@ -3,7 +3,7 @@ import ffmpeg from 'fluent-ffmpeg';
 import fs from 'fs';
 import ytdl from 'ytdl-core';
 
-import LocaleService from '../../../../util/i18n/LocaleService';
+import LocaleService from '@util/i18n/LocaleService';
 import BaseDownloader from './BaseDownloader';
 import YoutubeValidator from './validator/YoutubeValidator';
 

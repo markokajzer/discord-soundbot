@@ -6,9 +6,9 @@ import path from 'path';
 const files = fs.readdirSync('./config/locales');
 
 i18n.configure({
-  locales: files.map(file => file.split('.')[0]),
+  locales: files.map(file => path.basename(file, '.json')),
   defaultLocale: 'en',
-  directory: path.join(__dirname, '..', '..', '..', 'config', 'locales'),
+  directory: path.join(process.cwd(), 'config', 'locales'),
   objectNotation: true
 });
 

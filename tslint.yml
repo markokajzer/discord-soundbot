@@ -26,6 +26,8 @@ rules:
   no-unused-variable:
     - true
     - check-parameters
+    - ignore-pattern: ^_
+
   object-literal-shorthand:
     - false
   object-literal-sort-keys:

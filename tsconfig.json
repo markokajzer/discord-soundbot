@@ -6,11 +6,18 @@
     "strict": true,
     "outDir": "dist",
     "lib": [
-      "es7"
-    ]
+      "es2017"
+    ],
+
+    "baseUrl": ".",
+    "paths": {
+      "@config/*": ["config/*"],
+      "@util/*": ["src/util/*"]
+    }
   },
   "include": [
     "src/**/*",
+    "lib/**/*",
     "types/*"
   ]
 }

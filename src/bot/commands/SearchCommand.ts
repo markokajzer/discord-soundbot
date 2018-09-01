@@ -2,9 +2,9 @@ import { Message } from 'discord.js';
 
 import ICommand from './base/ICommand';
 
-import DatabaseAdapter from '../../util/db/DatabaseAdapter';
-import LocaleService from '../../util/i18n/LocaleService';
-import SoundUtil from '../../util/SoundUtil';
+import DatabaseAdapter from '@util/db/DatabaseAdapter';
+import LocaleService from '@util/i18n/LocaleService';
+import SoundUtil from '@util/SoundUtil';
 
 export default class SearchCommand implements ICommand {
   public readonly TRIGGERS = ['search'];

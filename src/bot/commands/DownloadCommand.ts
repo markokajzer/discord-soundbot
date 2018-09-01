@@ -2,7 +2,7 @@ import { Attachment, Message } from 'discord.js';
 
 import ICommand from './base/ICommand';
 
-import SoundUtil from '../../util/SoundUtil';
+import SoundUtil from '@util/SoundUtil';
 
 export default class DownloadCommand implements ICommand {
   public readonly TRIGGERS = ['download'];
