@@ -1,6 +1,7 @@
 import fs from 'fs';
 
-import config from '@config/config.json';
+// TODO Should get config from container, could lead to strange bugs
+import config from '../../../config/config.json';
 
 export default class SoundUtil {
   public static getSounds() {

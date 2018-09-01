@@ -1,18 +1,20 @@
 import Discord from 'discord.js';
 
-import config from '@config/config.json';
-
+import Config from '@config/Config';
 import LocaleService from '@util/i18n/LocaleService';
 import CommandCollection from './CommandCollection';
 import MessageHandler from './MessageHandler';
 
 export default class SoundBot extends Discord.Client {
+  private readonly config: Config;
   private readonly localeService: LocaleService;
   private readonly commands: CommandCollection;
   private readonly messageHandler: MessageHandler;
 
-  constructor(localeService: LocaleService, commands: CommandCollection, messageHandler: MessageHandler) {
+  constructor(config: Config, localeService: LocaleService,
+              commands: CommandCollection, messageHandler: MessageHandler) {
     super();
+    this.config = config;
     this.localeService = localeService;
     this.commands = commands;
     this.messageHandler = messageHandler;
@@ -20,7 +22,7 @@ export default class SoundBot extends Discord.Client {
   }
 
   public start() {
-    this.login(config.token);
+    this.login(this.config.token);
   }
 
   private addEventListeners() {
@@ -35,7 +37,7 @@ export default class SoundBot extends Discord.Client {
   }
 
   private setActivity() {
-    this.user.setActivity(config.game);
+    this.user.setActivity(this.config.game);
   }
 
   private broadcastClientUser(user: Discord.ClientUser) {
@@ -52,7 +54,7 @@ export default class SoundBot extends Discord.Client {
     const channel = this.findFirstWritableChannel(guild);
     if (!channel) return;
 
-    channel.send(this.localeService.t('welcome', { prefix: config.prefix }));
+    channel.send(this.localeService.t('welcome', { prefix: this.config.prefix }));
   }
 
   private findFirstWritableChannel(guild: Discord.Guild): Discord.TextChannel | null {

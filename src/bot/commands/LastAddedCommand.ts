@@ -15,17 +15,17 @@ export default class LastAddedCommand implements ICommand {
   }
 
   private getLastAddedSounds() {
-    const soundsWithExtension = SoundUtil.getSoundsWithExtension();
-    let lastAddedSounds = soundsWithExtension.map(sound => {
+    const lastAddedSounds = SoundUtil.getSoundsWithExtension().map(sound => {
       return {
         name: sound.name,
         creation: fs.statSync(SoundUtil.getPathForSound(sound.name)).birthtime
       };
     });
 
-    lastAddedSounds = lastAddedSounds.sort(
-      (a, b) => new Date(b.creation).valueOf() - new Date(a.creation).valueOf()
-    ).slice(0, this.AMOUNT);
-    return lastAddedSounds.map(sound => sound.name);
+    return lastAddedSounds.sort((a, b) =>
+      new Date(b.creation).valueOf() - new Date(a.creation).valueOf()
+    )
+      .slice(0, this.AMOUNT)
+      .map(sound => sound.name);
   }
 }

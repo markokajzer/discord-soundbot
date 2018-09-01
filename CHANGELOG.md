@@ -1,3 +1,7 @@
+## Untagged
+
++ Created living Config object
+
 ## 1.3.0 (2018-09-01)
 
 + `!add` directly from YouTube

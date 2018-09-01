@@ -1,5 +1,7 @@
 import * as awilix from 'awilix';
 
+import Config from '@config/Config';
+
 import DatabaseAdapter from '@util/db/DatabaseAdapter';
 import i18n from '@util/i18n/i18n';
 import LocaleService from '@util/i18n/LocaleService';
@@ -11,6 +13,8 @@ const container = awilix.createContainer({
 });
 
 container.register({
+  config: awilix.asClass(Config).singleton(),
+
   i18nProvider: awilix.asValue(i18n),
   localeService: awilix.asClass(LocaleService).singleton(),
 
