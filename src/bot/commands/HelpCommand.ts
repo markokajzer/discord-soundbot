@@ -1,16 +1,17 @@
 import { Message } from 'discord.js';
 
-import config from '@config/config.json';
-
 import ICommand from './base/ICommand';
 
+import Config from '@config/Config';
 import LocaleService from '@util/i18n/LocaleService';
 
 export default class HelpCommand implements ICommand {
   public readonly TRIGGERS = ['commands', 'help'];
+  private readonly config: Config;
   private readonly localeService: LocaleService;
 
-  constructor(localeService: LocaleService) {
+  constructor(config: Config, localeService: LocaleService) {
+    this.config = config;
     this.localeService = localeService;
   }
 
@@ -21,7 +22,7 @@ export default class HelpCommand implements ICommand {
   private getFormattedListOfCommands() {
     return [
       '```',
-      this.localeService.t('help.headline', { prefix: config.prefix }),
+      this.localeService.t('help.headline', { prefix: this.config.prefix }),
       '',
       `welcome              ${this.localeService.t('help.welcome')}`,
       `commands             ${this.localeService.t('help.commands')}`,

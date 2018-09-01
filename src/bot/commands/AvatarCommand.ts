@@ -1,19 +1,20 @@
 import { ClientUser, Message, Permissions } from 'discord.js';
 
-import config from '@config/config.json';
-
 import IUserCommand from './base/IUserCommand';
 
+import Config from '@config/Config';
 import LocaleService from '@util/i18n/LocaleService';
 
 export default class AvatarCommand implements IUserCommand {
   public readonly TRIGGERS = ['avatar'];
   public readonly NUMBER_OF_PARAMETERS = 1;
   public readonly USAGE = 'Usage: !avatar [remove]';
+  private readonly config: Config;
   private readonly localeService: LocaleService;
   private user!: ClientUser;
 
-  constructor(localeService: LocaleService) {
+  constructor(config: Config, localeService: LocaleService) {
+    this.config = config;
     this.localeService = localeService;
   }
 
@@ -45,7 +46,8 @@ export default class AvatarCommand implements IUserCommand {
 
   private listAvatar(message: Message) {
     if (this.user.avatarURL === null) {
-      message.channel.send(this.localeService.t('avatar.errors.noAvatar', { prefix: config.prefix }));
+      message.channel.send(
+        this.localeService.t('avatar.errors.noAvatar', { prefix: this.config.prefix }));
       return;
     }
 
