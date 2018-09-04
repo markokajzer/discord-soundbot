@@ -1,13 +1,14 @@
 import URL from 'url';
 
 import LocaleService from '@util/i18n/LocaleService';
+import SoundUtil from '@util/SoundUtil';
 import BaseValidator from './BaseValidator';
 
 export default class YoutubeValidator extends BaseValidator {
   private readonly VALID_HOSTS = ['www.youtube.com', 'youtu.be'];
 
-  constructor(localeService: LocaleService) {
-    super(localeService);
+  constructor(localeService: LocaleService, soundUtil: SoundUtil) {
+    super(localeService, soundUtil);
   }
 
   public validate(name: string, url: string) {

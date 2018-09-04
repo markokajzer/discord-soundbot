@@ -12,11 +12,13 @@ export default class ComboCommand implements ICommand {
   public readonly NUMBER_OF_PARAMETERS = 1;
   public readonly USAGE = 'Usage: !combo <sound1> ... <soundN>';
 
+  private readonly soundUtil: SoundUtil;
   private readonly queue: SoundQueue;
   private readonly voiceChannelFinder: VoiceChannelFinder;
   private sounds!: Array<string>;
 
-  constructor(queue: SoundQueue, voiceChannelFinder: VoiceChannelFinder) {
+  constructor(soundUtil: SoundUtil, queue: SoundQueue, voiceChannelFinder: VoiceChannelFinder) {
+    this.soundUtil = soundUtil;
     this.queue = queue;
     this.voiceChannelFinder = voiceChannelFinder;
   }
@@ -30,7 +32,7 @@ export default class ComboCommand implements ICommand {
     const voiceChannel = this.voiceChannelFinder.getVoiceChannelFromMessageAuthor(message);
     if (!voiceChannel) return;
 
-    this.sounds = SoundUtil.getSounds();
+    this.sounds = this.soundUtil.getSounds();
     this.addSoundsToQueue(params, voiceChannel, message);
   }
 

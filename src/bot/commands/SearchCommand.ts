@@ -10,11 +10,14 @@ export default class SearchCommand implements ICommand {
   public readonly TRIGGERS = ['search'];
   public readonly NUMBER_OF_PARAMETERS = 1;
   public readonly USAGE = 'Usage: !search <tag>';
+
   private readonly localeService: LocaleService;
+  private readonly soundUtil: SoundUtil;
   private readonly db: DatabaseAdapter;
 
-  constructor(localeService: LocaleService, db: DatabaseAdapter) {
+  constructor(localeService: LocaleService, soundUtil: SoundUtil, db: DatabaseAdapter) {
     this.localeService = localeService;
+    this.soundUtil = soundUtil
     this.db = db;
   }
 
@@ -25,7 +28,7 @@ export default class SearchCommand implements ICommand {
     }
 
     const tag = params.shift()!;
-    const results = SoundUtil.getSounds().filter(sound => sound.includes(tag));
+    const results = this.soundUtil.getSounds().filter(sound => sound.includes(tag));
     this.db.sounds.withTag(tag).forEach(sound => results.push(sound));
 
     if (!results.length) {

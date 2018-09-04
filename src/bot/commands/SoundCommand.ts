@@ -9,17 +9,20 @@ import VoiceChannelFinder from './helpers/VoiceChannelFinder';
 
 export default class SoundCommand implements ICommand {
   public readonly TRIGGERS = [];
+
+  private readonly soundUtil: SoundUtil;
   private readonly queue: SoundQueue;
   private readonly voiceChannelFinder: VoiceChannelFinder;
 
-  constructor(queue: SoundQueue, voiceChannelFinder: VoiceChannelFinder) {
+  constructor(soundUtil: SoundUtil, queue: SoundQueue, voiceChannelFinder: VoiceChannelFinder) {
+    this.soundUtil = soundUtil;
     this.queue = queue;
     this.voiceChannelFinder = voiceChannelFinder;
   }
 
   public run(message: Message, _: Array<string>) {
     const sound = message.content;
-    if (!SoundUtil.soundExists(sound)) return;
+    if (!this.soundUtil.soundExists(sound)) return;
 
     const voiceChannel = this.voiceChannelFinder.getVoiceChannelFromMessageAuthor(message);
     if (!voiceChannel) return;

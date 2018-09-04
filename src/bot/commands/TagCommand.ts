@@ -10,11 +10,14 @@ export default class TagCommand implements ICommand {
   public readonly TRIGGERS = ['tag'];
   public readonly NUMBER_OF_PARAMETERS = 1;
   public readonly USAGE = 'Usage: !tag <sound> [<tag> ... <tagN> | clear]';
+
   private readonly localeService: LocaleService;
+  private readonly soundUtil: SoundUtil;
   private readonly db: DatabaseAdapter;
 
-  constructor(localeService: LocaleService, db: DatabaseAdapter) {
+  constructor(localeService: LocaleService, soundUtil: SoundUtil, db: DatabaseAdapter) {
     this.localeService = localeService;
+    this.soundUtil = soundUtil;
     this.db = db;
   }
 
@@ -25,7 +28,7 @@ export default class TagCommand implements ICommand {
     }
 
     const sound = params.shift()!;
-    if (!SoundUtil.getSounds().includes(sound)) {
+    if (!this.soundUtil.getSounds().includes(sound)) {
       message.channel.send(this.localeService.t('tag.notFound', { sound }));
       return;
     }
