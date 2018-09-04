@@ -9,6 +9,7 @@
     "sounds": "Show available sounds",
     "add": "Add the attached sound",
     "play": "Play the specified sound",
+    "combo": "Play sounds in succession",
     "random": "Play random sound",
     "rename": "Rename specified sound",
     "remove": "Remove specified sound",

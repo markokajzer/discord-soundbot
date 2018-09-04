@@ -13,7 +13,7 @@ export default class StopCommand implements ICommand {
   }
 
   public run(message: Message) {
-    this.queue.items().forEach(item => item.message.delete());
+    this.queue.items().forEach(item => item.message && item.message.delete());
     this.queue.clear();
     const voiceConnection = message.guild.voiceConnection;
     if (voiceConnection) voiceConnection.disconnect();
