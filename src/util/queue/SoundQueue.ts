@@ -7,12 +7,15 @@ import QueueItem from './QueueItem';
 
 export default class SoundQueue {
   private readonly config: Config;
+  private readonly soundUtil: SoundUtil;
   private readonly db: DatabaseAdapter;
+
   private queue: Array<QueueItem>;
   private currentSound: QueueItem | null;
 
-  constructor(config: Config, db: DatabaseAdapter) {
+  constructor(config: Config, soundUtil: SoundUtil, db: DatabaseAdapter) {
     this.config = config;
+    this.soundUtil = soundUtil;
     this.db = db;
     this.queue = [];
     this.currentSound = null;
@@ -37,7 +40,7 @@ export default class SoundQueue {
 
   private playNext() {
     this.currentSound = this.queue.shift()!;
-    const sound = SoundUtil.getPathForSound(this.currentSound.name);
+    const sound = this.soundUtil.getPathForSound(this.currentSound.name);
 
     this.currentSound.channel.join()
       .then(connection => this.deafen(connection))

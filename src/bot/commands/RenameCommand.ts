@@ -12,11 +12,14 @@ export default class RenameCommand implements ICommand {
   public readonly TRIGGERS = ['rename'];
   public readonly NUMBER_OF_PARAMETERS = 2;
   public readonly USAGE = 'Usage: !rename <old> <new>';
+
   private readonly localeService: LocaleService;
+  private readonly soundUtil: SoundUtil;
   private readonly db: DatabaseAdapter;
 
-  constructor(localeService: LocaleService, db: DatabaseAdapter) {
+  constructor(localeService: LocaleService, soundUtil: SoundUtil, db: DatabaseAdapter) {
     this.localeService = localeService;
+    this.soundUtil = soundUtil;
     this.db = db;
   }
 
@@ -29,7 +32,7 @@ export default class RenameCommand implements ICommand {
     }
 
     const [oldName, newName] = params;
-    const sounds = SoundUtil.getSounds();
+    const sounds = this.soundUtil.getSounds();
 
     if (!sounds.includes(oldName)) {
       message.channel.send(this.localeService.t('rename.notFound', { oldName }));
@@ -41,7 +44,7 @@ export default class RenameCommand implements ICommand {
       return;
     }
 
-    const extension = SoundUtil.getExtensionForSound(oldName);
+    const extension = this.soundUtil.getExtensionForSound(oldName);
     const oldFile = `sounds/${oldName}.${extension}`;
     const newFile = `sounds/${newName}.${extension}`;
     fs.renameSync(oldFile, newFile);

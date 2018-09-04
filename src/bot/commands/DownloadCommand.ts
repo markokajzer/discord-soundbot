@@ -9,6 +9,12 @@ export default class DownloadCommand implements ICommand {
   public readonly NUMBER_OF_PARAMETERS = 1;
   public readonly USAGE = 'Usage: !download <sound>';
 
+  private readonly soundUtil: SoundUtil;
+
+  constructor(soundUtil: SoundUtil) {
+    this.soundUtil = soundUtil;
+  }
+
   public run(message: Message, params: Array<string>) {
     if (params.length !== this.NUMBER_OF_PARAMETERS) {
       message.channel.send(this.USAGE);
@@ -16,9 +22,9 @@ export default class DownloadCommand implements ICommand {
     }
 
     const sound = params[0];
-    if (!SoundUtil.soundExists(sound)) return;
+    if (!this.soundUtil.soundExists(sound)) return;
 
-    const attachment = new Attachment(SoundUtil.getPathForSound(sound));
+    const attachment = new Attachment(this.soundUtil.getPathForSound(sound));
     message.channel.send(attachment);
   }
 }

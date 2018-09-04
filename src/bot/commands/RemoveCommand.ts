@@ -12,11 +12,14 @@ export default class RemoveCommand implements ICommand {
   public readonly TRIGGERS = ['remove'];
   public readonly NUMBER_OF_PARAMETERS = 1;
   public readonly USAGE = 'Usage: !remove <sound>';
+
   private readonly localeService: LocaleService;
+  private readonly soundUtil: SoundUtil;
   private readonly db: DatabaseAdapter;
 
-  constructor(localeService: LocaleService, db: DatabaseAdapter) {
+  constructor(localeService: LocaleService, soundUtil: SoundUtil, db: DatabaseAdapter) {
     this.localeService = localeService;
+    this.soundUtil = soundUtil;
     this.db = db;
   }
 
@@ -29,12 +32,12 @@ export default class RemoveCommand implements ICommand {
     }
 
     const sound = params.shift()!;
-    if (!SoundUtil.soundExists(sound)) {
+    if (!this.soundUtil.soundExists(sound)) {
       message.channel.send(this.localeService.t('remove.notFound', { sound }));
       return;
     }
 
-    const file = SoundUtil.getPathForSound(sound);
+    const file = this.soundUtil.getPathForSound(sound);
     fs.unlinkSync(file);
     this.db.sounds.remove(sound);
 

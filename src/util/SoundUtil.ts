@@ -1,39 +1,50 @@
 import fs from 'fs';
 
-// TODO Should get config from container, could lead to strange bugs
-import config from '../../../config/config.json';
+import Config from '@config/Config';
 
 export default class SoundUtil {
-  public static getSounds() {
+  private readonly config: Config;
+
+  constructor(config: Config) {
+    this.config = config;
+  }
+
+  public getSounds() {
     const sounds = this.getSoundsWithExtension();
     return sounds.map(sound => sound.name);
   }
 
-  public static getSoundsWithExtension(): Array<{ name: string, extension: string }> {
+  public getSoundsWithExtension(): Array<Sound> {
     const sounds = this.getSoundsFromSoundFolder();
     return sounds.map(this.getSoundWithExtension);
   }
 
-  public static getPathForSound(sound: string) {
+  public getPathForSound(sound: string) {
     return `sounds/${sound}.${this.getExtensionForSound(sound)}`;
   }
 
-  public static getExtensionForSound(name: string) {
+  public getExtensionForSound(name: string) {
     return this.getSoundsWithExtension().find(sound => sound.name === name)!.extension;
   }
 
-  public static soundExists(name: string) {
+  public soundExists(name: string) {
     return this.getSounds().includes(name);
   }
 
-  private static getSoundsFromSoundFolder() {
+  private getSoundsFromSoundFolder() {
     const files = fs.readdirSync('sounds/');
     return files.filter(sound =>
-      config.acceptedExtensions.some(extension => sound.endsWith(extension)));
+      this.config.acceptedExtensions.some(extension => sound.endsWith(extension)));
   }
 
-  private static getSoundWithExtension(sound: string) {
+  private getSoundWithExtension(sound: string) {
     const [name, extension] = sound.split('.');
     return { name: name, extension: extension };
   }
 }
+
+// tslint:disable-next-line interface-over-type-literal
+type Sound = {
+  name: string,
+  extension: string
+};

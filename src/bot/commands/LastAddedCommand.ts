@@ -10,15 +10,21 @@ export default class LastAddedCommand implements ICommand {
   public readonly TRIGGERS = ['lastadded'];
   private readonly AMOUNT = 5;
 
+  private readonly soundUtil: SoundUtil;
+
+  constructor(soundUtil: SoundUtil) {
+    this.soundUtil = soundUtil;
+  }
+
   public run(message: Message) {
     message.channel.send(['```', ...this.getLastAddedSounds(), '```'].join('\n'));
   }
 
   private getLastAddedSounds() {
-    const lastAddedSounds = SoundUtil.getSoundsWithExtension().map(sound => {
+    const lastAddedSounds = this.soundUtil.getSoundsWithExtension().map(sound => {
       return {
         name: sound.name,
-        creation: fs.statSync(SoundUtil.getPathForSound(sound.name)).birthtime
+        creation: fs.statSync(this.soundUtil.getPathForSound(sound.name)).birthtime
       };
     });
 
