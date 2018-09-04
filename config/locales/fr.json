@@ -9,6 +9,7 @@
     "sounds": "Afficher la liste des sons disponibles",
     "add": "Ajouter le son joint (uploadé)",
     "play": "Jouer le son spécifié",
+    "combo": "Jouer les sons successivement",
     "random": "Jouer un son aléatoire",
     "rename": "Renommer le son spécifié",
     "remove": "Supprimer le son spécifié",

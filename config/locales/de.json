@@ -9,6 +9,7 @@
     "sounds": "Zeige alle verfügbaren Sounds",
     "add": "Füge den beigefügten Sound hinzu",
     "play": "Spiele den angegebenen Sound",
+    "combo": "Spiele Sounds in Reihe",
     "random": "Spiele einen zufälligen Sound",
     "rename": "Benenne den angegebenen Sound",
     "remove": "Lösche den angegebenen Sound",

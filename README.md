@@ -80,6 +80,8 @@ Type `!sounds` to get a list of all sounds that are available to your bot. Play 
 
 All sounds will be added to a queue and played in succession. To halt the playback and empty the queue type `!stop`.
 
+You can use `!combo <sound1> ... <soundN>` to add multiple sounds to the queue.
+
 ### Tagging and searching sounds
 
 When your library of sounds gets too big and you forget what kinds of sounds you have, you can add tags to sounds.

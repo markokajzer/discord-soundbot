@@ -42,6 +42,7 @@ container.register({
       container.cradle.removeCommand,
 
       container.cradle.soundCommand,
+      container.cradle.comboCommand,
       container.cradle.randomCommand,
 
       container.cradle.soundsCommand,
