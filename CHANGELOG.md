@@ -1,6 +1,9 @@
-## Untagged
+## 1.4.0-dev (XXXX-XX-XX)
 
-+ Created living Config object
++ Added `!config` command
+  + Changes config during runtime
++ Added `!combo` command
++ Made SoundUtil an actual class
 
 ## 1.3.0 (2018-09-01)
 

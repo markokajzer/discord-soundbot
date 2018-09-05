@@ -62,7 +62,8 @@ container.register({
       container.cradle.ignoreCommand,
       container.cradle.unignoreCommand,
 
-      container.cradle.avatarCommand
+      container.cradle.avatarCommand,
+      container.cradle.configCommand
     ]
   }))
 });

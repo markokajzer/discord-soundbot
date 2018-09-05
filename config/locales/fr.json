@@ -27,7 +27,8 @@
     "lastadded": "Affiche les sons ajoutés le plus récemment",
     "ignore": "Ignorer l'utilisateur spécifié",
     "unignore": "Arrêter d'ignorer l'utilisateur spéficié",
-    "avatar": "Définir, afficher ou supprimer l'avatar"
+    "avatar": "Définir, afficher ou supprimer l'avatar",
+    "config": "Changer la configuration"
   },
 
   "helpers": {
@@ -87,5 +88,9 @@
   "tag": {
     "found": "Tags pour {sound}: [{tags}]",
     "notFound": "{sound} introuvable !"
+  },
+  "config": {
+    "success": "`{field}` défini sur `{value}` !",
+    "notFound": "Configuration n'a pas d'option `{field}` !"
   }
 }
