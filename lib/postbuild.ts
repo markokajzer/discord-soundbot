@@ -1,7 +1,7 @@
 import path from 'path';
 import replace from 'replace-in-file';
 
-import tsconfig from '../../tsconfig.json';
+import tsconfig from '../tsconfig.json';
 
 const pathAliases = tsconfig.compilerOptions.paths;
 
