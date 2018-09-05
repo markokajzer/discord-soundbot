@@ -1,6 +1,6 @@
 {
   "url": "Benutze den folgenden Link, um den Bot deinem Server hinzuzufügen!\nhttps://discordapp.com/oauth2/authorize?client_id={clientId}&scope=bot",
-  "welcome": "**Danke, dass du mich hinzugefügt hast!** 🔥\n- Der Prefix ist `{prefix}`. Willst du ihn ändern? Schau dir hier alle Konfigurationsoptionen an: **<https://github.com/markokajzer/discord-soundbot/wiki/Configuration>**.\n- Mit `{prefix}help kannst du eine liste aller Kommandos sehen.`\n- Füge einen Sound hinzu. Benutze `{prefix}add` und ziehe eine Sounddatei ins Chatfenster!\n- Brauchst du mehr Hilfe? Komm auf den Support Discord-Server: **<https://discordapp.com/invite/JBw2BNx>**.",
+  "welcome": "**Danke, dass du mich hinzugefügt hast!** 🔥\n- Der Prefix ist `{prefix}`. Willst du ihn ändern? Schau dir hier alle Konfigurationsoptionen an: **<https://github.com/markokajzer/discord-soundbot/wiki/Configuration>**.\n- Mit `{prefix}help kannst du eine Liste aller Kommandos sehen.`\n- Füge einen Sound hinzu. Benutze `{prefix}add` und ziehe eine Sounddatei ins Chatfenster!\n- Brauchst du mehr Hilfe? Komm auf den Support Discord-Server: **<https://discordapp.com/invite/JBw2BNx>**.",
 
   "help": {
     "headline": "Benutze den Prefix `{prefix}` mit den folgenden Kommandos:",
@@ -27,7 +27,8 @@
     "lastadded": "Zeige die zuletzt hinzugefügten Sounds",
     "ignore": "Ignoriere angegebenen Benutzer",
     "unignore": "Ignore den angegebenen Benutzer nicht länger",
-    "avatar": "Setze, zeige oder lösche den Avatar"
+    "avatar": "Setze, zeige oder lösche den Avatar",
+    "config": "Ändere die Einstellungen"
   },
 
   "helpers": {
@@ -87,5 +88,9 @@
   "tag": {
     "found": "Tags für {sound}: [{tags}]",
     "notFound": "{sound} nicht gefunden!"
+  },
+  "config": {
+    "success": "`{field}` geändert zu `{value}`!",
+    "notFound": "Konfiguration `{field}` nicht gefunden!"
   }
 }

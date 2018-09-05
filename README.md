@@ -24,6 +24,8 @@ To use this bot, you first have to create your own [Discord Application](https:/
 
 Check `config/config.example.json` for an example configuration and create a new file `config.json` inside the `config` folder with your desired configuration. For a detailed description on all of the options, see [here](../../wiki/Configuration). Make sure to restart the bot whenever you change the configuration.
 
+To learn how to edit the config while the bot is running, see [below](#changing-the-config).
+
 
 ### Building
 
@@ -65,7 +67,7 @@ Type `!help` or `!commands` to print a list of available commands. To see the we
 
 You can add, rename, download, tag, play, and remove sounds, ignore users, set the avatar, and more.
 
-*Note*: The commands `!rename`, `!remove`, `!ignore`, `!unignore`, `!avatar` and `!tag <sound> clear` are restricted and can only be accessed by **administrators**.
+*Note*: The commands `!rename`, `!remove`, `!tag <sound> clear`, `!ignore`, `!unignore`, `!avatar` and `!config` are restricted and can only be accessed by **administrators**.
 
 
 ### Adding sounds
@@ -112,6 +114,11 @@ Users can be ignore from using **any** command by the `!ignore <user>` command w
 
 Use `!avatar` and attach an image to set the bot's avatar. You can remove the avatar to go back to the default by using the optional `remove` parameter as in `!avatar remove`.
 
+### Changing the config
+
+The config can be changed by editing the `config.json` file, after which the bot needs to be restarted.
+
+To change the config on the go, use `!config <option> <value>`. This will change the configuration immediately and update the configuration file.
 
 
 ## Contributing

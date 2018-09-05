@@ -27,7 +27,8 @@
     "lastadded": "Legutóbb játszott hang",
     "ignore": "Tag figyelmenkívülhagyása",
     "unignore": "Tag figyelmenkívülhagyásának visszavonása",
-    "avatar": "Beállítani, mutatni vagy törölni az avatárt"
+    "avatar": "Beállítani, mutatni vagy törölni az avatárt",
+    "config": "Módosítsa a konfigurációt"
   },
 
   "helpers": {
@@ -87,5 +88,9 @@
   "tag": {
     "found": "Megjegyzés {sound}: [{tags}]",
     "notFound": "{sound} nem található!"
+  },
+  "config": {
+    "success": "`{field}` beállítva `{value}`!",
+    "notFound": "A Config nem rendelkezik `{field}` opcióval!"
   }
 }

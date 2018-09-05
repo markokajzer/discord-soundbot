@@ -27,7 +27,8 @@
     "lastadded": "Show last added sounds",
     "ignore": "Ignore specified user",
     "unignore": "Unignore specified user",
-    "avatar": "Set, show or remove the avatar"
+    "avatar": "Set, show or remove the avatar",
+    "config": "Change the configuration"
   },
 
   "helpers": {
@@ -87,5 +88,9 @@
   "tag": {
     "found": "Tags for {sound}: [{tags}]",
     "notFound": "{sound} not found!"
+  },
+  "config": {
+    "success": "`{field}` set to `{value}`!",
+    "notFound": "Config does not have option `{field}`!"
   }
 }

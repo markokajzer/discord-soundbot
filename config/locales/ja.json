@@ -27,7 +27,8 @@
     "lastadded": "最後に追加された音声を表示します",
     "ignore": "指定したユーザーからのコマンドを無視するようにします",
     "unignore": "指定したユーザーからのコマンドを無視しないようにします",
-    "avatar": "Botのアイコンを設定、表示、または削除します"
+    "avatar": "Botのアイコンを設定、表示、または削除します",
+    "config": "構成を変更します"
   },
 
   "helpers": {
@@ -87,5 +88,9 @@
   "tag": {
     "found": "{sound} のタグ: [{tags}]",
     "notFound": "{sound} が見つかりませんでした。"
+  },
+  "config": {
+    "success": "`{field}` は `{value}` に設定されています。",
+    "notFound": "Config にはオプション `{field}` はありません。"
   }
 }

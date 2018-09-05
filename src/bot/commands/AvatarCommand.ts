@@ -9,6 +9,7 @@ export default class AvatarCommand implements IUserCommand {
   public readonly TRIGGERS = ['avatar'];
   public readonly NUMBER_OF_PARAMETERS = 1;
   public readonly USAGE = 'Usage: !avatar [remove]';
+
   private readonly config: Config;
   private readonly localeService: LocaleService;
   private user!: ClientUser;
