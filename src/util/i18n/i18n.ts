@@ -3,12 +3,13 @@ import i18n from 'i18n';
 import fs from 'fs';
 import path from 'path';
 
-const files = fs.readdirSync('./config/locales');
+const localesPath = path.join(__dirname, '..', '..', '..', '..', 'config', 'locales');
+const files = fs.readdirSync(localesPath);
 
 i18n.configure({
   locales: files.map(file => path.basename(file, '.json')),
   defaultLocale: 'en',
-  directory: path.join(process.cwd(), 'config', 'locales'),
+  directory: localesPath,
   objectNotation: true
 });
 
