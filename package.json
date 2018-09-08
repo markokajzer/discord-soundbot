@@ -55,6 +55,6 @@
     "serve": "node dist/src/main.js",
     "start": "npm run build && npm run serve",
     "rebuild": "npm run clean && npm run build",
-    "release": "npm run build && npm run lint"
+    "release": "npm run rebuild && npm run lint"
   }
 }
