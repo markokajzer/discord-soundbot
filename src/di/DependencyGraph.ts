@@ -9,7 +9,6 @@ import LocaleService from '@util/i18n/LocaleService';
 import SoundQueue from '@util/queue/SoundQueue';
 import SoundUtil from '@util/SoundUtil';
 import CommandCollection from '../bot/CommandCollection';
-import SoundBot from '../bot/SoundBot';
 
 const container = awilix.createContainer({
   injectionMode: awilix.InjectionMode.CLASSIC
