@@ -5,7 +5,7 @@ extends:
   - tslint:recommended
 
 linterOptions:
-  exclude: config/*
+  exclude: "**/*.json"
 
 rules:
   array-type:
