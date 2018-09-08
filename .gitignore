@@ -1,6 +1,6 @@
-dist
-node_modules
-coverage
+coverage/
+dist/
+node_modules/
 
 config/config.json
 
