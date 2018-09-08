@@ -29,11 +29,34 @@ To learn how to edit the config while the bot is running, see [below](#changing-
 
 ### Building
 
-The bot can be installed manually or via Docker.  
+The bot can be installed via npm, manually or via Docker.
+
+#### Using npm
+
+Install the bot as a dependency using npm.
+
+```
+  $ npm install discord-soundbot
+```
+
+Start the bot.
+
+```javascript
+const Bot = require('discord-soundbot').default;
+
+const bot = new Bot({
+  clientID: 'YOUR_CLIENT_ID',
+  token: 'YOUR_BOT_USER_TOKEN',
+});
+bot.start();
+```
+
+For more configuration options see [here](../../wiki/Configuration).
 
 #### Building manually
 
 + Install **Node.js v8.0.0** or newer and **FFmpeg**.
++ Clone the repository.
 + Install the bot's dependencies with `npm install`.
 + Run the bot with `npm start`.
 

@@ -4,6 +4,7 @@
   + Changes config during runtime
 + Added `!combo` command
 + Made SoundUtil an actual class
++ Released as an npm package
 
 ## 1.3.0 (2018-09-01)
 
