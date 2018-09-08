@@ -24,8 +24,7 @@
     "discord.js": "^11.4.2",
     "i18n": "^0.8.3",
     "lowdb": "^1.0.0",
-    "node-opus": "^0.3.0",
-    "replace-in-file": "^3.4.2"
+    "node-opus": "^0.3.0"
   },
   "optionalDependencies": {
     "erlpack": "discordapp/erlpack",
@@ -40,6 +39,7 @@
     "@types/i18n": "^0.8.3",
     "@types/lowdb": "^1.0.0",
     "@types/node": "^8.9.5",
+    "replace-in-file": "^3.4.2",
     "tslint": "^5.9.1",
     "typescript": "^3.0.1"
   },
