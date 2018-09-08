@@ -17,7 +17,7 @@ export default class SearchCommand implements ICommand {
 
   constructor(localeService: LocaleService, soundUtil: SoundUtil, db: DatabaseAdapter) {
     this.localeService = localeService;
-    this.soundUtil = soundUtil
+    this.soundUtil = soundUtil;
     this.db = db;
   }
 
