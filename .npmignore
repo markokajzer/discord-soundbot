@@ -1,0 +1,15 @@
+.vscode/
+todo/
+
+coverage/
+lib/
+sounds/
+src/
+
+config/config.json
+
+.gitignore
+Dockerfile
+tsconfig.json
+tslint.yml
+yarn.lock
