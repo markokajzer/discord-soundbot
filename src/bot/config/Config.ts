@@ -1,6 +1,7 @@
 import fs from 'fs';
+import path from 'path';
 
-import config from '../../../config/config.json';
+import exampleConfig from '../../../config/config.example.json';
 
 export default class Config {
   public clientID!: string;
@@ -17,12 +18,14 @@ export default class Config {
 
   private readonly BLACKLIST = ['clientID', 'token'];
   private readonly JSON_KEYS!: Array<string>;
+  private readonly CONFIG_PATH = path.join(__dirname, '..', '..', '..', '..', 'config', 'config.json');
 
   [index: string]: any;
 
   constructor() {
-    this.initializeWith(config);
-    this.JSON_KEYS = Object.keys(this).filter(key => !['BLACKLIST', 'JSON_KEYS'].includes(key));
+    this.initialize();
+    this.JSON_KEYS = Object.keys(this).filter(key =>
+      !['BLACKLIST', 'JSON_KEYS', 'CONFIG_PATH'].includes(key));
   }
 
   public has(field: string) {
@@ -50,12 +53,36 @@ export default class Config {
     this.writeToConfig();
   }
 
+  public setFromObject(data: any) {
+    Object.keys(data).forEach(field => {
+      if (this.has(field)) this[field] = data[field];
+    });
+  }
+
+  private initialize() {
+    if (!require.resolve(this.CONFIG_PATH)) {
+      this.initializeWithExampleConfig();
+      return;
+    }
+
+    this.initializeWithSavedConfig();
+  }
+
   private initializeWith(data: any) {
     Object.keys(data).forEach(field => this[field] = data[field]);
   }
 
+  private initializeWithExampleConfig() {
+    this.initializeWith(exampleConfig);
+  }
+
+  private initializeWithSavedConfig() {
+    const savedConfig = require(this.CONFIG_PATH);
+    this.initializeWith(savedConfig);
+  }
+
   private writeToConfig() {
-    fs.writeFile('./config/config.json', JSON.stringify(this, this.JSON_KEYS, '  '), error => {
+    fs.writeFile(this.CONFIG_PATH, JSON.stringify(this, this.JSON_KEYS, '  '), error => {
       if (error) console.error(error);
     });
   }
