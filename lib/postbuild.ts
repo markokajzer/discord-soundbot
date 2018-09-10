@@ -20,7 +20,7 @@ const options = {
   files: ['dist/**/*.js'],
   from: from,
   to: (...args: Array<string>) => {
-    const [match, _, __, filename] = args;
+    const [match, , , filename] = args;
     const [replacePattern, ...file] = match.split('/');
 
     return path.relative(path.join(process.cwd(), path.dirname(filename)),
