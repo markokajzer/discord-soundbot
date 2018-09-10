@@ -9,7 +9,9 @@ src/
 config/config.json
 
 .gitignore
-Dockerfile
+db.json
 tsconfig.json
 tslint.yml
 yarn.lock
+
+Dockerfile
