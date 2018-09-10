@@ -1,6 +1,6 @@
 {
   "name": "discord-soundbot",
-  "version": "1.4.0-dev",
+  "version": "1.4.0",
   "description": "A Soundboard for Discord",
   "main": "dist/src/Bot.js",
   "repository": {

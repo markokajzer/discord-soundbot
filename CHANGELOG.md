@@ -1,4 +1,4 @@
-## 1.4.0-dev (XXXX-XX-XX)
+## 1.4.0 (2018-09-10)
 
 + Added `!config` command
   + Changes config during runtime
