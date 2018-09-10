@@ -14,4 +14,5 @@ tsconfig.json
 tslint.yml
 yarn.lock
 
+.dockerignore
 Dockerfile
