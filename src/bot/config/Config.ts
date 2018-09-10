@@ -41,7 +41,7 @@ export default class Config {
         this[field] = value[0];
         break;
       case 'number':
-        this[field] = parseInt(value[0]);
+        this[field] = parseFloat(value[0]);
         break;
       case 'boolean':
         this[field] = value[0] === 'true';
