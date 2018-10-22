@@ -2,7 +2,9 @@ coverage/
 dist/
 node_modules/
 
-config/config.json
+config/*
+!config/locales/
+!config/config.example.json
 
 sounds/*
 !sounds/.keep
