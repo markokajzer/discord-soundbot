@@ -151,5 +151,6 @@ This bot is a dear passion project of mine. If you have any suggestions for new 
 In particular, thanks to these splendid lads for providing localization:
 
 + French, [@sipahius](https://github.com/hugoSip)
-+ Hungarian, [@stroopwafel1337](https://github.com/stroopwafel1337) (aka alma)
++ Hungarian, [@alma](https://github.com/stroopwafel1337)
++ Italian, [@Reckless](https://github.com/MarcoReckless)
 + Japanese, [@Sigmy](https://github.com/sigmy)

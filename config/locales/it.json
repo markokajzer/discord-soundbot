@@ -1,0 +1,96 @@
+{
+  "url": "Usa il seguente URL per far entrare il BOT nel tuo server!\nhttps://discordapp.com/oauth2/authorize?client_id={clientId}&scope=bot",
+  "welcome": "**Grazie per avermi aggiunto!** 🔥\n- Il mio prefisso e' `{prefix}`. Vuoi cambiarlo? Scopri le configurazioni qui: **<https://github.com/markokajzer/discord-soundbot/wiki/Configuration>**.\n- Puoi vedere una lista dei comandi con `{prefix}help.`\n- Inizia aggiungendo un suono. Usa `{prefix}add` e trascina un file audio!\n- Ti serve altro aiuto? Unisciti al server di supporto: **<https://discordapp.com/invite/JBw2BNx>**.",
+
+  "help": {
+    "headline": "Usa il prefisso `{prefix}` coi seguenti comandi:",
+    "welcome": "Mostra il messaggio di benvenuto",
+    "commands": "Mostra questo messaggio",
+    "sounds": "Mostra i suoni disponibili",
+    "add": "Aggiunge il suono allegato",
+    "play": "Riproduce un suono specifico",
+    "combo": "Riproduce suoni in successione",
+    "random": "Riproduce un suono casuale",
+    "rename": "Rinomina il suono specificato",
+    "remove": "Rimuove il suono specificato",
+    "download": "Manda il suono specificato come file scaricabile",
+    "stop": "Ferma la riproduzione e pulisce la coda",
+    "leave": "Lascia il canale",
+    "tag": {
+      "add": "Aggiungi un tag al suono",
+      "list": "Lista dei tag del suono specificato",
+      "clear": "Pulisce i tag del suono specificato"
+    },
+    "tags": "Lista dei suoni con i relativi tag",
+    "search": "Cerca i suoni in base ad un tag",
+    "mostplayed": "Mostra i suoni maggiormente utilizzati",
+    "lastadded": "Mostra gli ultimi suoni aggiunti",
+    "ignore": "Ignora un utente specifico",
+    "unignore": "Smette di ignorare un utente specifico",
+    "avatar": "Mostra, cambia o rimuove l'avatar corrente",
+    "config": "Cambia la configurazione"
+  },
+
+  "helpers": {
+    "messageChunker": {
+      "page": "```Pagina {current} di {amount}```"
+    },
+    "userFinder": {
+      "error": "Utente non trovato su questo server."
+    },
+    "voiceChannelFinder": {
+      "error": "Unisci ad un canale vocale prima!"
+    }
+  },
+
+  "validation": {
+    "attachment": {
+      "exists": "{name} esiste gia'!",
+      "extension": "Il suono deve essere in uno dei seguenti formati: [{extensions}]!",
+      "format": "Il nome del file deve essere in lettere e numeri!",
+      "size": "Il file e' troppo grande!"
+    },
+    "url": {
+      "invalid": "L'URL non e' valido!"
+    }
+  },
+
+  "add": {
+    "success": "{name} aggiunto!",
+    "error": "Qualcosa e' andato storto!"
+  },
+  "avatar": {
+    "errors": {
+      "noAvatar": "Avatar non ancora impostato. Prova ad aggiungere uno con `{prefix}avatar` allegando un immagine!",
+      "tooFast": "Stai cambiando l'avatar troppo velocemente. Riprova piu' tardi."
+    },
+    "url": "Avatar corrente: {url}"
+  },
+  "ignore": {
+    "ignore": "Sto ignorando {user}!",
+    "unignore": "Non sto piu' ignorando {user}!"
+  },
+  "remove": {
+    "notFound": "{sound} non trovato!",
+    "success": "{sound} rimosso!"
+  },
+  "rename": {
+    "exists": "{newName} esiste gia'!",
+    "notFound": "{oldName} non trovato!",
+    "success": "{oldName} rinominato in {newName}!"
+  },
+  "search": {
+    "notFound": "Nessun suono trovato."
+  },
+  "sounds": {
+    "notFound": "Non hai ancora nessun suono! Prova ad aggiungere uno con il comando {prefix}add."
+  },
+  "tag": {
+    "found": "Tags del suono {sound}: [{tags}]",
+    "notFound": "{sound} non trovato!"
+  },
+  "config": {
+    "success": "`{field}` impostato al valore `{value}`!",
+    "notFound": "La configurazione non ha l'opzione `{field}`!"
+  }
+}

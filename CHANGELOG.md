@@ -1,3 +1,7 @@
+## 1.5.0 (Unreleased)
+
++ Added Japanese translation
+
 ## 1.4.0 (2018-09-10)
 
 + Added `!config` command
