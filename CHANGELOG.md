@@ -2,6 +2,9 @@
 
 + Added Japanese translation
 
++ Removed uws for bufferutil
++ Fixed trying to delete already deleted messages
+
 ## 1.4.0 (2018-09-10)
 
 + Added `!config` command

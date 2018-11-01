@@ -26,16 +26,24 @@ export default class SoundQueue {
     if (this.isStartable()) this.playNext();
   }
 
-  public items(): Array<QueueItem> {
-    return this.queue;
-  }
-
   public clear() {
+    if (!this.currentSound) return;
+    if (this.config.deleteMessages) this.deleteMessages();
+
     this.queue = [];
   }
 
   private isStartable() {
     return this.currentSound === null;
+  }
+
+  private deleteMessages() {
+    if (this.isEmpty()) return;
+
+    const messages = this.queue.map(item => item.message);
+    messages.filter(message => message.id !== this.currentSound!.message.id)
+      .filter((message, index) => messages.indexOf(message) === index)
+      .forEach(message => message.delete());
   }
 
   private playNext() {
@@ -64,9 +72,7 @@ export default class SoundQueue {
 
   private onFinishedPlayingSound(connection: VoiceConnection) {
     this.db.sounds.incrementCount(this.currentSound!.name);
-    if (this.config.deleteMessages && this.currentSound!.message) {
-      this.currentSound!.message!.delete();
-    }
+    this.deleteCurrentMessage();
 
     if (!this.isEmpty()) {
       this.playNext();
@@ -75,6 +81,16 @@ export default class SoundQueue {
 
     this.currentSound = null;
     if (!this.config.stayInChannel) connection.disconnect();
+  }
+
+  private deleteCurrentMessage() {
+    if (this.config.deleteMessages && this.isLastSoundFromCurrentMessage()) {
+      this.currentSound!.message.delete();
+    }
+  }
+
+  private isLastSoundFromCurrentMessage() {
+    return !this.queue.some(item => item.message.id === this.currentSound!.message.id);
   }
 
   private isEmpty() {

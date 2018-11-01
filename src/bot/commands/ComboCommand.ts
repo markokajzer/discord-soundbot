@@ -37,15 +37,11 @@ export default class ComboCommand implements ICommand {
   }
 
   private addSoundsToQueue(sounds: Array<string>, voiceChannel: VoiceChannel, message: Message) {
-    sounds.forEach((sound, index) => {
-      if (!this.sounds.includes(sound)) return;
+    sounds.forEach(sound => this.addSoundToQueue(sound, voiceChannel, message));
+  }
 
-      if (index === sounds.length - 1) {
-        this.queue.add(new QueueItem(sound, voiceChannel, message));
-        return;
-      }
-
-      this.queue.add(new QueueItem(sound, voiceChannel));
-    });
+  private addSoundToQueue(sound: string, voiceChannel: VoiceChannel, message: Message) {
+    if (!this.sounds.includes(sound)) return;
+    this.queue.add(new QueueItem(sound, voiceChannel, message));
   }
 }
