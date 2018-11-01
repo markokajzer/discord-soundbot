@@ -1,18 +1,23 @@
 .vscode/
+backups/
 todo/
 
 coverage/
 lib/
 sounds/
 src/
+types/
 
-config/config.json
+config/*
+!config/locales/
+!config/config.example.json
 
 .gitignore
 db.json
+yarn.lock
+
 tsconfig.json
 tslint.yml
-yarn.lock
 
 .dockerignore
 Dockerfile
