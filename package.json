@@ -27,9 +27,9 @@
     "node-opus": "^0.3.0"
   },
   "optionalDependencies": {
+    "bufferutil": "^4.0.0",
     "erlpack": "discordapp/erlpack",
     "fluent-ffmpeg": "^2.1.2",
-    "uws": "9.148.0",
     "ytdl-core": "^0.24.0",
     "zlib-sync": "^0.1.4"
   },

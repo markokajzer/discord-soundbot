@@ -130,6 +130,13 @@ brace-expansion@^1.1.7:
     balanced-match "^1.0.0"
     concat-map "0.0.1"
 
+bufferutil@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/bufferutil/-/bufferutil-4.0.0.tgz#a5078160e443751a4e83b6f4d6d7e26c058326a0"
+  integrity sha512-jpnqMVLo7sqfUY2W92RC4jjj9TuiOSkjB0k43TxPcrBSntZwXUOl8Krfd3eVEdApuScpSTwYKntm/dXU2T8gnw==
+  dependencies:
+    node-gyp-build "~3.4.0"
+
 builtin-modules@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/builtin-modules/-/builtin-modules-1.1.1.tgz#270f076c5a72c02f5b65a47df94c5fe3a278892f"
@@ -536,6 +543,11 @@ no-case@^2.2.0:
   dependencies:
     lower-case "^1.1.1"
 
+node-gyp-build@~3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/node-gyp-build/-/node-gyp-build-3.4.0.tgz#f8f62507e65f152488b28aac25d04b9d79748cf7"
+  integrity sha512-YoviGBJYGrPdLOKDIQB0sKxuKy/EEsxzooNkOZak4vSTKT/qH0Pa6dj3t1MJjEQGsefih61IyHDmO1WW7xOFfw==
+
 node-opus@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/node-opus/-/node-opus-0.3.0.tgz#d84a96ead8599084cd5a9899f096ce4576980a09"
@@ -829,10 +841,6 @@ typescript@^3.0.1:
 upper-case@^1.1.1:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/upper-case/-/upper-case-1.1.3.tgz#f6b4501c2ec4cdd26ba78be7222961de77621598"
-
-uws@9.148.0:
-  version "9.148.0"
-  resolved "https://registry.yarnpkg.com/uws/-/uws-9.148.0.tgz#56aff36cb95f7594573daff2a21105ec4b764664"
 
 watchr@~2.4.13:
   version "2.4.13"
