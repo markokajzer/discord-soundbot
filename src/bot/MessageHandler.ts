@@ -26,6 +26,9 @@ export default class MessageHandler {
   }
 
   private isValidMessage(message: Message) {
+    if(this.config.admin && this.config.admin !== '') {
+      if(message.author.id !== this.config.admin) return false;
+    }
     return !message.isDirectMessage() &&
            message.hasPrefix(this.config.prefix) &&
            !this.db.ignoreList.exists(message.author.id);
