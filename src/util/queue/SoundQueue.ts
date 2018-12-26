@@ -70,9 +70,24 @@ export default class SoundQueue {
     );
   }
 
+  private getRandomSound() {
+    const sounds = this.soundUtil.getSounds();
+    if(sounds.length <= 0) return null;
+    return sounds[Math.floor(Math.random() * sounds.length)];
+  }
+
   private onFinishedPlayingSound(connection: VoiceConnection) {
+    const lastSound = this.currentSound;
+
     this.db.sounds.incrementCount(this.currentSound!.name);
     this.deleteCurrentMessage();
+
+    if (this.config.randomLoop && this.soundUtil.randomLoop) {
+      const nextSound = this.getRandomSound();
+      if (nextSound !== null) {
+        this.add(new QueueItem(nextSound, lastSound!.channel, lastSound!.message));
+      }
+    }
 
     if (!this.isEmpty()) {
       this.playNext();

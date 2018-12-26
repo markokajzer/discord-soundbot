@@ -27,6 +27,7 @@ export default class SoundCommand implements ICommand {
     const voiceChannel = this.voiceChannelFinder.getVoiceChannelFromMessageAuthor(message);
     if (!voiceChannel) return;
 
+    this.soundUtil.randomLoop = true;
     this.queue.add(new QueueItem(sound, voiceChannel, message));
   }
 }

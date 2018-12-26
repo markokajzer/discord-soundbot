@@ -4,9 +4,11 @@ import Config from '@config/Config';
 
 export default class SoundUtil {
   private readonly config: Config;
+  public randomLoop: boolean;
 
   constructor(config: Config) {
     this.config = config;
+    this.randomLoop = false;
   }
 
   public getSounds() {
