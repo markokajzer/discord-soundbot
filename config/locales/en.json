@@ -26,6 +26,7 @@
     "mostplayed": "Show most used sounds",
     "lastadded": "Show last added sounds",
     "ignore": "Ignore specified user",
+    "id": "Get user discord id",
     "unignore": "Unignore specified user",
     "avatar": "Set, show or remove the avatar",
     "config": "Change the configuration"

@@ -45,6 +45,7 @@ export default class HelpCommand implements ICommand {
       `mostplayed               ${this.localeService.t('help.mostplayed')}`,
       `lastadded                ${this.localeService.t('help.lastadded')}`,
       `ignore <user>            ${this.localeService.t('help.ignore')}`,
+      `id                       ${this.localeService.t('help.id')}`,
       `unignore <user>          ${this.localeService.t('help.unignore')}`,
       `avatar [remove]          ${this.localeService.t('help.avatar')}`,
       `config <option> <value>  ${this.localeService.t('help.config')}`,

@@ -58,6 +58,7 @@ container.register({
 
       container.cradle.welcomeCommand,
       container.cradle.helpCommand,
+      container.cradle.idCommand,
       container.cradle.lastAddedCommand,
       container.cradle.mostPlayedCommand,
       container.cradle.ignoreCommand,
