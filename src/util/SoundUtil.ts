@@ -44,6 +44,6 @@ export default class SoundUtil {
 
   private getSoundWithExtension(sound: string) {
     const [name, extension] = sound.split('.');
-    return { name: name, extension: extension };
+    return { name, extension };
   }
 }
