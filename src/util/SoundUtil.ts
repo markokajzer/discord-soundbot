@@ -2,6 +2,11 @@ import fs from 'fs';
 
 import Config from '@config/Config';
 
+interface ISound {
+  name: string;
+  extension: string;
+}
+
 export default class SoundUtil {
   private readonly config: Config;
 
@@ -14,7 +19,7 @@ export default class SoundUtil {
     return sounds.map(sound => sound.name);
   }
 
-  public getSoundsWithExtension(): Array<Sound> {
+  public getSoundsWithExtension(): Array<ISound> {
     const sounds = this.getSoundsFromSoundFolder();
     return sounds.map(this.getSoundWithExtension);
   }
@@ -42,9 +47,3 @@ export default class SoundUtil {
     return { name: name, extension: extension };
   }
 }
-
-// tslint:disable-next-line interface-over-type-literal
-type Sound = {
-  name: string,
-  extension: string
-};
