@@ -27,14 +27,14 @@ export default class AttachmentDownloader extends BaseDownloader {
     return this.makeRequest(attachment.url)
       .then(response => this.saveResponseToFile(response as IncomingMessage, attachment.filename.toLowerCase()))
       .then(name => Promise.resolve(this.localeService.t('add.success', { name })))
-      .catch(error => this.handleError(error));
+      .catch(this.handleError);
   }
 
   private makeRequest(url: string) {
     return new Promise((resolve, reject) => {
       https.get(url)
-        .on('response', response => resolve(response))
-        .on('error', error => reject(error));
+        .on('response', resolve)
+        .on('error', reject);
     });
   }
 

@@ -82,8 +82,6 @@ export default class Config {
   }
 
   private writeToConfig() {
-    fs.writeFile(this.CONFIG_PATH, JSON.stringify(this, this.JSON_KEYS, '  '), error => {
-      if (error) console.error(error);
-    });
+    fs.writeFile(this.CONFIG_PATH, JSON.stringify(this, this.JSON_KEYS, '  '), console.error);
   }
 }

@@ -30,30 +30,30 @@ export default class YoutubeDownloader extends BaseDownloader {
   private addSound(url: string, filename: string) {
     return this.makeRequest(url)
       .then(() => this.convertToMp3(filename))
-      .catch(error => this.handleError(error));
+      .catch(this.handleError);
   }
 
   private makeRequest(url: string) {
     return new Promise((resolve, reject) => {
       ytdl(url, { filter: format => format.container === 'mp4'})
         .pipe(fs.createWriteStream('tmp.mp4'))
-        .on('finish', () => resolve())
-        .on('error', error => reject(error));
+        .on('finish', resolve)
+        .on('error', reject);
     });
   }
 
   private convertToMp3(name: string) {
     return this.convertWithFfmpeg(name)
       .then(() => this.cleanUp(name))
-      .catch(error => this.handleError(error));
+      .catch(this.handleError);
   }
 
   private convertWithFfmpeg(name: string) {
     return new Promise((resolve, reject) => {
       ffmpeg('tmp.mp4')
         .output(`./sounds/${name}.mp3`)
-        .on('end', () => resolve())
-        .on('error', error => reject(error))
+        .on('end', resolve)
+        .on('error', reject)
         .run();
     });
   }
