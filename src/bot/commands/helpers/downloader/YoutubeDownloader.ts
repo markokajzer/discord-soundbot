@@ -17,19 +17,20 @@ export default class YoutubeDownloader extends BaseDownloader {
 
   public handle(message: Message) {
     const params = message.content.split(' ');
-    if (params.length !== 2) return;
+    if (params.length < 2 || params.length > 4) return;
 
-    const [name, link] = params;
+    const [name, link, start, end] = params;
 
+    // TODO Try sending string. Is it catched?
     this.validator.validate(name, link)
-      .then(() => this.addSound(link, name))
+      .then(() => this.addSound(link, name, parseInt(start), parseInt(end)))
       .then(result => message.channel.send(result))
       .catch(result => message.channel.send(result));
   }
 
-  private addSound(url: string, filename: string) {
+  private addSound(url: string, filename: string, startTime: number, endTime: number) {
     return this.makeRequest(url)
-      .then(() => this.convertToMp3(filename))
+      .then(() => this.convertToMp3(filename, startTime, endTime))
       .catch(this.handleError);
   }
 
@@ -42,16 +43,20 @@ export default class YoutubeDownloader extends BaseDownloader {
     });
   }
 
-  private convertToMp3(name: string) {
-    return this.convertWithFfmpeg(name)
+  private convertToMp3(name: string, startTime: number, endTime: number) {
+    return this.convertWithFfmpeg(name, startTime, endTime)
       .then(() => this.cleanUp(name))
       .catch(this.handleError);
   }
 
-  private convertWithFfmpeg(name: string) {
+  private convertWithFfmpeg(name: string, startTime: number, endTime: number) {
+    let ffmpegCommand = ffmpeg('tmp.mp4');
+    if (startTime >= 0) ffmpegCommand = ffmpegCommand.setStartTime(startTime);
+    if (endTime >= startTime) ffmpegCommand = ffmpegCommand.setDuration(endTime - startTime);
+    ffmpegCommand = ffmpegCommand.output(`./sounds/${name}.mp3`);
+
     return new Promise((resolve, reject) => {
-      ffmpeg('tmp.mp4')
-        .output(`./sounds/${name}.mp3`)
+      ffmpegCommand
         .on('end', resolve)
         .on('error', reject)
         .run();
