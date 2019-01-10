@@ -3,7 +3,6 @@ import { Message } from 'discord.js';
 import ICommand from './base/ICommand';
 
 import AttachmentDownloader from './helpers/downloader/AttachmentDownloader';
-import BaseDownloader from './helpers/downloader/BaseDownloader';
 import YoutubeDownloader from './helpers/downloader/YoutubeDownloader';
 
 export default class AddCommand implements ICommand {
@@ -17,8 +16,11 @@ export default class AddCommand implements ICommand {
   }
 
   public run(message: Message) {
-    let handler: BaseDownloader = this.attachmentDownloader ;
-    if (!message.attachments.size) handler = this.youtubeDownloader;
-    handler.handle(message);
+    if (!message.attachments.size) {
+      this.youtubeDownloader.handle(message);
+      return;
+    }
+
+    this.attachmentDownloader.handle(message);
   }
 }
