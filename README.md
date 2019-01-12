@@ -64,7 +64,7 @@ Need more details? You can find more detailed installation guides for [Unix](../
 
 #### Building/Running via Docker
 
-+ First, clone the repo and run `docker build -t soundbot .` inside the folder.
++ First, clone the repo and run `docker-compose build` inside the folder.
 + Make a separate directory where your soundbot's data will live (Ex. `/etc/discord-soundbot`)
 + Then create a `docker-compose.yml` file in that directory with the following contents:
 ```yaml
@@ -74,10 +74,11 @@ services:
     image: soundbot
     volumes:                                           
     - ./sounds:/app/sounds                             
-    - ./config.json:/app/config/config.json            
+    - ./config/config.json:/app/config/config.json
     - ./db.json:/app/db.json                           
 ```
-+ Create your `config.json` in the same directory
++ Create a `config/config.json` file as described above.
++ Create an empty `db.json` file.
 + Afterwards start the bot via `docker-compose up`.
 + To run the container in the background use `docker-compose up -d`.
 
