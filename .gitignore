@@ -10,5 +10,3 @@ sounds/*
 !sounds/.keep
 
 db.json
-
-*.swp
