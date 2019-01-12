@@ -4,7 +4,7 @@
 dist
 node_modules
 
-config/config.example.json
+config/config.json
 
 db.json
 
