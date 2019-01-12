@@ -4,9 +4,10 @@
 dist
 node_modules
 
-config/config.example.json
+config/config.json
 
 db.json
+sounds
 
 CHANGELOG.md
 README.md
