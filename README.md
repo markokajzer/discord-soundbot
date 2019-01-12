@@ -62,13 +62,24 @@ For more configuration options see [here](../../wiki/Configuration).
 
 Need more details? You can find more detailed installation guides for [Unix](../../wiki/Unix) (including your Raspberry Pi), [macOS](../../wiki/macOS), and [Windows](../../wiki/Windows).
 
-#### Building via Docker
+#### Building/Running via Docker
 
-*Note*: Using this method, the bot will lose all sounds when restarting because the Docker container has its own file system.
-
-+ Simply clone the repo and run `docker build -t soundbot .` inside the folder.
-+ Afterwards start the bot via `docker run soundbot`.
-+ To run the container in the background use `docker run -d soundbot`.
++ First, clone the repo and run `docker build -t soundbot .` inside the folder.
++ Make a separate directory where your soundbot's data will live (Ex. `/etc/discord-soundbot`)
++ Then create a `docker-compose.yml` file in that directory with the following contents:
+```yaml
+version: '2'                                           
+services:                                              
+  discord-soundbot:                                    
+    image: soundbot
+    volumes:                                           
+    - ./sounds:/app/sounds                             
+    - ./config.json:/app/config/config.json            
+    - ./db.json:/app/db.json                           
+```
++ Create your `config.json` in the same directory
++ Afterwards start the bot via `docker-compose up`.
++ To run the container in the background use `docker-compose up -d`.
 
 
 ### Adding the bot to your server
