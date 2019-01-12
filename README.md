@@ -29,7 +29,23 @@ To learn how to edit the config while the bot is running, see [below](#changing-
 
 ### Building
 
-The bot can be installed via npm, manually or via Docker.
+The bot can be installed manually, via Docker, or as an npm package. When not using Docker the bot needs at least **Node.js v8.0.0** or newer and **FFmpeg** for its voice functionality.
+
+#### Building manually
+
++ Clone the repository.
++ Install the bot's dependencies with `npm install`.
++ Run the bot with `npm start`.
+
+Need more details? You can find more detailed installation guides for [Unix](../../wiki/Unix) (including your Raspberry Pi), [macOS](../../wiki/macOS), and [Windows](../../wiki/Windows).
+
+#### Building/Running via Docker
+
++ Make sure to have Docker installed.
++ Clone the repo and run `docker-compose build` inside the folder.
++ If you do not already have one, create an empty `db.json` file.
++ Afterwards start the bot via `docker-compose up`.
++ To run the container in the background use `docker-compose up -d`.
 
 #### Using npm
 
@@ -52,35 +68,6 @@ bot.start();
 ```
 
 For more configuration options see [here](../../wiki/Configuration).
-
-#### Building manually
-
-+ Install **Node.js v8.0.0** or newer and **FFmpeg**.
-+ Clone the repository.
-+ Install the bot's dependencies with `npm install`.
-+ Run the bot with `npm start`.
-
-Need more details? You can find more detailed installation guides for [Unix](../../wiki/Unix) (including your Raspberry Pi), [macOS](../../wiki/macOS), and [Windows](../../wiki/Windows).
-
-#### Building/Running via Docker
-
-+ First, clone the repo and run `docker-compose build` inside the folder.
-+ Make a separate directory where your soundbot's data will live (Ex. `/etc/discord-soundbot`)
-+ Then create a `docker-compose.yml` file in that directory with the following contents:
-```yaml
-version: '2'                                           
-services:                                              
-  discord-soundbot:                                    
-    image: soundbot
-    volumes:                                           
-    - ./sounds:/app/sounds                             
-    - ./config/config.json:/app/config/config.json
-    - ./db.json:/app/db.json                           
-```
-+ Create a `config/config.json` file as described above.
-+ Create an empty `db.json` file.
-+ Afterwards start the bot via `docker-compose up`.
-+ To run the container in the background use `docker-compose up -d`.
 
 
 ### Adding the bot to your server

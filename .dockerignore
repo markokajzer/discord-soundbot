@@ -1,13 +1,15 @@
 .git
 .gitignore
+.npmignore
+.node-version
 
 dist
 node_modules
 
 config/config.json
-
 db.json
 sounds
 
+tslint.yml
 CHANGELOG.md
 README.md

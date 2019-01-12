@@ -21,3 +21,4 @@ tslint.yml
 
 .dockerignore
 Dockerfile
+docker-compose.yml
