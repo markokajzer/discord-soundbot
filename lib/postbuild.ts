@@ -23,8 +23,10 @@ const options = {
     const [match, , , filename] = args;
     const [replacePattern, ...file] = match.split('/');
 
-    return path.relative(path.join(process.cwd(), path.dirname(filename)),
-                         path.join(process.cwd(), 'dist', to[replacePattern], ...file));
+    const relativePath = path.relative(path.join(process.cwd(), path.dirname(filename)),
+                                       path.join(process.cwd(), 'dist', to[replacePattern], ...file));
+
+    return relativePath.replace(/\\/g, '/');
   }
 };
 
