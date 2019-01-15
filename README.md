@@ -152,4 +152,5 @@ In particular, thanks to these splendid lads for providing localization:
 + French, [@sipahius](https://github.com/hugoSip)
 + Hungarian, [@alma](https://github.com/stroopwafel1337)
 + Italian, [@Reckless](https://github.com/MarcoReckless)
++ Spanish, [@ibito](https://github.com/ibito)
 + Japanese, [@Sigmy](https://github.com/sigmy)
