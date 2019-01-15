@@ -1,9 +1,14 @@
 ## 1.5.0 (Unreleased)
 
-+ Added Japanese translation
++ Added possibility to specify a range when adding from sound from YouTube
++ Added possibility to specifiy a tag for `!random`
++ Added Spanish translation (thanks [@ibito](https://github.com/ibito))
 
-+ Removed uws for bufferutil
++ Improved Docker build (Thank you [@Shamus03](https://github.com/Shamus03)!)
++ Fixed a bug specific to Windows paths (Thank you [@ibito](https://github.com/ibito)!)
++ Removed uws in favor of bufferutil
 + Fixed trying to delete already deleted messages
++ Updated dependencies
 
 ## 1.4.0 (2018-09-10)
 
