@@ -20,31 +20,31 @@
   "author": "Marko Kajzer",
   "license": "MIT",
   "dependencies": {
-    "awilix": "^3.0.9",
+    "awilix": "^4.1.0",
     "discord.js": "^11.4.2",
+    "fluent-ffmpeg": "^2.1.2",
     "i18n": "^0.8.3",
     "lowdb": "^1.0.0",
-    "node-opus": "^0.2.7"
+    "node-opus": "^0.2.7",
+    "ytdl-core": "^0.29.1"
   },
   "optionalDependencies": {
-    "bufferutil": "^3.0.3",
+    "bufferutil": "^3.0.5",
     "erlpack": "discordapp/erlpack",
-    "fluent-ffmpeg": "^2.1.2",
-    "ytdl-core": "^0.24.0",
     "zlib-sync": "^0.1.4"
   },
   "devDependencies": {
-    "@types/fluent-ffmpeg": "^2.1.6",
-    "@types/glob": "^5.0.35",
+    "@types/fluent-ffmpeg": "^2.1.9",
+    "@types/glob": "^7.1.1",
     "@types/i18n": "^0.8.3",
-    "@types/lowdb": "^1.0.0",
-    "@types/node": "^8.9.5",
+    "@types/lowdb": "^1.0.6",
+    "@types/node": "^10.12.18",
     "replace-in-file": "^3.4.2",
     "tslint": "^5.9.1",
     "typescript": "^3.0.1"
   },
   "engines": {
-    "node": "^8.0.0"
+    "node": ">=8.0.0"
   },
   "scripts": {
     "clean": "rm -rf dist",
