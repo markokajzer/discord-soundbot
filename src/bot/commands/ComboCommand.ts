@@ -15,7 +15,7 @@ export default class ComboCommand implements Command {
   private readonly soundUtil: SoundUtil;
   private readonly queue: SoundQueue;
   private readonly voiceChannelFinder: VoiceChannelFinder;
-  private sounds!: Array<string>;
+  private sounds!: string[];
 
   constructor(soundUtil: SoundUtil, queue: SoundQueue, voiceChannelFinder: VoiceChannelFinder) {
     this.soundUtil = soundUtil;
@@ -23,7 +23,7 @@ export default class ComboCommand implements Command {
     this.voiceChannelFinder = voiceChannelFinder;
   }
 
-  public run(message: Message, params: Array<string>) {
+  public run(message: Message, params: string[]) {
     if (params.length < this.NUMBER_OF_PARAMETERS) {
       message.channel.send(this.USAGE);
       return;
@@ -36,7 +36,7 @@ export default class ComboCommand implements Command {
     this.addSoundsToQueue(params, voiceChannel, message);
   }
 
-  private addSoundsToQueue(sounds: Array<string>, voiceChannel: VoiceChannel, message: Message) {
+  private addSoundsToQueue(sounds: string[], voiceChannel: VoiceChannel, message: Message) {
     sounds.forEach(sound => this.addSoundToQueue(sound, voiceChannel, message));
   }
 

@@ -22,7 +22,7 @@ export default class SoundsCommand implements Command {
     this.chunker = chunker;
   }
 
-  public run(message: Message, params: Array<string>) {
+  public run(message: Message, params: string[]) {
     const sounds = this.soundUtil.getSounds();
 
     if (!sounds.length) {

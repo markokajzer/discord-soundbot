@@ -19,7 +19,7 @@ export default class TagsCommand implements Command {
     this.chunker = chunker;
   }
 
-  public run(message: Message, params: Array<string>) {
+  public run(message: Message, params: string[]) {
     const sounds = this.soundUtil.getSounds();
     const soundsWithTags = this.formattedMessage(sounds);
 
@@ -27,7 +27,7 @@ export default class TagsCommand implements Command {
                 .forEach(chunk => message.author.send(chunk));
   }
 
-  private formattedMessage(sounds: Array<string>) {
+  private formattedMessage(sounds: string[]) {
     const longestSound = this.findLongestWord(sounds);
     return sounds.map(sound => this.listSoundWithTags(sound, longestSound.length));
   }
@@ -40,7 +40,7 @@ export default class TagsCommand implements Command {
     return `${sound}:${spacesForSound}${tags.join(', ')}`;
   }
 
-  private findLongestWord(array: Array<string>) {
+  private findLongestWord(array: string[]) {
     return array.reduce((a, b) => a.length > b.length ? a : b);
   }
 }

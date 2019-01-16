@@ -1,13 +1,13 @@
 interface I18nProvider {
   getLocale: () => string;
-  getLocales: () => Array<string>;
+  getLocales: () => string[];
   setLocale: (locale: string) => void;
   translate: (id: string, replacements?: Replacements) => string;
   t: (id: string, replacements?: Replacements) => string;
 }
 
 interface Replacements {
-  [key: string]: string | number | Array<string>;
+  [key: string]: string | number | string[];
 }
 
 export default class LocaleService {
@@ -21,7 +21,7 @@ export default class LocaleService {
     return this.i18nProvider.getLocale();
   }
 
-  public getLocales(): Array<string> {
+  public getLocales(): string[] {
     return this.i18nProvider.getLocales();
   }
 

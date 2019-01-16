@@ -10,7 +10,7 @@ export default abstract class BaseValidator {
     this.soundUtil = soundUtil;
   }
 
-  public abstract validate(...params: Array<any>): Promise<Array<void>>;
+  public abstract validate(...params: any[]): Promise<void[]>;
 
   protected validateName(name: string) {
     if (name.match(/[^a-z0-9]/)) {

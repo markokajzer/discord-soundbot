@@ -3,7 +3,7 @@ export default interface ConfigInterface {
   token: string;
   language?: string;
   prefix?: string;
-  acceptedExtensions?: Array<string>;
+  acceptedExtensions?: string[];
   maximumFileSize?: number;
   volume?: number;
   deleteMessages?: boolean;

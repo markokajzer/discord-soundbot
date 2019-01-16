@@ -20,7 +20,7 @@ export default class SoundCommand implements Command {
     this.voiceChannelFinder = voiceChannelFinder;
   }
 
-  public run(message: Message, _: Array<string>) {
+  public run(message: Message, _: string[]) {
     const sound = message.content;
     if (!this.soundUtil.soundExists(sound)) return;
 

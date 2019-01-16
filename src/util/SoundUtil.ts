@@ -19,7 +19,7 @@ export default class SoundUtil {
     return sounds.map(sound => sound.name);
   }
 
-  public getSoundsWithExtension(): Array<ISound> {
+  public getSoundsWithExtension(): ISound[] {
     const sounds = this.getSoundsFromSoundFolder();
     return sounds.map(this.getSoundWithExtension);
   }

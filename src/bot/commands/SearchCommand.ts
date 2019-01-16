@@ -21,7 +21,7 @@ export default class SearchCommand implements Command {
     this.db = db;
   }
 
-  public run(message: Message, params: Array<string>) {
+  public run(message: Message, params: string[]) {
     if (params.length !== this.NUMBER_OF_PARAMETERS) {
       message.channel.send(this.USAGE);
       return;

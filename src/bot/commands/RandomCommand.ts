@@ -24,11 +24,11 @@ export default class RandomCommand implements Command {
     this.voiceChannelFinder = voiceChannelFinder;
   }
 
-  public run(message: Message, params: Array<string>) {
+  public run(message: Message, params: string[]) {
     const voiceChannel = this.voiceChannelFinder.getVoiceChannelFromMessageAuthor(message);
     if (!voiceChannel) return;
 
-    let sounds!: Array<string>;
+    let sounds!: string[];
     if (params.length === this.NUMBER_OF_PARAMETERS) {
       sounds = this.db.sounds.withTag(params[0]);
     } else {

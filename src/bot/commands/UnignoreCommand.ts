@@ -19,7 +19,7 @@ export default class UnignoreCommand implements Command {
     this.userFinder = userFinder;
   }
 
-  public run(message: Message, _: Array<string>) {
+  public run(message: Message, _: string[]) {
     if (!message.member.hasPermission(Permissions.FLAGS.ADMINISTRATOR!)) return;
 
     this.userFinder.getUsersFromMentions(message, this.USAGE).forEach(user => {

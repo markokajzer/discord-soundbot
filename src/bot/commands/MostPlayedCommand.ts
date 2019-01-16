@@ -29,11 +29,11 @@ export default class MostPlayedCommand implements Command {
     return this.formatSounds(sounds, longestSound.length, longestCount.length);
   }
 
-  private findLongestWord(array: Array<string>) {
+  private findLongestWord(array: string[]) {
     return array.reduce((a, b) => a.length > b.length ? a : b);
   }
 
-  private formatSounds(sounds: Array<Sound>, soundLength: number, countLength: number) {
+  private formatSounds(sounds: Sound[], soundLength: number, countLength: number) {
     const lines = sounds.map(sound => {
       const spacesForSound = ' '.repeat(soundLength - sound.name.length + 1);
       const spacesForCount = ' '.repeat(countLength - String(sound.count).length);

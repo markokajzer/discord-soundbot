@@ -47,7 +47,7 @@ export default class SoundAdapter {
       .value();
   }
 
-  public addTags(sound: string, tags: Array<string>) {
+  public addTags(sound: string, tags: string[]) {
     if (!this.exists(sound)) this.add(sound);
     tags.forEach(tag => this.addSingleTag(sound, tag));
   }

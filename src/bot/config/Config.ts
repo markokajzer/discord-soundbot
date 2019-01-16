@@ -10,7 +10,7 @@ export default class Config implements ConfigInterface {
   public token!: string;
   public language!: string;
   public prefix!: string;
-  public acceptedExtensions!: Array<string>;
+  public acceptedExtensions!: string[];
   public maximumFileSize!: number;
   public volume!: number;
   public deleteMessages!: boolean;
@@ -19,7 +19,7 @@ export default class Config implements ConfigInterface {
   public game!: string;
 
   private readonly BLACKLIST = ['clientID', 'token'];
-  private readonly JSON_KEYS!: Array<string>;
+  private readonly JSON_KEYS!: string[];
   private readonly CONFIG_PATH = path.join(__dirname, '..', '..', '..', '..', 'config', 'config.json');
 
   [index: string]: any;
@@ -34,7 +34,7 @@ export default class Config implements ConfigInterface {
     return this.JSON_KEYS.includes(field);
   }
 
-  public set(field: string, value: Array<string>) {
+  public set(field: string, value: string[]) {
     if (!this.has(field)) return;
     if (this.BLACKLIST.includes(field)) return;
 

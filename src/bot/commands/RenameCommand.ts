@@ -23,7 +23,7 @@ export default class RenameCommand implements Command {
     this.db = db;
   }
 
-  public run(message: Message, params: Array<string>) {
+  public run(message: Message, params: string[]) {
     if (!message.member.hasPermission(Permissions.FLAGS.ADMINISTRATOR!)) return;
 
     if (params.length !== this.NUMBER_OF_PARAMETERS) {

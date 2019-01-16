@@ -19,7 +19,7 @@ for (const [key, value] of Object.entries(pathAliases)) {
 const options = {
   files: ['dist/**/*.js'],
   from,
-  to: (...args: Array<string>) => {
+  to: (...args: string[]) => {
     const [match, , , filename] = args;
     const [replacePattern, ...file] = match.split('/');
 
