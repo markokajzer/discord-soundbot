@@ -30,8 +30,7 @@
   },
   "optionalDependencies": {
     "bufferutil": "^3.0.5",
-    "erlpack": "discordapp/erlpack",
-    "zlib-sync": "^0.1.4"
+    "erlpack": "discordapp/erlpack"
   },
   "devDependencies": {
     "@types/fluent-ffmpeg": "^2.1.9",
