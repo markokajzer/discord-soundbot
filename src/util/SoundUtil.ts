@@ -2,7 +2,7 @@ import fs from 'fs';
 
 import Config from '@config/Config';
 
-interface ISound {
+interface Sound {
   name: string;
   extension: string;
 }
@@ -19,7 +19,7 @@ export default class SoundUtil {
     return sounds.map(sound => sound.name);
   }
 
-  public getSoundsWithExtension(): ISound[] {
+  public getSoundsWithExtension(): Sound[] {
     const sounds = this.getSoundsFromSoundFolder();
     return sounds.map(this.getSoundWithExtension);
   }
