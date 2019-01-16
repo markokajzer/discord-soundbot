@@ -1,7 +1,19 @@
-export default class LocaleService {
-  private i18nProvider: any;
+interface I18nProvider {
+  getLocale: () => string;
+  getLocales: () => Array<string>;
+  setLocale: (locale: string) => void;
+  translate: (id: string, replacements?: Replacements) => string;
+  t: (id: string, replacements?: Replacements) => string;
+}
 
-  constructor(i18nProvider: any) {
+interface Replacements {
+  [key: string]: string | number | Array<string>;
+}
+
+export default class LocaleService {
+  private i18nProvider: I18nProvider;
+
+  constructor(i18nProvider: I18nProvider) {
     this.i18nProvider = i18nProvider;
   }
 
@@ -17,11 +29,11 @@ export default class LocaleService {
     if (this.getLocales().includes(locale)) this.i18nProvider.setLocale(locale);
   }
 
-  public translate(id: string, replacements?: object) {
+  public translate(id: string, replacements?: Replacements) {
     return this.i18nProvider.translate(id, replacements);
   }
 
-  public t(id: string, replacements?: object) {
+  public t(id: string, replacements?: Replacements) {
     return this.translate(id, replacements);
   }
 }
