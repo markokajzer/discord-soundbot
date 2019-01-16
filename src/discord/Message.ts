@@ -1,14 +1,13 @@
 import { DMChannel, GroupDMChannel, Message } from 'discord.js';
 
 declare module 'discord.js' {
-  // tslint:disable-next-line interface-name
   interface Message {
     hasPrefix(prefix: string): boolean;
     isDirectMessage(): boolean;
   }
 }
 
-Message.prototype.hasPrefix = function (prefix: string) {
+Message.prototype.hasPrefix = function (prefix) {
   return this.content.startsWith(prefix);
 };
 

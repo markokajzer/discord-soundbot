@@ -41,6 +41,7 @@
     "@types/node": "^10.12.18",
     "replace-in-file": "^3.4.2",
     "tslint": "^5.9.1",
+    "tslint-consistent-codestyle": "^1.15.0",
     "typescript": "^3.0.1"
   },
   "engines": {

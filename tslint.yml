@@ -7,6 +7,9 @@ extends:
 linterOptions:
   exclude: "**/*.json"
 
+rulesDirectory:
+  - tslint-consistent-codestyle
+
 rules:
   array-type:
     - true
@@ -22,10 +25,6 @@ rules:
   no-console:
     - true
     - log
-  no-unused-variable:
-    - true
-    - check-parameters
-    - ignore-pattern: ^_
   object-literal-sort-keys:
     - false
   quotemark:
@@ -45,3 +44,21 @@ rules:
     - true
     - multiline: never
       singleline: never
+
+# tslint-consistent-codestyle
+  early-exit:
+    - true
+  no-collapsible-if:
+    - true
+  no-return-undefined:
+    - true
+  no-unnecessary-else:
+    - true
+  no-unnecessary-type-annotation:
+    - true
+    - check-return-type
+  no-unused:
+    - true
+    - unused-catch-binding
+  object-shorthand-properties-first:
+    - true

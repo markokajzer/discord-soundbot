@@ -53,7 +53,7 @@ export default class MessageChunker {
 
   private specificChunk(chunk: Array<string>, input: number, amount: number) {
     return [
-      this.localeService.t('helpers.messageChunker.page', { current: input, amount }),
+      this.localeService.t('helpers.messageChunker.page', { amount, current: input }),
       ['```', ...chunk, '```'].join('\n')
     ];
   }
