@@ -1,13 +1,13 @@
 import { Message } from 'discord.js';
 
-import ICommand from './base/ICommand';
+import Command from './base/Command';
 
 import Config from '@config/Config';
 import LocaleService from '@util/i18n/LocaleService';
 import SoundUtil from '@util/SoundUtil';
 import MessageChunker from './helpers/MessageChunker';
 
-export default class SoundsCommand implements ICommand {
+export default class SoundsCommand implements Command {
   public readonly TRIGGERS = ['sounds'];
 
   private readonly config: Config;

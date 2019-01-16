@@ -1,12 +1,12 @@
 import { Message, Permissions } from 'discord.js';
 
-import ICommand from './base/ICommand';
+import Command from './base/Command';
 
 import DatabaseAdapter from '@util/db/DatabaseAdapter';
 import LocaleService from '@util/i18n/LocaleService';
 import UserFinder from './helpers/UserFinder';
 
-export default class UnignoreCommand implements ICommand {
+export default class UnignoreCommand implements Command {
   public readonly TRIGGERS = ['unignore'];
   public readonly USAGE = 'Usage: !unignore <user>';
   private readonly localeService: LocaleService;

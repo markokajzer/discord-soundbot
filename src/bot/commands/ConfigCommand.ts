@@ -1,11 +1,11 @@
 import { ClientUser, Message, Permissions } from 'discord.js';
 
-import ICommand from './base/ICommand';
+import Command from './base/Command';
 
 import Config from '@config/Config';
 import LocaleService from '@util/i18n/LocaleService';
 
-export default class ConfigCommand implements ICommand {
+export default class ConfigCommand implements Command {
   public readonly TRIGGERS = ['config'];
   public readonly NUMBER_OF_PARAMETERS = 2;
   public readonly USAGE = 'Usage: !config <option> <value>';

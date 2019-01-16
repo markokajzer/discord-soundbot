@@ -1,11 +1,11 @@
 import { ClientUser, Message, Permissions } from 'discord.js';
 
-import IUserCommand from './base/IUserCommand';
+import UserCommand from './base/UserCommand';
 
 import Config from '@config/Config';
 import LocaleService from '@util/i18n/LocaleService';
 
-export default class AvatarCommand implements IUserCommand {
+export default class AvatarCommand implements UserCommand {
   public readonly TRIGGERS = ['avatar'];
   public readonly NUMBER_OF_PARAMETERS = 1;
   public readonly USAGE = 'Usage: !avatar [remove]';

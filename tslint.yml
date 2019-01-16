@@ -13,7 +13,7 @@ rulesDirectory:
 rules:
   array-type:
     - true
-    - generic
+    - array
   arrow-parens:
     - true
     - ban-single-arg-parens

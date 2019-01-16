@@ -1,11 +1,11 @@
 import { Message } from 'discord.js';
 
-import ICommand from './base/ICommand';
+import Command from './base/Command';
 
 import Config from '@config/Config';
 import LocaleService from '@util/i18n/LocaleService';
 
-export default class WelcomeCommand implements ICommand {
+export default class WelcomeCommand implements Command {
   public readonly TRIGGERS = ['welcome'];
   private readonly config: Config;
   private readonly localeService: LocaleService;

@@ -1,11 +1,11 @@
 import { Message } from 'discord.js';
 
-import ICommand from './base/ICommand';
+import Command from './base/Command';
 
 import DatabaseAdapter from '@util/db/DatabaseAdapter';
 import Sound from '@util/db/models/Sound';
 
-export default class MostPlayedCommand implements ICommand {
+export default class MostPlayedCommand implements Command {
   public readonly TRIGGERS = ['mostplayed'];
   private db: DatabaseAdapter;
 

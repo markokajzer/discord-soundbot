@@ -1,12 +1,12 @@
 import { Message } from 'discord.js';
 
-import ICommand from './base/ICommand';
+import Command from './base/Command';
 
 import DatabaseAdapter from '@util/db/DatabaseAdapter';
 import LocaleService from '@util/i18n/LocaleService';
 import SoundUtil from '@util/SoundUtil';
 
-export default class SearchCommand implements ICommand {
+export default class SearchCommand implements Command {
   public readonly TRIGGERS = ['search'];
   public readonly NUMBER_OF_PARAMETERS = 1;
   public readonly USAGE = 'Usage: !search <tag>';

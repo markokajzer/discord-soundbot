@@ -1,6 +1,6 @@
 import { Message } from 'discord.js';
 
-import ICommand from './base/ICommand';
+import Command from './base/Command';
 
 import DatabaseAdapter from '@util/db/DatabaseAdapter';
 import QueueItem from '@util/queue/QueueItem';
@@ -8,7 +8,7 @@ import SoundQueue from '@util/queue/SoundQueue';
 import SoundUtil from '@util/SoundUtil';
 import VoiceChannelFinder from './helpers/VoiceChannelFinder';
 
-export default class RandomCommand implements ICommand {
+export default class RandomCommand implements Command {
   public readonly TRIGGERS = ['random'];
   public readonly NUMBER_OF_PARAMETERS = 1;
 

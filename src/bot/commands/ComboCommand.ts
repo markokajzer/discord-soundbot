@@ -1,13 +1,13 @@
 import { Message, VoiceChannel } from 'discord.js';
 
-import ICommand from './base/ICommand';
+import Command from './base/Command';
 
 import QueueItem from '@util/queue/QueueItem';
 import SoundQueue from '@util/queue/SoundQueue';
 import SoundUtil from '@util/SoundUtil';
 import VoiceChannelFinder from './helpers/VoiceChannelFinder';
 
-export default class ComboCommand implements ICommand {
+export default class ComboCommand implements Command {
   public readonly TRIGGERS = ['combo'];
   public readonly NUMBER_OF_PARAMETERS = 1;
   public readonly USAGE = 'Usage: !combo <sound1> ... <soundN>';

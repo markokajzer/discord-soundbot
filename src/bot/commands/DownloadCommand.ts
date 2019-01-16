@@ -1,10 +1,10 @@
 import { Attachment, Message } from 'discord.js';
 
-import ICommand from './base/ICommand';
+import Command from './base/Command';
 
 import SoundUtil from '@util/SoundUtil';
 
-export default class DownloadCommand implements ICommand {
+export default class DownloadCommand implements Command {
   public readonly TRIGGERS = ['download'];
   public readonly NUMBER_OF_PARAMETERS = 1;
   public readonly USAGE = 'Usage: !download <sound>';

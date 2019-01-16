@@ -1,14 +1,14 @@
 import { ClientUser, Collection, Message } from 'discord.js';
 
-import ICommand from './commands/base/ICommand';
-import IUserCommand from './commands/base/IUserCommand';
+import Command from './commands/base/Command';
+import UserCommand from './commands/base/UserCommand';
 import SoundCommand from './commands/SoundCommand';
 
-export default class CommandCollection extends Collection<string, ICommand> {
-  private readonly commands: Array<ICommand>;
+export default class CommandCollection extends Collection<string, Command> {
+  private readonly commands: Array<Command>;
   private readonly soundCommand: SoundCommand;
 
-  constructor(commands: Array<ICommand>) {
+  constructor(commands: Array<Command>) {
     super();
     this.commands = commands;
     this.soundCommand = commands.find(command => !command.TRIGGERS.length)! as SoundCommand;
@@ -16,8 +16,8 @@ export default class CommandCollection extends Collection<string, ICommand> {
   }
 
   public registerUserCommands(user: ClientUser) {
-    const userCommands = this.commands.filter(command => (command as IUserCommand).setClientUser);
-    (userCommands as Array<IUserCommand>).forEach(command => command.setClientUser(user));
+    const userCommands = this.commands.filter(command => (command as UserCommand).setClientUser);
+    (userCommands as Array<UserCommand>).forEach(command => command.setClientUser(user));
     this.registerCommands(userCommands);
   }
 
@@ -31,11 +31,11 @@ export default class CommandCollection extends Collection<string, ICommand> {
     this.soundCommand.run(message, params);
   }
 
-  private registerCommands(commands: Array<ICommand>) {
+  private registerCommands(commands: Array<Command>) {
     commands.forEach(command => this.registerTriggers(command));
   }
 
-  private registerTriggers(command: ICommand) {
+  private registerTriggers(command: Command) {
     command.TRIGGERS.forEach(trigger => this.set(trigger, command));
   }
 }

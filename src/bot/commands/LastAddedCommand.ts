@@ -2,11 +2,11 @@ import fs from 'fs';
 
 import { Message } from 'discord.js';
 
-import ICommand from './base/ICommand';
+import Command from './base/Command';
 
 import SoundUtil from '@util/SoundUtil';
 
-export default class LastAddedCommand implements ICommand {
+export default class LastAddedCommand implements Command {
   public readonly TRIGGERS = ['lastadded'];
   private readonly AMOUNT = 5;
 
