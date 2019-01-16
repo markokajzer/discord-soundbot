@@ -17,6 +17,8 @@ rules:
   curly:
     - true
     - ignore-same-line
+  interface-name:
+    - false
   no-console:
     - true
     - log
