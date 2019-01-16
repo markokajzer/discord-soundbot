@@ -1,9 +1,11 @@
+import exampleConfig from '../../../config/config.example.json';
+
 import fs from 'fs';
 import path from 'path';
 
-import exampleConfig from '../../../config/config.example.json';
+import ConfigInterface from './ConfigInterface';
 
-export default class Config {
+export default class Config implements ConfigInterface {
   public clientID!: string;
   public token!: string;
   public language!: string;
