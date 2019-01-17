@@ -1,4 +1,4 @@
-## 1.5.0 (2018-17-01)
+## 1.5.0 (2018-01-27)
 
 + Added `!entrance` command
 + Added possibility to specify a range when adding sound from YouTube
@@ -10,6 +10,7 @@
 + Removed uws in favor of bufferutil
 + Fixed trying to delete already deleted messages
 + Updated dependencies
++ Use libsodium for faster voice packet encryption and decryption
 
 ## 1.4.0 (2018-09-10)
 
@@ -119,7 +120,7 @@
 
 ## 0.3.0 (2016-11-07)
 
-+ Added a databse to count the number of times each sound has been played
++ Added a database to count the number of times each sound has been played
   + Added `!mostplayed` command
 
 ## 0.2.0 (2016-11-07)
