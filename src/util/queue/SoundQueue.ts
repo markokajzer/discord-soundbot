@@ -53,7 +53,7 @@ export default class SoundQueue {
     this.currentSound.channel.join()
       .then(connection => this.deafen(connection))
       .then(connection => this.playSound(connection, sound))
-      .then(connection => this.onFinishedPlayingSound(connection as VoiceConnection))
+      .then(connection => this.onFinishedPlayingSound(connection))
       .catch(error => console.error('Error occured!', '\n', error));
   }
 
@@ -63,7 +63,7 @@ export default class SoundQueue {
     return Promise.resolve(connection);
   }
 
-  private playSound(connection: VoiceConnection, name: string) {
+  private playSound(connection: VoiceConnection, name: string): Promise<VoiceConnection> {
     return new Promise(resolve =>
       connection.playFile(name, { volume: this.config.volume })
                 .on('end', () => resolve(connection))
