@@ -40,10 +40,12 @@ export default class SoundQueue {
   private deleteMessages() {
     if (this.isEmpty()) return;
 
-    const messages = this.queue.map(item => item.message);
-    messages.filter(message => message.id !== this.currentSound!.message.id)
-      .filter((message, index) => messages.indexOf(message) === index)
-      .forEach(message => message.delete());
+    this.queue
+      .map(item => item.message)
+      .filter(message => message)
+      .filter(message => message && message.id !== this.currentSound!.message!.id)
+      .filter((message, index, messages) => messages.indexOf(message) === index)
+      .forEach(message => message!.delete());
   }
 
   private playNext() {
@@ -84,13 +86,13 @@ export default class SoundQueue {
   }
 
   private deleteCurrentMessage() {
-    if (this.config.deleteMessages && this.isLastSoundFromCurrentMessage()) {
-      this.currentSound!.message.delete();
+    if (this.config.deleteMessages && this.currentSound!.message && this.isLastSoundFromCurrentMessage()) {
+      this.currentSound!.message!.delete();
     }
   }
 
   private isLastSoundFromCurrentMessage() {
-    return !this.queue.some(item => item.message.id === this.currentSound!.message.id);
+    return !this.queue.some(item => !!item.message && item.message.id === this.currentSound!.message!.id);
   }
 
   private isEmpty() {

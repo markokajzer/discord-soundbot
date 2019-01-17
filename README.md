@@ -106,6 +106,10 @@ All sounds will be added to a queue and played in succession. To halt the playba
 
 You can use `!combo <sound1> ... <soundN>` to add multiple sounds to the queue.
 
+### Setting entrance sounds
+
+Every user can set his own entrance sound, a sound that will play whenever the user joins a voice channel.
+
 ### Tagging and searching sounds
 
 When your library of sounds gets too big and you forget what kinds of sounds you have, you can add tags to sounds.

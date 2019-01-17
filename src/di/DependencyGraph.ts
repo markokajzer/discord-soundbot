@@ -47,14 +47,15 @@ container.register({
       container.cradle.soundCommand,
       container.cradle.comboCommand,
       container.cradle.randomCommand,
+      container.cradle.stopCommand,
+
+      container.cradle.entranceCommand,
 
       container.cradle.soundsCommand,
       container.cradle.searchCommand,
       container.cradle.tagCommand,
       container.cradle.tagsCommand,
       container.cradle.downloadCommand,
-
-      container.cradle.stopCommand,
 
       container.cradle.welcomeCommand,
       container.cradle.helpCommand,

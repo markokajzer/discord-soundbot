@@ -1,5 +1,6 @@
 ## 1.5.0 (Unreleased)
 
++ Added `!entrance` command
 + Added possibility to specify a range when adding from sound from YouTube
 + Added possibility to specifiy a tag for `!random`
 + Added Spanish translation (thanks [@ibito](https://github.com/ibito))
