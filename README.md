@@ -96,7 +96,7 @@ You can add, rename, download, tag, play, and remove sounds, ignore users, set t
 
 You can add sounds to the bot by typing `!add` and attaching a file. Accepted file formats and a limit to the size are configurable. The name of the sound can only contain alphanumeric characters.
 
-You can instead also add a sound from YouTube with `!add <name> <link>`.
+You can instead also add a sound from YouTube with `!add <name> <link>`. A range in decimals can be specified with `!add <name> <link> <start> <end>`.
 
 ### Playing sounds
 
@@ -108,7 +108,7 @@ You can use `!combo <sound1> ... <soundN>` to add multiple sounds to the queue.
 
 ### Setting entrance sounds
 
-Every user can set his own entrance sound, a sound that will play whenever the user joins a voice channel.
+Every user can set his own entrance sound, a sound that will play whenever the user joins a voice channel by using `!entrance <sound>`.
 
 ### Tagging and searching sounds
 
