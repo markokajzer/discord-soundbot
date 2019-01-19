@@ -29,10 +29,13 @@ export default class HelpCommand implements Command {
       `sounds                           ${this.localeService.t('help.sounds')}`,
       `add                              ${this.localeService.t('help.add')}`,
       `add <name> <link>                ${this.localeService.t('help.add')}`,
+      `add <name> <link> <start>        ${this.localeService.t('help.add')}`,
       `add <name> <link> <start> <end>  ${this.localeService.t('help.add')}`,
       `<sound>                          ${this.localeService.t('help.play')}`,
+      'entrance <sound>                 Play the specified sound when you join a channel',
       `combo <sound> ...                ${this.localeService.t('help.combo')}`,
       `random                           ${this.localeService.t('help.random')}`,
+      `random <tag>                     ${this.localeService.t('help.random')}`,
       `rename <old> <new>               ${this.localeService.t('help.rename')}`,
       `remove <sound>                   ${this.localeService.t('help.remove')}`,
       `download <sound>                 ${this.localeService.t('help.download')}`,
@@ -47,7 +50,8 @@ export default class HelpCommand implements Command {
       `lastadded                        ${this.localeService.t('help.lastadded')}`,
       `ignore <user>                    ${this.localeService.t('help.ignore')}`,
       `unignore <user>                  ${this.localeService.t('help.unignore')}`,
-      `avatar [remove]                  ${this.localeService.t('help.avatar')}`,
+      `avatar                           ${this.localeService.t('help.avatar')}`,
+      `avatar remove                    ${this.localeService.t('help.avatar')}`,
       `config <option> <value>          ${this.localeService.t('help.config')}`,
       '```'
     ].join('\n');
