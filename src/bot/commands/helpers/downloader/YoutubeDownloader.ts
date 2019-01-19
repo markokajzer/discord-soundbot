@@ -21,9 +21,8 @@ export default class YoutubeDownloader extends BaseDownloader {
 
     const [name, link, start, end] = params;
 
-    // TODO Try sending string. Is it catched?
     this.validator.validate(name, link)
-      .then(() => this.addSound(link, name, parseInt(start), parseInt(end)))
+      .then(() => this.addSound(link, name, parseFloat(start), parseFloat(end)))
       .then(result => message.channel.send(result))
       .catch(result => message.channel.send(result));
   }
