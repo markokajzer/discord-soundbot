@@ -49,7 +49,9 @@ export default class SoundBot extends Discord.Client {
     this.commands.registerUserCommands(this.user);
   }
 
-  private onUserJoinsVoiceChannel(_: Discord.GuildMember, user: Discord.GuildMember) {
+  private onUserJoinsVoiceChannel(prevState: Discord.GuildMember, user: Discord.GuildMember) {
+    if (prevState.voiceChannel === user.voiceChannel) return;
+
     const voiceChannel = user.voiceChannel;
     if (!voiceChannel) return;
 
