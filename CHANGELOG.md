@@ -1,3 +1,9 @@
+## 1.5.1 (2019-02-01)
+
++ Fixed playing entrance sound when muting / deafening
++ Fixed parsing add range
++ Expanded HelpCommand
+
 ## 1.5.0 (2018-01-27)
 
 + Added `!entrance` command
@@ -9,8 +15,8 @@
 + Fixed a bug specific to Windows paths (Thank you [@ibito](https://github.com/ibito)!)
 + Removed uws in favor of bufferutil
 + Fixed trying to delete already deleted messages
-+ Updated dependencies
 + Use libsodium for faster voice packet encryption and decryption
++ Updated dependencies
 
 ## 1.4.0 (2018-09-10)
 
