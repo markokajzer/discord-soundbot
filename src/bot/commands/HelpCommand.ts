@@ -33,6 +33,7 @@ export default class HelpCommand implements Command {
       `add <name> <link> <start> <end>  ${this.localeService.t('help.add')}`,
       `<sound>                          ${this.localeService.t('help.play')}`,
       'entrance <sound>                 Play the specified sound when you join a channel',
+      'entrance                         Remove entrance sound',
       `combo <sound> ...                ${this.localeService.t('help.combo')}`,
       `random                           ${this.localeService.t('help.random')}`,
       `random <tag>                     ${this.localeService.t('help.random')}`,

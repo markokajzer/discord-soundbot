@@ -108,7 +108,7 @@ You can use `!combo <sound1> ... <soundN>` to add multiple sounds to the queue.
 
 ### Setting entrance sounds
 
-Every user can set his own entrance sound, a sound that will play whenever the user joins a voice channel by using `!entrance <sound>`.
+Every user can set his own entrance sound, a sound that will play whenever the user joins a voice channel by using `!entrance <sound>`. To remove your entrance sound use `!entrance` without specifying a sound.
 
 ### Tagging and searching sounds
 
