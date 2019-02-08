@@ -1,4 +1,4 @@
-import container from './di/DependencyGraph';
+import container from '@util/Container';
 
 import Config from '@config/Config';
 import ConfigInterface from '@config/ConfigInterface';

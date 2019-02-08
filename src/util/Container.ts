@@ -3,10 +3,10 @@ import * as awilix from 'awilix';
 import path from 'path';
 
 import Config from '@config/Config';
+import SoundQueue from '@queue/SoundQueue';
 import DatabaseAdapter from '@util/db/DatabaseAdapter';
 import i18n from '@util/i18n/i18n';
 import LocaleService from '@util/i18n/LocaleService';
-import SoundQueue from '@util/queue/SoundQueue';
 import SoundUtil from '@util/SoundUtil';
 import CommandCollection from '../bot/CommandCollection';
 

@@ -1,10 +1,10 @@
 import Discord from 'discord.js';
 
 import Config from '@config/Config';
+import QueueItem from '@queue/QueueItem';
+import SoundQueue from '@queue/SoundQueue';
 import DatabaseAdapter from '@util/db/DatabaseAdapter';
 import LocaleService from '@util/i18n/LocaleService';
-import QueueItem from '@util/queue/QueueItem';
-import SoundQueue from '@util/queue/SoundQueue';
 import SoundUtil from '@util/SoundUtil';
 import CommandCollection from './CommandCollection';
 import MessageHandler from './MessageHandler';

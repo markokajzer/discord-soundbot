@@ -23,8 +23,12 @@ const options = {
     const [match, , , filename] = args;
     const [replacePattern, ...file] = match.split('/');
 
-    const relativePath = path.relative(path.join(process.cwd(), path.dirname(filename)),
-                                       path.join(process.cwd(), 'dist', to[replacePattern], ...file));
+    const normalizedRelativePath =
+      path.relative(path.join(process.cwd(), path.dirname(filename)),
+                    path.join(process.cwd(), 'dist', to[replacePattern], ...file));
+
+    const relativePath =
+      normalizedRelativePath.startsWith('.') ? normalizedRelativePath : `./${normalizedRelativePath}`;
 
     return relativePath.replace(/\\/g, '/');
   }

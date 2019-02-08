@@ -1,4 +1,4 @@
-import exampleConfig from '../../../config/config.example.json';
+import exampleConfig from '../../config/config.example.json';
 
 import fs from 'fs';
 import path from 'path';
@@ -20,7 +20,7 @@ export default class Config implements ConfigInterface {
 
   private readonly BLACKLIST = ['clientID', 'token'];
   private readonly JSON_KEYS!: string[];
-  private readonly CONFIG_PATH = path.join(__dirname, '..', '..', '..', '..', 'config', 'config.json');
+  private readonly CONFIG_PATH = path.join(__dirname, '..', '..', '..', 'config', 'config.json');
 
   [index: string]: any;
 

@@ -12,7 +12,8 @@
 
     "baseUrl": ".",
     "paths": {
-      "@config/*": ["src/bot/config/*"],
+      "@config/*": ["src/config/*"],
+      "@queue/*": ["src/queue/*"],
       "@util/*": ["src/util/*"]
     }
   },

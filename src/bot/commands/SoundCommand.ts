@@ -2,8 +2,8 @@ import { Message } from 'discord.js';
 
 import Command from './base/Command';
 
-import QueueItem from '@util/queue/QueueItem';
-import SoundQueue from '@util/queue/SoundQueue';
+import QueueItem from '@queue/QueueItem';
+import SoundQueue from '@queue/SoundQueue';
 import SoundUtil from '@util/SoundUtil';
 import VoiceChannelFinder from './helpers/VoiceChannelFinder';
 
