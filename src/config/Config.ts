@@ -26,8 +26,8 @@ export default class Config implements ConfigInterface {
 
   constructor() {
     this.initialize();
-    this.JSON_KEYS = Object.keys(this).filter(key =>
-      !['BLACKLIST', 'JSON_KEYS', 'CONFIG_PATH'].includes(key));
+    this.JSON_KEYS =
+      Object.keys(this).filter(key => !['BLACKLIST', 'JSON_KEYS', 'CONFIG_PATH'].includes(key));
   }
 
   public has(field: string) {
@@ -62,7 +62,7 @@ export default class Config implements ConfigInterface {
   }
 
   private initialize() {
-    if (!require.resolve(this.CONFIG_PATH)) {
+    if (!fs.existsSync(this.CONFIG_PATH)) {
       this.initializeWithExampleConfig();
       return;
     }
@@ -70,17 +70,24 @@ export default class Config implements ConfigInterface {
     this.initializeWithSavedConfig();
   }
 
-  private initializeWith(data: any) {
-    Object.keys(data).forEach(field => this[field] = data[field]);
-  }
-
   private initializeWithExampleConfig() {
+    this.ensureConfigDirectoryExists();
     this.initializeWith(exampleConfig);
   }
 
   private initializeWithSavedConfig() {
     const savedConfig = require(this.CONFIG_PATH);
     this.initializeWith(savedConfig);
+  }
+
+  private ensureConfigDirectoryExists() {
+    if (!fs.existsSync(path.dirname(this.CONFIG_PATH))) {
+      fs.mkdirSync(path.dirname(this.CONFIG_PATH));
+    }
+  }
+
+  private initializeWith(data: any) {
+    Object.keys(data).forEach(field => this[field] = data[field]);
   }
 
   private writeToConfig() {
