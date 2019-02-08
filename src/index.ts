@@ -5,7 +5,7 @@ import ConfigInterface from '@config/ConfigInterface';
 import LocaleService from '@util/i18n/LocaleService';
 import SoundBot from './bot/SoundBot';
 
-export default class DiscordSoundBot {
+class DiscordSoundBot {
   private readonly config: Config;
   private readonly localeService: LocaleService;
   private readonly bot: SoundBot;
@@ -27,3 +27,5 @@ export default class DiscordSoundBot {
     this.localeService.setLocale(this.config.language);
   }
 }
+
+export = DiscordSoundBot;
