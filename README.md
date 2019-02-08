@@ -57,14 +57,14 @@ Install the bot as a dependency using npm.
 
 Start the bot.
 
-```javascript
-const Bot = require('discord-soundbot').default;
+```js
+const SoundBot = require('discord-soundbot');
 
-const bot = new Bot({
+const myBot = new SoundBot({
   clientID: 'YOUR_CLIENT_ID',
   token: 'YOUR_BOT_USER_TOKEN',
 });
-bot.start();
+myBot.start();
 ```
 
 For more configuration options see [here](../../wiki/Configuration).
