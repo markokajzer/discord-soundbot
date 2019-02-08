@@ -1,3 +1,7 @@
+## Unreleased
+
++ Added Dutch translation (Thank you [@nstapelbroek](https://github.com/nstapelbroek)!)
+
 ## 1.5.1 (2019-02-01)
 
 + Fixed playing entrance sound when muting / deafening
