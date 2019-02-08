@@ -19,8 +19,8 @@ export default class Config implements ConfigInterface {
   public game!: string;
 
   private readonly BLACKLIST = ['clientID', 'token'];
-  private readonly JSON_KEYS!: string[];
-  private readonly CONFIG_PATH = path.join(__dirname, '..', '..', '..', 'config', 'config.json');
+  private readonly JSON_KEYS: string[];
+  private readonly CONFIG_PATH = path.join(process.cwd(), 'config', 'config.json');
 
   [index: string]: any;
 
@@ -84,6 +84,8 @@ export default class Config implements ConfigInterface {
   }
 
   private writeToConfig() {
-    fs.writeFile(this.CONFIG_PATH, JSON.stringify(this, this.JSON_KEYS, 2), console.error);
+    fs.writeFile(this.CONFIG_PATH, JSON.stringify(this, this.JSON_KEYS, 2), error => {
+      if (error) console.error(error);
+    });
   }
 }
