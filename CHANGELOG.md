@@ -1,6 +1,7 @@
 ## Unreleased
 
 + Added Dutch translation (Thank you [@nstapelbroek](https://github.com/nstapelbroek)!)
++ Added `!set` alias for `!config` command
 
 ## 1.5.1 (2019-02-01)
 
