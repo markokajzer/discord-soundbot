@@ -40,6 +40,8 @@ container.register({
   chunker: awilix.aliasTo('messageChunker'),
   commands: awilix.asClass(CommandCollection).inject(() => ({
     commands: [
+      container.cradle.pingCommand,
+
       container.cradle.addCommand,
       container.cradle.renameCommand,
       container.cradle.removeCommand,
