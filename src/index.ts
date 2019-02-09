@@ -23,7 +23,7 @@ class DiscordSoundBot {
   }
 
   private initialize(config: ConfigInterface) {
-    this.config.setFromObject(config);
+    this.config.setFrom(config);
     this.localeService.setLocale(this.config.language);
   }
 }

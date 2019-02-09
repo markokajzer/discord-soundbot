@@ -1,4 +1,6 @@
 export default interface ConfigInterface {
+  [key: string]: boolean | number | string | string[] | undefined;
+
   clientID: string;
   token: string;
   language?: string;

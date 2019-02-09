@@ -18,25 +18,25 @@ export default class Config implements ConfigInterface {
   public deafen!: boolean;
   public game!: string;
 
-  private readonly BLACKLIST = ['clientID', 'token'];
-  private readonly JSON_KEYS: string[];
   private readonly CONFIG_PATH = path.join(process.cwd(), 'config', 'config.json');
+  private readonly MODIFIABLE_FIELDS = [
+    'language', 'prefix', 'acceptedExtensions', 'maximumFileSize',
+    'volume', 'deleteMessages', 'stayInChannel', 'deafen', 'game'
+  ];
+  private readonly JSON_KEYS = ['clientID', 'token', ...this.MODIFIABLE_FIELDS];
 
   [index: string]: any;
 
   constructor() {
     this.initialize();
-    this.JSON_KEYS =
-      Object.keys(this).filter(key => !['BLACKLIST', 'JSON_KEYS', 'CONFIG_PATH'].includes(key));
   }
 
   public has(field: string) {
-    return this.JSON_KEYS.includes(field);
+    return this.MODIFIABLE_FIELDS.includes(field);
   }
 
   public set(field: string, value: string[]) {
     if (!this.has(field)) return;
-    if (this.BLACKLIST.includes(field)) return;
 
     switch (typeof this[field]) {
       case 'string':
@@ -55,10 +55,8 @@ export default class Config implements ConfigInterface {
     this.writeToConfig();
   }
 
-  public setFromObject(data: any) {
-    Object.keys(data).forEach(field => {
-      if (this.has(field)) this[field] = data[field];
-    });
+  public setFrom(data: ConfigInterface) {
+    Object.keys(data).forEach(field => this[field] = data[field]);
   }
 
   private initialize() {
@@ -72,22 +70,18 @@ export default class Config implements ConfigInterface {
 
   private initializeWithExampleConfig() {
     this.ensureConfigDirectoryExists();
-    this.initializeWith(exampleConfig);
+    this.setFrom(exampleConfig);
   }
 
   private initializeWithSavedConfig() {
     const savedConfig = require(this.CONFIG_PATH);
-    this.initializeWith(savedConfig);
+    this.setFrom(savedConfig);
   }
 
   private ensureConfigDirectoryExists() {
     if (!fs.existsSync(path.dirname(this.CONFIG_PATH))) {
       fs.mkdirSync(path.dirname(this.CONFIG_PATH));
     }
-  }
-
-  private initializeWith(data: any) {
-    Object.keys(data).forEach(field => this[field] = data[field]);
   }
 
   private writeToConfig() {
