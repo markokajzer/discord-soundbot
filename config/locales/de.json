@@ -4,25 +4,30 @@
 
   "help": {
     "headline": "Benutze den Prefix `{prefix}` mit den folgenden Kommandos:",
+
     "welcome": "Zeige Willkommensnachricht",
     "commands": "Zeige diese Nachricht",
-    "sounds": "Zeige alle verfügbaren Sounds",
-    "add": "Füge den beigefügten Sound hinzu",
-    "play": "Spiele den angegebenen Sound",
-    "combo": "Spiele Sounds in Reihe",
-    "random": "Spiele einen zufälligen Sound",
-    "rename": "Benenne den angegebenen Sound",
-    "remove": "Lösche den angegebenen Sound",
-    "download": "Sende den angegebenen Sound in den Chat",
-    "stop": "Hör auf zu spielen",
-    "leave": "Verlasse den Channel",
-    "tag": {
+
+    "sounds": {
+      "all": "Zeige alle verfügbaren Sounds",
+      "add": "Füge den beigefügten Sound hinzu",
+      "play": "Spiele den angegebenen Sound",
+      "combo": "Spiele Sounds in Reihe",
+      "random": "Spiele einen zufälligen Sound",
+      "rename": "Benenne den angegebenen Sound",
+      "remove": "Lösche den angegebenen Sound",
+      "download": "Sende den angegebenen Sound in den Chat",
+      "stop": "Hör auf zu spielen"
+    },
+
+    "tags": {
+      "all": "Zeige alle Sound mit ihren Tags",
       "add": "Füge dem Sound einen Tag hinzu",
       "list": "Zeige Tags des angegebenen Sounds",
-      "clear": "Lösche Tags des angegebenen Sounds"
+      "clear": "Lösche Tags des angegebenen Sounds",
+      "search": "Suche Sounds mit dem angegebenen Tag"
     },
-    "tags": "Zeige alle Sound mit ihren Tags",
-    "search": "Suche Sounds mit dem angegebenen Tag",
+
     "mostplayed": "Zeige die meistgespielten Sounds",
     "lastadded": "Zeige die zuletzt hinzugefügten Sounds",
     "ignore": "Ignoriere angegebenen Benutzer",
@@ -55,42 +60,44 @@
     }
   },
 
-  "add": {
-    "success": "{name} hinzugefügt!",
-    "error": "Etwas ist schiefgelaufen!"
-  },
-  "avatar": {
-    "errors": {
-      "noAvatar": "Avatar noch nicht gesetzt. Versuche einen mit `{prefix}avatar` und einem Bild zu setzen!",
-      "tooFast": "You wechselst den Avatar zu schnell. Versuche es später noch einmal."
+  "commands": {
+    "add": {
+      "success": "{name} hinzugefügt!",
+      "error": "Etwas ist schiefgelaufen!"
     },
-    "url": "Derzeitiger Avatar: {url}"
-  },
-  "ignore": {
-    "ignore": "Ignoriere {user}!",
-    "unignore": "Ignoriere {user} nicht länger!"
-  },
-  "remove": {
-    "notFound": "{sound} nicht gefunden!",
-    "success": "{sound} gelöscht!"
-  },
-  "rename": {
-    "exists": "{newName} existiert bereits!",
-    "notFound": "{oldName} nicht gefunden!",
-    "success": "{oldName} zu {newName} umbenannt!"
-  },
-  "search": {
-    "notFound": "Kein Sound gefunden."
-  },
-  "sounds": {
-    "notFound": "Du hast noch keine Sounds! Füge einen mit dem {prefix}add Kommando hinzu."
-  },
-  "tag": {
-    "found": "Tags für {sound}: [{tags}]",
-    "notFound": "{sound} nicht gefunden!"
-  },
-  "config": {
-    "success": "`{field}` geändert zu `{value}`!",
-    "notFound": "Konfiguration `{field}` nicht gefunden!"
+    "avatar": {
+      "errors": {
+        "noAvatar": "Avatar noch nicht gesetzt. Versuche einen mit `{prefix}avatar` und einem Bild zu setzen!",
+        "tooFast": "You wechselst den Avatar zu schnell. Versuche es später noch einmal."
+      },
+      "url": "Derzeitiger Avatar: {url}"
+    },
+    "ignore": {
+      "add": "Ignoriere {user}!",
+      "remove": "Ignoriere {user} nicht länger!"
+    },
+    "remove": {
+      "notFound": "{sound} nicht gefunden!",
+      "success": "{sound} gelöscht!"
+    },
+    "rename": {
+      "exists": "{newName} existiert bereits!",
+      "notFound": "{oldName} nicht gefunden!",
+      "success": "{oldName} zu {newName} umbenannt!"
+    },
+    "search": {
+      "notFound": "Kein Sound gefunden."
+    },
+    "sounds": {
+      "notFound": "Du hast noch keine Sounds! Füge einen mit dem {prefix}add Kommando hinzu."
+    },
+    "tag": {
+      "found": "Tags für {sound}: [{tags}]",
+      "notFound": "{sound} nicht gefunden!"
+    },
+    "config": {
+      "success": "`{field}` geändert zu `{value}`!",
+      "notFound": "Konfiguration `{field}` nicht gefunden!"
+    }
   }
 }

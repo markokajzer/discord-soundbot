@@ -24,7 +24,7 @@ export default class UnignoreCommand implements Command {
 
     this.userFinder.getUsersFromMentions(message, this.USAGE).forEach(user => {
       this.db.ignoreList.remove(user.id);
-      message.channel.send(this.localeService.t('ignore.unignore', { user: user.username }));
+      message.channel.send(this.localeService.t('commands.ignore.remove', { user: user.username }));
     });
   }
 }

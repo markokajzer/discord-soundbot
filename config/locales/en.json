@@ -4,25 +4,35 @@
 
   "help": {
     "headline": "Use the prefix `{prefix}` with the following commands:",
+
     "welcome": "Show welcome message",
     "commands": "Show this message",
-    "sounds": "Show available sounds",
-    "add": "Add the attached sound",
-    "play": "Play the specified sound",
-    "combo": "Play sounds in succession",
-    "random": "Play random sound",
-    "rename": "Rename specified sound",
-    "remove": "Remove specified sound",
-    "download": "Send specified sound to chat",
-    "stop": "Stop playing and clear queue",
-    "leave": "Leave the channel",
-    "tag": {
+
+    "sounds": {
+      "all": "Show available sounds",
+      "add": "Add the attached sound",
+      "play": "Play the specified sound",
+      "combo": "Play sounds in succession",
+      "random": "Play random sound",
+      "rename": "Rename specified sound",
+      "remove": "Remove specified sound",
+      "download": "Send specified sound to chat",
+      "stop": "Leave channel and clear the queue"
+    },
+
+    "entrance": {
+      "set": "Play the specified sound when you join a channel",
+      "remove": "Remove entrance sound"
+    },
+
+    "tags": {
+      "all": "List all sounds with tags",
       "add": "Add tag to sound",
       "list": "List tags of specified sound",
-      "clear": "Clear tags of specified sound"
+      "clear": "Clear tags of specified sound",
+      "search": "Search sounds with specified tag"
     },
-    "tags": "List all sounds with tags",
-    "search": "Search sounds with specified tag",
+
     "mostplayed": "Show most used sounds",
     "lastadded": "Show last added sounds",
     "ignore": "Ignore specified user",
@@ -55,42 +65,44 @@
     }
   },
 
-  "add": {
-    "success": "{name} added!",
-    "error": "Something went wrong!"
-  },
-  "avatar": {
-    "errors": {
-      "noAvatar": "Avatar not set yet. Try adding one with `{prefix}avatar` and an image!",
-      "tooFast": "You are changing your avatar too fast. Try again later."
+  "commands": {
+    "add": {
+      "success": "{name} added!",
+      "error": "Something went wrong!"
     },
-    "url": "Current avatar: {url}"
-  },
-  "ignore": {
-    "ignore": "Ignoring {user}!",
-    "unignore": "No longer ignoring {user}!"
-  },
-  "remove": {
-    "notFound": "{sound} not found!",
-    "success": "{sound} removed!"
-  },
-  "rename": {
-    "exists": "{newName} already exists!",
-    "notFound": "{oldName} not found!",
-    "success": "{oldName} renamed to {newName}!"
-  },
-  "search": {
-    "notFound": "No sounds found."
-  },
-  "sounds": {
-    "notFound": "You don't have any sounds yet! Try adding one with the {prefix}add command."
-  },
-  "tag": {
-    "found": "Tags for {sound}: [{tags}]",
-    "notFound": "{sound} not found!"
-  },
-  "config": {
-    "success": "`{field}` set to `{value}`!",
-    "notFound": "Config does not have option `{field}`!"
+    "avatar": {
+      "errors": {
+        "noAvatar": "Avatar not set yet. Try adding one with `{prefix}avatar` and an image!",
+        "tooFast": "You are changing your avatar too fast. Try again later."
+      },
+      "url": "Current avatar: {url}"
+    },
+    "ignore": {
+      "ignore": "Ignoring {user}!",
+      "unignore": "No longer ignoring {user}!"
+    },
+    "remove": {
+      "notFound": "{sound} not found!",
+      "success": "{sound} removed!"
+    },
+    "rename": {
+      "exists": "{newName} already exists!",
+      "notFound": "{oldName} not found!",
+      "success": "{oldName} renamed to {newName}!"
+    },
+    "search": {
+      "notFound": "No sounds found."
+    },
+    "sounds": {
+      "notFound": "You don't have any sounds yet! Try adding one with the {prefix}add command."
+    },
+    "tag": {
+      "found": "Tags for {sound}: [{tags}]",
+      "notFound": "{sound} not found!"
+    },
+    "config": {
+      "success": "`{field}` set to `{value}`!",
+      "notFound": "Config does not have option `{field}`!"
+    }
   }
 }

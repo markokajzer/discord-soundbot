@@ -64,11 +64,11 @@ export default class YoutubeDownloader extends BaseDownloader {
 
   private cleanUp(name: string) {
     fs.unlinkSync('tmp.mp4');
-    return Promise.resolve(this.localeService.t('add.success', { name }));
+    return Promise.resolve(this.localeService.t('commands.add.success', { name }));
   }
 
   private handleError(error: Error) {
     console.error(error);
-    return Promise.reject(this.localeService.t('add.error'));
+    return Promise.reject(this.localeService.t('commands.add.error'));
   }
 }

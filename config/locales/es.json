@@ -4,25 +4,30 @@
 
   "help": {
     "headline": "Use el prefijo `{prefix}` seguido de uno de los siguientes comandos:",
+
     "welcome": "Muestra mensaje de bienvenida",
     "commands": "Muestra éste mensaje",
-    "sounds": "Muestra todos los sonidos disponibles",
-    "add": "Agrega el sonido adjunto",
-    "play": "Reproduce el sonido indicado",
-    "combo": "Reproduce sonidos en sucesión",
-    "random": "Reproduce un sonido al azar",
-    "rename": "Renombra el sonido indicado",
-    "remove": "Borra el sonido indicado",
-    "download": "Envía el sonido especificado al chat",
-    "stop": "Detener la reproducción y borrar la cola",
-    "leave": "Salir del canal",
-    "tag": {
+
+    "sounds": {
+      "all": "Muestra todos los sonidos disponibles",
+      "add": "Agrega el sonido adjunto",
+      "play": "Reproduce el sonido indicado",
+      "combo": "Reproduce sonidos en sucesión",
+      "random": "Reproduce un sonido al azar",
+      "rename": "Renombra el sonido indicado",
+      "remove": "Borra el sonido indicado",
+      "download": "Envía el sonido especificado al chat",
+      "stop": "Detener la reproducción y borrar la cola"
+    },
+
+    "tags": {
+      "all": "Muestra todos los sonidos con etiquetas (tags)",
       "add": "Agregar etiqueta (tag) a sonido",
       "list": "Muestra las etiquetas (tags) del sonido indicado",
-      "clear": "Borra las etiquetas (tags) del sonido indicado"
+      "clear": "Borra las etiquetas (tags) del sonido indicado",
+      "search": "Busca sonidos con la etiqueta (tag) indicada"
     },
-    "tags": "Muestra todos los sonidos con etiquetas (tags)",
-    "search": "Busca sonidos con la etiqueta (tag) indicada",
+
     "mostplayed": "Muestra los sonidos mas usados",
     "lastadded": "Muestra los últimos sonidos agregados",
     "ignore": "Ignora al usuario indicado",
@@ -55,42 +60,44 @@
     }
   },
 
-  "add": {
-    "success": "¡{name} añadido!",
-    "error": "¡Algo salió mal!"
-  },
-  "avatar": {
-    "errors": {
-      "noAvatar": "No se ha establecido Avatar. Intenta agregando uno con `{prefix}avatar` y una imagen!",
-      "tooFast": "Estás cambiando tu avatar muy rápido. Inténtalo de nuevo mas tarde."
+  "commands": {
+    "add": {
+      "success": "¡{name} añadido!",
+      "error": "¡Algo salió mal!"
     },
-    "url": "Avatar actual: {url}"
-  },
-  "ignore": {
-    "ignore": "¡Ignorando {user}!",
-    "unignore": "¡No se está ignorando mas a {user}!"
-  },
-  "remove": {
-    "notFound": "¡{sound} no encontrado!",
-    "success": "¡{sound} borrado!"
-  },
-  "rename": {
-    "exists": "¡{newName} ya existe!",
-    "notFound": "¡{oldName} no encontrado!",
-    "success": "¡{oldName} renombrado a {newName}!"
-  },
-  "search": {
-    "notFound": "No se encontraron sonidos."
-  },
-  "sounds": {
-    "notFound": "¡No tienes ningún sonido todavía! Intenta adjuntando uno con el comando `{prefix}add`."
-  },
-  "tag": {
-    "found": "Etiquetas para {sound}: [{tags}]",
-    "notFound": "¡{sound} no encontrado!"
-  },
-  "config": {
-    "success": "`{field}` ahora es `{value}`!",
-    "notFound": "Config no tiene la opción `{field}`!"
+    "avatar": {
+      "errors": {
+        "noAvatar": "No se ha establecido Avatar. Intenta agregando uno con `{prefix}avatar` y una imagen!",
+        "tooFast": "Estás cambiando tu avatar muy rápido. Inténtalo de nuevo mas tarde."
+      },
+      "url": "Avatar actual: {url}"
+    },
+    "ignore": {
+      "ignore": "¡Ignorando {user}!",
+      "unignore": "¡No se está ignorando mas a {user}!"
+    },
+    "remove": {
+      "notFound": "¡{sound} no encontrado!",
+      "success": "¡{sound} borrado!"
+    },
+    "rename": {
+      "exists": "¡{newName} ya existe!",
+      "notFound": "¡{oldName} no encontrado!",
+      "success": "¡{oldName} renombrado a {newName}!"
+    },
+    "search": {
+      "notFound": "No se encontraron sonidos."
+    },
+    "sounds": {
+      "notFound": "¡No tienes ningún sonido todavía! Intenta adjuntando uno con el comando `{prefix}add`."
+    },
+    "tag": {
+      "found": "Etiquetas para {sound}: [{tags}]",
+      "notFound": "¡{sound} no encontrado!"
+    },
+    "config": {
+      "success": "`{field}` ahora es `{value}`!",
+      "notFound": "Config no tiene la opción `{field}`!"
+    }
   }
 }

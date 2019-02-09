@@ -4,25 +4,30 @@
 
   "help": {
     "headline": "Utilisez le préfixe `{prefix}` avec les commandes suivantes :",
+
     "welcome": "Afficher le message de bienvenue",
     "commands": "Afficher ce message",
-    "sounds": "Afficher la liste des sons disponibles",
-    "add": "Ajouter le son joint (uploadé)",
-    "play": "Jouer le son spécifié",
-    "combo": "Jouer les sons successivement",
-    "random": "Jouer un son aléatoire",
-    "rename": "Renommer le son spécifié",
-    "remove": "Supprimer le son spécifié",
-    "download": "Envoyer le son spécifié dant la discussion",
-    "stop": "Arrêter le son et vider la file de lecture",
-    "leave": "Quitter le salon",
-    "tag": {
+
+    "sounds": {
+      "all": "Afficher la liste des sons disponibles",
+      "add": "Ajouter le son joint (uploadé)",
+      "play": "Jouer le son spécifié",
+      "combo": "Jouer les sons successivement",
+      "random": "Jouer un son aléatoire",
+      "rename": "Renommer le son spécifié",
+      "remove": "Supprimer le son spécifié",
+      "download": "Envoyer le son spécifié dant la discussion",
+      "stop": "Arrêter le son et vider la file de lecture"
+    },
+
+    "tags": {
+      "all": "Affiche la liste de tous les sons avec des tags",
       "add": "Ajouter un tag au son",
       "list": "Affiche la liste des tags associé au son spécifié",
-      "clear": "Supprimer les tags du son spécifié"
+      "clear": "Supprimer les tags du son spécifié",
+      "search": "Rechercher les sons qui ont le tags spécifié"
     },
-    "tags": "Affiche la liste de tous les sons avec des tags",
-    "search": "Rechercher les sons qui ont le tags spécifié",
+
     "mostplayed": "Affiche la liste des sons les plus joués",
     "lastadded": "Affiche les sons ajoutés le plus récemment",
     "ignore": "Ignorer l'utilisateur spécifié",
@@ -55,42 +60,44 @@
     }
   },
 
-  "add": {
-    "success": "{name} ajouté !",
-    "error": "Oups, une erreur s'est produite !"
-  },
-  "avatar": {
-    "errors": {
-      "noAvatar": "L'avatar n'a pas été défini. Essayez d'en ajouter un avec `{prefix}avatar` et une image !",
-      "tooFast": "Vous changer votre avatar trop rapidement. Réessayez dans quelques instants."
+  "commands": {
+    "add": {
+      "success": "{name} ajouté !",
+      "error": "Oups, une erreur s'est produite !"
     },
-    "url": "Avatar en place: {url}"
-  },
-  "ignore": {
-    "ignore": "L'utilisateur {user} est maintenant ignoré !",
-    "unignore": "L'utilisateur {user} n'est plus ignoré !"
-  },
-  "remove": {
-    "notFound": "{sound} introuvable !",
-    "success": "{sound} supprimé !"
-  },
-  "rename": {
-    "exists": "{newName} existe déjà !",
-    "notFound": "{oldName} introuvable !",
-    "success": "{oldName} a été renommé en {newName} !"
-  },
-  "search": {
-    "notFound": "Aucun son trouvé."
-  },
-  "sounds": {
-    "notFound": "Vous n'avez pas encore de sons ! Essayez d'en ajouter avec la commande {prefix}add."
-  },
-  "tag": {
-    "found": "Tags pour {sound}: [{tags}]",
-    "notFound": "{sound} introuvable !"
-  },
-  "config": {
-    "success": "`{field}` défini sur `{value}` !",
-    "notFound": "Configuration n'a pas d'option `{field}` !"
+    "avatar": {
+      "errors": {
+        "noAvatar": "L'avatar n'a pas été défini. Essayez d'en ajouter un avec `{prefix}avatar` et une image !",
+        "tooFast": "Vous changer votre avatar trop rapidement. Réessayez dans quelques instants."
+      },
+      "url": "Avatar en place: {url}"
+    },
+    "ignore": {
+      "ignore": "L'utilisateur {user} est maintenant ignoré !",
+      "unignore": "L'utilisateur {user} n'est plus ignoré !"
+    },
+    "remove": {
+      "notFound": "{sound} introuvable !",
+      "success": "{sound} supprimé !"
+    },
+    "rename": {
+      "exists": "{newName} existe déjà !",
+      "notFound": "{oldName} introuvable !",
+      "success": "{oldName} a été renommé en {newName} !"
+    },
+    "search": {
+      "notFound": "Aucun son trouvé."
+    },
+    "sounds": {
+      "notFound": "Vous n'avez pas encore de sons ! Essayez d'en ajouter avec la commande {prefix}add."
+    },
+    "tag": {
+      "found": "Tags pour {sound}: [{tags}]",
+      "notFound": "{sound} introuvable !"
+    },
+    "config": {
+      "success": "`{field}` défini sur `{value}` !",
+      "notFound": "Configuration n'a pas d'option `{field}` !"
+    }
   }
 }

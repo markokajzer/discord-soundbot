@@ -26,7 +26,7 @@ export default class AttachmentDownloader extends BaseDownloader {
   private addSound(attachment: MessageAttachment) {
     return this.makeRequest(attachment.url)
       .then(response => this.saveResponseToFile(response as IncomingMessage, attachment.filename.toLowerCase()))
-      .then(name => Promise.resolve(this.localeService.t('add.success', { name })))
+      .then(name => Promise.resolve(this.localeService.t('commands.add.success', { name })))
       .catch(this.handleError);
   }
 
@@ -48,6 +48,6 @@ export default class AttachmentDownloader extends BaseDownloader {
 
   private handleError(error: Error) {
     console.error(error);
-    return Promise.reject(this.localeService.t('add.error'));
+    return Promise.reject(this.localeService.t('commands.add.error'));
   }
 }

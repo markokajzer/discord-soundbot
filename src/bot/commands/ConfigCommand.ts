@@ -34,13 +34,13 @@ export default class ConfigCommand implements Command {
     const [field, ...value] = params;
 
     if (!this.config.has(field)) {
-      message.channel.send(this.localeService.t('config.notFound', { field }));
+      message.channel.send(this.localeService.t('commands.config.notFound', { field }));
       return;
     }
 
     this.config.set(field, value);
     this.postProcess(field);
-    message.channel.send(this.localeService.t('config.success', { field, value }));
+    message.channel.send(this.localeService.t('commands.config.success', { field, value }));
   }
 
   private postProcess(field: string) {

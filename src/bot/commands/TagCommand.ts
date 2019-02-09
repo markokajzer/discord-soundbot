@@ -29,13 +29,13 @@ export default class TagCommand implements Command {
 
     const sound = params.shift()!;
     if (!this.soundUtil.getSounds().includes(sound)) {
-      message.channel.send(this.localeService.t('tag.notFound', { sound }));
+      message.channel.send(this.localeService.t('commands.tag.notFound', { sound }));
       return;
     }
 
     if (!params.length) {
       const tags = this.db.sounds.listTags(sound).join(', ');
-      message.author.send(this.localeService.t('tag.found', { sound, tags }));
+      message.author.send(this.localeService.t('commands.tag.found', { sound, tags }));
       return;
     }
 

@@ -4,25 +4,30 @@
 
   "help": {
     "headline": "Elõtag használata `{prefix}` a következõ parancsokkal:",
+
     "welcome": "Üdvözlõ üzenet megjelenítése",
     "commands": "Szöveg kimutatása",
-    "sounds": "Elérhetõ hangok",
-    "add": "Szöveghez csatolt hang hozzáadása",
-    "play": "Hang lejátszása",
-    "combo": "Játsszon egymás után hangokat",
-    "random": "Véletlen szám lejátszása",
-    "rename": "Hang átnevezése",
-    "remove": "Hang eltávolítása",
-    "download": "Hang elküldése",
-    "stop": "Hang lejátszásának befejezése és várakozólista törlése",
-    "leave": "Szoba elhagyása",
-    "tag": {
+
+    "sounds": {
+      "all": "Elérhetõ hangok",
+      "add": "Szöveghez csatolt hang hozzáadása",
+      "play": "Hang lejátszása",
+      "combo": "Játsszon egymás után hangokat",
+      "random": "Véletlen szám lejátszása",
+      "rename": "Hang átnevezése",
+      "remove": "Hang eltávolítása",
+      "download": "Hang elküldése",
+      "stop": "Hang lejátszásának befejezése és várakozólista törlése"
+    },
+
+    "tags": {
+      "all": "Hangok listája megjegyzésekkel",
       "add": "Megjegyzés adása a hangokhoz",
       "list": "Megjegyzések listája a hangokról",
-      "clear": "Megjegyzés törlése"
+      "clear": "Megjegyzés törlése",
+      "search": "Hangok keresése megjegyzés szerint"
     },
-    "tags": "Hangok listája megjegyzésekkel",
-    "search": "Hangok keresése megjegyzés szerint",
+
     "mostplayed": "Legtöbbes játszott hang",
     "lastadded": "Legutóbb játszott hang",
     "ignore": "Tag figyelmenkívülhagyása",
@@ -55,42 +60,44 @@
     }
   },
 
-  "add": {
-    "success": "{name} hozzáadva!",
-    "error": "Hiba"
-  },
-  "avatar": {
-    "errors": {
-      "noAvatar": "Avatár nincs beállítva jelenleg. Próbálj beállítani egyet a `{prefix}avatar` paranccsal!",
-      "tooFast": "Túl gyorsan változtatot az avatárt. Próbáld meg késõbb."
+  "commands": {
+    "add": {
+      "success": "{name} hozzáadva!",
+      "error": "Hiba"
     },
-    "url": "Current avatar: {url}"
-  },
-  "ignore": {
-    "ignore": "{user} Figyelmenkívülhagyása",
-    "unignore": "{user} Nincs tovább figyelmenkívülhagyva!"
-  },
-  "remove": {
-    "notFound": "{sound} nem taláható.",
-    "success": "{sound} törölve!"
-  },
-  "rename": {
-    "exists": "{newName} már használja valaki ezt a nevet.",
-    "notFound": "{oldName} nem található.",
-    "success": "{oldName} átnevezve {newName}-re!"
-  },
-  "search": {
-    "notFound": "Nincsenek betöltve hangok."
-  },
-  "sounds": {
-    "notFound": "Még nem adtál fáljokat meg, viszont tudsz megadni {prefix}add paranccsal."
-  },
-  "tag": {
-    "found": "Megjegyzés {sound}: [{tags}]",
-    "notFound": "{sound} nem található!"
-  },
-  "config": {
-    "success": "`{field}` beállítva `{value}`!",
-    "notFound": "A Config nem rendelkezik `{field}` opcióval!"
+    "avatar": {
+      "errors": {
+        "noAvatar": "Avatár nincs beállítva jelenleg. Próbálj beállítani egyet a `{prefix}avatar` paranccsal!",
+        "tooFast": "Túl gyorsan változtatot az avatárt. Próbáld meg késõbb."
+      },
+      "url": "Current avatar: {url}"
+    },
+    "ignore": {
+      "ignore": "{user} Figyelmenkívülhagyása",
+      "unignore": "{user} Nincs tovább figyelmenkívülhagyva!"
+    },
+    "remove": {
+      "notFound": "{sound} nem taláható.",
+      "success": "{sound} törölve!"
+    },
+    "rename": {
+      "exists": "{newName} már használja valaki ezt a nevet.",
+      "notFound": "{oldName} nem található.",
+      "success": "{oldName} átnevezve {newName}-re!"
+    },
+    "search": {
+      "notFound": "Nincsenek betöltve hangok."
+    },
+    "sounds": {
+      "notFound": "Még nem adtál fáljokat meg, viszont tudsz megadni {prefix}add paranccsal."
+    },
+    "tag": {
+      "found": "Megjegyzés {sound}: [{tags}]",
+      "notFound": "{sound} nem található!"
+    },
+    "config": {
+      "success": "`{field}` beállítva `{value}`!",
+      "notFound": "A Config nem rendelkezik `{field}` opcióval!"
+    }
   }
 }

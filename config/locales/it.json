@@ -4,25 +4,30 @@
 
   "help": {
     "headline": "Usa il prefisso `{prefix}` coi seguenti comandi:",
+
     "welcome": "Mostra il messaggio di benvenuto",
     "commands": "Mostra questo messaggio",
-    "sounds": "Mostra i suoni disponibili",
-    "add": "Aggiunge il suono allegato",
-    "play": "Riproduce un suono specifico",
-    "combo": "Riproduce suoni in successione",
-    "random": "Riproduce un suono casuale",
-    "rename": "Rinomina il suono specificato",
-    "remove": "Rimuove il suono specificato",
-    "download": "Manda il suono specificato come file scaricabile",
-    "stop": "Ferma la riproduzione e pulisce la coda",
-    "leave": "Lascia il canale",
-    "tag": {
+
+    "sounds": {
+      "all": "Mostra i suoni disponibili",
+      "add": "Aggiunge il suono allegato",
+      "play": "Riproduce un suono specifico",
+      "combo": "Riproduce suoni in successione",
+      "random": "Riproduce un suono casuale",
+      "rename": "Rinomina il suono specificato",
+      "remove": "Rimuove il suono specificato",
+      "download": "Manda il suono specificato come file scaricabile",
+      "stop": "Ferma la riproduzione e pulisce la coda"
+    },
+
+    "tags": {
+      "all": "Lista dei suoni con i relativi tag",
       "add": "Aggiungi un tag al suono",
       "list": "Lista dei tag del suono specificato",
-      "clear": "Pulisce i tag del suono specificato"
+      "clear": "Pulisce i tag del suono specificato",
+      "search": "Cerca i suoni in base ad un tag"
     },
-    "tags": "Lista dei suoni con i relativi tag",
-    "search": "Cerca i suoni in base ad un tag",
+
     "mostplayed": "Mostra i suoni maggiormente utilizzati",
     "lastadded": "Mostra gli ultimi suoni aggiunti",
     "ignore": "Ignora un utente specifico",
@@ -55,42 +60,44 @@
     }
   },
 
-  "add": {
-    "success": "{name} aggiunto!",
-    "error": "Qualcosa e' andato storto!"
-  },
-  "avatar": {
-    "errors": {
-      "noAvatar": "Avatar non ancora impostato. Prova ad aggiungere uno con `{prefix}avatar` allegando un immagine!",
-      "tooFast": "Stai cambiando l'avatar troppo velocemente. Riprova piu' tardi."
+  "commands": {
+    "add": {
+      "success": "{name} aggiunto!",
+      "error": "Qualcosa e' andato storto!"
     },
-    "url": "Avatar corrente: {url}"
-  },
-  "ignore": {
-    "ignore": "Sto ignorando {user}!",
-    "unignore": "Non sto piu' ignorando {user}!"
-  },
-  "remove": {
-    "notFound": "{sound} non trovato!",
-    "success": "{sound} rimosso!"
-  },
-  "rename": {
-    "exists": "{newName} esiste gia'!",
-    "notFound": "{oldName} non trovato!",
-    "success": "{oldName} rinominato in {newName}!"
-  },
-  "search": {
-    "notFound": "Nessun suono trovato."
-  },
-  "sounds": {
-    "notFound": "Non hai ancora nessun suono! Prova ad aggiungere uno con il comando {prefix}add."
-  },
-  "tag": {
-    "found": "Tags del suono {sound}: [{tags}]",
-    "notFound": "{sound} non trovato!"
-  },
-  "config": {
-    "success": "`{field}` impostato al valore `{value}`!",
-    "notFound": "La configurazione non ha l'opzione `{field}`!"
+    "avatar": {
+      "errors": {
+        "noAvatar": "Avatar non ancora impostato. Prova ad aggiungere uno con `{prefix}avatar` allegando un immagine!",
+        "tooFast": "Stai cambiando l'avatar troppo velocemente. Riprova piu' tardi."
+      },
+      "url": "Avatar corrente: {url}"
+    },
+    "ignore": {
+      "ignore": "Sto ignorando {user}!",
+      "unignore": "Non sto piu' ignorando {user}!"
+    },
+    "remove": {
+      "notFound": "{sound} non trovato!",
+      "success": "{sound} rimosso!"
+    },
+    "rename": {
+      "exists": "{newName} esiste gia'!",
+      "notFound": "{oldName} non trovato!",
+      "success": "{oldName} rinominato in {newName}!"
+    },
+    "search": {
+      "notFound": "Nessun suono trovato."
+    },
+    "sounds": {
+      "notFound": "Non hai ancora nessun suono! Prova ad aggiungere uno con il comando {prefix}add."
+    },
+    "tag": {
+      "found": "Tags del suono {sound}: [{tags}]",
+      "notFound": "{sound} non trovato!"
+    },
+    "config": {
+      "success": "`{field}` impostato al valore `{value}`!",
+      "notFound": "La configurazione non ha l'opzione `{field}`!"
+    }
   }
 }

@@ -33,7 +33,7 @@ export default class RemoveCommand implements Command {
 
     const sound = params.shift()!;
     if (!this.soundUtil.soundExists(sound)) {
-      message.channel.send(this.localeService.t('remove.notFound', { sound }));
+      message.channel.send(this.localeService.t('commands.remove.notFound', { sound }));
       return;
     }
 
@@ -41,6 +41,6 @@ export default class RemoveCommand implements Command {
     fs.unlinkSync(file);
     this.db.sounds.remove(sound);
 
-    message.channel.send(this.localeService.t('remove.success', { sound }));
+    message.channel.send(this.localeService.t('commands.remove.success', { sound }));
   }
 }

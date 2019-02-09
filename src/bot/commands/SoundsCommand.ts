@@ -26,7 +26,7 @@ export default class SoundsCommand implements Command {
     const sounds = this.soundUtil.getSounds();
 
     if (!sounds.length) {
-      message.author.send(this.localeService.t('sounds.notFound', { prefix: this.config.prefix }));
+      message.author.send(this.localeService.t('commands.sounds.notFound', { prefix: this.config.prefix }));
       return;
     }
 

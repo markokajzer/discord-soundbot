@@ -35,12 +35,12 @@ export default class RenameCommand implements Command {
     const sounds = this.soundUtil.getSounds();
 
     if (!sounds.includes(oldName)) {
-      message.channel.send(this.localeService.t('rename.notFound', { oldName }));
+      message.channel.send(this.localeService.t('commands.rename.notFound', { oldName }));
       return;
     }
 
     if (sounds.includes(newName)) {
-      message.channel.send(this.localeService.t('rename.exists', { newName }));
+      message.channel.send(this.localeService.t('commands.rename.exists', { newName }));
       return;
     }
 
@@ -50,6 +50,6 @@ export default class RenameCommand implements Command {
     fs.renameSync(oldFile, newFile);
     this.db.sounds.rename(oldName, newName);
 
-    message.channel.send(this.localeService.t('rename.success', { oldName, newName }));
+    message.channel.send(this.localeService.t('commands.rename.success', { oldName, newName }));
   }
 }

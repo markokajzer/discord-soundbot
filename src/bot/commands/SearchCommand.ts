@@ -32,7 +32,7 @@ export default class SearchCommand implements Command {
     this.db.sounds.withTag(tag).forEach(sound => results.push(sound));
 
     if (!results.length) {
-      message.author.send(this.localeService.t('search.notFound'));
+      message.author.send(this.localeService.t('commands.search.notFound'));
       return;
     }
 
