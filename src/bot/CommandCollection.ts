@@ -28,7 +28,7 @@ export default class CommandCollection extends Collection<string, Command> {
       return;
     }
 
-    this.soundCommand.run(message, params);
+    this.soundCommand.run(message);
   }
 
   private registerCommands(commands: Command[]) {

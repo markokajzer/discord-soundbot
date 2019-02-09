@@ -15,7 +15,7 @@ export default class WelcomeCommand implements Command {
     this.localeService = localeService;
   }
 
-  public run(message: Message, _: string[]) {
+  public run(message: Message) {
     message.channel.send(this.localeService.t('welcome', { prefix: this.config.prefix }));
   }
 }
