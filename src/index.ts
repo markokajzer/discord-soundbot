@@ -11,9 +11,10 @@ class DiscordSoundBot {
   private readonly bot: SoundBot;
 
   constructor(config: ConfigInterface) {
-    this.config = container.cradle.config as Config;
-    this.localeService = container.cradle.localeService as LocaleService;
-    this.bot = container.cradle.soundBot as SoundBot;
+    this.config = container.cradle.config;
+    this.localeService = container.cradle.localeService;
+    this.bot = container.cradle.soundBot;
+
     this.initialize(config);
   }
 
