@@ -38,7 +38,7 @@ container.loadModules([
 
 container.register({
   chunker: awilix.aliasTo('messageChunker'),
-  commands: awilix.asClass(CommandCollection).inject(() => ({
+  commands: awilix.asClass(CommandCollection).singleton().inject(() => ({
     commands: [
       container.cradle.pingCommand,
 
