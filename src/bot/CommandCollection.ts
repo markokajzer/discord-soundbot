@@ -31,7 +31,7 @@ export default class CommandCollection extends Collection<string, Command> {
     this.soundCommand.run(message);
   }
 
-  private registerCommands(commands: Command[]) {
+  public registerCommands(commands: Command[]) {
     commands.forEach(command => this.registerTriggers(command));
   }
 

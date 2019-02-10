@@ -7,6 +7,7 @@ import DatabaseAdapter from '@util/db/DatabaseAdapter';
 import LocaleService from '@util/i18n/LocaleService';
 import SoundUtil from '@util/SoundUtil';
 import CommandCollection from './CommandCollection';
+import Command from './commands/base/Command';
 import MessageHandler from './MessageHandler';
 
 export default class SoundBot extends Discord.Client {
@@ -35,6 +36,10 @@ export default class SoundBot extends Discord.Client {
 
   public start() {
     this.login(this.config.token);
+  }
+
+  public registerAdditionalCommands(commands: Command[]) {
+    this.commands.registerCommands(commands);
   }
 
   private addEventListeners() {
