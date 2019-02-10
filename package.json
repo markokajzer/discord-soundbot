@@ -3,6 +3,9 @@
   "version": "1.6.0-dev",
   "description": "A Soundboard for Discord",
   "main": "dist/src/index.js",
+  "bin": {
+    "soundbot": "dist/bin/soundbot.js"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/markokajzer/discord-soundbot"
@@ -53,7 +56,7 @@
     "build": "npm run compile",
     "lint": "tslint -p tsconfig.json",
     "postcompile": "node dist/lib/postbuild.js",
-    "serve": "node dist/src/main.js",
+    "serve": "node dist/bin/main.js",
     "start": "npm run build && npm run serve",
     "rebuild": "npm run clean && npm run build",
     "release": "npm run rebuild && npm run lint"

@@ -8,7 +8,7 @@ README.md
 
 !config/config.example.json
 !config/locales/**/*
+
+!dist/bin/**/*
 !dist/config/**/*
 !dist/src/**/*
-
-dist/src/main.js
