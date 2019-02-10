@@ -18,7 +18,6 @@ export default class CommandCollection extends Collection<string, Command> {
   public registerUserCommands(user: ClientUser) {
     const userCommands = this.commands.filter(command => (command as UserCommand).setClientUser);
     (userCommands as UserCommand[]).forEach(command => command.setClientUser(user));
-    this.registerCommands(userCommands);
   }
 
   public execute(command: string, params: string[], message: Message) {
