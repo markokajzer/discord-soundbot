@@ -78,11 +78,11 @@ export default class SoundBot extends Discord.Client {
     channel.send(this.localeService.t('welcome', { prefix: this.config.prefix }));
   }
 
-  private findFirstWritableChannel(guild: Discord.Guild): Discord.TextChannel | null {
+  private findFirstWritableChannel(guild: Discord.Guild) {
     const channels = guild.channels.filter(channel =>
       channel.type === 'text' && channel.permissionsFor(guild.me)!.has('SEND_MESSAGES'));
 
-    if (!channels.size) return null;
+    if (!channels.size) return;
     return (channels.first() as Discord.TextChannel);
   }
 }
