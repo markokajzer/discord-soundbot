@@ -10,13 +10,12 @@ export default class MessageChunker {
     this.localeService = localeService;
   }
 
-  public chunkedMessages(toChunk: string[], params: string[]): string[] {
+  public chunkedMessages(toChunk: string[], page = 0): string[] {
     const chunks = this.chunkArray(toChunk);
 
-    const indexInput = parseInt(params[0]);
-    const realIndex = indexInput - 1;
-    if (indexInput && realIndex >= 0 && realIndex < chunks.length) {
-      return this.specificChunk(chunks[realIndex], indexInput, chunks.length);
+    const index = page - 1;
+    if (index >= 0 && index < chunks.length) {
+      return this.specificChunk(chunks[index], page, chunks.length);
     }
 
     return chunks.map(chunk => ['```', ...chunk, '```'].join('\n'));
@@ -51,9 +50,9 @@ export default class MessageChunker {
     return currentChunkSize + this.CODE_MARKER_LENGTH > this.MAX_MESSAGE_LENGTH;
   }
 
-  private specificChunk(chunk: string[], input: number, amount: number) {
+  private specificChunk(chunk: string[], page: number, totalPages: number) {
     return [
-      this.localeService.t('helpers.messageChunker.page', { amount, current: input }),
+      this.localeService.t('helpers.messageChunker.page', { current: page, totalPages }),
       ['```', ...chunk, '```'].join('\n')
     ];
   }
