@@ -20,6 +20,11 @@
       "stop": "Arrêter le son et vider la file de lecture"
     },
 
+    "entrance": {
+      "set": "Joue le son spécifié lorsque vous entrez dans un salon",
+      "remove": "Supprime votre son d'entrée dans un salon"
+    },
+
     "tags": {
       "all": "Affiche la liste de tous les sons avec des tags",
       "add": "Ajouter un tag au son",
