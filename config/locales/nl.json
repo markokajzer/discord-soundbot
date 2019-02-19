@@ -9,7 +9,7 @@
     "commands": "Toon dit bericht",
 
     "sounds": {
-      "show": "Toon beschikbare geluiden",
+      "all": "Toon beschikbare geluiden",
       "add": "Voeg een bijgevoegd geluid toe",
       "play": "Speel een geluid af",
       "combo": "Speel geluiden achter elkaar af",
