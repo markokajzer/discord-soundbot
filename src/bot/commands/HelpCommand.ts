@@ -18,10 +18,11 @@ export default class HelpCommand implements Command {
   }
 
   public run(message: Message, params: string[]) {
+    const page = parseInt(params[0]);
 
     [
       this.localeService.t('help.headline', { prefix: this.config.prefix }),
-      ...  this.chunker.chunkedMessages(this.getFormattedListOfCommands(), params)
+      ...  this.chunker.chunkedMessages(this.getFormattedListOfCommands(), page)
     ].forEach( (chunk: string) => message.author.send(chunk));
 
   }
