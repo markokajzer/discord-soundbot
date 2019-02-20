@@ -10,7 +10,7 @@ export default class MessageChunker {
     this.localeService = localeService;
   }
 
-  public chunkedMessages(toChunk: string[], params: string[]): string[] {
+  public chunkedMessages(toChunk: string[], params: string[] = []): string[] {
     const chunks = this.chunkArray(toChunk);
 
     const indexInput = parseInt(params[0]);

@@ -1,7 +1,7 @@
 import { Message } from 'discord.js';
 
 import Command from './base/Command';
-
+import MessageChunker from './helpers/MessageChunker';
 import Config from '@config/Config';
 import LocaleService from '@util/i18n/LocaleService';
 
@@ -9,33 +9,30 @@ export default class HelpCommand implements Command {
   public readonly TRIGGERS = ['commands', 'help'];
   private readonly config: Config;
   private readonly localeService: LocaleService;
+  private readonly chunker: MessageChunker;
 
-  constructor(config: Config, localeService: LocaleService) {
+  constructor(config: Config, localeService: LocaleService, chunker : MessageChunker) {
     this.config = config;
     this.localeService = localeService;
+    this.chunker = chunker;
   }
 
-  public run(message: Message) {
+  public run(message: Message, params: string[]) {
 
-    this.getFormattedListOfCommands()
-        .forEach(element => {
-           message.author.send(element);
-        });
+    [
+      this.localeService.t('help.headline', { prefix: this.config.prefix }),
+      ...  this.chunker.chunkedMessages(this.getFormattedListOfCommands(), params)
+    ].forEach( (chunk: string) => message.author.send(chunk));
 
   }
 
   private getFormattedListOfCommands() {
     return [
-      [
-        this.localeService.t('help.headline', { prefix: this.config.prefix }),
-        '',
-        '```',
+        // this.localeService.t('help.headline', { prefix: this.config.prefix }),
         `welcome                          ${this.localeService.t('help.welcome')}`,
         `commands                         ${this.localeService.t('help.commands')}`,
         `help                             ${this.localeService.t('help.commands')}`,
-        '```',
 
-        '```',
         `sounds                           ${this.localeService.t('help.sounds.all')}`,
         `add                              ${this.localeService.t('help.sounds.add')}`,
         `add <name> <link>                ${this.localeService.t('help.sounds.add')}`,
@@ -50,37 +47,27 @@ export default class HelpCommand implements Command {
         `download <sound>                 ${this.localeService.t('help.sounds.download')}`,
         `stop                             ${this.localeService.t('help.sounds.stop')}`,
         `leave                            ${this.localeService.t('help.sounds.stop')}`,
-        '```',
 
-        '```',
         `entrance <sound>                 ${this.localeService.t('help.entrance.set')}`,
         `entrance                         ${this.localeService.t('help.entrance.remove')}`,
-        '```',
-      ],
-      [
-        '```',
+
         `tag <sound> <tag>                ${this.localeService.t('help.tags.add')}`,
         `tag <sound>                      ${this.localeService.t('help.tags.list')}`,
         `tag <sound> clear                ${this.localeService.t('help.tags.clear')}`,
         `tags                             ${this.localeService.t('help.tags.all')}`,
         `search <tag>                     ${this.localeService.t('help.tags.search')}`,
-        '```',
 
-        '```',
         `mostplayed                       ${this.localeService.t('help.mostplayed')}`,
         `lastadded                        ${this.localeService.t('help.lastadded')}`,
-        '```',
 
-        '```',
         `ignore <user>                    ${this.localeService.t('help.ignore')}`,
         `unignore <user>                  ${this.localeService.t('help.unignore')}`,
         `avatar                           ${this.localeService.t('help.avatar')}`,
         `avatar remove                    ${this.localeService.t('help.avatar')}`,
         `config <option> <value>          ${this.localeService.t('help.config')}`,
         `set <option> <value>             ${this.localeService.t('help.config')}`,
-        '```'
-      ]
-    ].map( (arr) => arr.join('\n'));
+
+    ];
 
   }
 }
