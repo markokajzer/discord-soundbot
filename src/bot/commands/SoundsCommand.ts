@@ -30,7 +30,9 @@ export default class SoundsCommand implements Command {
       return;
     }
 
-    this.chunker.chunkedMessages(sounds, params)
+    const page = parseInt(params[0]);
+
+    this.chunker.chunkedMessages(sounds, page)
                 .forEach(chunk => message.author.send(chunk));
   }
 }
