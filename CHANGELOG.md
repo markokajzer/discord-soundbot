@@ -6,6 +6,8 @@
 + Added `!ping` command
 + Added a binary
 
++ Fixed handling of long help messages (Thanks [gruntzy](https://github.com/gruntzy)!)
+
 ## 1.5.1 (2019-02-01)
 
 + Fixed playing entrance sound when muting / deafening
