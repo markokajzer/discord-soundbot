@@ -1,10 +1,14 @@
 ## Unreleased
 
+**Features**
+
 + Allow adding additional commands
 + Added Dutch translation (Thank you [@nstapelbroek](https://github.com/nstapelbroek)!)
 + Added `!set` alias for `!config` command
 + Added `!ping` command
 + Added a binary
+
+**Bugfixes**
 
 + Fixed handling of long help messages (Thanks [gruntzy](https://github.com/gruntzy)!)
 
@@ -16,10 +20,14 @@
 
 ## 1.5.0 (2018-01-27)
 
+**Features**
+
 + Added `!entrance` command
 + Added possibility to specify a range when adding sound from YouTube
 + Added possibility to specifiy a tag for `!random`
 + Added Spanish translation (thanks [@ibito](https://github.com/ibito))
+
+**Bugfixes**
 
 + Improved Docker build (Thank you [@Shamus03](https://github.com/Shamus03)!)
 + Fixed a bug specific to Windows paths (Thank you [@ibito](https://github.com/ibito)!)
