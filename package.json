@@ -23,7 +23,7 @@
   "author": "Marko Kajzer",
   "license": "MIT",
   "dependencies": {
-    "awilix": "^4.1.0",
+    "awilix": "^4.2.2",
     "discord.js": "^11.4.2",
     "fluent-ffmpeg": "^2.1.2",
     "i18n": "^0.8.3",
@@ -37,15 +37,15 @@
     "libsodium-wrappers": "^0.7.4"
   },
   "devDependencies": {
-    "@types/fluent-ffmpeg": "^2.1.9",
-    "@types/glob": "^7.1.1",
-    "@types/i18n": "^0.8.3",
-    "@types/lowdb": "^1.0.6",
-    "@types/node": "^10.12.18",
-    "replace-in-file": "^3.4.2",
-    "tslint": "^5.9.1",
-    "tslint-consistent-codestyle": "^1.15.0",
-    "typescript": "^3.0.1"
+    "@types/fluent-ffmpeg": "2.1.2",
+    "@types/glob": "7.1.1",
+    "@types/i18n": "0.8.5",
+    "@types/lowdb": "1.0.7",
+    "@types/node": "10.14.6",
+    "replace-in-file": "^4.0.0",
+    "tslint": "^5.16.0",
+    "tslint-consistent-codestyle": "^1.15.1",
+    "typescript": "^3.4.5"
   },
   "engines": {
     "node": ">=8.0.0"
