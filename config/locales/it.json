@@ -20,6 +20,11 @@
       "stop": "Ferma la riproduzione e pulisce la coda"
     },
 
+    "entrance": {
+      "set": "Imposta un suono di entrata",
+      "remove": "Rimuove il suono di entrata"
+    },
+
     "tags": {
       "all": "Lista dei suoni con i relativi tag",
       "add": "Aggiungi un tag al suono",
