@@ -1,4 +1,4 @@
-import { VoiceConnection } from 'discord.js';
+import { Message, VoiceConnection } from 'discord.js';
 
 import Config from '@config/Config';
 import DatabaseAdapter from '@util/db/DatabaseAdapter';
@@ -96,17 +96,17 @@ export default class SoundQueue {
 
   private deleteCurrentMessage() {
     if (!this.config.deleteMessages) return;
+    if (!this.currentSound || !this.currentSound.message) return;
+    if (!this.isLastSoundFromCurrentMessage(this.currentSound.message)) return;
 
-    if (this.currentSound!.message && this.isLastSoundFromCurrentMessage()) {
-      this.currentSound!.message!.delete();
-    }
-  }
-
-  private isLastSoundFromCurrentMessage() {
-    return !this.queue.some(item => !!item.message && item.message.id === this.currentSound!.message!.id);
+    this.currentSound.message.delete();
   }
 
   private isEmpty() {
     return this.queue.length === 0;
+  }
+
+  private isLastSoundFromCurrentMessage(message: Message) {
+    return !this.queue.some(item => !!item.message && item.message.id === message.id);
   }
 }
