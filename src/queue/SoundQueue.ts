@@ -42,16 +42,16 @@ export default class SoundQueue {
 
     let deleteableMessages = this.queue
       .map(item => item.message)
-      .filter(message => message);
+      .filter(message => message) as Message[];
 
     if (this.currentSound!.message) {
       deleteableMessages =
-        deleteableMessages.filter(message => message!.id !== this.currentSound!.message!.id);
+        deleteableMessages.filter(message => message.id !== this.currentSound!.message!.id);
     }
 
     // Do not try to delete the same sound multiple times (!combo)
     Array.from(new Set(deleteableMessages))
-      .forEach(message => message!.delete());
+      .forEach(message => message.delete());
   }
 
   private playNext() {
