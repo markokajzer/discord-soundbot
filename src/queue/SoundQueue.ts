@@ -98,12 +98,19 @@ export default class SoundQueue {
     if (!this.config.deleteMessages) return;
     if (!this.currentSound || !this.currentSound.message) return;
     if (!this.isLastSoundFromCurrentMessage(this.currentSound.message)) return;
+    if (this.wasMessageAlreadyDeleted(this.currentSound.message)) return;
 
     this.currentSound.message.delete();
   }
 
   private isEmpty() {
     return this.queue.length === 0;
+  }
+
+  private wasMessageAlreadyDeleted(message: Message) {
+    if (!message) return false;
+
+    return message.channel.messages.find(msg => msg.id === message.id) === null;
   }
 
   private isLastSoundFromCurrentMessage(message: Message) {

@@ -11,6 +11,7 @@
 **Bugfixes**
 
 + Fixed handling of long help messages (Thanks [gruntzy](https://github.com/gruntzy)!)
++ Fixed trying to delete messages that were already manually deleted
 
 ## 1.5.1 (2019-02-01)
 
