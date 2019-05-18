@@ -2,7 +2,8 @@ import LocaleService from '@util/i18n/LocaleService';
 
 export default class MessageChunker {
   private readonly MAX_MESSAGE_LENGTH = 2000;
-  private readonly CODE_MARKER_LENGTH = '```'.length * 2;
+  private readonly NEWLINE_LENGTH = '\n'.length;
+  private readonly CODE_MARKER_LENGTH = '```'.length * 2 + this.NEWLINE_LENGTH;
 
   private readonly localeService: LocaleService;
 
@@ -24,30 +25,29 @@ export default class MessageChunker {
   private chunkArray(input: string[]): string[][] {
     const result: string[][] = [];
 
-    let totalLength = 0;
-    let temp: string[] = [];
+    let currentChunkSize = this.CODE_MARKER_LENGTH;
+    let currentChunk: string[] = [];
 
-    for (const element of input) {
-      if (this.isChunkSizeAcceptable(totalLength, temp.length, element.length)) {
-        result.push(temp);
-        temp = [element];
-        totalLength = element.length;
-        continue;
+    input.forEach(element => {
+      if (this.isChunkSizeAcceptable(currentChunkSize, element)) {
+        currentChunk.push(element);
+        currentChunkSize += this.NEWLINE_LENGTH + element.length;
+      } else {
+        result.push(currentChunk);
+        currentChunk = [element];
+        currentChunkSize = this.CODE_MARKER_LENGTH + this.NEWLINE_LENGTH + element.length;
       }
+    });
 
-      temp.push(element);
-      totalLength += element.length;
-    }
-
-    result.push(temp);
+    result.push(currentChunk);
     return result;
   }
 
-  private isChunkSizeAcceptable(numberOfChars: number,
-                                numberOfElements: number,
-                                lengthOfCurrentElement: number) {
-    const currentChunkSize = numberOfChars + (numberOfElements - 1) + lengthOfCurrentElement;
-    return currentChunkSize + this.CODE_MARKER_LENGTH > this.MAX_MESSAGE_LENGTH;
+  private isChunkSizeAcceptable(
+    currentChunkSize: number,
+    newElement: string
+  ) {
+    return currentChunkSize + this.NEWLINE_LENGTH + newElement.length <= this.MAX_MESSAGE_LENGTH;
   }
 
   private specificChunk(chunk: string[], page: number, totalPages: number) {
