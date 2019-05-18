@@ -34,8 +34,9 @@ The bot can be installed manually, via Docker, or as an npm package. When not us
 #### Building manually
 
 + Clone the repository.
-+ Install the bot's dependencies with `npm install`.
-+ Run the bot with `npm start`.
++ Install `yarn` with `npm install -g yarn`.
++ Install the bot's dependencies with `yarn install`.
++ Run the bot with `yarn start`.
 
 Need more details? You can find more detailed installation guides for [Unix](../../wiki/Unix) (including your Raspberry Pi), [macOS](../../wiki/macOS), and [Windows](../../wiki/Windows).
 
