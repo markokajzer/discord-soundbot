@@ -1,28 +1,25 @@
 import { Message } from 'discord.js';
 
-import Command from './base/Command';
-
 import QueueItem from '@queue/QueueItem';
 import SoundQueue from '@queue/SoundQueue';
-import SoundUtil from '@util/SoundUtil';
+import { existsSound } from '@util/SoundUtil';
+import Command from './base/Command';
 import VoiceChannelFinder from './helpers/VoiceChannelFinder';
 
 export default class SoundCommand implements Command {
   public readonly TRIGGERS = [];
 
-  private readonly soundUtil: SoundUtil;
   private readonly queue: SoundQueue;
   private readonly voiceChannelFinder: VoiceChannelFinder;
 
-  constructor(soundUtil: SoundUtil, queue: SoundQueue, voiceChannelFinder: VoiceChannelFinder) {
-    this.soundUtil = soundUtil;
+  constructor(queue: SoundQueue, voiceChannelFinder: VoiceChannelFinder) {
     this.queue = queue;
     this.voiceChannelFinder = voiceChannelFinder;
   }
 
   public run(message: Message) {
     const sound = message.content;
-    if (!this.soundUtil.soundExists(sound)) return;
+    if (!existsSound(sound)) return;
 
     const voiceChannel = this.voiceChannelFinder.getVoiceChannelFromMessageAuthor(message);
     if (!voiceChannel) return;

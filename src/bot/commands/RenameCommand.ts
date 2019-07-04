@@ -2,11 +2,10 @@ import fs from 'fs';
 
 import { Message, Permissions } from 'discord.js';
 
-import Command from './base/Command';
-
 import DatabaseAdapter from '@util/db/DatabaseAdapter';
 import LocaleService from '@util/i18n/LocaleService';
-import SoundUtil from '@util/SoundUtil';
+import { getExtensionForSound, getSounds } from '@util/SoundUtil';
+import Command from './base/Command';
 
 export default class RenameCommand implements Command {
   public readonly TRIGGERS = ['rename'];
@@ -14,12 +13,10 @@ export default class RenameCommand implements Command {
   public readonly USAGE = 'Usage: !rename <old> <new>';
 
   private readonly localeService: LocaleService;
-  private readonly soundUtil: SoundUtil;
   private readonly db: DatabaseAdapter;
 
-  constructor(localeService: LocaleService, soundUtil: SoundUtil, db: DatabaseAdapter) {
+  constructor(localeService: LocaleService, db: DatabaseAdapter) {
     this.localeService = localeService;
-    this.soundUtil = soundUtil;
     this.db = db;
   }
 
@@ -32,7 +29,7 @@ export default class RenameCommand implements Command {
     }
 
     const [oldName, newName] = params;
-    const sounds = this.soundUtil.getSounds();
+    const sounds = getSounds();
 
     if (!sounds.includes(oldName)) {
       message.channel.send(this.localeService.t('commands.rename.notFound', { oldName }));
@@ -44,7 +41,7 @@ export default class RenameCommand implements Command {
       return;
     }
 
-    const extension = this.soundUtil.getExtensionForSound(oldName);
+    const extension = getExtensionForSound(oldName);
     const oldFile = `sounds/${oldName}.${extension}`;
     const newFile = `sounds/${newName}.${extension}`;
     fs.renameSync(oldFile, newFile);

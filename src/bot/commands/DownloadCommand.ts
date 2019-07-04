@@ -1,19 +1,12 @@
 import { Attachment, Message } from 'discord.js';
 
+import { existsSound, getPathForSound } from '@util/SoundUtil';
 import Command from './base/Command';
-
-import SoundUtil from '@util/SoundUtil';
 
 export default class DownloadCommand implements Command {
   public readonly TRIGGERS = ['download'];
   public readonly NUMBER_OF_PARAMETERS = 1;
   public readonly USAGE = 'Usage: !download <sound>';
-
-  private readonly soundUtil: SoundUtil;
-
-  constructor(soundUtil: SoundUtil) {
-    this.soundUtil = soundUtil;
-  }
 
   public run(message: Message, params: string[]) {
     if (params.length !== this.NUMBER_OF_PARAMETERS) {
@@ -22,9 +15,9 @@ export default class DownloadCommand implements Command {
     }
 
     const sound = params[0];
-    if (!this.soundUtil.soundExists(sound)) return;
+    if (!existsSound(sound)) return;
 
-    const attachment = new Attachment(this.soundUtil.getPathForSound(sound));
+    const attachment = new Attachment(getPathForSound(sound));
     message.channel.send(attachment);
   }
 }

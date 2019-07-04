@@ -4,13 +4,12 @@ import BaseValidator from './BaseValidator';
 
 import Config from '@config/Config';
 import LocaleService from '@util/i18n/LocaleService';
-import SoundUtil from '@util/SoundUtil';
 
 export default class AttachmentValidator extends BaseValidator {
   private readonly config: Config;
 
-  constructor(config: Config, localeService: LocaleService, soundUtil: SoundUtil) {
-    super(localeService, soundUtil);
+  constructor(config: Config, localeService: LocaleService) {
+    super(localeService);
     this.config = config;
   }
 

@@ -5,7 +5,7 @@ import QueueItem from '@queue/QueueItem';
 import SoundQueue from '@queue/SoundQueue';
 import DatabaseAdapter from '@util/db/DatabaseAdapter';
 import LocaleService from '@util/i18n/LocaleService';
-import SoundUtil from '@util/SoundUtil';
+import { getSounds } from '@util/SoundUtil';
 import CommandCollection from './CommandCollection';
 import Command from './commands/base/Command';
 import MessageHandler from './MessageHandler';
@@ -17,11 +17,10 @@ export default class SoundBot extends Discord.Client {
   private readonly messageHandler: MessageHandler;
   private readonly db: DatabaseAdapter;
   private readonly queue: SoundQueue;
-  private readonly soundUtil: SoundUtil;
 
   constructor(config: Config, localeService: LocaleService,
               commands: CommandCollection, messageHandler: MessageHandler,
-              db: DatabaseAdapter, queue: SoundQueue, soundUtil: SoundUtil) {
+              db: DatabaseAdapter, queue: SoundQueue) {
     super();
     this.config = config;
     this.localeService = localeService;
@@ -29,7 +28,6 @@ export default class SoundBot extends Discord.Client {
     this.messageHandler = messageHandler;
     this.db = db;
     this.queue = queue;
-    this.soundUtil = soundUtil;
 
     this.addEventListeners();
   }
@@ -59,7 +57,7 @@ export default class SoundBot extends Discord.Client {
     if (!this.db.entrances.exists(user.id)) return;
 
     const sound = this.db.entrances.get(user.id);
-    if (!this.soundUtil.getSounds().includes(sound)) return;
+    if (!getSounds().includes(sound)) return;
 
     const voiceChannel = user.voiceChannel;
     this.queue.add(new QueueItem(sound, voiceChannel));

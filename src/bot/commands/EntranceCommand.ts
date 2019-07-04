@@ -1,19 +1,16 @@
 import { Message } from 'discord.js';
 
-import Command from './base/Command';
-
 import DatabaseAdapter from '@util/db/DatabaseAdapter';
-import SoundUtil from '@util/SoundUtil';
+import { getSounds } from '@util/SoundUtil';
+import Command from './base/Command';
 
 export default class EntranceCommand implements Command {
   public readonly TRIGGERS = ['entrance'];
   public readonly USAGE = 'Usage: !entrance <sound>';
   public readonly db: DatabaseAdapter;
-  public readonly soundUtil: SoundUtil;
 
-  constructor(db: DatabaseAdapter, soundUtil: SoundUtil) {
+  constructor(db: DatabaseAdapter) {
     this.db = db;
-    this.soundUtil = soundUtil;
   }
 
   public run(message: Message, params: string[]) {
@@ -23,7 +20,7 @@ export default class EntranceCommand implements Command {
       return;
     }
 
-    const sounds = this.soundUtil.getSounds();
+    const sounds = getSounds();
     if (!sounds.includes(entranceSound)) return;
 
     this.db.entrances.add(message.author.id, entranceSound);

@@ -2,11 +2,10 @@ import fs from 'fs';
 
 import { Message, Permissions } from 'discord.js';
 
-import Command from './base/Command';
-
 import DatabaseAdapter from '@util/db/DatabaseAdapter';
 import LocaleService from '@util/i18n/LocaleService';
-import SoundUtil from '@util/SoundUtil';
+import { existsSound, getPathForSound } from '@util/SoundUtil';
+import Command from './base/Command';
 
 export default class RemoveCommand implements Command {
   public readonly TRIGGERS = ['remove'];
@@ -14,12 +13,10 @@ export default class RemoveCommand implements Command {
   public readonly USAGE = 'Usage: !remove <sound>';
 
   private readonly localeService: LocaleService;
-  private readonly soundUtil: SoundUtil;
   private readonly db: DatabaseAdapter;
 
-  constructor(localeService: LocaleService, soundUtil: SoundUtil, db: DatabaseAdapter) {
+  constructor(localeService: LocaleService, db: DatabaseAdapter) {
     this.localeService = localeService;
-    this.soundUtil = soundUtil;
     this.db = db;
   }
 
@@ -32,12 +29,12 @@ export default class RemoveCommand implements Command {
     }
 
     const sound = params.shift()!;
-    if (!this.soundUtil.soundExists(sound)) {
+    if (!existsSound(sound)) {
       message.channel.send(this.localeService.t('commands.remove.notFound', { sound }));
       return;
     }
 
-    const file = this.soundUtil.getPathForSound(sound);
+    const file = getPathForSound(sound);
     fs.unlinkSync(file);
     this.db.sounds.remove(sound);
 

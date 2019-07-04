@@ -7,7 +7,6 @@ import SoundQueue from '@queue/SoundQueue';
 import DatabaseAdapter from '@util/db/DatabaseAdapter';
 import i18n from '@util/i18n/i18n';
 import LocaleService from '@util/i18n/LocaleService';
-import SoundUtil from '@util/SoundUtil';
 import CommandCollection from '../bot/CommandCollection';
 
 const container = awilix.createContainer({
@@ -21,8 +20,7 @@ container.register({
   localeService: awilix.asClass(LocaleService).singleton(),
 
   db: awilix.asClass(DatabaseAdapter).singleton(),
-  queue: awilix.asClass(SoundQueue).singleton(),
-  soundUtil: awilix.asClass(SoundUtil).singleton()
+  queue: awilix.asClass(SoundQueue).singleton()
 });
 
 container.loadModules([

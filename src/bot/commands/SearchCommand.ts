@@ -1,10 +1,9 @@
 import { Message } from 'discord.js';
 
-import Command from './base/Command';
-
 import DatabaseAdapter from '@util/db/DatabaseAdapter';
 import LocaleService from '@util/i18n/LocaleService';
-import SoundUtil from '@util/SoundUtil';
+import { getSounds } from '@util/SoundUtil';
+import Command from './base/Command';
 
 export default class SearchCommand implements Command {
   public readonly TRIGGERS = ['search'];
@@ -12,12 +11,10 @@ export default class SearchCommand implements Command {
   public readonly USAGE = 'Usage: !search <tag>';
 
   private readonly localeService: LocaleService;
-  private readonly soundUtil: SoundUtil;
   private readonly db: DatabaseAdapter;
 
-  constructor(localeService: LocaleService, soundUtil: SoundUtil, db: DatabaseAdapter) {
+  constructor(localeService: LocaleService, db: DatabaseAdapter) {
     this.localeService = localeService;
-    this.soundUtil = soundUtil;
     this.db = db;
   }
 
@@ -28,7 +25,7 @@ export default class SearchCommand implements Command {
     }
 
     const tag = params.shift()!;
-    const results = this.soundUtil.getSounds().filter(sound => sound.includes(tag));
+    const results = getSounds().filter(sound => sound.includes(tag));
     this.db.sounds.withTag(tag).forEach(sound => results.push(sound));
 
     if (!results.length) {

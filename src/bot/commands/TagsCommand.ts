@@ -3,24 +3,22 @@ import { Message } from 'discord.js';
 import Command from './base/Command';
 
 import DatabaseAdapter from '@util/db/DatabaseAdapter';
-import SoundUtil from '@util/SoundUtil';
+import { getSounds } from '@util/SoundUtil';
 import MessageChunker from './helpers/MessageChunker';
 
 export default class TagsCommand implements Command {
   public readonly TRIGGERS = ['tags'];
 
-  private readonly soundUtil: SoundUtil;
   private readonly db: DatabaseAdapter;
   private readonly chunker: MessageChunker;
 
-  constructor(soundUtil: SoundUtil, db: DatabaseAdapter, chunker: MessageChunker) {
-    this.soundUtil = soundUtil;
+  constructor(db: DatabaseAdapter, chunker: MessageChunker) {
     this.db = db;
     this.chunker = chunker;
   }
 
   public run(message: Message, params: string[]) {
-    const sounds = this.soundUtil.getSounds();
+    const sounds = getSounds();
     const soundsWithTags = this.formattedMessage(sounds);
 
     const page = parseInt(params[0]);

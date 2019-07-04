@@ -1,10 +1,9 @@
 import { Message, Permissions } from 'discord.js';
 
-import Command from './base/Command';
-
 import DatabaseAdapter from '@util/db/DatabaseAdapter';
 import LocaleService from '@util/i18n/LocaleService';
-import SoundUtil from '@util/SoundUtil';
+import { getSounds } from '@util/SoundUtil';
+import Command from './base/Command';
 
 export default class TagCommand implements Command {
   public readonly TRIGGERS = ['tag'];
@@ -12,12 +11,10 @@ export default class TagCommand implements Command {
   public readonly USAGE = 'Usage: !tag <sound> [<tag> ... <tagN> | clear]';
 
   private readonly localeService: LocaleService;
-  private readonly soundUtil: SoundUtil;
   private readonly db: DatabaseAdapter;
 
-  constructor(localeService: LocaleService, soundUtil: SoundUtil, db: DatabaseAdapter) {
+  constructor(localeService: LocaleService, db: DatabaseAdapter) {
     this.localeService = localeService;
-    this.soundUtil = soundUtil;
     this.db = db;
   }
 
@@ -28,7 +25,7 @@ export default class TagCommand implements Command {
     }
 
     const sound = params.shift()!;
-    if (!this.soundUtil.getSounds().includes(sound)) {
+    if (!getSounds().includes(sound)) {
       message.channel.send(this.localeService.t('commands.tag.notFound', { sound }));
       return;
     }

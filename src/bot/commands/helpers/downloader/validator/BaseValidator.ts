@@ -1,13 +1,11 @@
 import LocaleService from '@util/i18n/LocaleService';
-import SoundUtil from '@util/SoundUtil';
+import { existsSound } from '@util/SoundUtil';
 
 export default abstract class BaseValidator {
   protected readonly localeService: LocaleService;
-  private readonly soundUtil: SoundUtil;
 
-  constructor(localeService: LocaleService, soundUtil: SoundUtil) {
+  constructor(localeService: LocaleService) {
     this.localeService = localeService;
-    this.soundUtil = soundUtil;
   }
 
   public abstract validate(...params: any[]): Promise<void[]>;
@@ -19,7 +17,7 @@ export default abstract class BaseValidator {
   }
 
   protected validateUniqueness(name: string) {
-    if (this.soundUtil.soundExists(name)) {
+    if (existsSound(name)) {
       return Promise.reject(this.localeService.t('validation.attachment.exists', { name }));
     }
   }

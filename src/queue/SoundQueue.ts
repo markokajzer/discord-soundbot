@@ -2,20 +2,18 @@ import { Message, VoiceConnection } from 'discord.js';
 
 import Config from '@config/Config';
 import DatabaseAdapter from '@util/db/DatabaseAdapter';
-import SoundUtil from '@util/SoundUtil';
+import { getPathForSound } from '@util/SoundUtil';
 import QueueItem from './QueueItem';
 
 export default class SoundQueue {
   private readonly config: Config;
-  private readonly soundUtil: SoundUtil;
   private readonly db: DatabaseAdapter;
 
   private queue: QueueItem[];
   private currentSound: QueueItem | null;
 
-  constructor(config: Config, soundUtil: SoundUtil, db: DatabaseAdapter) {
+  constructor(config: Config, db: DatabaseAdapter) {
     this.config = config;
-    this.soundUtil = soundUtil;
     this.db = db;
     this.queue = [];
     this.currentSound = null;
@@ -56,7 +54,7 @@ export default class SoundQueue {
 
   private playNext() {
     this.currentSound = this.queue.shift()!;
-    const sound = this.soundUtil.getPathForSound(this.currentSound.name);
+    const sound = getPathForSound(this.currentSound.name);
 
     this.currentSound.channel.join()
       .then(connection => this.deafen(connection))
