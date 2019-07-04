@@ -78,7 +78,7 @@ export default class Config implements ConfigInterface {
     this.setFrom(savedConfig);
   }
 
-  private ensureConfigDirectoryExists() {
+  private ensureConfigDirectoryExists() {
     if (!fs.existsSync(path.dirname(this.CONFIG_PATH))) {
       fs.mkdirSync(path.dirname(this.CONFIG_PATH));
     }
