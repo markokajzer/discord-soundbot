@@ -62,7 +62,7 @@ export default class HelpCommand implements Command {
       `avatar                           ${this.localeService.t('help.avatar')}`,
       `avatar remove                    ${this.localeService.t('help.avatar')}`,
       `config <option> <value>          ${this.localeService.t('help.config')}`,
-      `set <option> <value>             ${this.localeService.t('help.config')}`,
+      `set <option> <value>             ${this.localeService.t('help.config')}`
     ];
   }
 }
