@@ -1,4 +1,4 @@
-import Discord from 'discord.js';
+import { Client, Guild, GuildMember, Message, TextChannel } from 'discord.js';
 
 import Config from '@config/Config';
 import QueueItem from '@queue/QueueItem';
@@ -10,7 +10,7 @@ import CommandCollection from './CommandCollection';
 import Command from './commands/base/Command';
 import MessageHandler from './MessageHandler';
 
-export default class SoundBot extends Discord.Client {
+export default class SoundBot extends Client {
   private readonly config: Config;
   private readonly localeService: LocaleService;
   private readonly commands: CommandCollection;
@@ -50,7 +50,7 @@ export default class SoundBot extends Discord.Client {
     this.commands.registerUserCommands(this.user);
   }
 
-  private onUserJoinsVoiceChannel(prevState: Discord.GuildMember, user: Discord.GuildMember) {
+  private onUserJoinsVoiceChannel(prevState: GuildMember, user: GuildMember) {
     if (!user.voiceChannelID || prevState.voiceChannelID === user.voiceChannelID) return;
     if (!entrances.exists(user.id)) return;
 
@@ -61,11 +61,11 @@ export default class SoundBot extends Discord.Client {
     this.queue.add(new QueueItem(sound, voiceChannel));
   }
 
-  private onMessage(message: Discord.Message) {
+  private onMessage(message: Message) {
     this.messageHandler.handle(message);
   }
 
-  private onBotJoinsServer(guild: Discord.Guild) {
+  private onBotJoinsServer(guild: Guild) {
     if (!guild.available) return;
 
     const channel = this.findFirstWritableChannel(guild);
@@ -74,11 +74,11 @@ export default class SoundBot extends Discord.Client {
     channel.send(this.localeService.t('welcome', { prefix: this.config.prefix }));
   }
 
-  private findFirstWritableChannel(guild: Discord.Guild) {
+  private findFirstWritableChannel(guild: Guild) {
     const channels = guild.channels.filter(channel =>
       channel.type === 'text' && channel.permissionsFor(guild.me)!.has('SEND_MESSAGES'));
 
     if (!channels.size) return;
-    return (channels.first() as Discord.TextChannel);
+    return (channels.first() as TextChannel);
   }
 }
