@@ -6,8 +6,7 @@ const connection = lowdb(adapter);
 
 export const exists = (userId: string) => !!get(userId);
 
-export const get = (userId: string) =>
-  connection.get(`entrances.${userId}`).value();
+export const get = (userId: string) => connection.get(`entrances.${userId}`).value();
 
 export const add = (userId: string, sound: string) => {
   connection.set(`entrances.${userId}`, sound).write();

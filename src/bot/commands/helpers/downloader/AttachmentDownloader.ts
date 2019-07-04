@@ -17,10 +17,12 @@ export default class AttachmentDownloader extends BaseDownloader {
 
   public handle(message: Message) {
     message.attachments.forEach(attachment =>
-      this.validator.validate(attachment)
+      this.validator
+        .validate(attachment)
         .then(() => this.addSound(attachment))
         .then(response => attachment.message.channel.send(response))
-        .catch(response => attachment.message.channel.send(response)));
+        .catch(response => attachment.message.channel.send(response))
+    );
   }
 
   private addSound(attachment: MessageAttachment) {
@@ -32,7 +34,8 @@ export default class AttachmentDownloader extends BaseDownloader {
 
   private makeRequest(url: string) {
     return new Promise((resolve, reject) => {
-      https.get(url)
+      https
+        .get(url)
         .on('response', resolve)
         .on('error', reject);
     });

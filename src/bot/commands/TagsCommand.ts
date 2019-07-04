@@ -21,7 +21,7 @@ export default class TagsCommand implements Command {
     const page = parseInt(params[0]);
 
     this.chunker.chunkedMessages(soundsWithTags, page)
-                .forEach(chunk => message.author.send(chunk));
+      .forEach(chunk => message.author.send(chunk));
   }
 
   private formattedMessage(sounds: string[]) {

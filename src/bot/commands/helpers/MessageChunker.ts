@@ -43,10 +43,7 @@ export default class MessageChunker {
     return result;
   }
 
-  private isChunkSizeAcceptable(
-    currentChunkSize: number,
-    newElement: string
-  ) {
+  private isChunkSizeAcceptable(currentChunkSize: number, newElement: string) {
     return currentChunkSize + this.NEWLINE_LENGTH + newElement.length <= this.MAX_MESSAGE_LENGTH;
   }
 

@@ -12,5 +12,5 @@ Message.prototype.hasPrefix = function (prefix) {
 };
 
 Message.prototype.isDirectMessage = function () {
-  return (this.channel instanceof DMChannel) || (this.channel instanceof GroupDMChannel);
+  return this.channel instanceof DMChannel || this.channel instanceof GroupDMChannel;
 };

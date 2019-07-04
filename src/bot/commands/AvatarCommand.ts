@@ -41,14 +41,14 @@ export default class AvatarCommand implements UserCommand {
       return;
     }
 
-    this.user.setAvatar(message.attachments.first().url)
-             .catch(() => message.channel.send(this.localeService.t('commands.avatar.errors.tooFast')));
+    this.user
+      .setAvatar(message.attachments.first().url)
+      .catch(() => message.channel.send(this.localeService.t('commands.avatar.errors.tooFast')));
   }
 
   private listAvatar(message: Message) {
     if (this.user.avatarURL === null) {
-      message.channel.send(
-        this.localeService.t('commands.avatar.errors.noAvatar', { prefix: this.config.prefix }));
+      message.channel.send(this.localeService.t('commands.avatar.errors.noAvatar', { prefix: this.config.prefix }));
       return;
     }
 

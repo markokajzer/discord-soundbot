@@ -20,8 +20,15 @@ export default class Config implements ConfigInterface {
 
   private readonly CONFIG_PATH = path.join(process.cwd(), 'config', 'config.json');
   private readonly MODIFIABLE_FIELDS = [
-    'language', 'prefix', 'acceptedExtensions', 'maximumFileSize',
-    'volume', 'deleteMessages', 'stayInChannel', 'deafen', 'game'
+    'language',
+    'prefix',
+    'acceptedExtensions',
+    'maximumFileSize',
+    'volume',
+    'deleteMessages',
+    'stayInChannel',
+    'deafen',
+    'game'
   ];
   private readonly JSON_KEYS = ['clientID', 'token', ...this.MODIFIABLE_FIELDS];
 

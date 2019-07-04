@@ -21,9 +21,7 @@ container.register({
   queue: awilix.asClass(SoundQueue).singleton()
 });
 
-container.loadModules([
-  'bot/**/*.js'
-], {
+container.loadModules(['bot/**/*.js'], {
   cwd: path.join(__dirname, '..'),
   formatName: 'camelCase',
   resolverOptions: {

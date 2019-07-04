@@ -21,7 +21,8 @@ export default class YoutubeDownloader extends BaseDownloader {
 
     const [name, link, start, end] = params;
 
-    this.validator.validate(name, link)
+    this.validator
+      .validate(name, link)
       .then(() => this.addSound(link, name, parseFloat(start), parseFloat(end)))
       .then(result => message.channel.send(result))
       .catch(result => message.channel.send(result));
@@ -35,7 +36,7 @@ export default class YoutubeDownloader extends BaseDownloader {
 
   private makeRequest(url: string) {
     return new Promise((resolve, reject) => {
-      ytdl(url, { filter: format => format.container === 'mp4'})
+      ytdl(url, { filter: format => format.container === 'mp4' })
         .pipe(fs.createWriteStream('tmp.mp4'))
         .on('finish', resolve)
         .on('error', reject);

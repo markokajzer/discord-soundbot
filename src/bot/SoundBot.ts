@@ -79,6 +79,6 @@ export default class SoundBot extends Client {
       channel.type === 'text' && channel.permissionsFor(guild.me)!.has('SEND_MESSAGES'));
 
     if (!channels.size) return;
-    return (channels.first() as TextChannel);
+    return channels.first() as TextChannel;
   }
 }
