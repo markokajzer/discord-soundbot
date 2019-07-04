@@ -2,7 +2,7 @@ import fs from 'fs';
 
 import { Message, Permissions } from 'discord.js';
 
-import DatabaseAdapter from '@util/db/DatabaseAdapter';
+import * as soundsDb from '@util/db/Sounds';
 import LocaleService from '@util/i18n/LocaleService';
 import { getExtensionForSound, getSounds } from '@util/SoundUtil';
 import Command from './base/Command';
@@ -13,11 +13,9 @@ export default class RenameCommand implements Command {
   public readonly USAGE = 'Usage: !rename <old> <new>';
 
   private readonly localeService: LocaleService;
-  private readonly db: DatabaseAdapter;
 
-  constructor(localeService: LocaleService, db: DatabaseAdapter) {
+  constructor(localeService: LocaleService) {
     this.localeService = localeService;
-    this.db = db;
   }
 
   public run(message: Message, params: string[]) {
@@ -45,7 +43,7 @@ export default class RenameCommand implements Command {
     const oldFile = `sounds/${oldName}.${extension}`;
     const newFile = `sounds/${newName}.${extension}`;
     fs.renameSync(oldFile, newFile);
-    this.db.sounds.rename(oldName, newName);
+    soundsDb.rename(oldName, newName);
 
     message.channel.send(this.localeService.t('commands.rename.success', { oldName, newName }));
   }

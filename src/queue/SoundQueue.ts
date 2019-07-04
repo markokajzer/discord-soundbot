@@ -1,20 +1,18 @@
 import { Message, VoiceConnection } from 'discord.js';
 
 import Config from '@config/Config';
-import DatabaseAdapter from '@util/db/DatabaseAdapter';
+import * as sounds from '@util/db/Sounds';
 import { getPathForSound } from '@util/SoundUtil';
 import QueueItem from './QueueItem';
 
 export default class SoundQueue {
   private readonly config: Config;
-  private readonly db: DatabaseAdapter;
 
   private queue: QueueItem[];
   private currentSound: QueueItem | null;
 
-  constructor(config: Config, db: DatabaseAdapter) {
+  constructor(config: Config) {
     this.config = config;
-    this.db = db;
     this.queue = [];
     this.currentSound = null;
   }
@@ -80,7 +78,7 @@ export default class SoundQueue {
   }
 
   private onFinishedPlayingSound(connection: VoiceConnection) {
-    this.db.sounds.incrementCount(this.currentSound!.name);
+    sounds.incrementCount(this.currentSound!.name);
     this.deleteCurrentMessage();
 
     if (!this.isEmpty()) {

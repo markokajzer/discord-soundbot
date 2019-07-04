@@ -4,7 +4,6 @@ import path from 'path';
 
 import Config from '@config/Config';
 import SoundQueue from '@queue/SoundQueue';
-import DatabaseAdapter from '@util/db/DatabaseAdapter';
 import i18n from '@util/i18n/i18n';
 import LocaleService from '@util/i18n/LocaleService';
 import CommandCollection from '../bot/CommandCollection';
@@ -19,7 +18,6 @@ container.register({
   i18nProvider: awilix.asValue(i18n),
   localeService: awilix.asClass(LocaleService).singleton(),
 
-  db: awilix.asClass(DatabaseAdapter).singleton(),
   queue: awilix.asClass(SoundQueue).singleton()
 });
 

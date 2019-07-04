@@ -1,17 +1,11 @@
 import { Message } from 'discord.js';
 
-import Command from './base/Command';
-
-import DatabaseAdapter from '@util/db/DatabaseAdapter';
 import Sound from '@util/db/models/Sound';
+import * as soundsDb from '@util/db/Sounds';
+import Command from './base/Command';
 
 export default class MostPlayedCommand implements Command {
   public readonly TRIGGERS = ['mostplayed'];
-  private db: DatabaseAdapter;
-
-  constructor(db: DatabaseAdapter) {
-    this.db = db;
-  }
 
   public run(message: Message) {
     const formattedMessage = this.getFormattedMessage();
@@ -21,7 +15,7 @@ export default class MostPlayedCommand implements Command {
   }
 
   private getFormattedMessage() {
-    const sounds = this.db.sounds.mostPlayed();
+    const sounds = soundsDb.mostPlayed();
     if (!sounds.length) return;
 
     const longestSound = this.findLongestWord(sounds.map(sound => sound.name));

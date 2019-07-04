@@ -3,7 +3,7 @@ import Discord from 'discord.js';
 import Config from '@config/Config';
 import QueueItem from '@queue/QueueItem';
 import SoundQueue from '@queue/SoundQueue';
-import DatabaseAdapter from '@util/db/DatabaseAdapter';
+import * as entrances from '@util/db/Entrances';
 import LocaleService from '@util/i18n/LocaleService';
 import { getSounds } from '@util/SoundUtil';
 import CommandCollection from './CommandCollection';
@@ -15,18 +15,16 @@ export default class SoundBot extends Discord.Client {
   private readonly localeService: LocaleService;
   private readonly commands: CommandCollection;
   private readonly messageHandler: MessageHandler;
-  private readonly db: DatabaseAdapter;
   private readonly queue: SoundQueue;
 
   constructor(config: Config, localeService: LocaleService,
               commands: CommandCollection, messageHandler: MessageHandler,
-              db: DatabaseAdapter, queue: SoundQueue) {
+              queue: SoundQueue) {
     super();
     this.config = config;
     this.localeService = localeService;
     this.commands = commands;
     this.messageHandler = messageHandler;
-    this.db = db;
     this.queue = queue;
 
     this.addEventListeners();
@@ -54,9 +52,9 @@ export default class SoundBot extends Discord.Client {
 
   private onUserJoinsVoiceChannel(prevState: Discord.GuildMember, user: Discord.GuildMember) {
     if (!user.voiceChannelID || prevState.voiceChannelID === user.voiceChannelID) return;
-    if (!this.db.entrances.exists(user.id)) return;
+    if (!entrances.exists(user.id)) return;
 
-    const sound = this.db.entrances.get(user.id);
+    const sound = entrances.get(user.id);
     if (!getSounds().includes(sound)) return;
 
     const voiceChannel = user.voiceChannel;

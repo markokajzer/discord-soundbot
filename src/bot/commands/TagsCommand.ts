@@ -1,19 +1,16 @@
 import { Message } from 'discord.js';
 
-import Command from './base/Command';
-
-import DatabaseAdapter from '@util/db/DatabaseAdapter';
+import * as soundsDb from '@util/db/Sounds';
 import { getSounds } from '@util/SoundUtil';
+import Command from './base/Command';
 import MessageChunker from './helpers/MessageChunker';
 
 export default class TagsCommand implements Command {
   public readonly TRIGGERS = ['tags'];
 
-  private readonly db: DatabaseAdapter;
   private readonly chunker: MessageChunker;
 
-  constructor(db: DatabaseAdapter, chunker: MessageChunker) {
-    this.db = db;
+  constructor(chunker: MessageChunker) {
     this.chunker = chunker;
   }
 
@@ -33,7 +30,7 @@ export default class TagsCommand implements Command {
   }
 
   private listSoundWithTags(sound: string, soundLength: number) {
-    const tags = this.db.sounds.listTags(sound);
+    const tags = soundsDb.listTags(sound);
     if (!tags.length) return sound;
 
     const spacesForSound = ' '.repeat(soundLength - sound.length + 1);
