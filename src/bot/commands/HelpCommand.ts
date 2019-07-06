@@ -3,20 +3,18 @@ import { Message } from 'discord.js';
 import Config from '@config/Config';
 import localize from '@util/i18n/localize';
 import Command from './base/Command';
-import MessageChunker from './helpers/MessageChunker';
+import { chunkedMessages } from './helpers/chunkedMessages';
 
 export default class HelpCommand implements Command {
   public readonly TRIGGERS = ['commands', 'help'];
   private readonly config: Config;
-  private readonly chunker: MessageChunker;
 
-  constructor(config: Config, chunker: MessageChunker) {
+  constructor(config: Config) {
     this.config = config;
-    this.chunker = chunker;
   }
 
   public run(message: Message) {
-    this.chunker.chunkedMessages(this.getFormattedListOfCommands())
+    chunkedMessages(this.getFormattedListOfCommands())
       .forEach(chunk => message.author.send(chunk));
   }
 
