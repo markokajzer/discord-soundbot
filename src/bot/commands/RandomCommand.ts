@@ -5,22 +5,20 @@ import SoundQueue from '@queue/SoundQueue';
 import * as soundsDb from '@util/db/Sounds';
 import { getSounds } from '@util/SoundUtil';
 import Command from './base/Command';
-import VoiceChannelFinder from './helpers/VoiceChannelFinder';
+import { getVoiceChannelFromMessageAuthor } from './helpers/getVoiceChannelFromMessageAuthor';
 
 export default class RandomCommand implements Command {
   public readonly TRIGGERS = ['random'];
   public readonly NUMBER_OF_PARAMETERS = 1;
 
   private readonly queue: SoundQueue;
-  private readonly voiceChannelFinder: VoiceChannelFinder;
 
-  constructor(queue: SoundQueue, voiceChannelFinder: VoiceChannelFinder) {
+  constructor(queue: SoundQueue) {
     this.queue = queue;
-    this.voiceChannelFinder = voiceChannelFinder;
   }
 
   public run(message: Message, params: string[]) {
-    const voiceChannel = this.voiceChannelFinder.getVoiceChannelFromMessageAuthor(message);
+    const voiceChannel = getVoiceChannelFromMessageAuthor(message);
     if (!voiceChannel) return;
 
     const sounds = params.length === this.NUMBER_OF_PARAMETERS

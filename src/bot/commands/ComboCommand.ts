@@ -5,7 +5,7 @@ import Command from './base/Command';
 import QueueItem from '@queue/QueueItem';
 import SoundQueue from '@queue/SoundQueue';
 import { getSounds } from '@util/SoundUtil';
-import VoiceChannelFinder from './helpers/VoiceChannelFinder';
+import { getVoiceChannelFromMessageAuthor } from './helpers/getVoiceChannelFromMessageAuthor';
 
 export default class ComboCommand implements Command {
   public readonly TRIGGERS = ['combo'];
@@ -13,12 +13,10 @@ export default class ComboCommand implements Command {
   public readonly USAGE = 'Usage: !combo <sound1> ... <soundN>';
 
   private readonly queue: SoundQueue;
-  private readonly voiceChannelFinder: VoiceChannelFinder;
   private sounds!: string[];
 
-  constructor(queue: SoundQueue, voiceChannelFinder: VoiceChannelFinder) {
+  constructor(queue: SoundQueue) {
     this.queue = queue;
-    this.voiceChannelFinder = voiceChannelFinder;
   }
 
   public run(message: Message, params: string[]) {
@@ -27,7 +25,7 @@ export default class ComboCommand implements Command {
       return;
     }
 
-    const voiceChannel = this.voiceChannelFinder.getVoiceChannelFromMessageAuthor(message);
+    const voiceChannel = getVoiceChannelFromMessageAuthor(message);
     if (!voiceChannel) return;
 
     this.sounds = getSounds();
