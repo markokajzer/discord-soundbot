@@ -1,7 +1,7 @@
 import { Message } from 'discord.js';
 
 import * as sounds from '@util/db/Sounds';
-import LocaleService from '@util/i18n/LocaleService';
+import localize from '@util/i18n/localize';
 import { getSounds } from '@util/SoundUtil';
 import Command from './base/Command';
 
@@ -9,12 +9,6 @@ export default class SearchCommand implements Command {
   public readonly TRIGGERS = ['search'];
   public readonly NUMBER_OF_PARAMETERS = 1;
   public readonly USAGE = 'Usage: !search <tag>';
-
-  private readonly localeService: LocaleService;
-
-  constructor(localeService: LocaleService) {
-    this.localeService = localeService;
-  }
 
   public run(message: Message, params: string[]) {
     if (params.length !== this.NUMBER_OF_PARAMETERS) {
@@ -27,7 +21,7 @@ export default class SearchCommand implements Command {
     sounds.withTag(tag).forEach(sound => results.push(sound));
 
     if (!results.length) {
-      message.author.send(this.localeService.t('commands.search.notFound'));
+      message.author.send(localize.t('commands.search.notFound'));
       return;
     }
 

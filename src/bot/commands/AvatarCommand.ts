@@ -1,9 +1,8 @@
 import { ClientUser, Message, Permissions } from 'discord.js';
 
-import UserCommand from './base/UserCommand';
-
 import Config from '@config/Config';
-import LocaleService from '@util/i18n/LocaleService';
+import localize from '@util/i18n/localize';
+import UserCommand from './base/UserCommand';
 
 export default class AvatarCommand implements UserCommand {
   public readonly TRIGGERS = ['avatar'];
@@ -11,12 +10,10 @@ export default class AvatarCommand implements UserCommand {
   public readonly USAGE = 'Usage: !avatar [remove]';
 
   private readonly config: Config;
-  private readonly localeService: LocaleService;
   private user!: ClientUser;
 
-  constructor(config: Config, localeService: LocaleService) {
+  constructor(config: Config) {
     this.config = config;
-    this.localeService = localeService;
   }
 
   public setClientUser(user: ClientUser) {
@@ -43,15 +40,15 @@ export default class AvatarCommand implements UserCommand {
 
     this.user
       .setAvatar(message.attachments.first().url)
-      .catch(() => message.channel.send(this.localeService.t('commands.avatar.errors.tooFast')));
+      .catch(() => message.channel.send(localize.t('commands.avatar.errors.tooFast')));
   }
 
   private listAvatar(message: Message) {
     if (this.user.avatarURL === null) {
-      message.channel.send(this.localeService.t('commands.avatar.errors.noAvatar', { prefix: this.config.prefix }));
+      message.channel.send(localize.t('commands.avatar.errors.noAvatar', { prefix: this.config.prefix }));
       return;
     }
 
-    message.channel.send(this.localeService.t('commands.avatar.url', { url: this.user.avatarURL }));
+    message.channel.send(localize.t('commands.avatar.url', { url: this.user.avatarURL }));
   }
 }

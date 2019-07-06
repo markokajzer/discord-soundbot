@@ -4,8 +4,6 @@ import path from 'path';
 
 import Config from '@config/Config';
 import SoundQueue from '@queue/SoundQueue';
-import i18n from '@util/i18n/i18n';
-import LocaleService from '@util/i18n/LocaleService';
 import CommandCollection from '../bot/CommandCollection';
 
 const container = awilix.createContainer({
@@ -14,10 +12,6 @@ const container = awilix.createContainer({
 
 container.register({
   config: awilix.asClass(Config).singleton(),
-
-  i18nProvider: awilix.asValue(i18n),
-  localeService: awilix.asClass(LocaleService).singleton(),
-
   queue: awilix.asClass(SoundQueue).singleton()
 });
 

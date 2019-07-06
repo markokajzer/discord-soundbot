@@ -1,17 +1,18 @@
+import fs from 'fs';
+
 import { Message } from 'discord.js';
 import ffmpeg from 'fluent-ffmpeg';
-import fs from 'fs';
 import ytdl from 'ytdl-core';
 
-import LocaleService from '@util/i18n/LocaleService';
+import localize from '@util/i18n/localize';
 import BaseDownloader from './BaseDownloader';
 import YoutubeValidator from './validator/YoutubeValidator';
 
 export default class YoutubeDownloader extends BaseDownloader {
   protected readonly validator: YoutubeValidator;
 
-  constructor(localeService: LocaleService, youtubeValidator: YoutubeValidator) {
-    super(localeService);
+  constructor(youtubeValidator: YoutubeValidator) {
+    super();
     this.validator = youtubeValidator;
   }
 
@@ -65,11 +66,11 @@ export default class YoutubeDownloader extends BaseDownloader {
 
   private cleanUp(name: string) {
     fs.unlinkSync('tmp.mp4');
-    return Promise.resolve(this.localeService.t('commands.add.success', { name }));
+    return Promise.resolve(localize.t('commands.add.success', { name }));
   }
 
   private handleError(error: Error) {
     console.error(error);
-    return Promise.reject(this.localeService.t('commands.add.error'));
+    return Promise.reject(localize.t('commands.add.error'));
   }
 }

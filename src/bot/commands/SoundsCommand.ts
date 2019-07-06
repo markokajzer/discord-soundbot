@@ -1,7 +1,7 @@
 import { Message } from 'discord.js';
 
 import Config from '@config/Config';
-import LocaleService from '@util/i18n/LocaleService';
+import localize from '@util/i18n/localize';
 import { getSounds } from '@util/SoundUtil';
 import Command from './base/Command';
 import MessageChunker from './helpers/MessageChunker';
@@ -10,12 +10,10 @@ export default class SoundsCommand implements Command {
   public readonly TRIGGERS = ['sounds'];
 
   private readonly config: Config;
-  private readonly localeService: LocaleService;
   private readonly chunker: MessageChunker;
 
-  constructor(config: Config, localeService: LocaleService, chunker: MessageChunker) {
+  constructor(config: Config, chunker: MessageChunker) {
     this.config = config;
-    this.localeService = localeService;
     this.chunker = chunker;
   }
 
@@ -23,7 +21,7 @@ export default class SoundsCommand implements Command {
     const sounds = getSounds();
 
     if (!sounds.length) {
-      message.author.send(this.localeService.t('commands.sounds.notFound', { prefix: this.config.prefix }));
+      message.author.send(localize.t('commands.sounds.notFound', { prefix: this.config.prefix }));
       return;
     }
 

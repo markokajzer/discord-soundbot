@@ -1,5 +1,6 @@
 import URL from 'url';
 
+import localize from '@util/i18n/localize';
 import BaseValidator from './BaseValidator';
 
 export default class YoutubeValidator extends BaseValidator {
@@ -16,7 +17,7 @@ export default class YoutubeValidator extends BaseValidator {
 
   private validateUrl(link: string) {
     if (!this.VALID_HOSTS.includes(URL.parse(link).hostname!)) {
-      return Promise.reject(this.localeService.t('validation.url.invalid'));
+      return Promise.reject(localize.t('validation.url.invalid'));
     }
   }
 }

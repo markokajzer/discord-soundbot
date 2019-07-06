@@ -3,7 +3,7 @@ import fs from 'fs';
 import { Message, Permissions } from 'discord.js';
 
 import * as sounds from '@util/db/Sounds';
-import LocaleService from '@util/i18n/LocaleService';
+import localize from '@util/i18n/localize';
 import { existsSound, getPathForSound } from '@util/SoundUtil';
 import Command from './base/Command';
 
@@ -11,12 +11,6 @@ export default class RemoveCommand implements Command {
   public readonly TRIGGERS = ['remove'];
   public readonly NUMBER_OF_PARAMETERS = 1;
   public readonly USAGE = 'Usage: !remove <sound>';
-
-  private readonly localeService: LocaleService;
-
-  constructor(localeService: LocaleService) {
-    this.localeService = localeService;
-  }
 
   public run(message: Message, params: string[]) {
     if (!message.member.hasPermission(Permissions.FLAGS.ADMINISTRATOR!)) return;
@@ -28,7 +22,7 @@ export default class RemoveCommand implements Command {
 
     const sound = params.shift()!;
     if (!existsSound(sound)) {
-      message.channel.send(this.localeService.t('commands.remove.notFound', { sound }));
+      message.channel.send(localize.t('commands.remove.notFound', { sound }));
       return;
     }
 
@@ -36,6 +30,6 @@ export default class RemoveCommand implements Command {
     fs.unlinkSync(file);
     sounds.remove(sound);
 
-    message.channel.send(this.localeService.t('commands.remove.success', { sound }));
+    message.channel.send(localize.t('commands.remove.success', { sound }));
   }
 }

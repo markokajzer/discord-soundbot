@@ -1,15 +1,9 @@
-import LocaleService from '@util/i18n/LocaleService';
+import localize from '@util/i18n/localize';
 
 export default class MessageChunker {
   private readonly MAX_MESSAGE_LENGTH = 2000;
   private readonly NEWLINE_LENGTH = '\n'.length;
   private readonly CODE_MARKER_LENGTH = '```'.length * 2 + this.NEWLINE_LENGTH;
-
-  private readonly localeService: LocaleService;
-
-  constructor(localeService: LocaleService) {
-    this.localeService = localeService;
-  }
 
   public chunkedMessages(toChunk: string[], page = 0): string[] {
     const chunks = this.chunkArray(toChunk);
@@ -49,7 +43,7 @@ export default class MessageChunker {
 
   private specificChunk(chunk: string[], page: number, totalPages: number) {
     return [
-      this.localeService.t('helpers.messageChunker.page', { current: page, totalPages }),
+      localize.t('helpers.messageChunker.page', { current: page, totalPages }),
       ['```', ...chunk, '```'].join('\n')
     ];
   }

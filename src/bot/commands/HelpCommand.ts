@@ -1,19 +1,17 @@
 import { Message } from 'discord.js';
 
 import Config from '@config/Config';
-import LocaleService from '@util/i18n/LocaleService';
+import localize from '@util/i18n/localize';
 import Command from './base/Command';
 import MessageChunker from './helpers/MessageChunker';
 
 export default class HelpCommand implements Command {
   public readonly TRIGGERS = ['commands', 'help'];
   private readonly config: Config;
-  private readonly localeService: LocaleService;
   private readonly chunker: MessageChunker;
 
-  constructor(config: Config, localeService: LocaleService, chunker: MessageChunker) {
+  constructor(config: Config, chunker: MessageChunker) {
     this.config = config;
-    this.localeService = localeService;
     this.chunker = chunker;
   }
 
@@ -24,45 +22,45 @@ export default class HelpCommand implements Command {
 
   private getFormattedListOfCommands() {
     return [
-      this.localeService.t('help.headline', { prefix: this.config.prefix }),
+      localize.t('help.headline', { prefix: this.config.prefix }),
       '',
-      `welcome                          ${this.localeService.t('help.welcome')}`,
-      `commands                         ${this.localeService.t('help.commands')}`,
-      `help                             ${this.localeService.t('help.commands')}`,
+      `welcome                          ${localize.t('help.welcome')}`,
+      `commands                         ${localize.t('help.commands')}`,
+      `help                             ${localize.t('help.commands')}`,
 
-      `sounds                           ${this.localeService.t('help.sounds.all')}`,
-      `add                              ${this.localeService.t('help.sounds.add')}`,
-      `add <name> <link>                ${this.localeService.t('help.sounds.add')}`,
-      `add <name> <link> <start>        ${this.localeService.t('help.sounds.add')}`,
-      `add <name> <link> <start> <end>  ${this.localeService.t('help.sounds.add')}`,
-      `<sound>                          ${this.localeService.t('help.sounds.play')}`,
-      `combo <sound> ...                ${this.localeService.t('help.sounds.combo')}`,
-      `random                           ${this.localeService.t('help.sounds.random')}`,
-      `random <tag>                     ${this.localeService.t('help.sounds.random')}`,
-      `rename <old> <new>               ${this.localeService.t('help.sounds.rename')}`,
-      `remove <sound>                   ${this.localeService.t('help.sounds.remove')}`,
-      `download <sound>                 ${this.localeService.t('help.sounds.download')}`,
-      `stop                             ${this.localeService.t('help.sounds.stop')}`,
-      `leave                            ${this.localeService.t('help.sounds.stop')}`,
+      `sounds                           ${localize.t('help.sounds.all')}`,
+      `add                              ${localize.t('help.sounds.add')}`,
+      `add <name> <link>                ${localize.t('help.sounds.add')}`,
+      `add <name> <link> <start>        ${localize.t('help.sounds.add')}`,
+      `add <name> <link> <start> <end>  ${localize.t('help.sounds.add')}`,
+      `<sound>                          ${localize.t('help.sounds.play')}`,
+      `combo <sound> ...                ${localize.t('help.sounds.combo')}`,
+      `random                           ${localize.t('help.sounds.random')}`,
+      `random <tag>                     ${localize.t('help.sounds.random')}`,
+      `rename <old> <new>               ${localize.t('help.sounds.rename')}`,
+      `remove <sound>                   ${localize.t('help.sounds.remove')}`,
+      `download <sound>                 ${localize.t('help.sounds.download')}`,
+      `stop                             ${localize.t('help.sounds.stop')}`,
+      `leave                            ${localize.t('help.sounds.stop')}`,
 
-      `entrance <sound>                 ${this.localeService.t('help.entrance.set')}`,
-      `entrance                         ${this.localeService.t('help.entrance.remove')}`,
+      `entrance <sound>                 ${localize.t('help.entrance.set')}`,
+      `entrance                         ${localize.t('help.entrance.remove')}`,
 
-      `tag <sound> <tag>                ${this.localeService.t('help.tags.add')}`,
-      `tag <sound>                      ${this.localeService.t('help.tags.list')}`,
-      `tag <sound> clear                ${this.localeService.t('help.tags.clear')}`,
-      `tags                             ${this.localeService.t('help.tags.all')}`,
-      `search <tag>                     ${this.localeService.t('help.tags.search')}`,
+      `tag <sound> <tag>                ${localize.t('help.tags.add')}`,
+      `tag <sound>                      ${localize.t('help.tags.list')}`,
+      `tag <sound> clear                ${localize.t('help.tags.clear')}`,
+      `tags                             ${localize.t('help.tags.all')}`,
+      `search <tag>                     ${localize.t('help.tags.search')}`,
 
-      `mostplayed                       ${this.localeService.t('help.mostplayed')}`,
-      `lastadded                        ${this.localeService.t('help.lastadded')}`,
+      `mostplayed                       ${localize.t('help.mostplayed')}`,
+      `lastadded                        ${localize.t('help.lastadded')}`,
 
-      `ignore <user>                    ${this.localeService.t('help.ignore')}`,
-      `unignore <user>                  ${this.localeService.t('help.unignore')}`,
-      `avatar                           ${this.localeService.t('help.avatar')}`,
-      `avatar remove                    ${this.localeService.t('help.avatar')}`,
-      `config <option> <value>          ${this.localeService.t('help.config')}`,
-      `set <option> <value>             ${this.localeService.t('help.config')}`
+      `ignore <user>                    ${localize.t('help.ignore')}`,
+      `unignore <user>                  ${localize.t('help.unignore')}`,
+      `avatar                           ${localize.t('help.avatar')}`,
+      `avatar remove                    ${localize.t('help.avatar')}`,
+      `config <option> <value>          ${localize.t('help.config')}`,
+      `set <option> <value>             ${localize.t('help.config')}`
     ];
   }
 }

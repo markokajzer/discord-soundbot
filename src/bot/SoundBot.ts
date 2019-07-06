@@ -4,7 +4,7 @@ import Config from '@config/Config';
 import QueueItem from '@queue/QueueItem';
 import SoundQueue from '@queue/SoundQueue';
 import * as entrances from '@util/db/Entrances';
-import LocaleService from '@util/i18n/LocaleService';
+import localize from '@util/i18n/localize';
 import { getSounds } from '@util/SoundUtil';
 import CommandCollection from './CommandCollection';
 import Command from './commands/base/Command';
@@ -12,17 +12,14 @@ import MessageHandler from './MessageHandler';
 
 export default class SoundBot extends Client {
   private readonly config: Config;
-  private readonly localeService: LocaleService;
   private readonly commands: CommandCollection;
   private readonly messageHandler: MessageHandler;
   private readonly queue: SoundQueue;
 
-  constructor(config: Config, localeService: LocaleService,
-              commands: CommandCollection, messageHandler: MessageHandler,
-              queue: SoundQueue) {
+  constructor(config: Config, commands: CommandCollection,
+              messageHandler: MessageHandler, queue: SoundQueue) {
     super();
     this.config = config;
-    this.localeService = localeService;
     this.commands = commands;
     this.messageHandler = messageHandler;
     this.queue = queue;
@@ -71,7 +68,7 @@ export default class SoundBot extends Client {
     const channel = this.findFirstWritableChannel(guild);
     if (!channel) return;
 
-    channel.send(this.localeService.t('welcome', { prefix: this.config.prefix }));
+    channel.send(localize.t('welcome', { prefix: this.config.prefix }));
   }
 
   private findFirstWritableChannel(guild: Guild) {

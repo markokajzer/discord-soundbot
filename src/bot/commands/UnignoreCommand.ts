@@ -1,18 +1,16 @@
 import { Message, Permissions } from 'discord.js';
 
 import * as ignoreList from '@util/db/IgnoreList';
-import LocaleService from '@util/i18n/LocaleService';
+import localize from '@util/i18n/localize';
 import Command from './base/Command';
 import UserFinder from './helpers/UserFinder';
 
 export default class UnignoreCommand implements Command {
   public readonly TRIGGERS = ['unignore'];
   public readonly USAGE = 'Usage: !unignore <user>';
-  private readonly localeService: LocaleService;
   private readonly userFinder: UserFinder;
 
-  constructor(localeService: LocaleService, userFinder: UserFinder) {
-    this.localeService = localeService;
+  constructor(userFinder: UserFinder) {
     this.userFinder = userFinder;
   }
 
@@ -21,7 +19,7 @@ export default class UnignoreCommand implements Command {
 
     this.userFinder.getUsersFromMentions(message, this.USAGE).forEach(user => {
       ignoreList.remove(user.id);
-      message.channel.send(this.localeService.t('commands.ignore.remove', { user: user.username }));
+      message.channel.send(localize.t('commands.ignore.remove', { user: user.username }));
     });
   }
 }

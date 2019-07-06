@@ -1,15 +1,14 @@
 import { MessageAttachment } from 'discord.js';
 
-import BaseValidator from './BaseValidator';
-
 import Config from '@config/Config';
-import LocaleService from '@util/i18n/LocaleService';
+import localize from '@util/i18n/localize';
+import BaseValidator from './BaseValidator';
 
 export default class AttachmentValidator extends BaseValidator {
   private readonly config: Config;
 
-  constructor(config: Config, localeService: LocaleService) {
-    super(localeService);
+  constructor(config: Config) {
+    super();
     this.config = config;
   }
 
@@ -33,13 +32,13 @@ export default class AttachmentValidator extends BaseValidator {
   private validateExtension(fileName: string) {
     if (!this.config.acceptedExtensions.some(ext => fileName.endsWith(ext))) {
       const extensions = this.config.acceptedExtensions.join(', ');
-      return Promise.reject(this.localeService.t('validation.attachment.extension', { extensions }));
+      return Promise.reject(localize.t('validation.attachment.extension', { extensions }));
     }
   }
 
   private validateSize(filesize: number) {
     if (filesize > this.config.maximumFileSize) {
-      return Promise.reject(this.localeService.t('validation.attachment.size'));
+      return Promise.reject(localize.t('validation.attachment.size'));
     }
   }
 }

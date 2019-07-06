@@ -1,17 +1,18 @@
-import { Message, MessageAttachment } from 'discord.js';
 import fs from 'fs';
 import { IncomingMessage } from 'http';
 import https from 'https';
 
-import LocaleService from '@util/i18n/LocaleService';
+import { Message, MessageAttachment } from 'discord.js';
+
+import localize from '@util/i18n/localize';
 import BaseDownloader from './BaseDownloader';
 import AttachmentValidator from './validator/AttachmentValidator';
 
 export default class AttachmentDownloader extends BaseDownloader {
   protected readonly validator: AttachmentValidator;
 
-  constructor(localeService: LocaleService, attachmentValidator: AttachmentValidator) {
-    super(localeService);
+  constructor(attachmentValidator: AttachmentValidator) {
+    super();
     this.validator = attachmentValidator;
   }
 
@@ -28,7 +29,7 @@ export default class AttachmentDownloader extends BaseDownloader {
   private addSound(attachment: MessageAttachment) {
     return this.makeRequest(attachment.url)
       .then(response => this.saveResponseToFile(response as IncomingMessage, attachment.filename.toLowerCase()))
-      .then(name => Promise.resolve(this.localeService.t('commands.add.success', { name })))
+      .then(name => Promise.resolve(localize.t('commands.add.success', { name })))
       .catch(this.handleError);
   }
 
@@ -51,6 +52,6 @@ export default class AttachmentDownloader extends BaseDownloader {
 
   private handleError(error: Error) {
     console.error(error);
-    return Promise.reject(this.localeService.t('commands.add.error'));
+    return Promise.reject(localize.t('commands.add.error'));
   }
 }
