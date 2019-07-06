@@ -42,9 +42,12 @@
     "@types/i18n": "0.8.5",
     "@types/lowdb": "1.0.7",
     "@types/node": "10.14.6",
+    "@typescript-eslint/eslint-plugin": "^1.11.0",
+    "@typescript-eslint/parser": "^1.11.0",
+    "eslint": "^6.0.1",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-plugin-import": "^2.18.0",
     "replace-in-file": "^4.0.0",
-    "tslint": "^5.16.0",
-    "tslint-consistent-codestyle": "^1.15.1",
     "typescript": "^3.4.5"
   },
   "engines": {
@@ -54,7 +57,7 @@
     "clean": "rm -rf dist",
     "compile": "tsc -p tsconfig.json",
     "build": "npm run compile",
-    "lint": "tslint -p tsconfig.json",
+    "lint": "eslint -c .eslintrc.yml --ext ts .",
     "postcompile": "node dist/lib/postbuild.js",
     "serve": "node dist/bin/soundbot.js",
     "start": "npm run build && npm run serve",
