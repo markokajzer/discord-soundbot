@@ -13,6 +13,10 @@
 + Fixed handling of long help messages (Thanks [gruntzy](https://github.com/gruntzy)!)
 + Fixed trying to delete messages that were already manually deleted
 
+**Under the hood**
+
++ Replaced `tslint` with `eslint`
+
 ## 1.5.1 (2019-02-01)
 
 + Fixed playing entrance sound when muting / deafening
