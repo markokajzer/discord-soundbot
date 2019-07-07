@@ -57,7 +57,7 @@
     "clean": "rm -rf dist",
     "compile": "tsc -p tsconfig.json",
     "build": "npm run compile",
-    "lint": "eslint -c .eslintrc.yml --ext ts .",
+    "lint": "eslint --rulesdir ./vendor/rules/ -c .eslintrc.yml --ext ts .",
     "postcompile": "node dist/lib/postbuild.js",
     "serve": "node dist/bin/soundbot.js",
     "start": "npm run build && npm run serve",

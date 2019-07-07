@@ -66,3 +66,7 @@ rules:
     - off
   "@typescript-eslint/semi":
     - error
+
+# Custom rules
+  prefer-early-return:
+    - error
