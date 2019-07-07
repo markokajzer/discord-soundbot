@@ -6,6 +6,9 @@ extends:
   - airbnb-base
   - plugin:@typescript-eslint/recommended
 
+env:
+  jest: true
+
 parserOptions:
   ecmaVersion: 6
   sourceType: module

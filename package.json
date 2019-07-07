@@ -41,6 +41,7 @@
     "@types/fluent-ffmpeg": "2.1.2",
     "@types/glob": "7.1.1",
     "@types/i18n": "0.8.5",
+    "@types/jest": "^24.0.15",
     "@types/lowdb": "1.0.7",
     "@types/node": "10.14.6",
     "@typescript-eslint/eslint-plugin": "^1.11.0",
@@ -48,6 +49,8 @@
     "eslint": "^6.0.1",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-plugin-import": "^2.18.0",
+    "jest": "^24.8.0",
+    "ts-jest": "^24.0.2",
     "typescript": "^3.4.5"
   },
   "engines": {
@@ -61,6 +64,7 @@
     "postcompile": "node dist/lib/postbuild.js",
     "serve": "node dist/bin/soundbot.js",
     "start": "npm run build && npm run serve",
+    "test": "jest",
     "rebuild": "npm run clean && npm run build",
     "release": "npm run rebuild && npm run lint"
   }
