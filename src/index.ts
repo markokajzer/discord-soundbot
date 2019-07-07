@@ -10,7 +10,7 @@ class DiscordSoundBot {
   private readonly config: Config;
   private readonly bot: SoundBot;
 
-  constructor(config: ConfigInterface, commands?: Command[]) {
+  constructor(config: ConfigInterface, commands: Command[] = []) {
     this.config = container.cradle.config;
     this.bot = container.cradle.soundBot;
 
@@ -22,11 +22,11 @@ class DiscordSoundBot {
     console.info(localize.t('url', { clientId: this.config.clientID }));
   }
 
-  private initializeWith(config: ConfigInterface, commands?: Command[] | undefined) {
+  private initializeWith(config: ConfigInterface, commands: Command[]) {
     this.config.setFrom(config);
     localize.setLocale(this.config.language);
 
-    if (commands) this.bot.registerAdditionalCommands(commands);
+    this.bot.registerAdditionalCommands(commands);
   }
 }
 
