@@ -6,8 +6,8 @@ LABEL maintainer="Marko Kajzer <markokajzer91@gmail.com>"
 RUN apk add --no-cache --quiet build-base ffmpeg git make python
 
 WORKDIR /app
-COPY package*.json ./
-RUN npm install --quiet
+COPY package.json yarn.lock ./
+RUN yarn --silent
 
 COPY . /app
 
@@ -15,6 +15,6 @@ COPY . /app
 RUN apk del --quiet build-base
 
 # Build
-RUN npm run build
+RUN yarn build
 
-CMD ["npm", "run", "serve"]
+CMD ["yarn", "serve"]
