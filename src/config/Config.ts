@@ -1,8 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 
-import exampleConfig from '../../config/config.example.json';
 import ConfigInterface from './ConfigInterface';
+import EXAMPLE_CONFIG from './ExampleConfig';
 
 export default class Config implements ConfigInterface {
   public clientID!: string;
@@ -81,7 +81,7 @@ export default class Config implements ConfigInterface {
 
   private initializeWithExampleConfig() {
     this.ensureConfigDirectoryExists();
-    this.setFrom(exampleConfig);
+    this.setFrom(EXAMPLE_CONFIG);
   }
 
   private initializeWithSavedConfig() {

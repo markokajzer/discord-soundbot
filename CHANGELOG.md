@@ -12,6 +12,7 @@
 
 + Fixed handling of long help messages (Thanks [gruntzy](https://github.com/gruntzy)!)
 + Fixed trying to delete messages that were already manually deleted
++ Do not rely on `config.example.json` file
 
 **Under the hood**
 
