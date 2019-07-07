@@ -4,7 +4,7 @@ import QueueItem from '@queue/QueueItem';
 import SoundQueue from '@queue/SoundQueue';
 import { existsSound } from '@util/SoundUtil';
 import Command from './base/Command';
-import getVoiceChannelFromMessageAuthor from './helpers/getVoiceChannelFromMessageAuthor';
+import getVoiceChannelFromAuthor from './helpers/getVoiceChannelFromAuthor';
 
 export default class SoundCommand implements Command {
   public readonly TRIGGERS = [];
@@ -19,7 +19,7 @@ export default class SoundCommand implements Command {
     const sound = message.content;
     if (!existsSound(sound)) return;
 
-    const voiceChannel = getVoiceChannelFromMessageAuthor(message);
+    const voiceChannel = getVoiceChannelFromAuthor(message);
     if (!voiceChannel) return;
 
     this.queue.add(new QueueItem(sound, voiceChannel, message));

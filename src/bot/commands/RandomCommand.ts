@@ -5,7 +5,7 @@ import SoundQueue from '@queue/SoundQueue';
 import * as soundsDb from '@util/db/Sounds';
 import { getSounds } from '@util/SoundUtil';
 import Command from './base/Command';
-import getVoiceChannelFromMessageAuthor from './helpers/getVoiceChannelFromMessageAuthor';
+import getVoiceChannelFromAuthor from './helpers/getVoiceChannelFromAuthor';
 
 export default class RandomCommand implements Command {
   public readonly TRIGGERS = ['random'];
@@ -18,7 +18,7 @@ export default class RandomCommand implements Command {
   }
 
   public run(message: Message, params: string[]) {
-    const voiceChannel = getVoiceChannelFromMessageAuthor(message);
+    const voiceChannel = getVoiceChannelFromAuthor(message);
     if (!voiceChannel) return;
 
     const sounds = params.length === this.NUMBER_OF_PARAMETERS

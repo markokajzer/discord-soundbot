@@ -4,7 +4,7 @@ import QueueItem from '@queue/QueueItem';
 import SoundQueue from '@queue/SoundQueue';
 import { getSounds } from '@util/SoundUtil';
 import Command from './base/Command';
-import getVoiceChannelFromMessageAuthor from './helpers/getVoiceChannelFromMessageAuthor';
+import getVoiceChannelFromAuthor from './helpers/getVoiceChannelFromAuthor';
 
 export default class ComboCommand implements Command {
   public readonly TRIGGERS = ['combo'];
@@ -24,7 +24,7 @@ export default class ComboCommand implements Command {
       return;
     }
 
-    const voiceChannel = getVoiceChannelFromMessageAuthor(message);
+    const voiceChannel = getVoiceChannelFromAuthor(message);
     if (!voiceChannel) return;
 
     this.sounds = getSounds();
