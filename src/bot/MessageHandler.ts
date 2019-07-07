@@ -17,6 +17,7 @@ export default class MessageHandler {
   public handle(message: Message) {
     if (!this.isValidMessage(message)) return;
 
+    // eslint-disable-next-line no-param-reassign
     message.content = message.content.substring(this.config.prefix.length);
     const [command, ...params] = message.content.split(' ');
 
@@ -24,9 +25,11 @@ export default class MessageHandler {
   }
 
   private isValidMessage(message: Message) {
-    return !message.author.bot &&
-           !message.isDirectMessage() &&
-           message.hasPrefix(this.config.prefix) &&
-           !ignoreList.exists(message.author.id);
+    return (
+      !message.author.bot
+      && !message.isDirectMessage()
+      && message.hasPrefix(this.config.prefix)
+      && !ignoreList.exists(message.author.id)
+    );
   }
 }

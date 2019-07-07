@@ -6,15 +6,14 @@ import tsconfig from '../tsconfig.json';
 const pathAliases = tsconfig.compilerOptions.paths;
 
 const from = Object.keys(pathAliases).map(key =>
-  new RegExp(`${key.split('/*')[0]}/[^"]*`, 'g')
-);
+  new RegExp(`${key.split('/*')[0]}/[^"]*`, 'g'));
 
 const to: { [index: string]: string } = {};
-for (const [key, value] of Object.entries(pathAliases)) {
+Object.entries(pathAliases).forEach(([key, value]) => {
   const match = key.split('/*')[0];
   const replacement = value[0].split('/*')[0];
   to[match] = replacement;
-}
+});
 
 const options = {
   files: ['dist/**/*.js'],

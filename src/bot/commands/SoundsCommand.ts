@@ -4,7 +4,7 @@ import Config from '@config/Config';
 import localize from '@util/i18n/localize';
 import { getSounds } from '@util/SoundUtil';
 import Command from './base/Command';
-import { chunkedMessages } from './helpers/chunkedMessages';
+import chunkedMessages from './helpers/chunkedMessages';
 
 export default class SoundsCommand implements Command {
   public readonly TRIGGERS = ['sounds'];

@@ -4,7 +4,7 @@ import QueueItem from '@queue/QueueItem';
 import SoundQueue from '@queue/SoundQueue';
 import { existsSound } from '@util/SoundUtil';
 import Command from './base/Command';
-import { getVoiceChannelFromMessageAuthor } from './helpers/getVoiceChannelFromMessageAuthor';
+import getVoiceChannelFromMessageAuthor from './helpers/getVoiceChannelFromMessageAuthor';
 
 export default class SoundCommand implements Command {
   public readonly TRIGGERS = [];

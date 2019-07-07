@@ -1,9 +1,8 @@
 import { Message } from 'discord.js';
 
-import Command from './base/Command';
-
 import Config from '@config/Config';
 import localize from '@util/i18n/localize';
+import Command from './base/Command';
 
 export default class WelcomeCommand implements Command {
   public readonly TRIGGERS = ['welcome'];

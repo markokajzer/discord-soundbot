@@ -5,5 +5,5 @@ declare module 'replace-in-file' {
     to: (...args: string[]) => string;
   }
 
-  function sync(options: ReplaceOptions): Array<string>;
+  function sync(options: ReplaceOptions): string[];
 }

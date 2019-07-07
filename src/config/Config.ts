@@ -1,8 +1,7 @@
-import exampleConfig from '../../config/config.example.json';
-
 import fs from 'fs';
 import path from 'path';
 
+import exampleConfig from '../../config/config.example.json';
 import ConfigInterface from './ConfigInterface';
 
 export default class Config implements ConfigInterface {
@@ -30,6 +29,7 @@ export default class Config implements ConfigInterface {
     'deafen',
     'game'
   ];
+
   private readonly JSON_KEYS = ['clientID', 'token', ...this.MODIFIABLE_FIELDS];
 
   [index: string]: any;
@@ -47,6 +47,7 @@ export default class Config implements ConfigInterface {
 
     switch (typeof this[field]) {
       case 'string':
+        // eslint-disable-next-line prefer-destructuring
         this[field] = value[0];
         break;
       case 'number':
@@ -57,13 +58,16 @@ export default class Config implements ConfigInterface {
         break;
       case 'object':
         this[field] = value;
+        break;
+      default:
+        break;
     }
 
     this.writeToConfig();
   }
 
   public setFrom(data: ConfigInterface) {
-    Object.keys(data).forEach(field => this[field] = data[field]);
+    Object.keys(data).forEach(field => { this[field] = data[field]; });
   }
 
   private initialize() {
@@ -81,6 +85,7 @@ export default class Config implements ConfigInterface {
   }
 
   private initializeWithSavedConfig() {
+    // eslint-disable-next-line
     const savedConfig = require(this.CONFIG_PATH);
     this.setFrom(savedConfig);
   }

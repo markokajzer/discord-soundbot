@@ -3,7 +3,7 @@ import { Message } from 'discord.js';
 import Config from '@config/Config';
 import localize from '@util/i18n/localize';
 import Command from './base/Command';
-import { chunkedMessages } from './helpers/chunkedMessages';
+import chunkedMessages from './helpers/chunkedMessages';
 
 export default class HelpCommand implements Command {
   public readonly TRIGGERS = ['commands', 'help'];

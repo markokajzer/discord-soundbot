@@ -8,11 +8,15 @@ export default abstract class BaseValidator {
     if (name.match(/[^a-z0-9]/)) {
       return Promise.reject(localize.t('validation.attachment.format'));
     }
+
+    return Promise.resolve();
   }
 
   protected validateUniqueness(name: string) {
     if (existsSound(name)) {
       return Promise.reject(localize.t('validation.attachment.exists', { name }));
     }
+
+    return Promise.resolve();
   }
 }

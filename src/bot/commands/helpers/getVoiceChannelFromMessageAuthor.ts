@@ -2,11 +2,13 @@ import { Message } from 'discord.js';
 
 import localize from '@util/i18n/localize';
 
-export const getVoiceChannelFromMessageAuthor = (message: Message) => {
-  const voiceChannel = message.member.voiceChannel;
+const getVoiceChannelFromMessageAuthor = (message: Message) => {
+  const { voiceChannel } = message.member;
   if (!voiceChannel) {
     message.reply(localize.t('helpers.voiceChannelFinder.error'));
   }
 
   return voiceChannel;
 };
+
+export default getVoiceChannelFromMessageAuthor;

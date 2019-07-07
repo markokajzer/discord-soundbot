@@ -1,8 +1,7 @@
 import { Message } from 'discord.js';
 
-import Command from './base/Command';
-
 import SoundQueue from '@queue/SoundQueue';
+import Command from './base/Command';
 
 export default class StopCommand implements Command {
   public readonly TRIGGERS = ['leave', 'stop'];
@@ -14,7 +13,7 @@ export default class StopCommand implements Command {
 
   public run(message: Message) {
     this.queue.clear();
-    const voiceConnection = message.guild.voiceConnection;
+    const { voiceConnection } = message.guild;
     if (voiceConnection) voiceConnection.disconnect();
   }
 }

@@ -1,3 +1,4 @@
+// eslint-disable-next-line object-curly-newline
 import { Client, Guild, GuildMember, Message, TextChannel } from 'discord.js';
 
 import Config from '@config/Config';
@@ -54,7 +55,7 @@ export default class SoundBot extends Client {
     const sound = entrances.get(user.id);
     if (!getSounds().includes(sound)) return;
 
-    const voiceChannel = user.voiceChannel;
+    const { voiceChannel } = user;
     this.queue.add(new QueueItem(sound, voiceChannel));
   }
 
@@ -75,7 +76,7 @@ export default class SoundBot extends Client {
     const channels = guild.channels.filter(channel =>
       channel.type === 'text' && channel.permissionsFor(guild.me)!.has('SEND_MESSAGES'));
 
-    if (!channels.size) return;
+    if (!channels.size) return undefined;
     return channels.first() as TextChannel;
   }
 }

@@ -1,8 +1,7 @@
 #!/usr/bin/env node
 
-import container from '../src/util/Container';
-
 import localize from '@util/i18n/localize';
+import container from '../src/util/Container';
 import SoundBot from '../src/bot/SoundBot';
 import Config from '../src/config/Config';
 

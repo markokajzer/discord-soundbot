@@ -41,8 +41,8 @@ export default class SoundQueue {
       .filter(message => message) as Message[];
 
     if (this.currentSound!.message) {
-      deleteableMessages =
-        deleteableMessages.filter(message => message.id !== this.currentSound!.message!.id);
+      deleteableMessages = deleteableMessages
+        .filter(message => message.id !== this.currentSound!.message!.id);
     }
 
     // Do not try to delete the same sound multiple times (!combo)
@@ -73,8 +73,7 @@ export default class SoundQueue {
   private playSound(connection: VoiceConnection, name: string): Promise<VoiceConnection> {
     return new Promise(resolve =>
       connection.playFile(name, { volume: this.config.volume })
-                .on('end', () => resolve(connection))
-    );
+                .on('end', () => resolve(connection)));
   }
 
   private onFinishedPlayingSound(connection: VoiceConnection) {

@@ -5,7 +5,7 @@ import SoundQueue from '@queue/SoundQueue';
 import * as soundsDb from '@util/db/Sounds';
 import { getSounds } from '@util/SoundUtil';
 import Command from './base/Command';
-import { getVoiceChannelFromMessageAuthor } from './helpers/getVoiceChannelFromMessageAuthor';
+import getVoiceChannelFromMessageAuthor from './helpers/getVoiceChannelFromMessageAuthor';
 
 export default class RandomCommand implements Command {
   public readonly TRIGGERS = ['random'];

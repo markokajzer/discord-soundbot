@@ -10,8 +10,7 @@ export default class YoutubeValidator extends BaseValidator {
     return Promise.all([
       this.validateName(name),
       this.validateUniqueness(name),
-      this.validateUrl(url),
-      Promise.resolve()
+      this.validateUrl(url)
     ]);
   }
 
@@ -19,5 +18,7 @@ export default class YoutubeValidator extends BaseValidator {
     if (!this.VALID_HOSTS.includes(URL.parse(link).hostname!)) {
       return Promise.reject(localize.t('validation.url.invalid'));
     }
+
+    return Promise.resolve();
   }
 }

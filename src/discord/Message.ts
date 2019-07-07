@@ -7,10 +7,10 @@ declare module 'discord.js' {
   }
 }
 
-Message.prototype.hasPrefix = function (prefix) {
+Message.prototype.hasPrefix = function hasPrefix(prefix) {
   return this.content.startsWith(prefix);
 };
 
-Message.prototype.isDirectMessage = function () {
+Message.prototype.isDirectMessage = function isDirectMessage() {
   return this.channel instanceof DMChannel || this.channel instanceof GroupDMChannel;
 };

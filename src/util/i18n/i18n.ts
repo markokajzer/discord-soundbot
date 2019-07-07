@@ -1,19 +1,9 @@
-import i18n from 'i18n';
-
 import fs from 'fs';
 import path from 'path';
 
-interface I18nProvider {
-  getLocale: () => string;
-  getLocales: () => string[];
-  setLocale: (locale: string) => void;
-  translate: (id: string, replacements?: Replacements) => string;
-  t: (id: string, replacements?: Replacements) => string;
-}
+import i18n from 'i18n';
 
-export interface Replacements {
-  [key: string]: string | number | string[];
-}
+import { I18nProvider } from './I18nProvider';
 
 const localesPath = path.join(__dirname, '..', '..', '..', '..', 'config', 'locales');
 const files = fs.readdirSync(localesPath);
@@ -26,10 +16,12 @@ i18n.configure({
   updateFiles: false
 });
 
-export default {
+const localize: I18nProvider = {
   getLocale: i18n.getLocale,
   getLocales: i18n.getLocales,
   setLocale: i18n.setLocale,
-  translate: i18n.__mf,
-  t: i18n.__mf
-} as I18nProvider;
+  translate: i18n.__mf,       // eslint-disable-line no-underscore-dangle
+  t: i18n.__mf                // eslint-disable-line no-underscore-dangle
+};
+
+export default localize;

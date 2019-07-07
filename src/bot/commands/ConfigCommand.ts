@@ -47,6 +47,9 @@ export default class ConfigCommand implements Command {
         break;
       case 'language':
         localize.setLocale(this.config.language);
+        break;
+      default:
+        break;
     }
   }
 }

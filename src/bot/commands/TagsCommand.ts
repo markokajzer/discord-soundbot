@@ -3,7 +3,7 @@ import { Message } from 'discord.js';
 import * as soundsDb from '@util/db/Sounds';
 import { getSounds } from '@util/SoundUtil';
 import Command from './base/Command';
-import { chunkedMessages } from './helpers/chunkedMessages';
+import chunkedMessages from './helpers/chunkedMessages';
 
 export default class TagsCommand implements Command {
   public readonly TRIGGERS = ['tags'];
@@ -30,6 +30,6 @@ export default class TagsCommand implements Command {
   }
 
   private findLongestWord(array: string[]) {
-    return array.reduce((a, b) => a.length > b.length ? a : b);
+    return array.reduce((a, b) => (a.length > b.length ? a : b));
   }
 }

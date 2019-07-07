@@ -29,6 +29,7 @@
     "i18n": "^0.8.3",
     "lowdb": "^1.0.0",
     "node-opus": "^0.2.7",
+    "replace-in-file": "^4.0.0",
     "ytdl-core": "^0.29.1"
   },
   "optionalDependencies": {
@@ -47,7 +48,6 @@
     "eslint": "^6.0.1",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-plugin-import": "^2.18.0",
-    "replace-in-file": "^4.0.0",
     "typescript": "^3.4.5"
   },
   "engines": {

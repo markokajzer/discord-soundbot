@@ -7,10 +7,20 @@ const adapter = new FileSync('db.json');
 const connection = lowdb(adapter);
 connection.defaults({ sounds: [], ignoreList: [], entrances: {} }).write();
 
+const all = () => connection.get('sounds');
 export const findByName = (name: string) => all().find({ name });
 
-export const exists = (name: string) => !!findByName(name).value();
 
+const addSingleTag = (sound: string, tag: string) => {
+  const { tags } = (findByName(sound).value()! as Sound);
+  if (tags.includes(tag)) return;
+
+  tags.push(tag);
+  findByName(sound).assign({ tags }).write();
+};
+
+
+export const exists = (name: string) => !!findByName(name).value();
 export const add = (sound: string) => {
   all().push(new Sound(sound)).write();
 };
@@ -57,13 +67,3 @@ export const mostPlayed = (limit = 15) =>
     .reverse()
     .take(limit)
     .value();
-
-const all = () => connection.get('sounds');
-
-const addSingleTag = (sound: string, tag: string) => {
-  const tags = (findByName(sound).value()! as Sound).tags;
-  if (tags.includes(tag)) return;
-
-  tags.push(tag);
-  findByName(sound).assign({ tags }).write();
-};

@@ -1,11 +1,10 @@
 import { Message, VoiceChannel } from 'discord.js';
 
-import Command from './base/Command';
-
 import QueueItem from '@queue/QueueItem';
 import SoundQueue from '@queue/SoundQueue';
 import { getSounds } from '@util/SoundUtil';
-import { getVoiceChannelFromMessageAuthor } from './helpers/getVoiceChannelFromMessageAuthor';
+import Command from './base/Command';
+import getVoiceChannelFromMessageAuthor from './helpers/getVoiceChannelFromMessageAuthor';
 
 export default class ComboCommand implements Command {
   public readonly TRIGGERS = ['combo'];

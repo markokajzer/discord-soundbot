@@ -24,8 +24,7 @@ export default class AttachmentValidator extends BaseValidator {
       this.validateExtension(fileName),
       this.validateName(soundName),
       this.validateSize(attachment.filesize),
-      this.validateUniqueness(soundName),
-      Promise.resolve()
+      this.validateUniqueness(soundName)
     ]);
   }
 
@@ -34,11 +33,15 @@ export default class AttachmentValidator extends BaseValidator {
       const extensions = this.config.acceptedExtensions.join(', ');
       return Promise.reject(localize.t('validation.attachment.extension', { extensions }));
     }
+
+    return Promise.resolve();
   }
 
   private validateSize(filesize: number) {
     if (filesize > this.config.maximumFileSize) {
       return Promise.reject(localize.t('validation.attachment.size'));
     }
+
+    return Promise.resolve();
   }
 }
