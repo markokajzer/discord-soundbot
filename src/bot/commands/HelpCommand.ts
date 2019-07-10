@@ -32,7 +32,7 @@ export default class HelpCommand implements Command {
       `add <name> <link> <start>        ${localize.t('help.sounds.add')}`,
       `add <name> <link> <start> <end>  ${localize.t('help.sounds.add')}`,
       `<sound>                          ${localize.t('help.sounds.play')}`,
-      `combo <sound> ...                ${localize.t('help.sounds.combo')}`,
+      `combo <sound> <sound> ...        ${localize.t('help.sounds.combo')}`,
       `random                           ${localize.t('help.sounds.random')}`,
       `random <tag>                     ${localize.t('help.sounds.random')}`,
       `loop <sound> <count?>            ${localize.t('help.sounds.loop')}`,
