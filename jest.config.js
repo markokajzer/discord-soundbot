@@ -130,7 +130,11 @@ module.exports = {
   // roots: [
   //   "<rootDir>"
   // ],
-  roots: ["<rootDir>/test"],
+  roots: [
+    // NOTE: Comment out to only see coverage of tested files
+    "<rootDir>/src",
+    "<rootDir>/test"
+  ],
 
   // Allows you to use a custom runner instead of Jest's default test runner
   // runner: "jest-runner",
