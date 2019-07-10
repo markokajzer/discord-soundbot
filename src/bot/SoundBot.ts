@@ -1,4 +1,3 @@
-// eslint-disable-next-line object-curly-newline
 import { Client, Guild, GuildMember, Message, TextChannel } from 'discord.js';
 
 import Config from '@config/Config';
