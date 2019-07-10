@@ -80,6 +80,10 @@ module.exports = {
   //   "tsx",
   //   "node"
   // ],
+  moduleFileExtensions: [
+    "js",
+    "ts"
+  ],
 
   // A map from regular expressions to module names that allow to stub out resources with a single module
   // moduleNameMapper: {},
@@ -179,7 +183,7 @@ module.exports = {
   // A map from regular expressions to paths to transformers
   // transform: null,
   transform: {
-    "^.+\\.tsx?$": "ts-jest"
+    ".ts": "ts-jest"
   },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
