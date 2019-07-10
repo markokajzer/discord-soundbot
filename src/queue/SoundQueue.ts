@@ -26,6 +26,8 @@ export default class SoundQueue {
     if (!this.currentSound) return;
     if (this.config.deleteMessages) this.deleteMessages();
 
+    // Prevent further looping
+    this.currentSound.count = 0;
     this.queue = [];
   }
 
@@ -77,8 +79,14 @@ export default class SoundQueue {
   }
 
   private onFinishedPlayingSound(connection: VoiceConnection) {
-    sounds.incrementCount(this.currentSound!.name);
+    const { name, channel, message, count } = this.currentSound!;
+
+    sounds.incrementCount(name);
     this.deleteCurrentMessage();
+
+    if (count - 1 > 0) {
+      this.add(new QueueItem(name, channel, message, count - 1));
+    }
 
     if (!this.isEmpty()) {
       this.playNext();

@@ -36,6 +36,7 @@ container.register({
       container.cradle.soundCommand,
       container.cradle.comboCommand,
       container.cradle.randomCommand,
+      container.cradle.loopCommand,
       container.cradle.stopCommand,
 
       container.cradle.entranceCommand,
