@@ -36,7 +36,8 @@ module.exports = {
   // ],
   coveragePathIgnorePatterns: [
     "/node_modules/",
-    "/test/"
+    "/test/",
+    ".d.ts"
   ],
 
   // A list of reporter names that Jest uses when writing coverage reports
