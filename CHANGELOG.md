@@ -4,6 +4,7 @@
 
 + Allow adding additional commands
 + Added Dutch translation (Thank you [@nstapelbroek](https://github.com/nstapelbroek)!)
++ Added `!loop` command
 + Added `!set` alias for `!config` command
 + Added `!ping` command
 + Added a binary
