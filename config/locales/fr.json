@@ -43,7 +43,7 @@
 
   "helpers": {
     "messageChunker": {
-      "page": "```Page {current} de {amount}```"
+      "page": "```Page {current} de {total}```"
     },
     "userFinder": {
       "error": "Utilisateur introuvable sur ce serveur."

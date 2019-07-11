@@ -38,7 +38,7 @@
 
   "helpers": {
     "messageChunker": {
-      "page": "```Página {current} de {amount}```"
+      "page": "```Página {current} de {total}```"
     },
     "userFinder": {
       "error": "Usuario no encontrado en éste servidor."

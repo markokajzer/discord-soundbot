@@ -38,7 +38,7 @@
 
   "helpers": {
     "messageChunker": {
-      "page": "```Pagina {current} van {amount}```"
+      "page": "```Pagina {current} van {total}```"
     },
     "userFinder": {
       "error": "Gebruiker niet gevonden op deze server."

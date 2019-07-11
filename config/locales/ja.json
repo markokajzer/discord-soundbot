@@ -38,7 +38,7 @@
 
   "helpers": {
     "messageChunker": {
-      "page": "```{current} / {amount} ページ```"
+      "page": "```{current} / {total} ページ```"
     },
     "userFinder": {
       "error": "ユーザーが見つかりませんでした。"

@@ -38,7 +38,7 @@
 
   "helpers": {
     "messageChunker": {
-      "page": "```Oldal: {current}/{amount}```"
+      "page": "```Oldal: {current}/{total}```"
     },
     "userFinder": {
       "error": "Felhasználó nem található a szerveren."

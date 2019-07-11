@@ -28,8 +28,8 @@ const chunkArray = (input: string[]): string[][] => {
   return result;
 };
 
-const specificChunk = (chunk: string[], page: number, totalPages: number) => [
-  localize.t('helpers.messageChunker.page', { current: page, totalPages }),
+const specificChunk = (chunk: string[], page: number, total: number) => [
+  localize.t('helpers.messageChunker.page', { current: page, total }),
   ['```', ...chunk, '```'].join('\n')
 ];
 
