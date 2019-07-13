@@ -11,7 +11,7 @@ export default class CommandCollection {
 
   constructor(commands: Command[]) {
     this.triggers = new Map();
-    this.commands = commands;
+    this.commands = [];
     this.soundCommand = commands.find(command => !command.TRIGGERS.length)! as SoundCommand;
 
     this.registerCommands(commands);
@@ -34,6 +34,7 @@ export default class CommandCollection {
   }
 
   public registerCommands(commands: Command[]) {
+    this.commands.push(...commands);
     commands.forEach(command => this.registerTriggers(command));
   }
 
