@@ -56,7 +56,7 @@ rules:
       ImportDeclaration: { multiline: true, consistent: true }
       ExportDeclaration: { minProperties: 4, multiline: true, consistent: true }
   radix:
-  - off
+    - off
 
 # @typescript-eslint
   # Does not work with class fields :(
