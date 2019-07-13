@@ -17,6 +17,11 @@ export default class CommandCollection {
     this.registerCommands(commands);
   }
 
+  public registerCommands(commands: Command[]) {
+    this.commands.push(...commands);
+    commands.forEach(command => this.registerTriggers(command));
+  }
+
   public registerUserCommands(user: ClientUser) {
     const userCommands = this.commands.filter(command => (command as UserCommand).setClientUser);
     (userCommands as UserCommand[]).forEach(command => command.setClientUser(user));
@@ -31,11 +36,6 @@ export default class CommandCollection {
     }
 
     this.soundCommand.run(message);
-  }
-
-  public registerCommands(commands: Command[]) {
-    this.commands.push(...commands);
-    commands.forEach(command => this.registerTriggers(command));
   }
 
   private registerTriggers(command: Command) {
