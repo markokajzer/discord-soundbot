@@ -54,8 +54,8 @@ describe('CommandCollection', () => {
     const message = getMessageFixture({ content: 'help' });
     commands.execute(message);
 
-    expect(helpCommand.run).toHaveBeenCalledWith(message, []);
-    expect(message.content).toEqual('');
+    expect(helpCommand.run).toHaveBeenCalledWith({ ...message, content: '' }, []);
+    expect(message.content).toEqual('help');
   });
 
   it('executes sound command if no command was found', () => {
