@@ -82,6 +82,7 @@ module.exports = {
   // ],
   moduleFileExtensions: [
     "js",
+    "json",
     "ts"
   ],
 
