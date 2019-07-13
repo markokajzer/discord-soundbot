@@ -23,9 +23,6 @@ module.exports = {
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
   // collectCoverageFrom: null,
-  collectCoverageFrom: [
-    "src/**/*.ts"
-  ],
 
   // The directory where Jest should output its coverage files
   coverageDirectory: "coverage",
@@ -36,7 +33,6 @@ module.exports = {
   // ],
   coveragePathIgnorePatterns: [
     "/node_modules/",
-    "/test/",
     ".d.ts"
   ],
 
@@ -135,9 +131,7 @@ module.exports = {
   //   "<rootDir>"
   // ],
   roots: [
-    // NOTE: Comment out to only see coverage of tested files
-    "<rootDir>/src",
-    "<rootDir>/test"
+    "<rootDir>/src"
   ],
 
   // Allows you to use a custom runner instead of Jest's default test runner
@@ -145,7 +139,7 @@ module.exports = {
 
   // The paths to modules that run some code to configure or set up the testing environment before each test
   // setupFiles: [],
-  setupFiles: ["<rootDir>/test/support/setup.ts"],
+  setupFiles: ["<rootDir>/src/__jest__/setup.ts"],
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
   // setupFilesAfterEnv: [],

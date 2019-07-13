@@ -1,7 +1,7 @@
 import { GuildMember, VoiceChannel } from 'discord.js';
 
-import getVoiceChannelFromAuthor from '../src/bot/commands/helpers/getVoiceChannelFromAuthor';
-import getMessageFixture from './helpers/getMessageFixture';
+import getVoiceChannelFromAuthor from '../getVoiceChannelFromAuthor';
+import getMessageFixture from '../../../../__jest__/util/getMessageFixture';
 
 describe('getVoiceChannelFromAuthor', () => {
   describe('when not in a voice channel', () => {

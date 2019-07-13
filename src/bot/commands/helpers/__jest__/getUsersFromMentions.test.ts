@@ -1,7 +1,7 @@
 import { MessageMentions } from 'discord.js';
 
-import getUsersFromMentions from '../src/bot/commands/helpers/getUsersFromMentions';
-import getMessageFixture from './helpers/getMessageFixture';
+import getUsersFromMentions from '../getUsersFromMentions';
+import getMessageFixture from '../../../../__jest__/util/getMessageFixture';
 
 describe('getUsersFromMentions', () => {
   describe('when mentions does not contain a user', () => {

@@ -1,4 +1,4 @@
-import chunkedMessages from '../src/bot/commands/helpers/chunkedMessages';
+import chunkedMessages from '../chunkedMessages';
 
 describe('chunkedMessages', () => {
   // 150 random words of 10 character length
