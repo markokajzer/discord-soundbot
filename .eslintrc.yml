@@ -78,6 +78,10 @@ rules:
   "@typescript-eslint/semi":
     - error
 
+# eslint-plugin-jest
+  jest/no-truthy-falsy:
+    - error
+
 # Custom rules
   prefer-early-return:
     - error
