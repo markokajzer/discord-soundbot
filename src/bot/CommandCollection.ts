@@ -27,7 +27,9 @@ export default class CommandCollection {
     (userCommands as UserCommand[]).forEach(command => command.setClientUser(user));
   }
 
-  public execute(command: string, params: string[], message: Message) {
+  public execute(message: Message) {
+    const [command, ...params] = message.content.split(' ');
+
     if (this.triggers.has(command)) {
       // eslint-disable-next-line no-param-reassign
       message.content = message.content.substring(command.length + 1);

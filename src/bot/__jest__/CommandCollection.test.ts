@@ -52,7 +52,7 @@ describe('CommandCollection', () => {
     commands.registerCommands([helpCommand]);
 
     const message = getMessageFixture({ content: 'help' });
-    commands.execute('help', [], message);
+    commands.execute(message);
 
     expect(helpCommand.run).toHaveBeenCalledWith(message, []);
     expect(message.content).toEqual('');
@@ -63,7 +63,7 @@ describe('CommandCollection', () => {
 
     commands.registerCommands([helpCommand]);
     const message = getMessageFixture({ content: 'sound' });
-    commands.execute('sound', [], message);
+    commands.execute(message);
 
     expect(soundCommand.run).toHaveBeenCalledWith(message);
     expect(message.content).toEqual('sound');
