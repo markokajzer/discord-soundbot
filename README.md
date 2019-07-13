@@ -68,7 +68,7 @@ const myBot = new SoundBot({
 myBot.start();
 ```
 
-For more configuration options see [here](../../wiki/Configuration).
+For more configuration options see [here](../../wiki/Configuration). You can also add additional commands using this method, see [here](../../wiki/Commands).
 
 
 ### Adding the bot to your server
@@ -148,6 +148,7 @@ Use `!avatar` and attach an image to set the bot's avatar. You can remove the av
 The config can be changed by editing the `config.json` file, after which the bot needs to be restarted.
 
 To change the config on the go, use `!config <option> <value>`. This will change the configuration immediately and update the configuration file.
+
 
 
 ## Contributing
