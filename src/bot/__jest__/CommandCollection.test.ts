@@ -55,7 +55,7 @@ describe('CommandCollection', () => {
     commands.execute(message);
 
     expect(helpCommand.run).toHaveBeenCalledWith({ ...message, content: '' }, []);
-    expect(message.content).toEqual('help');
+    expect(message.content).toEqual('');
   });
 
   it('executes sound command if no command was found', () => {
