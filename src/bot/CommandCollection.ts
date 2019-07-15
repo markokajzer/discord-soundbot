@@ -31,12 +31,10 @@ export default class CommandCollection {
     const [command, ...params] = message.content.split(' ');
 
     if (this.triggers.has(command)) {
-      const messageToRun = {
-        ...message,
-        content: message.content.substring(command.length + 1)
-      } as Message;
+      // eslint-disable-next-line no-param-reassign
+      message.content = message.content.substring(command.length + 1);
 
-      this.triggers.get(command)!.run(messageToRun, params);
+      this.triggers.get(command)!.run(message, params);
       return;
     }
 

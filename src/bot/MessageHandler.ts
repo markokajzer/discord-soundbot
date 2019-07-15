@@ -17,12 +17,10 @@ export default class MessageHandler {
   public handle(message: Message) {
     if (!this.isValidMessage(message)) return;
 
-    const messageToHandle = {
-      ...message,
-      content: message.content.substring(this.config.prefix.length)
-    } as Message;
+    // eslint-disable-next-line no-param-reassign
+    message.content = message.content.substring(this.config.prefix.length);
 
-    this.commands.execute(messageToHandle);
+    this.commands.execute(message);
   }
 
   private isValidMessage(message: Message) {
