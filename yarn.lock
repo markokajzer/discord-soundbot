@@ -3000,6 +3000,11 @@ miniget@^1.4.0:
   resolved "https://registry.yarnpkg.com/miniget/-/miniget-1.5.1.tgz#4f93840d5aaed21634cd12fd07d22f7d64e9d570"
   integrity sha512-KJ3AyIVZ76QuWAq43BWjkK+jLdhxhy3s4tsdg9Je91+cIFkeOSW2VEj2lSeKw50CPu1eCCkSbiQEBKL36mpA5w==
 
+miniget@^1.5.3:
+  version "1.5.3"
+  resolved "https://registry.yarnpkg.com/miniget/-/miniget-1.5.3.tgz#d796c7291970d1dfa28b646d9aba3fa6b377c5e8"
+  integrity sha512-6xiJs3ZGBdrNMlPNlEWirHhY53hSW33nG1Ytub9Cg5+jLhFPn9PGe4FmPZK9WlmDE1N7/8DEL7PGr7r9kbxwgw==
+
 "minimatch@2 || 3", minimatch@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-3.0.4.tgz#5166e286457f03306064be5497e8dbb0c3d32083"
@@ -4842,12 +4847,12 @@ yargs@^13.2.2:
     y18n "^4.0.0"
     yargs-parser "^13.0.0"
 
-ytdl-core@^0.29.1:
-  version "0.29.1"
-  resolved "https://registry.yarnpkg.com/ytdl-core/-/ytdl-core-0.29.1.tgz#2d7a1505d47a34a02551639a8d4092af959c4902"
-  integrity sha512-J/TW3rupqE6y+TczHTTFjuwf23tweA9fasmnbU/5yYH0O2IRFLcwgHbbvEPt3t8mtXWGX207+TWH7uuJpB1FKQ==
+ytdl-core@^0.29.5:
+  version "0.29.5"
+  resolved "https://registry.yarnpkg.com/ytdl-core/-/ytdl-core-0.29.5.tgz#278052a1a5a1a75c5931c229b804c0798f18858c"
+  integrity sha512-6WOoLQCeovo/aFYeMKeEXjvS/L+0j/vq85AYF86KSmkSA3lMzUzMdtmlo0GjsrOUN79S03MDkSgXEWOZBWL1Rg==
   dependencies:
     html-entities "^1.1.3"
     m3u8stream "^0.6.2"
-    miniget "^1.4.0"
+    miniget "^1.5.3"
     sax "^1.1.3"
