@@ -17,8 +17,8 @@ export default class MessageHandler {
   public handle(message: Message) {
     if (!this.isValidMessage(message)) return;
 
-    // eslint-disable-next-line no-param-reassign
-    message.content = message.content.substring(this.config.prefix.length);
+    const messageToHandle = message;
+    messageToHandle.content = message.content.substring(this.config.prefix.length);
 
     this.commands.execute(message);
   }

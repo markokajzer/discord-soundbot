@@ -31,8 +31,8 @@ export default class CommandCollection {
     const [command, ...params] = message.content.split(' ');
 
     if (this.triggers.has(command)) {
-      // eslint-disable-next-line no-param-reassign
-      message.content = message.content.substring(command.length + 1);
+      const messageToRun = message;
+      messageToRun.content = message.content.substring(command.length + 1);
 
       this.triggers.get(command)!.run(message, params);
       return;
