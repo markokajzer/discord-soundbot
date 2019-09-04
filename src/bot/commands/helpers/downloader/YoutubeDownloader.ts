@@ -24,12 +24,12 @@ export default class YoutubeDownloader extends BaseDownloader {
 
     this.validator
       .validate(name, link)
-      .then(() => this.addSound(link, name, parseFloat(start), parseFloat(end)))
+      .then(() => this.addSound(link, name, start, end))
       .then(result => message.channel.send(result))
       .catch(result => message.channel.send(result));
   }
 
-  private addSound(url: string, filename: string, startTime: number, endTime: number) {
+  private addSound(url: string, filename: string, startTime: string | undefined, endTime: string | undefined) {
     return this.makeRequest(url)
       .then(() => this.convertToMp3(filename, startTime, endTime))
       .catch(this.handleError);
@@ -44,20 +44,20 @@ export default class YoutubeDownloader extends BaseDownloader {
     });
   }
 
-  private convertToMp3(name: string, startTime: number, endTime: number) {
+  private convertToMp3(name: string, startTime: string | undefined, endTime: string | undefined) {
     return this.convertWithFfmpeg(name, startTime, endTime)
       .then(() => this.cleanUp(name))
       .catch(this.handleError);
   }
 
-  private convertWithFfmpeg(name: string, startTime: number, endTime: number) {
+  private convertWithFfmpeg(name: string, startTime: string | undefined, endTime: string | undefined) {
     let ffmpegCommand = ffmpeg('tmp.mp4');
-    if (startTime >= 0) ffmpegCommand = ffmpegCommand.setStartTime(startTime);
-    if (endTime >= startTime) ffmpegCommand = ffmpegCommand.setDuration(endTime - startTime);
-    ffmpegCommand = ffmpegCommand.output(`./sounds/${name}.mp3`);
+
+    if (startTime) ffmpegCommand = ffmpegCommand.setStartTime(startTime);
+    if (endTime) ffmpegCommand = ffmpegCommand.setDuration(endTime);
 
     return new Promise((resolve, reject) => {
-      ffmpegCommand
+      ffmpegCommand.output(`./sounds/${name}.mp3`)
         .on('end', resolve)
         .on('error', reject)
         .run();
