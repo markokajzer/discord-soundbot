@@ -7,6 +7,9 @@ extends:
   - plugin:@typescript-eslint/recommended
   - plugin:jest/recommended
   - plugin:jest/style
+  - plugin:prettier/recommended
+  - prettier/@typescript-eslint
+
 
 env:
   jest: true
