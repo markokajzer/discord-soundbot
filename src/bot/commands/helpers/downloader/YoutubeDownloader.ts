@@ -30,12 +30,13 @@ export default class YoutubeDownloader extends BaseDownloader {
   }
 
   private addSound(url: string, filename: string, startTime: string | undefined, endTime: string | undefined) {
-    return this.makeRequest(url)
-      .then(() => this.convertToMp3(filename, startTime, endTime))
+    return this.download(url)
+      .then(() => this.convert(filename, startTime, endTime))
+      .then(() => this.cleanUp(filename))
       .catch(this.handleError);
   }
 
-  private makeRequest(url: string) {
+  private download(url: string) {
     return new Promise((resolve, reject) => {
       ytdl(url, { filter: format => format.container === 'mp4' })
         .pipe(fs.createWriteStream('tmp.mp4'))
@@ -44,13 +45,7 @@ export default class YoutubeDownloader extends BaseDownloader {
     });
   }
 
-  private convertToMp3(name: string, startTime: string | undefined, endTime: string | undefined) {
-    return this.convertWithFfmpeg(name, startTime, endTime)
-      .then(() => this.cleanUp(name))
-      .catch(this.handleError);
-  }
-
-  private convertWithFfmpeg(name: string, startTime: string | undefined, endTime: string | undefined) {
+  private convert(name: string, startTime: string | undefined, endTime: string | undefined) {
     let ffmpegCommand = ffmpeg('tmp.mp4');
 
     if (startTime) ffmpegCommand = ffmpegCommand.setStartTime(startTime);
