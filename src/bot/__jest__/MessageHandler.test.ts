@@ -1,4 +1,4 @@
-import { Message, Client, DMChannel } from 'discord.js';
+import { Message, DMChannel } from 'discord.js';
 import '../../discord/Message';
 
 import Config from '@config/Config';
