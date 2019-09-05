@@ -5,6 +5,7 @@
 + Allow adding additional commands
 + Added Dutch translation (Thank you [@nstapelbroek](https://github.com/nstapelbroek)!)
 + Added `!loop` command
++ Improved !add interface for adding from YouTube
 + Added `!set` alias for `!config` command
 + Added `!ping` command
 + Added a binary
@@ -18,6 +19,7 @@
 **Under the hood**
 
 + Replaced `tslint` with `eslint`
++ Added `prettier` and re-formatted all code
 
 ## 1.5.1 (2019-02-01)
 
