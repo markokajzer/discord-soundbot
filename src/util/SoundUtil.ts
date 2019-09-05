@@ -8,7 +8,8 @@ const getSoundsFromSoundFolder = () => {
   const files = fs.readdirSync('sounds/');
 
   return files.filter(sound =>
-    config.acceptedExtensions.some(extension => sound.endsWith(extension)));
+    config.acceptedExtensions.some(extension => sound.endsWith(extension))
+  );
 };
 
 const getSoundWithExtension = (sound: string) => {

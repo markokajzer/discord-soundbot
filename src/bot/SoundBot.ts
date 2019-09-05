@@ -16,8 +16,12 @@ export default class SoundBot extends Client {
   private readonly messageHandler: MessageHandler;
   private readonly queue: SoundQueue;
 
-  constructor(config: Config, commands: CommandCollection,
-              messageHandler: MessageHandler, queue: SoundQueue) {
+  constructor(
+    config: Config,
+    commands: CommandCollection,
+    messageHandler: MessageHandler,
+    queue: SoundQueue
+  ) {
     super();
     this.config = config;
     this.commands = commands;
@@ -72,8 +76,9 @@ export default class SoundBot extends Client {
   }
 
   private findFirstWritableChannel(guild: Guild) {
-    const channels = guild.channels.filter(channel =>
-      channel.type === 'text' && channel.permissionsFor(guild.me)!.has('SEND_MESSAGES'));
+    const channels = guild.channels.filter(
+      channel => channel.type === 'text' && channel.permissionsFor(guild.me)!.has('SEND_MESSAGES')
+    );
 
     if (!channels.size) return undefined;
     return channels.first() as TextChannel;

@@ -67,7 +67,9 @@ export default class Config implements ConfigInterface {
   }
 
   public setFrom(data: ConfigInterface) {
-    Object.keys(data).forEach(field => { this[field] = data[field]; });
+    Object.keys(data).forEach(field => {
+      this[field] = data[field];
+    });
   }
 
   private initialize() {

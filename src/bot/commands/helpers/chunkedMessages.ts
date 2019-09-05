@@ -2,7 +2,7 @@ import localize from '@util/i18n/localize';
 
 const MAX_MESSAGE_LENGTH = 2000;
 const NEWLINE_LENGTH = '\n'.length;
-const CODE_MARKER_LENGTH = ('```'.length * 2) + NEWLINE_LENGTH;
+const CODE_MARKER_LENGTH = '```'.length * 2 + NEWLINE_LENGTH;
 
 const isChunkSizeAcceptable = (currentChunkSize: number, newElement: string) =>
   currentChunkSize + NEWLINE_LENGTH + newElement.length <= MAX_MESSAGE_LENGTH;

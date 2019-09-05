@@ -7,13 +7,7 @@ import {
   getPathForSound
 } from '../SoundUtil';
 
-const MOCK_SOUND_FILES = [
-  'bitconnect.mp3',
-  'testing.mp3',
-  'wonderful.mp3',
-
-  'testing.wav'
-];
+const MOCK_SOUND_FILES = ['bitconnect.mp3', 'testing.mp3', 'wonderful.mp3', 'testing.wav'];
 
 describe('SoundUtil', () => {
   beforeAll(() => {
@@ -36,11 +30,7 @@ describe('SoundUtil', () => {
 
   describe('getSounds', () => {
     it('returns sound names only', () => {
-      expect(getSounds()).toEqual([
-        'bitconnect',
-        'testing',
-        'wonderful'
-      ]);
+      expect(getSounds()).toEqual(['bitconnect', 'testing', 'wonderful']);
     });
   });
 

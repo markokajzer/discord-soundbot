@@ -17,9 +17,9 @@ describe('MessageHandler', () => {
     jest.spyOn(commandCollection, 'execute');
 
     describe('when message is from bot', () => {
-      const message = {
+      const message = ({
         author: { bot: true }
-      } as unknown as Message;
+      } as unknown) as Message;
       Object.setPrototypeOf(message, Message.prototype);
 
       it('does nothing', () => {
@@ -32,13 +32,13 @@ describe('MessageHandler', () => {
     });
 
     describe('when message is DM', () => {
-      const channel = {} as unknown as DMChannel;
+      const channel = ({} as unknown) as DMChannel;
       Object.setPrototypeOf(channel, DMChannel.prototype);
 
-      const message = {
+      const message = ({
         author: { bot: false },
         channel
-      } as unknown as Message;
+      } as unknown) as Message;
       Object.setPrototypeOf(message, Message.prototype);
 
       it('does nothing', () => {
@@ -51,10 +51,10 @@ describe('MessageHandler', () => {
     });
 
     describe('when message does not have prefix', () => {
-      const message = {
+      const message = ({
         author: { bot: false },
         content: `NOT_${PREFIX}`
-      } as unknown as Message;
+      } as unknown) as Message;
       Object.setPrototypeOf(message, Message.prototype);
 
       it('does nothing', () => {
@@ -67,10 +67,10 @@ describe('MessageHandler', () => {
     });
 
     describe('when user is ignored', () => {
-      const message = {
+      const message = ({
         author: { bot: false },
         content: PREFIX
-      } as unknown as Message;
+      } as unknown) as Message;
       Object.setPrototypeOf(message, Message.prototype);
 
       it('does nothing', () => {
@@ -82,10 +82,10 @@ describe('MessageHandler', () => {
     });
 
     describe('when message is valid', () => {
-      const message = {
+      const message = ({
         author: { bot: false },
         content: PREFIX
-      } as unknown as Message;
+      } as unknown) as Message;
       Object.setPrototypeOf(message, Message.prototype);
 
       it('executes the command', () => {

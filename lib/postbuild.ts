@@ -5,8 +5,7 @@ import tsconfig from '../tsconfig.json';
 
 const pathAliases = tsconfig.compilerOptions.paths;
 
-const from = Object.keys(pathAliases).map(key =>
-  new RegExp(`${key.split('/*')[0]}/[^"]*`, 'g'));
+const from = Object.keys(pathAliases).map(key => new RegExp(`${key.split('/*')[0]}/[^"]*`, 'g'));
 
 const to: { [index: string]: string } = {};
 Object.entries(pathAliases).forEach(([key, value]) => {

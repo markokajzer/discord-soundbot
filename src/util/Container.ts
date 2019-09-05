@@ -25,39 +25,42 @@ container.loadModules(['bot/**/*.js'], {
 });
 
 container.register({
-  commands: awilix.asClass(CommandCollection).singleton().inject(() => ({
-    commands: [
-      container.cradle.pingCommand,
+  commands: awilix
+    .asClass(CommandCollection)
+    .singleton()
+    .inject(() => ({
+      commands: [
+        container.cradle.pingCommand,
 
-      container.cradle.addCommand,
-      container.cradle.renameCommand,
-      container.cradle.removeCommand,
+        container.cradle.addCommand,
+        container.cradle.renameCommand,
+        container.cradle.removeCommand,
 
-      container.cradle.soundCommand,
-      container.cradle.comboCommand,
-      container.cradle.randomCommand,
-      container.cradle.loopCommand,
-      container.cradle.stopCommand,
+        container.cradle.soundCommand,
+        container.cradle.comboCommand,
+        container.cradle.randomCommand,
+        container.cradle.loopCommand,
+        container.cradle.stopCommand,
 
-      container.cradle.entranceCommand,
+        container.cradle.entranceCommand,
 
-      container.cradle.soundsCommand,
-      container.cradle.searchCommand,
-      container.cradle.tagCommand,
-      container.cradle.tagsCommand,
-      container.cradle.downloadCommand,
+        container.cradle.soundsCommand,
+        container.cradle.searchCommand,
+        container.cradle.tagCommand,
+        container.cradle.tagsCommand,
+        container.cradle.downloadCommand,
 
-      container.cradle.welcomeCommand,
-      container.cradle.helpCommand,
-      container.cradle.lastAddedCommand,
-      container.cradle.mostPlayedCommand,
-      container.cradle.ignoreCommand,
-      container.cradle.unignoreCommand,
+        container.cradle.welcomeCommand,
+        container.cradle.helpCommand,
+        container.cradle.lastAddedCommand,
+        container.cradle.mostPlayedCommand,
+        container.cradle.ignoreCommand,
+        container.cradle.unignoreCommand,
 
-      container.cradle.avatarCommand,
-      container.cradle.configCommand
-    ]
-  }))
+        container.cradle.avatarCommand,
+        container.cradle.configCommand
+      ]
+    }))
 });
 
 export default container;

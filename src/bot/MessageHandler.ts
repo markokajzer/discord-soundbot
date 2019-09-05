@@ -25,10 +25,10 @@ export default class MessageHandler {
 
   private isValidMessage(message: Message) {
     return (
-      !message.author.bot
-      && !message.isDirectMessage()
-      && message.hasPrefix(this.config.prefix)
-      && !ignoreList.exists(message.author.id)
+      !message.author.bot &&
+      !message.isDirectMessage() &&
+      message.hasPrefix(this.config.prefix) &&
+      !ignoreList.exists(message.author.id)
     );
   }
 }

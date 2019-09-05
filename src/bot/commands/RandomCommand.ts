@@ -21,9 +21,8 @@ export default class RandomCommand implements Command {
     const voiceChannel = getVoiceChannelFromAuthor(message);
     if (!voiceChannel) return;
 
-    const sounds = params.length === this.NUMBER_OF_PARAMETERS
-      ? soundsDb.withTag(params[0])
-      : getSounds();
+    const sounds =
+      params.length === this.NUMBER_OF_PARAMETERS ? soundsDb.withTag(params[0]) : getSounds();
 
     const random = sounds[Math.floor(Math.random() * sounds.length)];
     this.queue.add(new QueueItem(random, voiceChannel, message));

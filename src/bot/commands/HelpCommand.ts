@@ -14,8 +14,7 @@ export default class HelpCommand implements Command {
   }
 
   public run(message: Message) {
-    chunkedMessages(this.getFormattedListOfCommands())
-      .forEach(chunk => message.author.send(chunk));
+    chunkedMessages(this.getFormattedListOfCommands()).forEach(chunk => message.author.send(chunk));
   }
 
   private getFormattedListOfCommands() {

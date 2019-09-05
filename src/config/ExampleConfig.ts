@@ -15,5 +15,4 @@ const EXAMPLE_CONFIG: ConfigInterface = {
   game: ''
 };
 
-
 export default EXAMPLE_CONFIG;

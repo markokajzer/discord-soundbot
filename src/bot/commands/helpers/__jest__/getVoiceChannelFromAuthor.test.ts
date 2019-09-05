@@ -5,7 +5,7 @@ import getMessageFixture from '../../../../__jest__/util/getMessageFixture';
 
 describe('getVoiceChannelFromAuthor', () => {
   describe('when not in a voice channel', () => {
-    const member = {} as unknown as GuildMember;
+    const member = ({} as unknown) as GuildMember;
     const message = getMessageFixture({ member });
 
     it('replies with a hint', () => {
@@ -16,8 +16,8 @@ describe('getVoiceChannelFromAuthor', () => {
   });
 
   describe('when currently in a voice channel', () => {
-    const voiceChannel = { id: 'testing' } as unknown as VoiceChannel;
-    const member = { voiceChannel } as unknown as GuildMember;
+    const voiceChannel = ({ id: 'testing' } as unknown) as VoiceChannel;
+    const member = ({ voiceChannel } as unknown) as GuildMember;
     const message = getMessageFixture({ member });
 
     it('returns the channel', () => {

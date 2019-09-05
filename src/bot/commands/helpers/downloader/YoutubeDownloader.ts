@@ -29,7 +29,12 @@ export default class YoutubeDownloader extends BaseDownloader {
       .catch(result => message.channel.send(result));
   }
 
-  private addSound(url: string, filename: string, startTime: string | undefined, endTime: string | undefined) {
+  private addSound(
+    url: string,
+    filename: string,
+    startTime: string | undefined,
+    endTime: string | undefined
+  ) {
     return this.download(url)
       .then(() => this.convert(filename, startTime, endTime))
       .then(() => this.cleanUp(filename))
@@ -52,7 +57,8 @@ export default class YoutubeDownloader extends BaseDownloader {
     if (endTime) ffmpegCommand = ffmpegCommand.setDuration(endTime);
 
     return new Promise((resolve, reject) => {
-      ffmpegCommand.output(`./sounds/${name}.mp3`)
+      ffmpegCommand
+        .output(`./sounds/${name}.mp3`)
         .on('end', resolve)
         .on('error', reject)
         .run();
