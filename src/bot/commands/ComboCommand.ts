@@ -2,9 +2,9 @@ import { Message, VoiceChannel } from 'discord.js';
 
 import QueueItem from '@queue/QueueItem';
 import SoundQueue from '@queue/SoundQueue';
+import localize from '@util/i18n/localize';
 import { getSounds } from '@util/SoundUtil';
 import Command from './base/Command';
-import getVoiceChannelFromAuthor from './helpers/getVoiceChannelFromAuthor';
 
 export default class ComboCommand implements Command {
   public readonly TRIGGERS = ['combo'];
@@ -24,8 +24,11 @@ export default class ComboCommand implements Command {
       return;
     }
 
-    const voiceChannel = getVoiceChannelFromAuthor(message);
-    if (!voiceChannel) return;
+    const { voiceChannel } = message.member;
+    if (!voiceChannel) {
+      message.reply(localize.t('helpers.voiceChannelFinder.error'));
+      return;
+    }
 
     this.sounds = getSounds();
     this.addSoundsToQueue(params, voiceChannel, message);

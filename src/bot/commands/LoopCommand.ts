@@ -1,10 +1,10 @@
 import { Message } from 'discord.js';
 
 import SoundQueue from '@queue/SoundQueue';
-import { existsSound } from '@util/SoundUtil';
 import QueueItem from '@queue/QueueItem';
+import localize from '@util/i18n/localize';
+import { existsSound } from '@util/SoundUtil';
 import Command from './base/Command';
-import getVoiceChannelFromMessageAuthor from './helpers/getVoiceChannelFromAuthor';
 
 export default class LoopCommand implements Command {
   public readonly TRIGGERS = ['loop', 'repeat'];
@@ -26,8 +26,11 @@ export default class LoopCommand implements Command {
     const [sound, countAsString] = params;
     if (!existsSound(sound)) return;
 
-    const voiceChannel = getVoiceChannelFromMessageAuthor(message);
-    if (!voiceChannel) return;
+    const { voiceChannel } = message.member;
+    if (!voiceChannel) {
+      message.reply(localize.t('helpers.voiceChannelFinder.error'));
+      return;
+    }
 
     const count = parseInt(countAsString);
     this.queue.add(new QueueItem(sound, voiceChannel, message, count || Number.MAX_SAFE_INTEGER));

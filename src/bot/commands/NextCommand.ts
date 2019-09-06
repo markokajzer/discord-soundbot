@@ -2,9 +2,9 @@ import { Message } from 'discord.js';
 
 import SoundQueue from '@queue/SoundQueue';
 import QueueItem from '@queue/QueueItem';
+import localize from '@util/i18n/localize';
 import { existsSound } from '@util/SoundUtil';
 import Command from './base/Command';
-import getVoiceChannelFromAuthor from './helpers/getVoiceChannelFromAuthor';
 
 export default class NextCommand implements Command {
   public readonly TRIGGERS = ['next'];
@@ -26,8 +26,11 @@ export default class NextCommand implements Command {
     const [sound] = params;
     if (!existsSound(sound)) return;
 
-    const voiceChannel = getVoiceChannelFromAuthor(message);
-    if (!voiceChannel) return;
+    const { voiceChannel } = message.member;
+    if (!voiceChannel) {
+      message.reply(localize.t('helpers.voiceChannelFinder.error'));
+      return;
+    }
 
     this.queue.addBefore(new QueueItem(sound, voiceChannel, message));
     this.queue.next();
