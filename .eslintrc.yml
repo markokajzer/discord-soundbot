@@ -80,8 +80,9 @@ rules:
     - off
   "@typescript-eslint/no-object-literal-type-assertion":
     - off
+  # Conflicts with prettier
   "@typescript-eslint/semi":
-    - error
+    - off
 
 # eslint-plugin-jest
   jest/no-truthy-falsy:
