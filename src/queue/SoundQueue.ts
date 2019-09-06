@@ -1,4 +1,4 @@
-import { Message, VoiceConnection } from 'discord.js';
+import { Message, StreamDispatcher, VoiceConnection } from 'discord.js';
 
 import Config from '@config/Config';
 import * as sounds from '@util/db/Sounds';
@@ -8,18 +8,23 @@ import QueueItem from './QueueItem';
 export default class SoundQueue {
   private readonly config: Config;
 
-  private queue: QueueItem[];
-  private currentSound: QueueItem | null;
+  private queue: QueueItem[] = [];
+  private currentSound: QueueItem | null = null;
+  private dispatcher: StreamDispatcher | null = null;
 
   constructor(config: Config) {
     this.config = config;
-    this.queue = [];
-    this.currentSound = null;
   }
 
   public add(item: QueueItem) {
     this.queue.push(item);
     if (this.isStartable()) this.playNext();
+  }
+
+  public next() {
+    if (!this.dispatcher) return;
+
+    this.dispatcher.emit('end');
   }
 
   public clear() {
@@ -74,12 +79,16 @@ export default class SoundQueue {
   }
 
   private playSound(connection: VoiceConnection, name: string): Promise<VoiceConnection> {
-    return new Promise(resolve =>
-      connection.playFile(name, { volume: this.config.volume }).on('end', () => resolve(connection))
-    );
+    return new Promise(resolve => {
+      this.dispatcher = connection
+        .playFile(name, { volume: this.config.volume })
+        .on('end', () => resolve(connection));
+    });
   }
 
   private onFinishedPlayingSound(connection: VoiceConnection) {
+    this.dispatcher = null;
+
     const { name, channel, message, count } = this.currentSound!;
 
     sounds.incrementCount(name);
