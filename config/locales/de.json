@@ -23,6 +23,11 @@
       "stop": "Hör auf zu spielen"
     },
 
+    "entrance": {
+      "set": "Spiele den angegebenen Sound, wenn du einem Channel beitrittst",
+      "remove": "Entferne Eingangssound"
+    },
+
     "tags": {
       "all": "Zeige alle Sound mit ihren Tags",
       "add": "Füge dem Sound einen Tag hinzu",
