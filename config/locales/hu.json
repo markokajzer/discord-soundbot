@@ -73,8 +73,8 @@
       "url": "Current avatar: {url}"
     },
     "ignore": {
-      "ignore": "{user} Figyelmenkívülhagyása",
-      "unignore": "{user} Nincs tovább figyelmenkívülhagyva!"
+      "add": "{user} Figyelmenkívülhagyása",
+      "remove": "{user} Nincs tovább figyelmenkívülhagyva!"
     },
     "remove": {
       "notFound": "{sound} nem taláható.",

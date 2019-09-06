@@ -73,8 +73,8 @@
       "url": "Huidige avatar: {url}"
     },
     "ignore": {
-      "ignore": "{user} wordt nu genegeerd!",
-      "unignore": "Gestopt met het negeren van {user}!"
+      "add": "{user} wordt nu genegeerd!",
+      "remove": "Gestopt met het negeren van {user}!"
     },
     "remove": {
       "notFound": "{sound} niet gevonden!",

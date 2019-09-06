@@ -78,8 +78,8 @@
       "url": "Avatar corrente: {url}"
     },
     "ignore": {
-      "ignore": "Sto ignorando {user}!",
-      "unignore": "Non sto piu' ignorando {user}!"
+      "add": "Sto ignorando {user}!",
+      "remove": "Non sto piu' ignorando {user}!"
     },
     "remove": {
       "notFound": "{sound} non trovato!",

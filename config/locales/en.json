@@ -81,8 +81,8 @@
       "url": "Current avatar: {url}"
     },
     "ignore": {
-      "ignore": "Ignoring {user}!",
-      "unignore": "No longer ignoring {user}!"
+      "add": "Ignoring {user}!",
+      "remove": "No longer ignoring {user}!"
     },
     "remove": {
       "notFound": "{sound} not found!",
