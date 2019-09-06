@@ -109,6 +109,8 @@ You can use `!combo <sound1> ... <soundN>` to add multiple sounds to the queue.
 
 You can loop sounds by using `!loop <sound>`. To loop only a couple of times, use `!loop <sound> <times>`
 
+You can skip the current sound with the `!skip` command. To interrupt the currently playing sound with a new one use `!next <sound>`.
+
 ### Setting entrance sounds
 
 Every user can set his own entrance sound, a sound that will play whenever the user joins a voice channel by using `!entrance <sound>`. To remove your entrance sound use `!entrance` without specifying a sound.
