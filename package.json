@@ -70,6 +70,7 @@
     "serve": "node dist/bin/soundbot.js",
     "start": "npm run build && npm run serve",
     "test": "jest",
+    "translate": "node dist/lib/checkTranslations.js",
     "rebuild": "npm run clean && npm run build",
     "release": "npm run rebuild && npm run lint && npm run format"
   }
