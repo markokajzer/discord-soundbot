@@ -2,7 +2,7 @@ import i18n from './i18n';
 import { Replacements } from './I18nProvider';
 
 const getCurrentLocale = () => i18n.getLocale();
-const getLocales = (): string[] => i18n.getLocales();
+const getLocales = () => i18n.getLocales();
 const setLocale = (locale: string) => {
   if (getLocales().includes(locale)) i18n.setLocale(locale);
 };
