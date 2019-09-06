@@ -40,6 +40,7 @@ container.register({
         container.cradle.comboCommand,
         container.cradle.randomCommand,
         container.cradle.loopCommand,
+        container.cradle.nextCommand,
         container.cradle.skipCommand,
         container.cradle.stopCommand,
 

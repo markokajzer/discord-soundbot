@@ -21,6 +21,12 @@ export default class SoundQueue {
     if (this.isStartable()) this.playNext();
   }
 
+  public addBefore(item: QueueItem) {
+    this.queue.unshift(item);
+
+    if (this.isStartable()) this.playNext();
+  }
+
   public next() {
     if (!this.dispatcher) return;
 
