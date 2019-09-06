@@ -36,6 +36,8 @@ export default class HelpCommand implements Command {
       `random <tag>                           ${localize.t('help.sounds.random')}`,
       `loop <sound> <count?>                  ${localize.t('help.sounds.loop')}`,
       `repeat <sound> <count?>                ${localize.t('help.sounds.loop')}`,
+      `skip                                   ${localize.t('help.sounds.skip')}`,
+      `next <sound>                           ${localize.t('help.sounds.next')}`,
       `rename <old> <new>                     ${localize.t('help.sounds.rename')}`,
       `remove <sound>                         ${localize.t('help.sounds.remove')}`,
       `download <sound>                       ${localize.t('help.sounds.download')}`,
