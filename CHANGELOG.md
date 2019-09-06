@@ -4,8 +4,10 @@
 
 + Allow adding additional commands
 + Added Dutch translation (Thank you [@nstapelbroek](https://github.com/nstapelbroek)!)
-+ Added `!loop` command
-+ Improved !add interface for adding from YouTube
++ Added `!loop` command to easily queue a sound multiple times in a row
++ Added `!next` command which interrupts the current sound with a new one while keeping the queue
++ Added `!skip` command which allows skipping the current sound
++ Improved `!add` interface for adding from YouTube
 + Added `!set` alias for `!config` command
 + Added `!ping` command
 + Added a binary
