@@ -62,14 +62,12 @@
   },
   "scripts": {
     "clean": "rm -rf dist",
-    "compile": "tsc -p tsconfig.json",
-    "build": "npm run compile",
+    "build": "tsc -p tsconfig.json",
     "format": "prettier --config .prettierrc.yml --ignore-path .prettierignore --write '**/**.ts'",
     "lint": "eslint --rulesdir ./vendor/rules/ -c .eslintrc.yml --ext ts .",
-    "postcompile": "node dist/lib/postbuild.js",
+    "postbuild": "node dist/lib/postbuild.js",
     "serve": "node dist/bin/soundbot.js",
     "start": "npm run build && npm run serve",
-    "test": "jest",
     "translate": "node dist/lib/checkTranslations.js",
     "rebuild": "npm run clean && npm run build",
     "release": "npm run rebuild && npm run lint && npm run format"
