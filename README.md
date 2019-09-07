@@ -157,7 +157,7 @@ To change the config on the go, use `!config <option> <value>`. This will change
 
 ## Contributing
 
-This bot is a dear passion project of mine. If you have any suggestions for new features or improvements, feel free to open an issue or talk to me on Discord. I'll be glad to look into it!
+This bot is a dear passion project of mine. If you encounter any bugs, or have any suggestions for new features or improvements, feel free to open an issue or talk to me on Discord. I'll be glad to look into it!
 
 In particular, thanks to these splendid lads for providing localization:
 
