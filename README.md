@@ -115,6 +115,8 @@ You can skip the current sound with the `!skip` command. To interrupt the curren
 
 Every user can set his own entrance sound, a sound that will play whenever the user joins a voice channel by using `!entrance <sound>`. To remove your entrance sound use `!entrance` without specifying a sound.
 
+The same is possible for exit sounds with `!exit <sound>` which will play the specified sound when leaving a voice channel.
+
 ### Tagging and searching sounds
 
 When your library of sounds gets too big and you forget what kinds of sounds you have, you can add tags to sounds.
