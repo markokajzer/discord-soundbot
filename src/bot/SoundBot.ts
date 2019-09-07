@@ -4,6 +4,7 @@ import Config from '@config/Config';
 import QueueItem from '@queue/QueueItem';
 import SoundQueue from '@queue/SoundQueue';
 import * as entrances from '@util/db/Entrances';
+import * as exits from '@util/db/Exits';
 import localize from '@util/i18n/localize';
 import { getSounds } from '@util/SoundUtil';
 import CommandCollection from './CommandCollection';
@@ -42,6 +43,7 @@ export default class SoundBot extends Client {
   private addEventListeners() {
     this.on('ready', this.onReady);
     this.on('message', this.onMessage);
+    this.on('voiceStateUpdate', this.onUserLeavesVoiceChannel);
     this.on('voiceStateUpdate', this.onUserJoinsVoiceChannel);
     this.on('guildCreate', this.onBotJoinsServer);
   }
@@ -59,6 +61,17 @@ export default class SoundBot extends Client {
     if (!getSounds().includes(sound)) return;
 
     const { voiceChannel } = user;
+    this.queue.add(new QueueItem(sound, voiceChannel));
+  }
+
+  private onUserLeavesVoiceChannel(prevState: GuildMember, user: GuildMember) {
+    if (prevState.voiceChannelID === user.voiceChannelID) return;
+    if (!exits.exists(user.id)) return;
+
+    const sound = exits.get(user.id);
+    if (!getSounds().includes(sound)) return;
+
+    const { voiceChannel } = prevState;
     this.queue.add(new QueueItem(sound, voiceChannel));
   }
 
