@@ -1,15 +1,17 @@
 import lowdb from 'lowdb';
 import FileSync from 'lowdb/adapters/FileSync';
 
+const table = 'entrances';
+
 const adapter = new FileSync('db.json');
 const connection = lowdb(adapter);
 
-export const get = (userId: string) => connection.get(`entrances.${userId}`).value();
+export const get = (userId: string) => connection.get(`${table}.${userId}`).value();
 export const exists = (userId: string) => !!get(userId);
 export const add = (userId: string, sound: string) => {
-  connection.set(`entrances.${userId}`, sound).write();
+  connection.set(`${table}.${userId}`, sound).write();
 };
 
 export const remove = (userId: string) => {
-  connection.unset(`entrances.${userId}`).write();
+  connection.unset(`${table}.${userId}`).write();
 };
