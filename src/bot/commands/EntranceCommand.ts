@@ -6,7 +6,6 @@ import Command from './base/Command';
 
 export default class EntranceCommand implements Command {
   public readonly TRIGGERS = ['entrance'];
-  public readonly USAGE = 'Usage: !entrance <sound>';
 
   public run(message: Message, params: string[]) {
     const [entranceSound] = params;
