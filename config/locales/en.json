@@ -27,6 +27,10 @@
       "set": "Play the specified sound when you join a channel",
       "remove": "Remove entrance sound"
     },
+    "exit": {
+      "set": "Play the specified sound when you leave a channel",
+      "remove": "Remove exit sound"
+    },
 
     "tags": {
       "all": "List all sounds with tags",
