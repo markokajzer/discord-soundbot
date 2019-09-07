@@ -45,6 +45,7 @@ container.register({
         container.cradle.stopCommand,
 
         container.cradle.entranceCommand,
+        container.cradle.exitCommand,
 
         container.cradle.soundsCommand,
         container.cradle.searchCommand,

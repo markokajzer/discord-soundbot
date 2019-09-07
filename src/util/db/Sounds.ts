@@ -5,7 +5,14 @@ import Sound from './models/Sound';
 
 const adapter = new FileSync('db.json');
 const connection = lowdb(adapter);
-connection.defaults({ sounds: [], ignoreList: [], entrances: {} }).write();
+connection
+  .defaults({
+    sounds: [],
+    ignoreList: [],
+    entrances: {},
+    exits: {}
+  })
+  .write();
 
 const all = () => connection.get('sounds');
 export const findByName = (name: string) => all().find({ name });
