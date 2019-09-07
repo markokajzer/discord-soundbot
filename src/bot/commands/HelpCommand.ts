@@ -46,6 +46,8 @@ export default class HelpCommand implements Command {
 
       `entrance <sound>                       ${localize.t('help.entrance.set')}`,
       `entrance                               ${localize.t('help.entrance.remove')}`,
+      `exit <sound>                           ${localize.t('help.exit.set')}`,
+      `exit                                   ${localize.t('help.exit.remove')}`,
 
       `tag <sound> <tag>                      ${localize.t('help.tags.add')}`,
       `tag <sound>                            ${localize.t('help.tags.list')}`,
