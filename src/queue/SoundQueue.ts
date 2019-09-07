@@ -93,10 +93,7 @@ export default class SoundQueue {
   }
 
   private onFinishedPlayingSound(connection: VoiceConnection) {
-    this.dispatcher = null;
-
     const { name, channel, message, count } = this.currentSound!;
-
     sounds.incrementCount(name);
 
     switch (count) {
@@ -107,12 +104,14 @@ export default class SoundQueue {
         this.add(new QueueItem(name, channel, message, count - 1));
     }
 
+    this.currentSound = null;
+    this.dispatcher = null;
+
     if (!this.isEmpty()) {
       this.playNext();
       return;
     }
 
-    this.currentSound = null;
     if (!this.config.stayInChannel) connection.disconnect();
   }
 
