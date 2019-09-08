@@ -82,6 +82,7 @@ https://discordapp.com/oauth2/authorize?client_id={YOUR_CLIENT_ID}&scope=bot
 
 Follow the link and allow the bot to join your Discord server.
 
+Try out the sample sounds `!airhorn` and `!johncena`, or see below to learn how to add your own sounds.
 
 
 ## Commands

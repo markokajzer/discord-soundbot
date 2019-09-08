@@ -9,6 +9,7 @@ config/*
 !config/config.example.json
 
 sounds/*
-!sounds/.keep
+!sounds/airhorn.mp3
+!sounds/johncena.mp3
 
 db.json
