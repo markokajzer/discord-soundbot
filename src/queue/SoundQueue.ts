@@ -96,12 +96,10 @@ export default class SoundQueue {
     const { name, channel, message, count } = this.currentSound!;
     sounds.incrementCount(name);
 
-    switch (count) {
-      case 1:
-        this.deleteCurrentMessage();
-        break;
-      default:
-        this.add(new QueueItem(name, channel, message, count - 1));
+    if (count > 1) {
+      this.add(new QueueItem(name, channel, message, count - 1));
+    } else {
+      this.deleteCurrentMessage();
     }
 
     this.currentSound = null;
