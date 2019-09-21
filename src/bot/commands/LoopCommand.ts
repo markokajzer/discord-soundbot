@@ -32,7 +32,9 @@ export default class LoopCommand implements Command {
       return;
     }
 
-    const count = parseInt(countAsString);
-    this.queue.add(new QueueItem(sound, voiceChannel, message, count || Number.MAX_SAFE_INTEGER));
+    const count = parseInt(countAsString) || Number.MAX_SAFE_INTEGER;
+    const item = new QueueItem(sound, voiceChannel, message, count);
+
+    this.queue.add(item);
   }
 }
