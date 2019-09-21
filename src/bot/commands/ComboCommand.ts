@@ -12,7 +12,6 @@ export default class ComboCommand implements Command {
   public readonly USAGE = 'Usage: !combo <sound1> ... <soundN>';
 
   private readonly queue: SoundQueue;
-  private sounds!: string[];
 
   constructor(queue: SoundQueue) {
     this.queue = queue;
@@ -30,16 +29,13 @@ export default class ComboCommand implements Command {
       return;
     }
 
-    this.sounds = getSounds();
-    this.addSoundsToQueue(params, voiceChannel, message);
-  }
+    const sounds = getSounds();
 
-  private addSoundsToQueue(sounds: string[], voiceChannel: VoiceChannel, message: Message) {
-    sounds.forEach(sound => this.addSoundToQueue(sound, voiceChannel, message));
-  }
+    params.forEach(sound => {
+      if (!sounds.includes(sound)) return;
 
-  private addSoundToQueue(sound: string, voiceChannel: VoiceChannel, message: Message) {
-    if (!this.sounds.includes(sound)) return;
-    this.queue.add(new QueueItem(sound, voiceChannel, message));
+      const item = new QueueItem(sound, voiceChannel, message);
+      this.queue.add(item);
+    });
   }
 }
