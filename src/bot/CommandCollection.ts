@@ -12,7 +12,7 @@ export default class CommandCollection {
   constructor(commands: Command[]) {
     this.triggers = new Map();
     this.commands = [];
-    this.soundCommand = commands.find(command => !command.TRIGGERS.length)! as SoundCommand;
+    this.soundCommand = commands.find(command => !command.TRIGGERS.length) as SoundCommand;
 
     this.registerCommands(commands);
   }
