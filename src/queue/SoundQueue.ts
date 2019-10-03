@@ -51,7 +51,7 @@ export default class SoundQueue {
 
     let deleteableMessages = this.queue
       .map(item => item.message)
-      .filter(message => message) as Message[];
+      .filter((message): message is Message => !!message);
 
     if (this.currentSound!.message) {
       deleteableMessages = deleteableMessages.filter(
