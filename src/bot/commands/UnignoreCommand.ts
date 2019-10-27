@@ -15,6 +15,7 @@ export default class UnignoreCommand implements Command {
     if (users.size < 1) {
       message.channel.send(this.USAGE);
       message.channel.send(localize.t('helpers.userFinder.error'));
+      return;
     }
 
     users.forEach(user => {
