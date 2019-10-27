@@ -6,7 +6,6 @@ CHANGELOG.md
 LICENSE.md
 README.md
 
-!config/config.example.json
 !config/locales/**/*
 
 !dist/bin/**/*
