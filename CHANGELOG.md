@@ -1,4 +1,4 @@
-## Unreleased
+## 1.6.0 (2019-10-27)
 
 **Features**
 
