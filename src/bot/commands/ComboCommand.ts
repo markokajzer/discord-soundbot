@@ -1,4 +1,4 @@
-import { Message, VoiceChannel } from 'discord.js';
+import { Message } from 'discord.js';
 
 import QueueItem from '@queue/QueueItem';
 import SoundQueue from '@queue/SoundQueue';
