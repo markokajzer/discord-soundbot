@@ -1,10 +1,6 @@
-import lowdb from 'lowdb';
-import FileSync from 'lowdb/adapters/FileSync';
+import connection from './connection';
 
 const table = 'exits';
-
-const adapter = new FileSync('db.json');
-const connection = lowdb(adapter);
 
 export const get = (userId: string) => connection.get(`${table}.${userId}`).value();
 export const exists = (userId: string) => !!get(userId);
