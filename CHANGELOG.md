@@ -17,12 +17,13 @@
 
 + Fixed handling of long help messages (Thanks [gruntzy](https://github.com/gruntzy)!)
 + Fixed trying to delete messages that were already manually deleted
-+ Do not rely on `config.example.json` file
++ Fixed overwriting of db values
 
 **Under the hood**
 
 + Replaced `tslint` with `eslint`
 + Added `prettier` and re-formatted all code
++ Do not rely on `config.example.json` file
 
 ## 1.5.1 (2019-02-01)
 
