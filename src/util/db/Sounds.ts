@@ -18,7 +18,7 @@ const all = () => connection.get('sounds');
 export const findByName = (name: string) => all().find({ name });
 
 const addSingleTag = (sound: string, tag: string) => {
-  const { tags } = findByName(sound).value()! as Sound;
+  const { tags } = findByName(sound).value() as Sound;
   if (tags.includes(tag)) return;
 
   tags.push(tag);
@@ -49,7 +49,7 @@ export const remove = (name: string) => {
 export const incrementCount = (sound: string) => {
   if (!exists(sound)) add(sound);
 
-  const newValue = (findByName(sound).value()! as Sound).count + 1;
+  const newValue = (findByName(sound).value() as Sound).count + 1;
   findByName(sound)
     .set('count', newValue)
     .write();
@@ -69,7 +69,7 @@ export const addTags = (sound: string, tags: string[]) => {
 export const listTags = (sound: string) => {
   if (!exists(sound)) return [];
 
-  return (findByName(sound).value()! as Sound).tags.sort();
+  return (findByName(sound).value() as Sound).tags.sort();
 };
 
 export const clearTags = (sound: string) => {
