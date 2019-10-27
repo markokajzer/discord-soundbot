@@ -54,6 +54,8 @@ export default class SoundBot extends Client {
   }
 
   private onUserJoinsVoiceChannel(prevState: GuildMember, user: GuildMember) {
+    if (user.id === this.user.id) return;
+
     if (!user.voiceChannelID || prevState.voiceChannelID === user.voiceChannelID) return;
     if (!entrances.exists(user.id)) return;
 
@@ -65,6 +67,8 @@ export default class SoundBot extends Client {
   }
 
   private onUserLeavesVoiceChannel(prevState: GuildMember, user: GuildMember) {
+    if (user.id === this.user.id) return;
+
     if (!prevState.voiceChannelID || prevState.voiceChannelID === user.voiceChannelID) return;
     if (!exits.exists(user.id)) return;
 
