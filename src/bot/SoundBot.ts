@@ -65,7 +65,7 @@ export default class SoundBot extends Client {
   }
 
   private onUserLeavesVoiceChannel(prevState: GuildMember, user: GuildMember) {
-    if (prevState.voiceChannelID === user.voiceChannelID) return;
+    if (!prevState.voiceChannelID || prevState.voiceChannelID === user.voiceChannelID) return;
     if (!exits.exists(user.id)) return;
 
     const sound = exits.get(user.id);
