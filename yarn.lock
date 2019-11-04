@@ -335,10 +335,10 @@
   resolved "https://registry.yarnpkg.com/@types/events/-/events-1.2.0.tgz#81a6731ce4df43619e5c8c945383b3e62a89ea86"
   integrity sha512-KEIlhXnIutzKwRbQkGWb/I4HFqBuUykAdHgDED6xqwXJfONCjF5VoE0cXEiurh3XauygxzeDzgtXUqvLkxFzzA==
 
-"@types/fluent-ffmpeg@2.1.2":
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/@types/fluent-ffmpeg/-/fluent-ffmpeg-2.1.2.tgz#7193a6a073497a96002007dedbddc26751b09bd9"
-  integrity sha512-JJcv++r1wMUK0yJsJnDSpgW7Ssruk6g+p+uG6bfHpNFrl2CO5j6xVkHB2RgPQIRlbPW3NWWUm6YrSiA3x3u6rw==
+"@types/fluent-ffmpeg@2.1.11":
+  version "2.1.11"
+  resolved "https://registry.yarnpkg.com/@types/fluent-ffmpeg/-/fluent-ffmpeg-2.1.11.tgz#4706613e9e3bbd653ff801b23c5fdac976f62ec0"
+  integrity sha512-Mt4nAJVsQdYAya0I/VEQ51PXgzi/UVGf/mih3uRnnQVC3ZaugEzEdnISjkGcqyHuKClVG2KrMbw6+krh3YS50A==
   dependencies:
     "@types/node" "*"
 
@@ -351,10 +351,10 @@
     "@types/minimatch" "*"
     "@types/node" "*"
 
-"@types/i18n@0.8.5":
-  version "0.8.5"
-  resolved "https://registry.yarnpkg.com/@types/i18n/-/i18n-0.8.5.tgz#fd55b7abb4085faa013f0ce27c3fec85e27ff7c3"
-  integrity sha512-8fZUrwtP8nk0JWDujsx5JdrF4RuLyAD/yb9qgnFuBZgR6rI1afLP66Vytx//Bp6sROY/+kdRjopdq+HwNlHgrQ==
+"@types/i18n@0.8.6":
+  version "0.8.6"
+  resolved "https://registry.yarnpkg.com/@types/i18n/-/i18n-0.8.6.tgz#10f9761fbdfe077fca57d979e8e8a97eac028485"
+  integrity sha512-LUJ+htzQKV6HnUIfLpDVtoEq14xEqD+WjgU4yx9Wzo3rhgvCQcDFafhsYcjTb6XyYd9xDEYKNZjR0LPe+fNMyw==
 
 "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.0":
   version "2.0.1"
@@ -381,10 +381,10 @@
   resolved "https://registry.yarnpkg.com/@types/jest-diff/-/jest-diff-20.0.1.tgz#35cc15b9c4f30a18ef21852e255fdb02f6d59b89"
   integrity sha512-yALhelO3i0hqZwhjtcr6dYyaLoCHbAMshwtj6cGxTvHZAKXHsYGdff6E8EPw3xLKY0ELUTQ69Q1rQiJENnccMA==
 
-"@types/jest@^24.0.18":
-  version "24.0.18"
-  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-24.0.18.tgz#9c7858d450c59e2164a8a9df0905fc5091944498"
-  integrity sha512-jcDDXdjTcrQzdN06+TSVsPPqxvsZA/5QkYfIZlq1JMw7FdP5AZylbOc+6B/cuDurctRe+MziUMtQ3xQdrbjqyQ==
+"@types/jest@24.0.21":
+  version "24.0.21"
+  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-24.0.21.tgz#2c0a25440e025bb265f4a17d8b79b11b231426bf"
+  integrity sha512-uyqFvx78Tuy0h5iLCPWRCvi5HhWwEqhIj30doitp191oYLqlCxUyAJHdWVm5+Nr271/vPnkyt6rWeEIjGowBTg==
   dependencies:
     "@types/jest-diff" "*"
 
@@ -398,10 +398,10 @@
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.123.tgz#39be5d211478c8dd3bdae98ee75bb7efe4abfe4d"
   integrity sha512-pQvPkc4Nltyx7G1Ww45OjVqUsJP4UsZm+GWJpigXgkikZqJgRm4c48g027o6tdgubWHwFRF15iFd+Y4Pmqv6+Q==
 
-"@types/lowdb@1.0.7":
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/@types/lowdb/-/lowdb-1.0.7.tgz#ad87647f7dc8e9daa9fe98f197956a3c6bc1ced3"
-  integrity sha512-lN+zGYeEYCSI895/lP+vwEhYJW53rA4rxKJjW4YRFUbo+qFMTSyno4YuWsZN8+QFk0FFA6s4eMMgQH1KZPZnIA==
+"@types/lowdb@1.0.8":
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/@types/lowdb/-/lowdb-1.0.8.tgz#4bbaaa8d42c38100403233543298790f06f89160"
+  integrity sha512-5GwjHs2BELxlGOCdhjMt0LoQ2iWf6l1RZ6rSpI11v9hp7oSleYiEJ3pMt8QAa9d6Zo52bxZ9b+CXYuCx2oEbVg==
   dependencies:
     "@types/lodash" "*"
 
@@ -414,10 +414,10 @@
   version "10.7.1"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.7.1.tgz#b704d7c259aa40ee052eec678758a68d07132a2e"
 
-"@types/node@10.14.6":
-  version "10.14.6"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.14.6.tgz#9cbfcb62c50947217f4d88d4d274cc40c22625a9"
-  integrity sha512-Fvm24+u85lGmV4hT5G++aht2C5I4Z4dYlWZIh62FAfFO/TfzXtPpoLI6I7AuBWkIFqZCnhFOoTT7RjjaIL5Fjg==
+"@types/node@10.14.22":
+  version "10.14.22"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.14.22.tgz#34bcdf6b6cb5fc0db33d24816ad9d3ece22feea4"
+  integrity sha512-9taxKC944BqoTVjE+UT3pQH0nHZlTvITwfsOZqyc+R3sfJuxaTtxWjfn1K2UlxyPcKHf0rnaXcVFrS9F9vf0bw==
 
 "@types/stack-utils@^1.0.1":
   version "1.0.1"
@@ -2549,7 +2549,7 @@ jest-worker@^24.6.0, jest-worker@^24.9.0:
     merge-stream "^2.0.0"
     supports-color "^6.1.0"
 
-jest@^24.9.0:
+jest@24.9.0:
   version "24.9.0"
   resolved "https://registry.yarnpkg.com/jest/-/jest-24.9.0.tgz#987d290c05a08b52c56188c1002e368edb007171"
   integrity sha512-YvkBL1Zm7d2B1+h5fHEOdyjCG+sGMz4f8D86/0HiqJ6MB4MnDc8FgP5vdWsGnemOQro7lnYo8UakZ3+5A0jxGw==
@@ -2748,6 +2748,11 @@ locate-path@^3.0.0:
   dependencies:
     p-locate "^3.0.0"
     path-exists "^3.0.0"
+
+lodash.memoize@4.x:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/lodash.memoize/-/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
+  integrity sha1-vMbEmkKihA7Zl/Mj6tpezRguC/4=
 
 lodash.sortby@^4.7.0:
   version "4.7.0"
@@ -3487,7 +3492,7 @@ prettier-linter-helpers@^1.0.0:
   dependencies:
     fast-diff "^1.1.2"
 
-prettier@^1.18.2:
+prettier@1.18.2:
   version "1.18.2"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.18.2.tgz#6823e7c5900017b4bd3acf46fe9ac4b4d7bda9ea"
   integrity sha512-OeHeMc0JhFE9idD4ZdtNibzY0+TPHSpSSb9h8FqtP+YnoZZ1sl8Vc9b1sasjfymH3SonAF4QcA2+mzHPhMvIiw==
@@ -4315,15 +4320,16 @@ trim-right@^1.0.1:
   resolved "https://registry.yarnpkg.com/trim-right/-/trim-right-1.0.1.tgz#cb2e1203067e0c8de1f614094b9fe45704ea6003"
   integrity sha1-yy4SAwZ+DI3h9hQJS5/kVwTqYAM=
 
-ts-jest@^24.0.2:
-  version "24.0.2"
-  resolved "https://registry.yarnpkg.com/ts-jest/-/ts-jest-24.0.2.tgz#8dde6cece97c31c03e80e474c749753ffd27194d"
-  integrity sha512-h6ZCZiA1EQgjczxq+uGLXQlNgeg02WWJBbeT8j6nyIBRQdglqbvzDoHahTEIiS6Eor6x8mK6PfZ7brQ9Q6tzHw==
+ts-jest@24.1.0:
+  version "24.1.0"
+  resolved "https://registry.yarnpkg.com/ts-jest/-/ts-jest-24.1.0.tgz#2eaa813271a2987b7e6c3fefbda196301c131734"
+  integrity sha512-HEGfrIEAZKfu1pkaxB9au17b1d9b56YZSqz5eCVE8mX68+5reOvlM93xGOzzCREIov9mdH7JBG+s0UyNAqr0tQ==
   dependencies:
     bs-logger "0.x"
     buffer-from "1.x"
     fast-json-stable-stringify "2.x"
     json5 "2.x"
+    lodash.memoize "4.x"
     make-error "1.x"
     mkdirp "0.x"
     resolve "1.x"
