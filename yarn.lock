@@ -3091,11 +3091,11 @@ mute-stream@0.0.7:
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.7.tgz#3075ce93bc21b8fab43e1bc4da7e8115ed1e7bab"
   integrity sha1-MHXOk7whuPq0PhvE2n6BFe0ee6s=
 
-nan@2, nan@^2.1.0, nan@^2.10.0, nan@~2.10.0:
+nan@2, nan@^2.1.0, nan@~2.10.0:
   version "2.10.0"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.10.0.tgz#96d0cd610ebd58d4b4de9cc0c6828cda99c7548f"
 
-nan@^2.12.1:
+nan@^2.12.1, nan@^2.14.0:
   version "2.14.0"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.14.0.tgz#7818f722027b2459a86f0295d434d1fc2336c52c"
   integrity sha512-INOFj37C7k3AfaNTtX8RhsTw7qRy7eLET14cROi9+5HAVbbHuIWUHEauBv5qT4Av2tWasiTY1Jw6puUNqRJXQg==
@@ -3176,14 +3176,14 @@ node-notifier@^5.4.2:
     shellwords "^0.1.1"
     which "^1.3.0"
 
-node-opus@^0.2.7:
-  version "0.2.9"
-  resolved "https://registry.yarnpkg.com/node-opus/-/node-opus-0.2.9.tgz#a9da56c96b6b5f5c32c61ea8a4593bc7295daa11"
-  integrity sha512-+IIOdav5D7vHsuLDNk55t17kK2s6c1w4DbfKw8UQxZ635n+AO/SqDE3RpuO3PZKqpWjPtL/chzYZNVxz8/4TUQ==
+node-opus@0.3.3:
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/node-opus/-/node-opus-0.3.3.tgz#bde2369b13b7d34f6e35d2a7fc97d7e4936d0211"
+  integrity sha512-ZQniA8iJ6y/qOTmW6eyzM9m8odt4CIGV0NM9/U03/pYLhGyxy18QXO25WfrWd8XsUYx57tnxll2xxj54CN08uQ==
   dependencies:
     bindings "~1.2.1"
     commander "^2.9.0"
-    nan "^2.10.0"
+    nan "^2.14.0"
   optionalDependencies:
     ogg-packet "^1.0.0"
 
