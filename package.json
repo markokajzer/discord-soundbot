@@ -23,14 +23,14 @@
   "author": "Marko Kajzer",
   "license": "MIT",
   "dependencies": {
-    "awilix": "^4.2.2",
+    "awilix": "4.2.2",
     "discord.js": "11.5.1",
-    "fluent-ffmpeg": "^2.1.2",
-    "i18n": "^0.8.3",
-    "lowdb": "^1.0.0",
+    "fluent-ffmpeg": "2.1.2",
+    "i18n": "0.8.4",
+    "lowdb": "1.0.0",
     "node-opus": "0.3.3",
-    "replace-in-file": "^4.1.3",
-    "ytdl-core": "^0.29.6"
+    "replace-in-file": "4.2.0",
+    "ytdl-core": "1.0.0"
   },
   "optionalDependencies": {
     "bufferutil": "^3.0.5",
