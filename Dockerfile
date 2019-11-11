@@ -1,20 +1,24 @@
-FROM node:carbon-alpine
+# Base will install runtime dependencies and configure generics
+FROM node:12-alpine AS base
 
 LABEL maintainer="Marko Kajzer <markokajzer91@gmail.com>"
-
-# Install ffmpeg and other deps
-RUN apk add --no-cache --quiet build-base ffmpeg git make python
-
 WORKDIR /app
+RUN apk add --no-cache --quiet ffmpeg opus && mkdir sounds
 COPY package.json yarn.lock ./
-RUN yarn --silent
+COPY config config
+RUN yarn install --frozen-lockfile --production --ignore-optional
 
+# Builder will compile tsc to js
+FROM base AS build
+
+RUN apk add --no-cache --quiet build-base git
+RUN yarn install --frozen-lockfile --silent --ignore-optional
 COPY . /app
-
-# Cleanup
-RUN apk del --quiet build-base
-
-# Build
 RUN yarn build
 
-CMD ["yarn", "serve"]
+# Prod has the bare minimum to run the precompiled application
+FROM base as prod
+
+COPY --from=build ./app/dist ./dist
+ENTRYPOINT ["node"]
+CMD ["./dist/bin/soundbot.js"]
