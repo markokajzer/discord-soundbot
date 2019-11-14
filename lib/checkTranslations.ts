@@ -24,7 +24,7 @@ const locales = files.map(file => path.basename(file, '.json'));
 const localesToCheck = locales.filter(locale => locale !== 'en');
 
 // eslint-disable-next-line
-const englishLocale = require(`${localesPath}/en.json`)
+const englishLocale = require(`${localesPath}/en.json`);
 const englishKeys = enumerateKeys(englishLocale);
 
 localesToCheck.forEach(locale => {
