@@ -12,8 +12,16 @@ export default class StopCommand implements Command {
   }
 
   public run(message: Message) {
+    if (!message.member) {
+      return;
+    }
+
     this.queue.clear();
-    const { voiceConnection } = message.guild;
-    if (voiceConnection) voiceConnection.disconnect();
+    const { channel } = message.member.voice;
+    if (!channel) {
+      return;
+    }
+
+    channel.leave();
   }
 }

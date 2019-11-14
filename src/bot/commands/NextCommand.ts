@@ -23,16 +23,20 @@ export default class NextCommand implements Command {
       return;
     }
 
+    if (!message.member) {
+      return;
+    }
+
     const [sound] = params;
     if (!existsSound(sound)) return;
 
-    const { voiceChannel } = message.member;
-    if (!voiceChannel) {
+    const { channel } = message.member.voice;
+    if (!channel) {
       message.reply(localize.t('helpers.voiceChannelFinder.error'));
       return;
     }
 
-    this.queue.addBefore(new QueueItem(sound, voiceChannel, message));
+    this.queue.addBefore(new QueueItem(sound, channel, message));
     this.queue.next();
   }
 }

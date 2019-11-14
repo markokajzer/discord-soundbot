@@ -75,10 +75,14 @@ export default class SoundQueue {
       .catch(error => console.error('Error occured!', '\n', error));
   }
 
-  private deafen(connection: VoiceConnection) {
+  private deafen(connection: VoiceConnection): Promise<VoiceConnection> {
     // Can only deafen when in a channel, therefore need connection
-    if (connection.channel.guild.me.deaf !== this.config.deafen) {
-      connection.channel.guild.me.setDeaf(this.config.deafen);
+    if (!connection.channel.guild.me) {
+      return Promise.reject('Bot somehow not in guild');
+    }
+
+    if (connection.channel.guild.me.voice.deaf !== this.config.deafen) {
+      connection.channel.guild.me.voice.setDeaf(this.config.deafen);
     }
 
     return Promise.resolve(connection);
@@ -87,7 +91,7 @@ export default class SoundQueue {
   private playSound(connection: VoiceConnection, name: string): Promise<VoiceConnection> {
     return new Promise(resolve => {
       this.dispatcher = connection
-        .playFile(name, { volume: this.config.volume })
+        .play(name, { volume: this.config.volume })
         .on('end', () => resolve(connection));
     });
   }

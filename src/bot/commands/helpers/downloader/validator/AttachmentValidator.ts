@@ -17,13 +17,13 @@ export default class AttachmentValidator extends BaseValidator {
   }
 
   private validateAttachment(attachment: MessageAttachment) {
-    const fileName = attachment.filename.toLowerCase();
+    const fileName = attachment.name ? attachment.name.toString().toLocaleLowerCase() : '';
     const soundName = fileName.substring(0, fileName.lastIndexOf('.'));
 
     return Promise.all([
       this.validateExtension(fileName),
       this.validateName(soundName),
-      this.validateSize(attachment.filesize),
+      this.validateSize(attachment.size),
       this.validateUniqueness(soundName)
     ]);
   }

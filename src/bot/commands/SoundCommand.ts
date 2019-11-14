@@ -1,4 +1,4 @@
-import { Message } from 'discord.js';
+import { GuildMember, Message } from 'discord.js';
 
 import QueueItem from '@queue/QueueItem';
 import SoundQueue from '@queue/SoundQueue';
@@ -17,14 +17,14 @@ export default class SoundCommand implements Command {
 
   public run(message: Message) {
     const sound = message.content;
-    if (!existsSound(sound)) return;
+    if (!message.member || !existsSound(sound)) return;
 
-    const { voiceChannel } = message.member;
-    if (!voiceChannel) {
+    const { channel } = message.member.voice;
+    if (!channel) {
       message.reply(localize.t('helpers.voiceChannelFinder.error'));
       return;
     }
 
-    this.queue.add(new QueueItem(sound, voiceChannel, message));
+    this.queue.add(new QueueItem(sound, channel, message));
   }
 }

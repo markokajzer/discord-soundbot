@@ -7,7 +7,7 @@ import UserCommand from './base/UserCommand';
 export default class AvatarCommand implements UserCommand {
   public readonly TRIGGERS = ['avatar'];
   public readonly NUMBER_OF_PARAMETERS = 1;
-  public readonly USAGE = 'Usage: !avatar [remove]';
+  public readonly USAGE = 'Usage: !avatar [remove|get|set]';
 
   private readonly config: Config;
   private user!: ClientUser;
@@ -21,7 +21,7 @@ export default class AvatarCommand implements UserCommand {
   }
 
   public run(message: Message, params: string[]) {
-    if (!message.member.hasPermission(Permissions.FLAGS.ADMINISTRATOR!)) return;
+    if (!message.member || !message.member.hasPermission(Permissions.FLAGS.ADMINISTRATOR!)) return;
 
     if (params.length === this.NUMBER_OF_PARAMETERS && params[0] === 'remove') {
       this.user.setAvatar('');
@@ -33,13 +33,14 @@ export default class AvatarCommand implements UserCommand {
       return;
     }
 
-    if (message.attachments.size !== 1) {
+    const attachment = message.attachments.first();
+    if (message.attachments.size !== 1 || !attachment) {
       message.channel.send(this.USAGE);
       return;
     }
 
     this.user
-      .setAvatar(message.attachments.first().url)
+      .setAvatar(attachment.url)
       .catch(() => message.channel.send(localize.t('commands.avatar.errors.tooFast')));
   }
 
@@ -51,6 +52,6 @@ export default class AvatarCommand implements UserCommand {
       return;
     }
 
-    message.channel.send(localize.t('commands.avatar.url', { url: this.user.avatarURL }));
+    message.channel.send(localize.t('commands.avatar.url', { url: this.user.defaultAvatarURL }));
   }
 }

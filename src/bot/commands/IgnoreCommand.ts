@@ -9,7 +9,9 @@ export default class IgnoreCommand implements Command {
   public readonly USAGE = 'Usage: !ignore <user>';
 
   public run(message: Message) {
-    if (!message.member.hasPermission(Permissions.FLAGS.ADMINISTRATOR!)) return;
+    if (!message.member || !message.member.hasPermission(Permissions.FLAGS.ADMINISTRATOR!)) {
+      return;
+    }
 
     const { users } = message.mentions;
     if (users.size < 1) {

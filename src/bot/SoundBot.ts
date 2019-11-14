@@ -49,34 +49,39 @@ export default class SoundBot extends Client {
   }
 
   private onReady() {
+    if (!this.user) {
+      throw new Error('User not set after ready.');
+    }
     this.user.setActivity(this.config.game);
     this.commands.registerUserCommands(this.user);
   }
 
   private onUserJoinsVoiceChannel(prevState: GuildMember, user: GuildMember) {
-    if (user.id === this.user.id) return;
+    if (!this.user || user.id === this.user.id) return;
 
-    if (!user.voiceChannelID || prevState.voiceChannelID === user.voiceChannelID) return;
+    if (!user.voice) return;
     if (!entrances.exists(user.id)) return;
 
     const sound = entrances.get(user.id);
     if (!getSounds().includes(sound)) return;
 
-    const { voiceChannel } = user;
-    this.queue.add(new QueueItem(sound, voiceChannel));
+    const { channel } = user.voice;
+    if (!channel) return;
+    this.queue.add(new QueueItem(sound, channel));
   }
 
   private onUserLeavesVoiceChannel(prevState: GuildMember, user: GuildMember) {
-    if (user.id === this.user.id) return;
+    if (!this.user || user.id === this.user.id) return;
 
-    if (!prevState.voiceChannelID || prevState.voiceChannelID === user.voiceChannelID) return;
+    if (!prevState.voice || prevState.voice.channelID === user.voice.channelID) return;
     if (!exits.exists(user.id)) return;
 
     const sound = exits.get(user.id);
     if (!getSounds().includes(sound)) return;
 
-    const { voiceChannel } = prevState;
-    this.queue.add(new QueueItem(sound, voiceChannel));
+    const { channel } = prevState.voice;
+    if (!channel) return;
+    this.queue.add(new QueueItem(sound, channel));
   }
 
   private onMessage(message: Message) {
@@ -84,7 +89,7 @@ export default class SoundBot extends Client {
   }
 
   private onBotJoinsServer(guild: Guild) {
-    if (!guild.available) return;
+    if (!guild || !guild.available) return;
 
     const channel = this.findFirstWritableChannel(guild);
     if (!channel) return;
@@ -93,8 +98,10 @@ export default class SoundBot extends Client {
   }
 
   private findFirstWritableChannel(guild: Guild) {
+    const me = guild.me;
+    if (!me) return;
     const channels = guild.channels.filter(
-      channel => channel.type === 'text' && channel.permissionsFor(guild.me)!.has('SEND_MESSAGES')
+      channel => channel.type === 'text' && channel.permissionsFor(me)!.has('SEND_MESSAGES')
     );
 
     if (!channels.size) return undefined;

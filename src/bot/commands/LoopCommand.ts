@@ -23,17 +23,21 @@ export default class LoopCommand implements Command {
       return;
     }
 
+    if (!message.member) {
+      return;
+    }
+
     const [sound, countAsString] = params;
     if (!existsSound(sound)) return;
 
-    const { voiceChannel } = message.member;
-    if (!voiceChannel) {
+    const { channel } = message.member.voice;
+    if (!channel) {
       message.reply(localize.t('helpers.voiceChannelFinder.error'));
       return;
     }
 
     const count = parseInt(countAsString) || Number.MAX_SAFE_INTEGER;
-    const item = new QueueItem(sound, voiceChannel, message, count);
+    const item = new QueueItem(sound, channel, message, count);
 
     this.queue.add(item);
   }

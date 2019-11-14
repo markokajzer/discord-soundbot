@@ -18,13 +18,17 @@ export default class ComboCommand implements Command {
   }
 
   public run(message: Message, params: string[]) {
+    if (!message.member) {
+      return;
+    }
+
     if (params.length < this.NUMBER_OF_PARAMETERS) {
       message.channel.send(this.USAGE);
       return;
     }
 
-    const { voiceChannel } = message.member;
-    if (!voiceChannel) {
+    const { channel } = message.member.voice;
+    if (!channel) {
       message.reply(localize.t('helpers.voiceChannelFinder.error'));
       return;
     }
@@ -34,7 +38,7 @@ export default class ComboCommand implements Command {
     params.forEach(sound => {
       if (!sounds.includes(sound)) return;
 
-      const item = new QueueItem(sound, voiceChannel, message);
+      const item = new QueueItem(sound, channel, message);
       this.queue.add(item);
     });
   }
