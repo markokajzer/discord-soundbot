@@ -9,9 +9,7 @@ WORKDIR /app
 
 USER node
 COPY --chown=node:node package.json yarn.lock ./
-COPY --chown=node:node config config
-COPY --chown=node:node sounds sounds
-RUN yarn install --frozen-lockfile --production --ignore-optional
+RUN yarn install --frozen-lockfile --silent --production --ignore-optional && yarn cache clean --force
 
 # Builder will compile tsc to js
 FROM base AS build
@@ -19,9 +17,10 @@ RUN yarn install --frozen-lockfile --silent --ignore-optional
 COPY . /app
 RUN yarn build
 
-# Prod has the bare minimum to run the application
-FROM base as prod
+# release has the bare minimum to run the application
+FROM base as release
 COPY --chown=node:node --from=build ./app/dist ./dist
-RUN yarn cache clean --force
+COPY --chown=node:node --from=build ./app/config ./config
+COPY --chown=node:node --from=build ./app/sounds ./sounds
 ENTRYPOINT ["/tini", "--"]
 CMD ["node", "./dist/bin/soundbot.js"]
