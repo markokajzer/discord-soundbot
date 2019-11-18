@@ -7,8 +7,6 @@ ADD https://github.com/krallin/tini/releases/download/v0.18.0/tini /tini
 RUN chmod +x /tini && mkdir /app && chown -R node:node /app
 WORKDIR /app
 
-RUN apt-get update && apt-get install -yqq libopus0 vim && rm -rf /var/lib/apt/lists/*
-
 USER node
 COPY --chown=node:node package.json yarn.lock ./
 COPY --chown=node:node config config
