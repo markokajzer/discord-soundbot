@@ -1,5 +1,5 @@
 {
-  "clientID": "YOUR_CLIENT_ID",
+  "clientId": "YOUR_CLIENT_ID",
   "token": "YOUR_BOT_USER_TOKEN",
 
   "language": "en",
