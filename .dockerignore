@@ -3,11 +3,16 @@
 .npmignore
 .node-version
 
+config
+!config/locales
 dist
 node_modules
+vendor
 
-config/config.json
 db.json
+Dockerfile
+docker-compose.yml
+jest.config.js
 
 tslint.yml
 CHANGELOG.md
