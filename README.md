@@ -62,7 +62,7 @@ Start the bot.
 const SoundBot = require('discord-soundbot');
 
 const myBot = new SoundBot({
-  clientID: 'YOUR_CLIENT_ID',
+  clientId: 'YOUR_CLIENT_ID',
   token: 'YOUR_BOT_USER_TOKEN'
 });
 myBot.start();

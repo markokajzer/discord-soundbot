@@ -12,4 +12,4 @@ localize.setLocale(config.language);
 const bot = container.cradle.soundBot as SoundBot;
 bot.start();
 
-console.info(localize.t('url', { clientId: config.clientID }));
+console.info(localize.t('url', { clientId: config.clientId }));

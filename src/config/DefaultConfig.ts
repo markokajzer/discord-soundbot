@@ -1,7 +1,7 @@
 import ConfigInterface from './ConfigInterface';
 
-const EXAMPLE_CONFIG: ConfigInterface = {
-  clientID: '',
+const DEFAULT_CONFIG: ConfigInterface = {
+  clientId: '',
   token: '',
 
   language: 'en',
@@ -15,4 +15,4 @@ const EXAMPLE_CONFIG: ConfigInterface = {
   game: ''
 };
 
-export default EXAMPLE_CONFIG;
+export default DEFAULT_CONFIG;

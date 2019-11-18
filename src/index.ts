@@ -19,7 +19,7 @@ class DiscordSoundBot {
 
   public start() {
     this.bot.start();
-    console.info(localize.t('url', { clientId: this.config.clientID }));
+    console.info(localize.t('url', { clientId: this.config.clientId }));
   }
 
   private initializeWith(config: ConfigInterface, commands: Command[]) {
