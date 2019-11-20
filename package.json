@@ -30,7 +30,8 @@
     "lowdb": "^1.0.0",
     "opusscript": "^0.0.7",
     "replace-in-file": "4.2.0",
-    "ytdl-core": "1.0.0"
+    "ytdl-core": "1.0.0",
+    "prism-media": "CatsMiaow/prism-media#master"
   },
   "optionalDependencies": {
     "bufferutil": "4.0.1",

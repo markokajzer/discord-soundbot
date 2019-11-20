@@ -3557,6 +3557,10 @@ pretty-format@^24.9.0:
     ansi-styles "^3.2.0"
     react-is "^16.8.4"
 
+prism-media@CatsMiaow/prism-media#master:
+  version "1.1.0"
+  resolved "https://codeload.github.com/CatsMiaow/prism-media/tar.gz/d09db62d1c70523e466e6a357496453fc9645555"
+
 prism-media@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/prism-media/-/prism-media-1.1.0.tgz#64fd9abf64719d627b99360bfbe1a81d3ac0c593"
