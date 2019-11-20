@@ -6,8 +6,6 @@ CHANGELOG.md
 LICENSE.md
 README.md
 
-!config/locales/**/*
-
 !dist/bin/**/*
 !dist/config/**/*
 !dist/src/**/*

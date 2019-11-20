@@ -3,13 +3,15 @@
 .npmignore
 .node-version
 
-config
-!config/locales
 dist
 node_modules
 vendor
 
-db.json
+storage
+!storage/sounds/airhorn.mp3
+!storage/sounds/johncena.mp3
+!storage/config.example.json
+
 Dockerfile
 docker-compose.yml
 jest.config.js

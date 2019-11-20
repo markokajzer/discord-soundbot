@@ -1,3 +1,4 @@
+import { SOUNDS_DIR, soundsPath } from '@util/FileLocations';
 import fs from 'fs';
 
 import Config from '@config/Config';
@@ -5,7 +6,7 @@ import container from './Container';
 
 const getSoundsFromSoundFolder = () => {
   const config = container.cradle.config as Config;
-  const files = fs.readdirSync('sounds/');
+  const files = fs.readdirSync(SOUNDS_DIR);
 
   return files.filter(sound =>
     config.acceptedExtensions.some(extension => sound.endsWith(extension))
@@ -21,5 +22,6 @@ export const getSoundsWithExtension = () => getSoundsFromSoundFolder().map(getSo
 export const getSounds = () => getSoundsWithExtension().map(sound => sound.name);
 export const getExtensionForSound = (name: string) =>
   getSoundsWithExtension().find(sound => sound.name === name)!.extension;
-export const getPathForSound = (sound: string) => `sounds/${sound}.${getExtensionForSound(sound)}`;
+export const getPathForSound = (sound: string) =>
+  soundsPath(`${sound}.${getExtensionForSound(sound)}`);
 export const existsSound = (name: string) => getSounds().includes(name);

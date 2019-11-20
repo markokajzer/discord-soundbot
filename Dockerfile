@@ -20,7 +20,7 @@ RUN yarn build
 # release has the bare minimum to run the application
 FROM base as release
 COPY --chown=node:node --from=build ./app/dist ./dist
-COPY --chown=node:node --from=build ./app/config ./config
-COPY --chown=node:node --from=build ./app/sounds ./sounds
+COPY --chown=node:node --from=build ./app/locale ./locale
+COPY --chown=node:node --from=build ./app/storage ./storage
 ENTRYPOINT ["/tini", "--"]
 CMD ["node", "./dist/bin/soundbot.js"]

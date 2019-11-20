@@ -1,3 +1,4 @@
+import { soundsPath } from '@util/FileLocations';
 import fs from 'fs';
 
 import { Message, Permissions } from 'discord.js';
@@ -36,8 +37,8 @@ export default class RenameCommand implements Command {
     }
 
     const extension = getExtensionForSound(oldName);
-    const oldFile = `sounds/${oldName}.${extension}`;
-    const newFile = `sounds/${newName}.${extension}`;
+    const oldFile = soundsPath(`${oldName}.${extension}`);
+    const newFile = soundsPath(`${newName}.${extension}`);
     fs.renameSync(oldFile, newFile);
     soundsDb.rename(oldName, newName);
 

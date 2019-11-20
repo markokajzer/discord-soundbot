@@ -1,3 +1,4 @@
+import { soundsPath } from '@util/FileLocations';
 import fs from 'fs';
 import { IncomingMessage } from 'http';
 import https from 'https';
@@ -49,7 +50,7 @@ export default class AttachmentDownloader extends BaseDownloader {
 
   private saveResponseToFile(response: IncomingMessage, filename: string) {
     if (response.statusCode === 200) {
-      response.pipe(fs.createWriteStream(`./sounds/${filename}`));
+      response.pipe(fs.createWriteStream(soundsPath(filename)));
     }
 
     return Promise.resolve(filename.split('.')[0]);

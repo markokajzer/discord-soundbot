@@ -4,12 +4,4 @@ node_modules/
 
 *.tgz
 
-config/*
-!config/locales/
-!config/config.example.json
-
-sounds/*
-!sounds/airhorn.mp3
-!sounds/johncena.mp3
-
-db.json
+storage

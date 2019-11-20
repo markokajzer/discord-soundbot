@@ -1,3 +1,4 @@
+import { soundsPath, storagePath } from '@util/FileLocations';
 import fs from 'fs';
 
 import { Message } from 'discord.js';
@@ -11,6 +12,7 @@ import YoutubeValidator from './validator/YoutubeValidator';
 
 export default class YoutubeDownloader extends BaseDownloader {
   protected readonly validator: YoutubeValidator;
+  private readonly tempFileName = storagePath('tmp.mp4');
 
   constructor(youtubeValidator: YoutubeValidator) {
     super();
@@ -45,17 +47,17 @@ export default class YoutubeDownloader extends BaseDownloader {
   private download(url: string) {
     return new Promise((resolve, reject) => {
       ytdl(url, { filter: format => format.container === 'mp4' })
-        .pipe(fs.createWriteStream('tmp.mp4'))
+        .pipe(fs.createWriteStream(this.tempFileName))
         .on('finish', resolve)
         .on('error', reject);
     });
   }
 
   private convert(name: string, startTime: string | undefined, endTime: string | undefined) {
-    let args = ['-i', 'tmp.mp4', '-ar', '48000', '-ac', '2'];
+    let args = ['-i', this.tempFileName, '-ar', '48000', '-ac', '2'];
     if (startTime) args.push('-ss', startTime);
     if (endTime) args.push('-to', endTime);
-    args.push(`./sounds/${name}.mp3`);
+    args.push(soundsPath(`${name}.mp3`));
 
     return new Promise((resolve, reject) => {
       const transcoder = spawn(FFmpeg.getInfo().command, args);
@@ -64,7 +66,7 @@ export default class YoutubeDownloader extends BaseDownloader {
   }
 
   private cleanUp(name: string) {
-    fs.unlinkSync('tmp.mp4');
+    fs.unlinkSync(this.tempFileName);
     return Promise.resolve(localize.t('commands.add.success', { name }));
   }
 

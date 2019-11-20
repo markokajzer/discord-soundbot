@@ -4,6 +4,4 @@ services:
     build: .
     image: soundbot
     volumes:
-      - ./sounds:/app/sounds
-      - ./config/config.json:/app/config/config.json
-      - ./db.json:/app/db.json
+      - ./storage:/app/storage

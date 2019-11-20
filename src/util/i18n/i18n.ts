@@ -1,3 +1,4 @@
+import { TRANSLATIONS_DIR } from '@util/FileLocations';
 import fs from 'fs';
 import path from 'path';
 
@@ -5,13 +6,12 @@ import i18n from 'i18n';
 
 import { I18nProvider } from './I18nProvider';
 
-const localesPath = path.join(__dirname, '..', '..', '..', '..', 'config', 'locales');
-const files = fs.readdirSync(localesPath);
+const files = fs.readdirSync(TRANSLATIONS_DIR);
 
 i18n.configure({
   locales: files.map(file => path.basename(file, '.json')),
   defaultLocale: 'en',
-  directory: localesPath,
+  directory: TRANSLATIONS_DIR,
   objectNotation: true,
   updateFiles: false
 });

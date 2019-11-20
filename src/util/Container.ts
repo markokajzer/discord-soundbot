@@ -1,3 +1,4 @@
+import { APPLICATION_ROOT } from '@util/FileLocations';
 import * as awilix from 'awilix';
 
 import path from 'path';

@@ -1,5 +1,5 @@
+import { storagePath } from '@util/FileLocations';
 import fs from 'fs';
-import path from 'path';
 import lodash from 'lodash';
 
 import ConfigInterface from './ConfigInterface';
@@ -18,7 +18,7 @@ export default class Config implements ConfigInterface {
   public deafen!: boolean;
   public game!: string;
 
-  private readonly CONFIG_PATH = path.join(process.cwd(), 'config', 'config.json');
+  private readonly CONFIG_PATH = storagePath('config.json');
   private readonly MODIFIABLE_FIELDS = [
     'language',
     'prefix',

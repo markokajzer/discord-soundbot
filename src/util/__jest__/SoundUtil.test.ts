@@ -41,7 +41,7 @@ describe('SoundUtil', () => {
   });
 
   describe('getPathForSound', () => {
-    expect(getPathForSound('bitconnect')).toEqual('sounds/bitconnect.mp3');
+    expect(getPathForSound('bitconnect')).toEqual('storage/sounds/bitconnect.mp3');
   });
 
   describe('existsSound', () => {
