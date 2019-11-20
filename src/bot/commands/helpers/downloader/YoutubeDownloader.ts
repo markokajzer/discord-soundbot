@@ -1,7 +1,8 @@
 import fs from 'fs';
 
 import { Message } from 'discord.js';
-// import ffmpeg from 'fluent-ffmpeg'; todo: fixeroni
+import { FFmpeg } from 'prism-media';
+import { spawn } from 'child_process';
 import ytdl from 'ytdl-core';
 
 import localize from '@util/i18n/localize';
@@ -35,12 +36,10 @@ export default class YoutubeDownloader extends BaseDownloader {
     startTime: string | undefined,
     endTime: string | undefined
   ) {
-    return (
-      this.download(url)
-        // .then(() => this.convert(filename, startTime, endTime)) fixeroni lateroni
-        .then(() => this.cleanUp(filename))
-        .catch(this.handleError)
-    );
+    return this.download(url)
+      .then(() => this.convert(filename, startTime, endTime))
+      .then(() => this.cleanUp(filename))
+      .catch(this.handleError);
   }
 
   private download(url: string) {
@@ -53,19 +52,15 @@ export default class YoutubeDownloader extends BaseDownloader {
   }
 
   private convert(name: string, startTime: string | undefined, endTime: string | undefined) {
-    // todo: fixeroni lateroni
-    // let ffmpegCommand = ffmpeg('tmp.mp4');
-    //
-    // if (startTime) ffmpegCommand = ffmpegCommand.setStartTime(startTime);
-    // if (endTime) ffmpegCommand = ffmpegCommand.setDuration(endTime);
-    //
-    // return new Promise((resolve, reject) => {
-    //   ffmpegCommand
-    //     .output(`./sounds/${name}.mp3`)
-    //     .on('end', resolve)
-    //     .on('error', reject)
-    //     .run();
-    // });
+    let args = ['-i', 'tmp.mp4', '-ar', '48000', '-ac', '2'];
+    if (startTime) args.push('-ss', startTime);
+    if (endTime) args.push('-to', endTime);
+    args.push(`./sounds/${name}.mp3`);
+
+    return new Promise((resolve, reject) => {
+      const transcoder = spawn(FFmpeg.getInfo().command, args);
+      transcoder.on('close', resolve).on('error', reject);
+    });
   }
 
   private cleanUp(name: string) {

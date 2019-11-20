@@ -93,7 +93,8 @@ export default class Config implements ConfigInterface {
   private initializeFromEnvironmentVariables() {
     for (let envKey in process.env) {
       const configKey = lodash.camelCase(envKey);
-      if (!this.hasOwnProperty(configKey)) { // small workaround to allow overwriting client ids from the ENV
+      if (!this.hasOwnProperty(configKey)) {
+        // small workaround to allow overwriting client ids from the ENV
         continue;
       }
 
