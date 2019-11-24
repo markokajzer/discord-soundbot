@@ -6,7 +6,7 @@ export default class QueueItem {
   public readonly message?: Message;
   public count: number;
 
-  constructor(name: string, channel: VoiceChannel, message?: Message, count: number = 1) {
+  constructor(name: string, channel: VoiceChannel, message?: Message, count = 1) {
     this.name = name;
     this.channel = channel;
     this.message = message;
