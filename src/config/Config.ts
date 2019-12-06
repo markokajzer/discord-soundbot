@@ -31,7 +31,7 @@ export default class Config implements ConfigInterface {
     'game'
   ];
 
-  private readonly JSON_KEYS = ['clientID', 'token', ...this.MODIFIABLE_FIELDS];
+  private readonly JSON_KEYS = ['clientId', 'token', ...this.MODIFIABLE_FIELDS];
 
   [index: string]: any;
 
@@ -93,8 +93,7 @@ export default class Config implements ConfigInterface {
   private initializeFromEnvironmentVariables() {
     for (let envKey in process.env) {
       const configKey = lodash.camelCase(envKey);
-      if (!this.hasOwnProperty(configKey)) {
-        // small workaround to allow overwriting client ids from the ENV
+      if(!this.JSON_KEYS.includes(configKey)) {
         continue;
       }
 
