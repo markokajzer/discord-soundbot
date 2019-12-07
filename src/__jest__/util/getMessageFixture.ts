@@ -2,7 +2,11 @@ import { Message } from 'discord.js';
 
 import getChannelFixture from './getChannelFixture';
 
-const getMessageFixture = (overrides?: Partial<Message>): Message =>
+interface PartialMessage {
+  content?: string;
+}
+
+const getMessageFixture = (overrides?: PartialMessage): Message =>
   (({
     channel: getChannelFixture(),
     reply: jest.fn(),

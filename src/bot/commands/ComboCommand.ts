@@ -18,12 +18,14 @@ export default class ComboCommand implements Command {
   }
 
   public run(message: Message, params: string[]) {
+    if (!message.member) return;
+
     if (params.length < this.NUMBER_OF_PARAMETERS) {
       message.channel.send(this.USAGE);
       return;
     }
 
-    const { voiceChannel } = message.member;
+    const { channel: voiceChannel } = message.member.voice;
     if (!voiceChannel) {
       message.reply(localize.t('helpers.voiceChannelFinder.error'));
       return;

@@ -13,6 +13,7 @@ export default class RenameCommand implements Command {
   public readonly USAGE = 'Usage: !rename <old> <new>';
 
   public run(message: Message, params: string[]) {
+    if (!message.member) return;
     if (!message.member.hasPermission(Permissions.FLAGS.ADMINISTRATOR!)) return;
 
     if (params.length !== this.NUMBER_OF_PARAMETERS) {

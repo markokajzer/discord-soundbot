@@ -9,6 +9,7 @@ export default class UnignoreCommand implements Command {
   public readonly USAGE = 'Usage: !unignore <user>';
 
   public run(message: Message) {
+    if (!message.member) return;
     if (!message.member.hasPermission(Permissions.FLAGS.ADMINISTRATOR!)) return;
 
     const { users } = message.mentions;
