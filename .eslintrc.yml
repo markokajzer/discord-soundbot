@@ -54,6 +54,9 @@ rules:
     - allow:
       - info
       - error
+  no-else-return:
+    - error
+    - allowElseIf: false
   no-multi-spaces:
     - error
     - ignoreEOLComments: true
