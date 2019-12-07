@@ -18,6 +18,8 @@ export default class LoopCommand implements Command {
   }
 
   public run(message: Message, params: string[]) {
+    if (!message.member) return;
+
     if (params.length > this.NUMBER_OF_PARAMETERS) {
       message.channel.send(this.USAGE);
       return;
@@ -26,7 +28,7 @@ export default class LoopCommand implements Command {
     const [sound, countAsString] = params;
     if (!existsSound(sound)) return;
 
-    const { voiceChannel } = message.member;
+    const { channel: voiceChannel } = message.member.voice;
     if (!voiceChannel) {
       message.reply(localize.t('helpers.voiceChannelFinder.error'));
       return;

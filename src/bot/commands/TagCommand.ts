@@ -29,7 +29,9 @@ export default class TagCommand implements Command {
     }
 
     if (params[0] === 'clear') {
+      if (!message.member) return;
       if (!message.member.hasPermission(Permissions.FLAGS.ADMINISTRATOR!)) return;
+
       sounds.clearTags(sound);
       return;
     }
