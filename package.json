@@ -23,7 +23,7 @@
   "author": "Marko Kajzer",
   "license": "MIT",
   "dependencies": {
-    "discord.js": "11.5.1",
+    "discord.js": "12.0.1",
     "fluent-ffmpeg": "2.1.2",
     "i18n": "0.8.4",
     "lodash": "4.17.15",
@@ -43,7 +43,8 @@
     "@types/i18n": "0.8.6",
     "@types/jest": "24.0.21",
     "@types/lowdb": "1.0.8",
-    "@types/node": "10.14.22",
+    "@types/node": "10.17.6",
+    "@types/ws": "6.0.4",
     "@typescript-eslint/eslint-plugin": "2.6.1",
     "@typescript-eslint/parser": "2.6.1",
     "eslint": "6.6.0",
