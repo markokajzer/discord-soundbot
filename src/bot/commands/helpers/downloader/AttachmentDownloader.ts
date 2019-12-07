@@ -21,15 +21,16 @@ export default class AttachmentDownloader extends BaseDownloader {
       this.validator
         .validate(attachment)
         .then(() => this.addSound(attachment))
-        .then(response => attachment.message.channel.send(response))
-        .catch(response => attachment.message.channel.send(response))
+        .then(response => message.channel.send(response))
+        .catch(response => message.channel.send(response))
     );
   }
 
   private addSound(attachment: MessageAttachment) {
     return this.makeRequest(attachment.url)
       .then(response =>
-        this.saveResponseToFile(response as IncomingMessage, attachment.filename.toLowerCase())
+        // Checked for attachment name during validation
+        this.saveResponseToFile(response as IncomingMessage, attachment.name!.toLowerCase())
       )
       .then(name => Promise.resolve(localize.t('commands.add.success', { name })))
       .catch(this.handleError);

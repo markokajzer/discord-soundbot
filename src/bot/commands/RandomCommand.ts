@@ -18,7 +18,9 @@ export default class RandomCommand implements Command {
   }
 
   public run(message: Message, params: string[]) {
-    const { voiceChannel } = message.member;
+    if (!message.member) return;
+
+    const { channel: voiceChannel } = message.member.voice;
     if (!voiceChannel) {
       message.reply(localize.t('helpers.voiceChannelFinder.error'));
       return;

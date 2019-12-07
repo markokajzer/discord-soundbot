@@ -1,4 +1,4 @@
-import { Client, Guild, GuildMember, Message, TextChannel } from 'discord.js';
+import { Client, Guild, Message, TextChannel, VoiceState } from 'discord.js';
 
 import Config from '@config/Config';
 import QueueItem from '@queue/QueueItem';
@@ -49,34 +49,38 @@ export default class SoundBot extends Client {
   }
 
   private onReady() {
+    if (!this.user) return;
+
     this.user.setActivity(this.config.game);
     this.commands.registerUserCommands(this.user);
   }
 
-  private onUserJoinsVoiceChannel(prevState: GuildMember, user: GuildMember) {
-    if (user.id === this.user.id) return;
+  private onUserJoinsVoiceChannel(oldState: VoiceState, newState: VoiceState) {
+    const { channel: previousVoiceChannel } = oldState;
+    const { channel: currentVoiceChannel, member } = newState;
 
-    if (!user.voiceChannelID || prevState.voiceChannelID === user.voiceChannelID) return;
-    if (!entrances.exists(user.id)) return;
+    if (!member) return;
+    if (!currentVoiceChannel || previousVoiceChannel === currentVoiceChannel) return;
+    if (!entrances.exists(member.id)) return;
 
-    const sound = entrances.get(user.id);
+    const sound = entrances.get(member.id);
     if (!getSounds().includes(sound)) return;
 
-    const { voiceChannel } = user;
-    this.queue.add(new QueueItem(sound, voiceChannel));
+    this.queue.add(new QueueItem(sound, currentVoiceChannel));
   }
 
-  private onUserLeavesVoiceChannel(prevState: GuildMember, user: GuildMember) {
-    if (user.id === this.user.id) return;
+  private onUserLeavesVoiceChannel(oldState: VoiceState, newState: VoiceState) {
+    const { channel: previousVoiceChannel } = oldState;
+    const { channel: currentVoiceChannel, member } = newState;
 
-    if (!prevState.voiceChannelID || prevState.voiceChannelID === user.voiceChannelID) return;
-    if (!exits.exists(user.id)) return;
+    if (!member) return;
+    if (!previousVoiceChannel || previousVoiceChannel === currentVoiceChannel) return;
+    if (!exits.exists(member.id)) return;
 
-    const sound = exits.get(user.id);
+    const sound = exits.get(member.id);
     if (!getSounds().includes(sound)) return;
 
-    const { voiceChannel } = prevState;
-    this.queue.add(new QueueItem(sound, voiceChannel));
+    this.queue.add(new QueueItem(sound, previousVoiceChannel));
   }
 
   private onMessage(message: Message) {
@@ -93,9 +97,15 @@ export default class SoundBot extends Client {
   }
 
   private findFirstWritableChannel(guild: Guild) {
-    const channels = guild.channels.filter(
-      channel => channel.type === 'text' && channel.permissionsFor(guild.me)!.has('SEND_MESSAGES')
-    );
+    if (!guild.me) return undefined;
+
+    const channels = guild.channels
+      .filter(channel => channel.type === 'text')
+      .filter(channel => {
+        const permissions = channel.permissionsFor(guild.me!);
+
+        return Boolean(permissions && permissions.has('SEND_MESSAGES'));
+      });
 
     if (!channels.size) return undefined;
     return channels.first() as TextChannel;

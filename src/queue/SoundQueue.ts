@@ -77,8 +77,8 @@ export default class SoundQueue {
 
   private deafen(connection: VoiceConnection) {
     // Can only deafen when in a channel, therefore need connection
-    if (connection.channel.guild.me.deaf !== this.config.deafen) {
-      connection.channel.guild.me.setDeaf(this.config.deafen);
+    if (connection.voice.selfDeaf !== this.config.deafen) {
+      connection.voice.setDeaf(this.config.deafen);
     }
 
     return Promise.resolve(connection);
@@ -87,7 +87,7 @@ export default class SoundQueue {
   private playSound(connection: VoiceConnection, name: string): Promise<VoiceConnection> {
     return new Promise(resolve => {
       this.dispatcher = connection
-        .playFile(name, { volume: this.config.volume })
+        .play(name, { volume: this.config.volume })
         .on('end', () => resolve(connection));
     });
   }
