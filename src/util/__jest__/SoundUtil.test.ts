@@ -1,4 +1,5 @@
 import fs from 'fs';
+
 import {
   existsSound,
   getSoundsWithExtension,
@@ -10,13 +11,11 @@ import {
 const MOCK_SOUND_FILES = ['bitconnect.mp3', 'testing.mp3', 'wonderful.mp3', 'testing.wav'];
 
 describe('SoundUtil', () => {
-  beforeAll(() => {
+  beforeEach(() => {
     (jest.spyOn(fs, 'readdirSync') as jest.SpyInstance).mockImplementation(() => MOCK_SOUND_FILES);
   });
 
-  afterAll(() => {
-    jest.restoreAllMocks();
-  });
+  afterEach(jest.restoreAllMocks);
 
   describe('getSoundsWithExtension', () => {
     it('returns sounds with extension', () => {
