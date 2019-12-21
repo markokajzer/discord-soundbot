@@ -105,12 +105,12 @@ export default class SoundBot extends Client {
     if (!guild.me) return undefined;
 
     const channels = guild.channels
-        .filter(channel => channel.type === 'text')
-        .filter(channel => {
-          const permissions = channel.permissionsFor(guild.me!);
+      .filter(channel => channel.type === 'text')
+      .filter(channel => {
+        const permissions = channel.permissionsFor(guild.me!);
 
-          return Boolean(permissions && permissions.has('SEND_MESSAGES'));
-        });
+        return Boolean(permissions && permissions.has('SEND_MESSAGES'));
+      });
 
     if (!channels.size) return undefined;
     return channels.first() as TextChannel;
