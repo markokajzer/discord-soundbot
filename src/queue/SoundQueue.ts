@@ -38,7 +38,7 @@ export default class SoundQueue {
     if (this.config.deleteMessages) this.deleteMessages();
 
     // Prevent further looping
-    this.currentSound.count = 0;
+    this.currentSound = null;
     this.queue = [];
   }
 
