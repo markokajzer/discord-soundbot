@@ -97,7 +97,12 @@ export default class Config implements ConfigInterface {
         continue;
       }
 
-      this.set(configKey, [process.env[envKey]!]);
+      let envValue = [process.env[envKey]!];
+      if (configKey == 'acceptedExtensions') {
+        envValue = envValue[0].split(',');
+      }
+
+      this.set(configKey, envValue);
     }
   }
 

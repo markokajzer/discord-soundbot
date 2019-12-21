@@ -88,4 +88,12 @@ describe('Setting config from Environment Variables', () => {
     expect(testedConfig.stayInChannel).toStrictEqual(false);
     expect(testedConfig.deafen).toStrictEqual(false);
   });
+
+  test('You can set array config values by using comma seperation', () => {
+    process.env.ACCEPTED_EXTENSIONS = '.mp3,.ogg,.wav,.mp4,.flac';
+
+    let testedConfig = new Config();
+
+    expect(testedConfig.acceptedExtensions).toEqual(['.mp3', '.ogg', '.wav', '.mp4', '.flac']);
+  });
 });
