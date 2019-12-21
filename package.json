@@ -31,7 +31,7 @@
     "opusscript": "^0.0.7",
     "prism-media": "amishshah/prism-media#master",
     "replace-in-file": "4.2.0",
-    "ytdl-core": "1.0.0"
+    "ytdl-core": "ˆ1.0.3"
   },
   "optionalDependencies": {
     "bufferutil": "4.0.1",
