@@ -53,7 +53,7 @@ export default class Config implements ConfigInterface {
         this[field] = parseFloat(value[0]);
         break;
       case 'boolean':
-        this[field] = value[0] === 'true';
+        this[field] = value[0].toLowerCase() === 'true';
         break;
       case 'object':
         this[field] = value;
@@ -93,7 +93,7 @@ export default class Config implements ConfigInterface {
   private initializeFromEnvironmentVariables() {
     for (let envKey in process.env) {
       const configKey = lodash.camelCase(envKey);
-      if(!this.JSON_KEYS.includes(configKey)) {
+      if (!this.JSON_KEYS.includes(configKey)) {
         continue;
       }
 
