@@ -2,12 +2,17 @@
 
 parser: "@typescript-eslint/parser"
 
+plugins:
+  - "@typescript-eslint"
+  - jest
+  - prettier
+
 extends:
   - airbnb-base
   - plugin:@typescript-eslint/recommended
   - plugin:jest/recommended
   - plugin:jest/style
-  - plugin:prettier/recommended
+  - prettier
   - prettier/@typescript-eslint
 
 
@@ -49,6 +54,9 @@ rules:
     - allow:
       - info
       - error
+  no-else-return:
+    - error
+    - allowElseIf: false
   no-multi-spaces:
     - error
     - ignoreEOLComments: true
@@ -67,9 +75,6 @@ rules:
     - error
     - always
     - exceptAfterSingleLine: true
-  # Replaced by @typescript-eslint/semi
-  semi:
-    - off
   "@typescript-eslint/explicit-function-return-type":
     - off
   "@typescript-eslint/explicit-member-accessibility":
@@ -79,9 +84,6 @@ rules:
   "@typescript-eslint/no-non-null-assertion":
     - off
   "@typescript-eslint/no-object-literal-type-assertion":
-    - off
-  # Conflicts with prettier
-  "@typescript-eslint/semi":
     - off
 
 # eslint-plugin-jest

@@ -30,10 +30,8 @@ export default class AttachmentDownloader extends BaseDownloader {
   private addSound(attachment: MessageAttachment) {
     return this.makeRequest(attachment.url)
       .then(response =>
-        this.saveResponseToFile(
-          response as IncomingMessage,
-          attachment.name ? attachment.name.toString().toLocaleLowerCase() : ''
-        )
+        // Checked for attachment name during validation
+        this.saveResponseToFile(response as IncomingMessage, attachment.name!.toLowerCase())
       )
       .then(name => Promise.resolve(localize.t('commands.add.success', { name })))
       .catch(this.handleError);

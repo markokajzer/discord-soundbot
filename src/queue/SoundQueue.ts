@@ -77,12 +77,8 @@ export default class SoundQueue {
 
   private deafen(connection: VoiceConnection): Promise<VoiceConnection> {
     // Can only deafen when in a channel, therefore need connection
-    if (!connection.channel.guild.me) {
-      return Promise.reject('Bot somehow not in guild');
-    }
-
-    if (connection.channel.guild.me.voice.deaf !== this.config.deafen) {
-      connection.channel.guild.me.voice.setDeaf(this.config.deafen);
+    if (connection.voice.selfDeaf !== this.config.deafen) {
+      connection.voice.setDeaf(this.config.deafen);
     }
 
     return Promise.resolve(connection);

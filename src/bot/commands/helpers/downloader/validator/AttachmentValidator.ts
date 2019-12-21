@@ -17,7 +17,9 @@ export default class AttachmentValidator extends BaseValidator {
   }
 
   private validateAttachment(attachment: MessageAttachment) {
-    const fileName = attachment.name ? attachment.name.toString().toLocaleLowerCase() : '';
+    if (!attachment.name) throw new Error('Attachment without name :confused:');
+
+    const fileName = attachment.name.toLowerCase();
     const soundName = fileName.substring(0, fileName.lastIndexOf('.'));
 
     return Promise.all([

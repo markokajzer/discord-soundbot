@@ -1,4 +1,4 @@
-import { DMChannel, Message } from 'discord.js';
+import { Message } from 'discord.js';
 
 declare module 'discord.js' {
   interface Message {
@@ -12,5 +12,5 @@ Message.prototype.hasPrefix = function hasPrefix(prefix) {
 };
 
 Message.prototype.isDirectMessage = function isDirectMessage() {
-  return this.channel instanceof DMChannel;
+  return this.channel.type === 'dm';
 };

@@ -1,4 +1,4 @@
-import { MessageAttachment, Message } from 'discord.js';
+import { Message, MessageAttachment } from 'discord.js';
 
 import { existsSound, getPathForSound } from '@util/SoundUtil';
 import Command from './base/Command';

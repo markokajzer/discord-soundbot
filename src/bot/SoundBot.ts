@@ -48,8 +48,10 @@ export default class SoundBot extends Client {
   }
 
   private onReady() {
-    this.user!.setActivity(this.config.game);
-    this.commands.registerUserCommands(this.user!);
+    if (!this.user) return;
+
+    this.user.setActivity(this.config.game);
+    this.commands.registerUserCommands(this.user);
   }
 
   private handleVoiceStateUpdate(oldState: VoiceState, newState: VoiceState) {
@@ -100,11 +102,15 @@ export default class SoundBot extends Client {
   }
 
   private findFirstWritableChannel(guild: Guild) {
-    const me = guild.me;
-    if (!me) return;
-    const channels = guild.channels.filter(
-      channel => channel.type === 'text' && channel.permissionsFor(me)!.has('SEND_MESSAGES')
-    );
+    if (!guild.me) return undefined;
+
+    const channels = guild.channels
+        .filter(channel => channel.type === 'text')
+        .filter(channel => {
+          const permissions = channel.permissionsFor(guild.me!);
+
+          return Boolean(permissions && permissions.has('SEND_MESSAGES'));
+        });
 
     if (!channels.size) return undefined;
     return channels.first() as TextChannel;

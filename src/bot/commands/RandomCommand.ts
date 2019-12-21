@@ -18,12 +18,10 @@ export default class RandomCommand implements Command {
   }
 
   public run(message: Message, params: string[]) {
-    if (!message.member) {
-      return;
-    }
+    if (!message.member) return;
 
-    const { channel } = message.member.voice;
-    if (!channel) {
+    const { channel: voiceChannel } = message.member.voice;
+    if (!voiceChannel) {
       message.reply(localize.t('helpers.voiceChannelFinder.error'));
       return;
     }
@@ -32,6 +30,6 @@ export default class RandomCommand implements Command {
       params.length === this.NUMBER_OF_PARAMETERS ? soundsDb.withTag(params[0]) : getSounds();
 
     const random = sounds[Math.floor(Math.random() * sounds.length)];
-    this.queue.add(new QueueItem(random, channel, message));
+    this.queue.add(new QueueItem(random, voiceChannel, message));
   }
 }

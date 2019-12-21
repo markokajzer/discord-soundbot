@@ -18,26 +18,24 @@ export default class LoopCommand implements Command {
   }
 
   public run(message: Message, params: string[]) {
+    if (!message.member) return;
+
     if (params.length > this.NUMBER_OF_PARAMETERS) {
       message.channel.send(this.USAGE);
-      return;
-    }
-
-    if (!message.member) {
       return;
     }
 
     const [sound, countAsString] = params;
     if (!existsSound(sound)) return;
 
-    const { channel } = message.member.voice;
-    if (!channel) {
+    const { channel: voiceChannel } = message.member.voice;
+    if (!voiceChannel) {
       message.reply(localize.t('helpers.voiceChannelFinder.error'));
       return;
     }
 
     const count = parseInt(countAsString) || Number.MAX_SAFE_INTEGER;
-    const item = new QueueItem(sound, channel, message, count);
+    const item = new QueueItem(sound, voiceChannel, message, count);
 
     this.queue.add(item);
   }

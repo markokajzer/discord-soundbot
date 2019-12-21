@@ -24,14 +24,14 @@
   "license": "MIT",
   "dependencies": {
     "awilix": "^4.2.2",
-    "discord.js": "discordjs/discord.js#1352bff",
+    "discord.js": "discordjs/discord.js#master",
     "ffmpeg-static": "^2.7.0",
     "i18n": "^0.8.4",
     "lowdb": "^1.0.0",
     "opusscript": "^0.0.7",
     "replace-in-file": "4.2.0",
     "ytdl-core": "1.0.0",
-    "prism-media": "CatsMiaow/prism-media#master"
+    "prism-media": "amishshah/prism-media#master"
   },
   "optionalDependencies": {
     "bufferutil": "4.0.1",
@@ -44,7 +44,7 @@
     "@types/jest": "24.0.21",
     "@types/lowdb": "1.0.8",
     "@types/node": "12.12.7",
-    "@types/ws": "^6.0.3",
+    "@types/ws": "^6.0.4",
     "@typescript-eslint/eslint-plugin": "2.6.1",
     "@typescript-eslint/parser": "2.6.1",
     "eslint": "6.6.0",

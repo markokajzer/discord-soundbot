@@ -21,7 +21,8 @@ export default class AvatarCommand implements UserCommand {
   }
 
   public run(message: Message, params: string[]) {
-    if (!message.member || !message.member.hasPermission(Permissions.FLAGS.ADMINISTRATOR!)) return;
+    if (!message.member) return;
+    if (!message.member.hasPermission(Permissions.FLAGS.ADMINISTRATOR!)) return;
 
     if (params.length === this.NUMBER_OF_PARAMETERS && params[0] === 'remove') {
       this.user.setAvatar('');
@@ -40,7 +41,7 @@ export default class AvatarCommand implements UserCommand {
     }
 
     this.user
-      .setAvatar(attachment.url)
+      .setAvatar(message.attachments.first()!.url)
       .catch(() => message.channel.send(localize.t('commands.avatar.errors.tooFast')));
   }
 
