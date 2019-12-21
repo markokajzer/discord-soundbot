@@ -40,16 +40,22 @@ describe('SoundUtil', () => {
   });
 
   describe('getPathForSound', () => {
-    expect(getPathForSound('bitconnect')).toEqual('sounds/bitconnect.mp3');
+    it('returns the path of a sound', () => {
+      expect(getPathForSound('bitconnect')).toEqual('sounds/bitconnect.mp3');
+    });
   });
 
   describe('existsSound', () => {
     describe('when sound exists', () => {
-      expect(existsSound('bitconnect')).toBe(true);
+      it('returns true', () => {
+        expect(existsSound('bitconnect')).toBe(true);
+      });
     });
 
     describe('when sound does not exists', () => {
-      expect(existsSound('nON_EXISTING_SOUND')).toBe(false);
+      it('returns false', () => {
+        expect(existsSound('NON_EXISTING_SOUND')).toBe(false);
+      });
     });
   });
 });
