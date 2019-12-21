@@ -36,9 +36,6 @@ rules:
     - as-needed
   class-methods-use-this:
     - off
-  comma-dangle:
-    - error
-    - never
   curly:
     - error
     - multi-line
