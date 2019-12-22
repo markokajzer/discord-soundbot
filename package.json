@@ -63,6 +63,7 @@
   "scripts": {
     "clean": "rm -rf dist",
     "build": "tsc -p tsconfig.json",
+    "format:check": "prettier --config .prettierrc.yml --ignore-path .prettierignore --list-different '**/**.ts'",
     "format": "prettier --config .prettierrc.yml --ignore-path .prettierignore --write '**/**.ts'",
     "lint": "eslint --rulesdir ./vendor/rules/ -c .eslintrc.yml --ext ts .",
     "postbuild": "node dist/lib/postbuild.js",
