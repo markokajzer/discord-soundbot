@@ -8,6 +8,8 @@ import {
   getPathForSound
 } from '../SoundUtil';
 
+jest.mock('../Container');
+
 const MOCK_SOUND_FILES = ['bitconnect.mp3', 'testing.mp3', 'wonderful.mp3', 'testing.wav'];
 
 describe('SoundUtil', () => {
