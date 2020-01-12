@@ -3,7 +3,7 @@ import connection from './connection';
 export const exists = (id: string) =>
   !!connection
     .get('ignoreList')
-    .find(id)
+    .find(v => v === id)
     .value();
 
 export const add = (id: string) => {
@@ -18,6 +18,6 @@ export const add = (id: string) => {
 export const remove = (id: string) => {
   connection
     .get('ignoreList')
-    .remove(id)
+    .remove(v => v === id)
     .write();
 };
