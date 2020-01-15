@@ -1,8 +1,8 @@
 import lowdb from 'lowdb';
 import FileSync from 'lowdb/adapters/FileSync';
-import { fileLocation } from './connectionSettings';
+import connectionSettings from './connectionSettings';
 
-const adapter = new FileSync(fileLocation);
+const adapter = new FileSync(connectionSettings.fileLocation);
 const connection = lowdb(adapter);
 
 connection

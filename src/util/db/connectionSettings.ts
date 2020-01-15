@@ -1,1 +1,3 @@
-export const fileLocation = 'db.json';
+export default {
+  fileLocation: 'db.json'
+};
