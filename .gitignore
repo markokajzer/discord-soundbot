@@ -13,3 +13,4 @@ sounds/*
 !sounds/johncena.mp3
 
 db.json
+test-db.json
