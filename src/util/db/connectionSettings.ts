@@ -1,1 +1,1 @@
-export const fileLocation = 'db.json'
+export const fileLocation = 'db.json';
