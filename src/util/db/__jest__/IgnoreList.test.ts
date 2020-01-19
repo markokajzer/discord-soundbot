@@ -1,6 +1,6 @@
 import { add, remove, exists } from '../IgnoreList';
 
-jest.mock('../connectionSettings');
+jest.mock('../connection');
 
 describe('IgnoreList', () => {
   const user = '123';
