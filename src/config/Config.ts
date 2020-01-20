@@ -45,6 +45,7 @@ export default class Config implements ConfigInterface {
 
   public set(field: string, value: string[]) {
     if (!this.JSON_KEYS.includes(field)) return;
+
     switch (typeof this[field]) {
       case 'string':
         // eslint-disable-next-line prefer-destructuring
