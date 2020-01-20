@@ -33,6 +33,7 @@ module.exports = {
   // ],
   coveragePathIgnorePatterns: [
     "/node_modules/",
+    "/__jest__/util/",
     ".d.ts"
   ],
 
