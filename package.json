@@ -31,7 +31,7 @@
     "lowdb": "1.0.0",
     "node-opus": "0.3.3",
     "replace-in-file": "4.2.0",
-    "ytdl-core": "1.0.0"
+    "ytdl-core": "1.0.7"
   },
   "optionalDependencies": {
     "bufferutil": "4.0.1",
