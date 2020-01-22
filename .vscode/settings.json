@@ -1,0 +1,16 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+
+  "eslint.options": {
+    "rulePaths": ["./vendor/rules"]
+  },
+  "eslint.validate": ["typescript"],
+
+  "typescript.tsdk": "node_modules/typescript/lib",
+
+  "[typescript]": {
+    "editor.formatOnSave": true,
+  }
+}
