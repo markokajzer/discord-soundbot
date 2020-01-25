@@ -1,10 +1,9 @@
 import fs from 'fs';
 
-import Config from '@config/Config';
 import container from './Container';
 
 const getSoundsFromSoundFolder = () => {
-  const config = container.cradle.config as Config;
+  const { config } = container;
   const files = fs.readdirSync('sounds/');
 
   return files.filter(sound =>

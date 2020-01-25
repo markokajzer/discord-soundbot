@@ -4,6 +4,7 @@ import path from 'path';
 
 import Config from '@config/Config';
 import SoundQueue from '@queue/SoundQueue';
+import SoundBot from '../bot/SoundBot';
 import CommandCollection from '../bot/CommandCollection';
 
 const container = awilix.createContainer({
@@ -66,4 +67,9 @@ container.register({
     }))
 });
 
-export default container;
+interface SoundBotContainer {
+  config: Config;
+  soundBot: SoundBot;
+}
+
+export default container.cradle as SoundBotContainer;

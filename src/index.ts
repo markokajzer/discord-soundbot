@@ -11,8 +11,8 @@ class DiscordSoundBot {
   private readonly bot: SoundBot;
 
   constructor(config: ConfigInterface, commands: Command[] = []) {
-    this.config = container.cradle.config;
-    this.bot = container.cradle.soundBot;
+    this.config = container.config;
+    this.bot = container.soundBot;
 
     this.initializeWith(config, commands);
   }
