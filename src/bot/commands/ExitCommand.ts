@@ -4,7 +4,7 @@ import * as exits from '@util/db/Exits';
 import { getSounds } from '@util/SoundUtil';
 import Command from './base/Command';
 
-export default class EntranceCommand implements Command {
+export default class ExitCommand implements Command {
   public readonly TRIGGERS = ['exit'];
 
   public run(message: Message, params: string[]) {
