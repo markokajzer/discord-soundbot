@@ -24,6 +24,7 @@ export default class SoundBot extends Client {
     queue: SoundQueue
   ) {
     super();
+
     this.config = config;
     this.commands = commands;
     this.messageHandler = messageHandler;
