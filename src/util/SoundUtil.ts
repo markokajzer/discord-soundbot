@@ -1,9 +1,7 @@
 import fs from 'fs';
-
-import container from './Container';
+import { config } from './Container';
 
 const getSoundsFromSoundFolder = () => {
-  const { config } = container;
   const files = fs.readdirSync('sounds/');
 
   return files.filter(sound =>
