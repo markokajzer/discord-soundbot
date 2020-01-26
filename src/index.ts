@@ -1,5 +1,4 @@
-import container from '@util/Container';
-
+import Container from '@util/Container';
 import Config from '@config/Config';
 import ConfigInterface from '@config/ConfigInterface';
 import localize from '@util/i18n/localize';
@@ -11,8 +10,8 @@ class DiscordSoundBot {
   private readonly bot: SoundBot;
 
   constructor(config: ConfigInterface, commands: Command[] = []) {
-    this.config = container.config;
-    this.bot = container.soundBot;
+    this.config = Container.config;
+    this.bot = Container.soundBot;
 
     this.initializeWith(config, commands);
   }
