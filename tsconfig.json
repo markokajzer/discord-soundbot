@@ -15,7 +15,8 @@
       "@config/*": ["src/config/*"],
       "@queue/*": ["src/queue/*"],
       "@util/*": ["src/util/*"]
-    }
+    },
+    "incremental": true
   },
   "include": [
     "src/**/*",
