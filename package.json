@@ -23,7 +23,6 @@
   "author": "Marko Kajzer",
   "license": "MIT",
   "dependencies": {
-    "awilix": "4.2.2",
     "discord.js": "11.5.1",
     "fluent-ffmpeg": "2.1.2",
     "i18n": "0.8.4",
