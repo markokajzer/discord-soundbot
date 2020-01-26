@@ -1,13 +1,11 @@
 #!/usr/bin/env node
 
 import localize from '@util/i18n/localize';
-import container from '../src/util/Container';
+import Container from '@util/Container';
 
-const { config } = container;
+const { config, soundBot: bot } = Container;
 
 localize.setLocale(config.language);
-
-const bot = container.soundBot;
 bot.start();
 
 console.info(localize.t('url', { clientId: config.clientId }));
