@@ -24,7 +24,7 @@
   ],
 
   "exclude": [
-    "src/**/__jest__/**/*.ts",
-    "src/**/__mocks__/**/*.ts"
+    "**/__jest__",
+    "**/__mocks__"
   ]
 }
