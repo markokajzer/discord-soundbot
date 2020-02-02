@@ -3,7 +3,6 @@ import chunkedMessages from '../chunkedMessages';
 describe('chunkedMessages', () => {
   // 150 random words of 10 character length
   const toChunk = [
-    // eslint-disable-next-line max-len
     'boUlqvcQywSupKqT62yp',
     'DwvGH2wDkW5t10O04yPn',
     'GGbrTIo7hSlIazuyZlKr',
