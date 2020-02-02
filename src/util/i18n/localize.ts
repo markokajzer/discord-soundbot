@@ -8,7 +8,7 @@ const setLocale = (locale: string) => {
 };
 
 const translate = (id: string, replacements?: Replacements) => i18n.translate(id, replacements);
-const t = (id: string, replacements?: Replacements) => translate(id, replacements);
+const t = translate;
 
 const localize = {
   getCurrentLocale,
