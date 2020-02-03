@@ -16,8 +16,7 @@ export default class YoutubeDownloader extends BaseDownloader {
     this.validator = youtubeValidator;
   }
 
-  public handle(message: Message) {
-    const params = message.content.split(' ');
+  public handle(message: Message, params: string[]) {
     if (params.length < 2 || params.length > 4) return;
 
     const [name, link, start, end] = params;

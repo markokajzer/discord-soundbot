@@ -15,9 +15,9 @@ export default class AddCommand implements Command {
     this.youtubeDownloader = youtubeDownloader;
   }
 
-  public run(message: Message) {
+  public run(message: Message, params: string[]) {
     if (!message.attachments.size) {
-      this.youtubeDownloader.handle(message);
+      this.youtubeDownloader.handle(message, params);
       return;
     }
 

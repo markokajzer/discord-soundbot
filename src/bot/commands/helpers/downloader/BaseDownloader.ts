@@ -5,5 +5,5 @@ import BaseValidator from './validator/BaseValidator';
 export default abstract class BaseDownloader {
   protected readonly validator!: BaseValidator;
 
-  public abstract handle(message: Message): void;
+  public abstract handle(message: Message, params: string[]): void;
 }
