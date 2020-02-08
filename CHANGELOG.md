@@ -1,3 +1,21 @@
+## Unreleased
+
+**Features**
+
++ Set config variables from environment
+
+**Bugfixes**
+
++ Fix `!ignore` command
+
+**Under the hood**
+
++ Update dependencies
++ Enable incremental builds
++ Remove `awilix` dependency
++ Added basic CI via GitHub Actions
++ Added VSCode settings and recommended extensions for contributors
+
 ## 1.6.0 (2019-10-27)
 
 **Features**
