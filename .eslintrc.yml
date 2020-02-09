@@ -57,12 +57,6 @@ rules:
   no-multi-spaces:
     - error
     - ignoreEOLComments: true
-  object-curly-newline:
-    - error
-    - ObjectExpression: { minProperties: 4, multiline: true, consistent: true }
-      ObjectPattern: { multiline: true, consistent: true }
-      ImportDeclaration: { multiline: true, consistent: true }
-      ExportDeclaration: { minProperties: 4, multiline: true, consistent: true }
   radix:
     - off
 
