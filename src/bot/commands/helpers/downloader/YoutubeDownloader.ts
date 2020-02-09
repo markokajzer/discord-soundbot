@@ -8,6 +8,16 @@ import localize from '@util/i18n/localize';
 import BaseDownloader from './BaseDownloader';
 import YoutubeValidator from './validator/YoutubeValidator';
 
+interface ConvertOptions {
+  soundName: string;
+  startTime: string | undefined;
+  endTime: string | undefined;
+}
+
+interface DownloadOptions extends ConvertOptions {
+  url: string;
+}
+
 export default class YoutubeDownloader extends BaseDownloader {
   protected readonly validator: YoutubeValidator;
 
@@ -19,24 +29,19 @@ export default class YoutubeDownloader extends BaseDownloader {
   public handle(message: Message, params: string[]) {
     if (params.length < 2 || params.length > 4) return;
 
-    const [name, link, start, end] = params;
+    const [soundName, url, startTime, endTime] = params;
 
     this.validator
-      .validate(name, link)
-      .then(() => this.addSound(link, name, start, end))
+      .validate(soundName, url)
+      .then(() => this.addSound({ url, soundName, startTime, endTime }))
       .then(result => message.channel.send(result))
       .catch(result => message.channel.send(result));
   }
 
-  private addSound(
-    url: string,
-    filename: string,
-    startTime: string | undefined,
-    endTime: string | undefined
-  ) {
+  private addSound({ url, soundName, startTime, endTime }: DownloadOptions) {
     return this.download(url)
-      .then(() => this.convert(filename, startTime, endTime))
-      .then(() => this.cleanUp(filename))
+      .then(() => this.convert({ soundName, startTime, endTime }))
+      .then(() => this.cleanUp(soundName))
       .catch(this.handleError);
   }
 
@@ -49,7 +54,7 @@ export default class YoutubeDownloader extends BaseDownloader {
     });
   }
 
-  private convert(name: string, startTime: string | undefined, endTime: string | undefined) {
+  private convert({ soundName, startTime, endTime }: ConvertOptions) {
     let ffmpegCommand = ffmpeg('tmp.mp4');
 
     if (startTime) ffmpegCommand = ffmpegCommand.setStartTime(startTime);
@@ -57,7 +62,7 @@ export default class YoutubeDownloader extends BaseDownloader {
 
     return new Promise((resolve, reject) => {
       ffmpegCommand
-        .output(`./sounds/${name}.mp3`)
+        .output(`./sounds/${soundName}.mp3`)
         .on('end', resolve)
         .on('error', reject)
         .run();
