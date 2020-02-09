@@ -23,6 +23,7 @@ export default class YoutubeDownloader extends BaseDownloader {
 
   constructor(youtubeValidator: YoutubeValidator) {
     super();
+
     this.validator = youtubeValidator;
   }
 
@@ -71,11 +72,13 @@ export default class YoutubeDownloader extends BaseDownloader {
 
   private cleanUp(name: string) {
     fs.unlinkSync('tmp.mp4');
+
     return Promise.resolve(localize.t('commands.add.success', { name }));
   }
 
   private handleError(error: Error) {
     console.error(error);
+
     return Promise.reject(localize.t('commands.add.error'));
   }
 }

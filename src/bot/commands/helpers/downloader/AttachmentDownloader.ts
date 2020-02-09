@@ -13,6 +13,7 @@ export default class AttachmentDownloader extends BaseDownloader {
 
   constructor(attachmentValidator: AttachmentValidator) {
     super();
+
     this.validator = attachmentValidator;
   }
 
@@ -54,6 +55,7 @@ export default class AttachmentDownloader extends BaseDownloader {
 
   private handleError(error: Error) {
     console.error(error);
+
     return Promise.reject(localize.t('commands.add.error'));
   }
 }
