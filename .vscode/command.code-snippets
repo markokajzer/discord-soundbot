@@ -1,0 +1,20 @@
+{
+  "Create new command": {
+    "description": "Create new command",
+    "scope": "typescript",
+    "prefix": "cnc",
+    "body": [
+      "import { Message } from 'discord.js'",
+      "",
+      "import Command from './base/Command';",
+      "",
+      "export default class ${1:NewCommand} implements Command {",
+      "\tpublic readonly TRIGGERS = ['${2:trigger}'];",
+      "",
+      "\tpublic run(message: Message) {",
+      "\t\t$0",
+      "\t}",
+      "}"
+    ],
+  }
+}
