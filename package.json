@@ -55,6 +55,7 @@
     "jest": "24.9.0",
     "prettier": "^1.19.1",
     "ts-jest": "24.1.0",
+    "ts-node": "8.6.2",
     "typescript": "3.7.2"
   },
   "engines": {
@@ -66,10 +67,10 @@
     "format:check": "prettier --config .prettierrc.yml --ignore-path .prettierignore --list-different '**/**.ts'",
     "format": "prettier --config .prettierrc.yml --ignore-path .prettierignore --write '**/**.ts'",
     "lint": "eslint --rulesdir ./vendor/rules/ -c .eslintrc.yml --ext ts .",
-    "postbuild": "node dist/lib/postbuild.js",
+    "postbuild": "ts-node lib/postbuild.ts",
     "serve": "node dist/bin/soundbot.js",
     "start": "npm run build && npm run serve",
-    "translate": "node dist/lib/checkTranslations.js",
+    "translate": "ts-node lib/checkTranslations.ts",
     "rebuild": "npm run clean && npm run build",
     "release": "npm run rebuild && npm run lint && npm run format"
   }
