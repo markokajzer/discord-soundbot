@@ -1,16 +1,14 @@
 import { Message } from 'discord.js';
 import './discord/Message';
 
-import Config from '@config/Config';
 import * as ignoreList from '@util/db/IgnoreList';
+import { config } from '@util/Container';
 import CommandCollection from './CommandCollection';
 
 export default class MessageHandler {
-  private readonly config: Config;
   private readonly commands: CommandCollection;
 
-  constructor(config: Config, commands: CommandCollection) {
-    this.config = config;
+  constructor(commands: CommandCollection) {
     this.commands = commands;
   }
 
@@ -18,7 +16,7 @@ export default class MessageHandler {
     if (!this.isValidMessage(message)) return;
 
     const messageToHandle = message;
-    messageToHandle.content = message.content.substring(this.config.prefix.length);
+    messageToHandle.content = message.content.substring(config.prefix.length);
 
     this.commands.execute(message);
   }
@@ -27,7 +25,7 @@ export default class MessageHandler {
     return (
       !message.author.bot &&
       !message.isDirectMessage() &&
-      message.hasPrefix(this.config.prefix) &&
+      message.hasPrefix(config.prefix) &&
       !ignoreList.exists(message.author.id)
     );
   }

@@ -1,5 +1,5 @@
 import { Message, DMChannel } from 'discord.js';
-import '../../discord/Message';
+import '../discord/Message';
 
 import Config from '@config/Config';
 import * as ignoreList from '@util/db/IgnoreList';
@@ -7,11 +7,10 @@ import MessageHandler from '../MessageHandler';
 import CommandCollection from '../CommandCollection';
 
 const PREFIX = '!';
-const config = { prefix: PREFIX } as Config;
 const commandCollection = new CommandCollection([]);
 
 describe('MessageHandler', () => {
-  const messageHandler = new MessageHandler(config, commandCollection);
+  const messageHandler = new MessageHandler(commandCollection);
 
   describe('handle', () => {
     jest.spyOn(commandCollection, 'execute');

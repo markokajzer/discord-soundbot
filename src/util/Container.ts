@@ -85,7 +85,7 @@ const commands = [
 ];
 
 const commandCollection = new CommandCollection(commands);
-const messageHandler = new MessageHandler(config, commandCollection);
+const messageHandler = new MessageHandler(commandCollection);
 
 const soundBot = new SoundBot(config, commandCollection, messageHandler, queue);
 
