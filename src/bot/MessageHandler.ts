@@ -1,5 +1,5 @@
 import { Message } from 'discord.js';
-import '../discord/Message';
+import './discord/Message';
 
 import Config from '@config/Config';
 import * as ignoreList from '@util/db/IgnoreList';
