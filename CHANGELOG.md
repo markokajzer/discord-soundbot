@@ -5,7 +5,7 @@
 + Set config variables from environment
 + Upgrade to Discord.js v12
   + Resolves long standing issue of sounds being cut off at the end when using Node.js versions > 8
-  + Resolves issues for verys hort sounds
+  + Resolves issues for very short sounds
 
 **Bugfixes**
 
