@@ -30,7 +30,7 @@ export default class SoundQueue {
   public next() {
     if (!this.dispatcher) return;
 
-    this.dispatcher.emit('end');
+    this.dispatcher.emit('finish');
   }
 
   public clear() {
@@ -88,7 +88,8 @@ export default class SoundQueue {
     return new Promise(resolve => {
       this.dispatcher = connection
         .play(name, { volume: this.config.volume })
-        .on('end', () => resolve(connection));
+        .on('finish', () => resolve(connection))
+        .on('close', () => resolve(connection));
     });
   }
 
