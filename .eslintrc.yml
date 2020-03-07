@@ -24,8 +24,7 @@ parserOptions:
   sourceType: module
 
 rules:
-  import/no-unresolved:
-    - off
+  import/no-unresolved: off
 
   arrow-body-style:
     - error
@@ -34,18 +33,11 @@ rules:
   arrow-parens:
     - error
     - as-needed
-  class-methods-use-this:
-    - off
+  class-methods-use-this: off
   curly:
     - error
     - multi-line
     - consistent
-  implicit-arrow-linebreak:
-    - off
-  max-len:
-    - error
-    - 100
-    - 2
   no-console:
     - error
     - allow:
@@ -57,8 +49,7 @@ rules:
   no-multi-spaces:
     - error
     - ignoreEOLComments: true
-  radix:
-    - off
+  radix: off
 
 # @typescript-eslint
   # Does not work with class fields :(
@@ -66,21 +57,14 @@ rules:
     - error
     - always
     - exceptAfterSingleLine: true
-  "@typescript-eslint/explicit-function-return-type":
-    - off
-  "@typescript-eslint/explicit-member-accessibility":
-    - off
-  "@typescript-eslint/indent":
-    - off
-  "@typescript-eslint/no-non-null-assertion":
-    - off
-  "@typescript-eslint/no-object-literal-type-assertion":
-    - off
+  "@typescript-eslint/explicit-function-return-type": off
+  "@typescript-eslint/explicit-member-accessibility": off
+  "@typescript-eslint/indent": off
+  "@typescript-eslint/no-non-null-assertion": off
+  "@typescript-eslint/no-object-literal-type-assertion": off
 
 # eslint-plugin-jest
-  jest/no-truthy-falsy:
-    - error
+  jest/no-truthy-falsy: error
 
 # Custom rules
-  prefer-early-return:
-    - error
+  prefer-early-return: error
