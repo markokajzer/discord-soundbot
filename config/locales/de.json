@@ -76,7 +76,7 @@
     "avatar": {
       "errors": {
         "noAvatar": "Avatar noch nicht gesetzt. Versuche einen mit `{prefix}avatar` und einem Bild zu setzen!",
-        "tooFast": "You wechselst den Avatar zu schnell. Versuche es später noch einmal."
+        "tooFast": "Du wechselst den Avatar zu schnell. Versuche es später noch einmal."
       },
       "url": "Derzeitiger Avatar: {url}"
     },

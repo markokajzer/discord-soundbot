@@ -45,7 +45,7 @@ export default class AvatarCommand implements UserCommand {
   }
 
   private listAvatar(message: Message) {
-    if (this.user.avatarURL() === null) {
+    if (!this.user.avatarURL()) {
       message.channel.send(
         localize.t('commands.avatar.errors.noAvatar', { prefix: this.config.prefix })
       );
