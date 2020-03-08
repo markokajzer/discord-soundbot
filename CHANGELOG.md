@@ -1,5 +1,9 @@
 ## Unreleased
 
+**Features**
+
++ Add possibility to set custom `timeout` when using `stayInChannel` via config option
+
 **Bugfixes**
 
 + Fix !avatar not sending the correct URL
