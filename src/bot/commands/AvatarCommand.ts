@@ -52,6 +52,10 @@ export default class AvatarCommand implements UserCommand {
       return;
     }
 
-    message.channel.send(localize.t('commands.avatar.url', { url: this.user.defaultAvatarURL }));
+    message.channel.send(
+      localize.t('commands.avatar.url', {
+        url: this.user.displayAvatarURL({ dynamic: true, format: 'png', size: 256 })
+      })
+    );
   }
 }
