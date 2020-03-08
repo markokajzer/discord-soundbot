@@ -67,7 +67,7 @@ export default class Config implements ConfigInterface {
     this.writeToConfig();
   }
 
-  public setFrom(data: ConfigInterface) {
+  public setFrom(data: Partial<ConfigInterface>) {
     Object.keys(data).forEach(field => {
       this[field] = data[field];
     });
