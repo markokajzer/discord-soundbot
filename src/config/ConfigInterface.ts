@@ -10,6 +10,7 @@ export default interface ConfigInterface {
   volume?: number;
   deleteMessages?: boolean;
   stayInChannel?: boolean;
+  timeout?: number;
   deafen?: boolean;
   game?: string;
 }

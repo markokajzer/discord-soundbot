@@ -15,6 +15,7 @@ export default class Config implements ConfigInterface {
   public volume!: number;
   public deleteMessages!: boolean;
   public stayInChannel!: boolean;
+  public timeout!: number;
   public deafen!: boolean;
   public game!: string;
 

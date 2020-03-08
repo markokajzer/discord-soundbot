@@ -8,6 +8,7 @@ const DEFAULT_CONFIG: Omit<ConfigInterface, 'clientId' | 'token'> = {
   volume: 1.0,
   deleteMessages: false,
   stayInChannel: false,
+  timeout: 10, // Minutes
   deafen: false,
   game: 'SoundBoard'
 };
