@@ -9,7 +9,7 @@ const DEFAULT_CONFIG: Omit<ConfigInterface, 'clientId' | 'token'> = {
   deleteMessages: false,
   stayInChannel: false,
   deafen: false,
-  game: ''
+  game: 'SoundBoard'
 };
 
 export default DEFAULT_CONFIG;
