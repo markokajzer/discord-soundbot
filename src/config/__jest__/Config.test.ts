@@ -4,7 +4,7 @@ jest.mock('fs');
 const randomString = (length: number) =>
   Math.random()
     .toString(36)
-    .substring(length);
+    .substring(0, length);
 
 describe('Default config', () => {
   const testedConfig = new Config();
@@ -26,7 +26,7 @@ describe('Default config', () => {
     expect(testedConfig.acceptedExtensions).toEqual(['.mp3', '.wav']);
   });
 
-  test('Default maximum filesize is ', () => {
+  test('Default maximum filesize is 1MB', () => {
     expect(testedConfig.maximumFileSize).toEqual(1000000);
   });
 
@@ -43,7 +43,7 @@ describe('Default config', () => {
   });
 
   test('Default game is not set', () => {
-    expect(testedConfig.game).toEqual('');
+    expect(testedConfig.game).toEqual('SoundBoard');
   });
 });
 
