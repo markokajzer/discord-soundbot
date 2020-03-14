@@ -1,6 +1,9 @@
 import ConfigInterface from './ConfigInterface';
 
-const DEFAULT_CONFIG: Omit<ConfigInterface, 'clientId' | 'token'> = {
+const DEFAULT_CONFIG: ConfigInterface = {
+  clientId: '',
+  token: '',
+
   language: 'en',
   prefix: '!',
   acceptedExtensions: ['.mp3', '.wav'],
