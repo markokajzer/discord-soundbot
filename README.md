@@ -29,7 +29,15 @@ To learn how to edit the config while the bot is running, see [below](#changing-
 
 ### Building
 
-The bot can be installed manually, via Docker, or as an npm package. When not using Docker the bot needs at least **Node.js v8.0.0** or newer and **FFmpeg** for its voice functionality.
+The bot can be installed manually, via Docker, or as an npm package. When not using Docker the bot needs at least **Node.js v12.0.0** or newer and **FFmpeg** for its voice functionality.
+
+#### Running via Docker
+
+This is the simplest solution if you just want to run the bot, and do not have any programming experience.
+
++ Make sure to have Docker installed.
++ Run `docker run -e CLIENT_ID={YOUR_CLIENT_ID} TOKEN={YOUR_TOKEN} discord-soundbot`
++ To run the bot in the background use the `-d` flag.
 
 #### Building manually
 
@@ -39,14 +47,6 @@ The bot can be installed manually, via Docker, or as an npm package. When not us
 + Run the bot with `yarn start`.
 
 Need more details? You can find more detailed installation guides for [Unix](../../wiki/Unix) (including your Raspberry Pi), [macOS](../../wiki/macOS), and [Windows](../../wiki/Windows).
-
-#### Building/Running via Docker
-
-+ Make sure to have Docker installed.
-+ Clone the repo and run `docker-compose build` inside the folder.
-+ If you do not already have one, create an empty `db.json` file.
-+ Afterwards start the bot via `docker-compose up`.
-+ To run the container in the background use `docker-compose up -d`.
 
 #### Using npm
 
