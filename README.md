@@ -50,10 +50,11 @@ Need more details? You can find more detailed installation guides for [Unix](../
 
 #### Using npm
 
-Install the bot as a dependency using npm.
+You can also add the bot as a project dependency in your node project. Simply add it to your projects dependencies.
 
 ```
   $ npm install discord-soundbot
+  $ yarn add discord-soundbot
 ```
 
 Start the bot.
