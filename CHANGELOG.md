@@ -3,10 +3,12 @@
 **Features**
 
 + Add possibility to set custom `timeout` when using `stayInChannel` via config option
++ Create one click Docker setup
 
 **Bugfixes**
 
 + Fix !avatar not sending the correct URL
++ Fixed docker setup
 
 ## 2.0.0 (2020-03-06)
 
