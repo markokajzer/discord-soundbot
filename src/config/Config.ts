@@ -28,6 +28,7 @@ export default class Config implements ConfigInterface {
     'volume',
     'deleteMessages',
     'stayInChannel',
+    'timeout',
     'deafen',
     'game'
   ];
