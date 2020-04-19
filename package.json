@@ -20,7 +20,7 @@
     "nodejs",
     "typescript"
   ],
-  "author": "Marko Kajzer",
+  "author": "Marko Kajzer <markokajzer91@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "@discordjs/opus": "0.1.0",
