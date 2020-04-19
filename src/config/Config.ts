@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import camelCase from 'lodash/camelCase';
 
-import ConfigInterface from './ConfigInterface';
+import ConfigInterface, { ConfigValue } from './ConfigInterface';
 import DEFAULT_CONFIG from './DefaultConfig';
 
 export default class Config implements ConfigInterface {
@@ -45,28 +45,31 @@ export default class Config implements ConfigInterface {
     return this.MODIFIABLE_FIELDS.includes(field);
   }
 
-  public set(field: string, value: string[]) {
-    if (!this.JSON_KEYS.includes(field)) return;
+  public set(field: string, value: string[]): ConfigValue | undefined {
+    if (!this.JSON_KEYS.includes(field)) return undefined;
+
+    let newValue: ConfigValue;
 
     switch (typeof this[field]) {
       case 'string':
-        // eslint-disable-next-line prefer-destructuring
-        this[field] = value[0];
+        newValue = field === 'game' ? value.join(' ') : value[0];
         break;
       case 'number':
-        this[field] = parseFloat(value[0]);
+        newValue = parseFloat(value[0]);
         break;
       case 'boolean':
-        this[field] = value[0].toLowerCase() === 'true';
+        newValue = value[0].toLowerCase() === 'true';
         break;
       case 'object':
-        this[field] = value;
-        break;
       default:
+        newValue = value;
         break;
     }
 
+    this[field] = newValue;
     this.writeToConfig();
+
+    return newValue;
   }
 
   public setFrom(data: ConfigInterface) {

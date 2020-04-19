@@ -1,5 +1,7 @@
+export type ConfigValue = boolean | number | string | string[];
+
 export default interface ConfigInterface {
-  [key: string]: boolean | number | string | string[] | undefined;
+  [key: string]: ConfigValue | undefined;
 
   clientId: string;
   token: string;

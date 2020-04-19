@@ -36,9 +36,12 @@ export default class ConfigCommand implements Command {
       return;
     }
 
-    this.config.set(field, value);
+    const configValue = this.config.set(field, value)!;
     this.postProcess(field);
-    message.channel.send(localize.t('commands.config.success', { field, value }));
+
+    message.channel.send(
+      localize.t('commands.config.success', { field, value: configValue.toString() })
+    );
   }
 
   private postProcess(field: string) {
