@@ -1,10 +1,7 @@
 import Config from '../Config';
 
 jest.mock('fs');
-const randomString = (length: number) =>
-  Math.random()
-    .toString(36)
-    .substring(0, length);
+const randomString = (length: number) => Math.random().toString(36).substring(0, length);
 
 describe('Default config', () => {
   const testedConfig = new Config();

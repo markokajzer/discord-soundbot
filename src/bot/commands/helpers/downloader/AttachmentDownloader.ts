@@ -39,10 +39,7 @@ export default class AttachmentDownloader extends BaseDownloader {
 
   private makeRequest(url: string) {
     return new Promise((resolve, reject) => {
-      https
-        .get(url)
-        .on('response', resolve)
-        .on('error', reject);
+      https.get(url).on('response', resolve).on('error', reject);
     });
   }
 

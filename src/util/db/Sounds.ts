@@ -9,37 +9,27 @@ const addSingleTag = (sound: string, tag: string) => {
   if (tags.includes(tag)) return;
 
   tags.push(tag);
-  findByName(sound)
-    .assign({ tags })
-    .write();
+  findByName(sound).assign({ tags }).write();
 };
 
 export const exists = (name: string) => !!findByName(name).value();
 export const add = (sound: string) => {
-  all()
-    .push(new Sound(sound))
-    .write();
+  all().push(new Sound(sound)).write();
 };
 
 export const rename = (oldName: string, newName: string) => {
-  findByName(oldName)
-    .assign({ name: newName })
-    .write();
+  findByName(oldName).assign({ name: newName }).write();
 };
 
 export const remove = (name: string) => {
-  all()
-    .remove({ name })
-    .write();
+  all().remove({ name }).write();
 };
 
 export const incrementCount = (sound: string) => {
   if (!exists(sound)) add(sound);
 
   const newValue = (findByName(sound).value() as Sound).count + 1;
-  findByName(sound)
-    .set('count', newValue)
-    .write();
+  findByName(sound).set('count', newValue).write();
 };
 
 export const withTag = (tag: string) =>
@@ -62,14 +52,7 @@ export const listTags = (sound: string) => {
 export const clearTags = (sound: string) => {
   if (!exists(sound)) return;
 
-  findByName(sound)
-    .assign({ tags: [] })
-    .write();
+  findByName(sound).assign({ tags: [] }).write();
 };
 
-export const mostPlayed = (limit = 15) =>
-  all()
-    .sortBy('count')
-    .reverse()
-    .take(limit)
-    .value();
+export const mostPlayed = (limit = 15) => all().sortBy('count').reverse().take(limit).value();

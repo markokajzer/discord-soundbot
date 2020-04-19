@@ -9,10 +9,7 @@ export const exists = (id: string) =>
 export const add = (id: string) => {
   if (exists(id)) return;
 
-  connection
-    .get('ignoreList')
-    .push(id)
-    .write();
+  connection.get('ignoreList').push(id).write();
 };
 
 export const remove = (id: string) => {
