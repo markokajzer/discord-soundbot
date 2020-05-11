@@ -31,11 +31,8 @@ RUN yarn install --frozen-lockfile --production --ignore-optional && yarn cache 
 FROM base as release
 ENV NODE_ENV=production
 COPY --chown=node:node --from=build /usr/local/bin/ffmpeg /usr/local/bin/ffmpeg
-COPY --chown=node:node --from=build /app/config ./config
-COPY --chown=node:node --from=build /app/sounds ./sounds
-COPY --chown=node:node --from=build /app/node_modules ./node_modules
-COPY --chown=node:node --from=build /app/dist ./dist
+COPY --chown=node:node --from=build /app .
 
 USER node
 ENTRYPOINT ["/tini", "--"]
-CMD ["node", "./dist/bin/soundbot.js"]
+CMD ["yarn", "run", "serve"]
