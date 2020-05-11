@@ -1,12 +1,12 @@
 # Base will install runtime dependencies and configure generics
 FROM node:12-slim as base
 LABEL maintainer="Marko Kajzer <markokajzer91@gmail.com>, Nico Stapelbroek <discord-soundbot@nstapelbroek.com>"
+WORKDIR /app
 
+# Add `tiny` init for signal forwarding
 RUN apt-get update -q && apt-get install -qy wget
 RUN wget -qO /tini https://github.com/krallin/tini/releases/download/v0.18.0/tini-$(dpkg --print-architecture) && \
-    chmod +x /tini && mkdir /app && chown -R node:node /app
-
-WORKDIR /app
+    chmod +x /tini && chown -R node:node /app
 
 
 # Builder will install system dependencies
