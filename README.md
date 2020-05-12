@@ -35,10 +35,16 @@ When not using Docker the bot needs at least **Node.js v12.0.0** or newer and **
 
 #### Running via Docker
 
-+ Make sure to have Docker installed.
-+ Run `docker build . -t soundbot`
-+ Run `docker run -e CLIENT_ID=YOUR_CLIENT_ID -e TOKEN=YOUR_TOKEN -v $(pwd)/sounds:/app/sounds soundbot`
++ Start the bot with the following command while passing your CLIENT_ID and TOKEN to it.
+
+  ```
+  docker pull markokajzer/discord-soundbot && \
+  mkdir -p sounds/ && touch db.json && \
+  docker run --name soundbot --restart=on-failure:10 -e CLIENT_ID=YOUR_CLIENT_ID -e TOKEN=YOUR_TOKEN -v $(pwd)/sounds:/app/sounds -v $(pwd)/db.json:/app/db.json markokajzer/discord-soundbot
+  ```
+
 + To run the bot in the background additionally use the `-d` flag in the last step.
+
 
 #### Building manually
 
