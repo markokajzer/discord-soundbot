@@ -8,7 +8,8 @@ WORKDIR /app
 
 # Add `tiny` init for signal forwarding
 RUN apt-get -qq update > /dev/null && \
-    apt-get -qq -y install wget > /dev/null
+    apt-get -qq -y install wget > /dev/null && \
+    rm -rf /var/lib/apt/lists
 RUN wget -qO /tini https://github.com/krallin/tini/releases/download/v0.18.0/tini-$(dpkg --print-architecture) && \
     chmod +x /tini
 
@@ -19,7 +20,8 @@ FROM base as builder
 
 # Install ffmpeg and other deps
 RUN apt-get -qq update > /dev/null && \
-    apt-get -qq -y install python make g++ tar xz-utils > /dev/null
+    apt-get -qq -y install python make g++ tar xz-utils > /dev/null && \
+    rm -rf /var/lib/apt/lists
 RUN wget -qO /tmp/ffmpeg.tar.xz https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-$(dpkg --print-architecture)-static.tar.xz && \
     tar -x -C /usr/local/bin --strip-components 1 -f /tmp/ffmpeg.tar.xz --wildcards '*/ffmpeg' && \
     rm /tmp/ffmpeg.tar.xz
