@@ -3,6 +3,7 @@
 **Features**
 
 + Add possibility to set custom `timeout` when using `stayInChannel` via config option
++ Create one click Docker setup
 
 **Bugfixes**
 
