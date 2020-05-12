@@ -1,0 +1,31 @@
+name: Build and upload Docker image
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  buildx:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+      -
+        name: Set up Docker Buildx
+        id: buildx
+        uses: crazy-max/ghaction-docker-buildx@v1
+        with:
+          version: latest
+      -
+        name: Build images
+        env:
+          DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
+        run: |
+          printenv DOCKERHUB_PASSWORD | docker login --username markokajzer --password-stdin
+          docker buildx build \
+            --platform linux/amd64,linux/arm64,linux/arm/v7 \
+            --tag markokajzer/discord-soundbot:latest \
+            --push \
+            .
