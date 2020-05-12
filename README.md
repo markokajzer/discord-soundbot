@@ -19,23 +19,16 @@ Have fun!
 
 To use this bot, you first have to create your own [Discord Application](https://discordapp.com/developers/applications). If you don't know how to do it, [this wiki page](../../wiki/Setting-up-a-Discord-Application) will guide you through every step of the way.
 
+The bot can be installed manually, via Docker, or as an npm package. Docker is the simplest solution if you just want to run the bot, and do not have any programming experience.
 
 ### Configuration
 
-Check `config/config.example.json` for an example configuration and create a new file `config.json` inside the `config` folder with your desired configuration. For a detailed description on all of the options, see [here](../../wiki/Configuration). Make sure to restart the bot whenever you change the configuration.
+Check `config/config.example.json` for an example configuration and create a new file `config.json` inside the `config` folder with your desired configuration. For a detailed description on all of the options, see [here](../../wiki/Configuration). Make sure to restart the bot whenever you change the configuration, or use the `!config` command to update on the fly, see [below](#changing-the-config).
 
-To learn how to edit the config while the bot is running, see [below](#changing-the-config).
+### Running via Docker
 
-
-### Building
-
-The bot can be installed manually, via Docker, or as an npm package. Docker is the simplest solution if you just want to run the bot, and do not have any programming experience.
-
-When not using Docker the bot needs at least **Node.js v12.0.0** or newer and **FFmpeg** for its voice functionality.
-
-#### Running via Docker
-
-+ Start the bot with the following command while passing your CLIENT_ID and TOKEN to it.
++ Make sure to have Docker installed.
++ Start the bot with the following command while passing your CLIENT_ID and TOKEN that you have obtained in the previous step in to it.
 
   ```
   docker pull markokajzer/discord-soundbot && \
@@ -44,23 +37,29 @@ When not using Docker the bot needs at least **Node.js v12.0.0** or newer and **
   ```
 
 + To run the bot in the background additionally use the `-d` flag in the last step.
++ Pass additional configuration options by adding additional `-e OPTION_NAME=option_value` to the command above.
 
+### Building
+
+When not using Docker, make sure to install **Node.js v12.0.0** or newer and **FFmpeg** for its voice functionality. You can install `ffmpeg` via your favorite package manager.
 
 #### Building manually
 
 + Clone the repository.
-+ Install `yarn` with `npm install -g yarn`.
-+ Install the bot's dependencies with `yarn install`.
++ Install the dependencies with `yarn install`.
 + Run the bot with `yarn start`.
 
-Need more details? You can find more detailed installation guides for [Unix](../../wiki/Unix) (including your Raspberry Pi), [macOS](../../wiki/macOS), and [Windows](../../wiki/Windows).
+Need details? You can find more detailed installation guides for [Unix](../../wiki/Unix) (including your Raspberry Pi), [macOS](../../wiki/macOS), and [Windows](../../wiki/Windows).
 
 #### Using npm
 
-You can also add the bot as a project dependency in your node project. Simply add it to your projects dependencies depending on your package manager.
+You can also add the bot as a project dependency to your Node project, by simply adding it to your project dependencies.
 
 ```
+  # For npm
   $ npm install discord-soundbot
+
+  # For yarn
   $ yarn add discord-soundbot
 ```
 
