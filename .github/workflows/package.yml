@@ -1,4 +1,4 @@
-name: Create package
+name: Package
 
 on:
   pull_request:
@@ -6,8 +6,8 @@ on:
     - master
 
 jobs:
-  lint:
-    name: Package
+  windows:
+    name: Windows
     runs-on: windows-2019
 
     steps:
@@ -31,8 +31,14 @@ jobs:
       - name: bundle
         run: yarn run nexe --target windows-x86-12.16.3 dist/bin/soundbot.js
 
-      - name: Upload
+      - name: Upload exe
         uses: actions/upload-artifact@v2
         with:
           name: soundbot.exe
           path: soundbot.exe
+
+      - name: Upload node_modules
+        uses: actions/upload-artifact@v2
+        with:
+          name: node_modules
+          path: node_modules
