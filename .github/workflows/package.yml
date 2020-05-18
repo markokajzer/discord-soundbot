@@ -29,10 +29,10 @@ jobs:
         run: yarn build
 
       - name: bundle
-        run: yarn run nexe dist/bin/soundbot.js --target windows-x86-12.16.3
+        run: yarn run nexe --target windows-x86-12.16.3 dist/bin/soundbot.js
 
       - name: Upload
         uses: actions/upload-artifact@v2
         with:
-          name: soundbot
-          path: soundbot
+          name: soundbot.exe
+          path: soundbot.exe
