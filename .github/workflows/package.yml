@@ -1,0 +1,35 @@
+name: Create package
+
+on:
+  pull_request:
+    branches:
+    - master
+
+jobs:
+  lint:
+    name: Package
+    runs-on: windows-2019
+
+    steps:
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Install nexe
+        run: yarn global add nexe
+
+      - name: bundle
+        run: nexe dist/bin/soundbot.js --target windows-x64-12.16.0 --output soundbot.exe
+
+      - name: Upload
+        uses: actions/upload-artifact@v2
+        with:
+          name: soundbot
+          path: soundbot
