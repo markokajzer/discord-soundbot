@@ -41,4 +41,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: opus.node
-          path: node_modules/@discordjs/opus/**/Release/opus.node
+          path: node_modules\@discordjs\opus\**\opus.node
