@@ -25,6 +25,9 @@ jobs:
       - name: Install nexe
         run: yarn add nexe
 
+      - name: Build
+        run: yarn build
+
       - name: bundle
         run: yarn run nexe dist/bin/soundbot.js --target windows-x86-12.16.3
 
