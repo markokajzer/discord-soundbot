@@ -26,7 +26,7 @@ jobs:
         run: yarn global add nexe
 
       - name: bundle
-        run: nexe dist/bin/soundbot.js --target windows-x64-12.16.0 --output soundbot.exe
+        run: nexe dist/bin/soundbot.js --target windows-x86-12.16.3 --output soundbot.exe
 
       - name: Upload
         uses: actions/upload-artifact@v2
