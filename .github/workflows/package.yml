@@ -40,5 +40,5 @@ jobs:
       - name: Upload node_modules
         uses: actions/upload-artifact@v2
         with:
-          name: opus.node
-          path: node_modules\@discordjs\opus\**\opus.node
+          name: opus
+          path: node_modules\@discordjs\opus
