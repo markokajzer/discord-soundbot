@@ -30,7 +30,7 @@
     "lodash": "4.17.15",
     "lowdb": "1.0.0",
     "replace-in-file": "4.2.0",
-    "ytdl-core": "1.0.7"
+    "ytdl-core": "2.1.4"
   },
   "optionalDependencies": {
     "bufferutil": "4.0.1",
