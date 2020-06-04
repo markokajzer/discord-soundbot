@@ -11,5 +11,9 @@
   "stayInChannel": false,
   "timeout": 10,
   "deafen": false,
-  "game": ""
+  "game": "",
+  "rolesAllowedToRemoveSounds": [
+    "sound remover",
+    "mod"
+]
 }

@@ -66,7 +66,7 @@ const commands = [
   new SoundsCommand(config),
   new SearchCommand(),
   new RenameCommand(),
-  new RemoveCommand(),
+  new RemoveCommand(config),
   new TagCommand(),
   new TagsCommand(),
   new DownloadCommand(),
