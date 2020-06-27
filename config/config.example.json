@@ -12,8 +12,5 @@
   "timeout": 10,
   "deafen": false,
   "game": "",
-  "elevatedRoles": [
-    "sound remover",
-    "moderator"
-  ]
+  "elevatedRoles": ["sound remover", "moderator"]
 }

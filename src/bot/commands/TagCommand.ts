@@ -40,7 +40,9 @@ export default class TagCommand implements Command {
       if (!message.member) return;
 
       const allowedToRunCommand = userHasElevatedRole(message.member.roles.cache);
-      if (!message.member.hasPermission(Permissions.FLAGS.ADMINISTRATOR!) && !allowedToRunCommand) return;
+      if (!message.member.hasPermission(Permissions.FLAGS.ADMINISTRATOR!) && !allowedToRunCommand) {
+        return;
+      }
 
       sounds.clearTags(sound);
       return;
