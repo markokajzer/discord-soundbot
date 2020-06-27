@@ -15,4 +15,5 @@ export default interface ConfigInterface {
   timeout?: number;
   deafen?: boolean;
   game?: string;
+  elevatedRoles: string[];
 }

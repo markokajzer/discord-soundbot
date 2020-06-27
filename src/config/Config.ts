@@ -18,6 +18,7 @@ export default class Config implements ConfigInterface {
   public timeout!: number;
   public deafen!: boolean;
   public game!: string;
+  public elevatedRoles!: string[];
 
   private readonly CONFIG_PATH = path.join(process.cwd(), 'config', 'config.json');
   private readonly MODIFIABLE_FIELDS = [

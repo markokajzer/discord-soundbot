@@ -2,15 +2,25 @@ import { Message, Permissions } from 'discord.js';
 
 import * as ignoreList from '@util/db/IgnoreList';
 import localize from '@util/i18n/localize';
+import Config from '@config/Config';
 import Command from './base/Command';
+import userHasElevatedRole from './helpers/checkElevatedRights';
 
 export default class IgnoreCommand implements Command {
   public readonly TRIGGERS = ['ignore'];
   public readonly USAGE = 'Usage: !ignore <user>';
 
+  private readonly config: Config;
+
+  constructor(config: Config) {
+    this.config = config;
+  }
+
   public run(message: Message) {
     if (!message.member) return;
-    if (!message.member.hasPermission(Permissions.FLAGS.ADMINISTRATOR!)) return;
+
+    const allowedToRunCommand = userHasElevatedRole(message.member.roles.cache);
+    if (!message.member.hasPermission(Permissions.FLAGS.ADMINISTRATOR!) && !allowedToRunCommand) return;
 
     const { users } = message.mentions;
     if (users.size < 1) {

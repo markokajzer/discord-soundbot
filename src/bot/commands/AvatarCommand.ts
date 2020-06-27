@@ -3,6 +3,7 @@ import { ClientUser, Message, Permissions } from 'discord.js';
 import Config from '@config/Config';
 import localize from '@util/i18n/localize';
 import UserCommand from './base/UserCommand';
+import userHasElevatedRole from './helpers/checkElevatedRights';
 
 export default class AvatarCommand implements UserCommand {
   public readonly TRIGGERS = ['avatar'];
@@ -22,7 +23,9 @@ export default class AvatarCommand implements UserCommand {
 
   public run(message: Message, params: string[]) {
     if (!message.member) return;
-    if (!message.member.hasPermission(Permissions.FLAGS.ADMINISTRATOR!)) return;
+
+    const allowedToRunCommand = userHasElevatedRole(message.member.roles.cache);
+    if (!message.member.hasPermission(Permissions.FLAGS.ADMINISTRATOR!) && !allowedToRunCommand) return;
 
     if (params.length === this.NUMBER_OF_PARAMETERS && params[0] === 'remove') {
       this.user.setAvatar('');
