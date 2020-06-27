@@ -14,22 +14,10 @@
       "play": "Reproduce el sonido indicado",
       "combo": "Reproduce sonidos en sucesión",
       "random": "Reproduce un sonido al azar",
-      "loop": "Reproduce un sonido <count> veces o sin fin",
-      "skip": "Omite el sonido que se está reproduciendo actualmente",
-      "next": "Interrumpe el sonido que se está reproduciendo con un sonido especificado",
       "rename": "Renombra el sonido indicado",
       "remove": "Borra el sonido indicado",
       "download": "Envía el sonido especificado al chat",
       "stop": "Detener la reproducción y borrar la cola"
-    },
-
-    "entrance": {
-      "set": "Reproduce el sonido elegido cuando te unes a un canal de voz",
-      "remove": "Quita el sonido de entrada al canal de voz"
-    },
-    "exit": {
-      "set": "Reproduce el sonido elegido cuando te sales de un canal de voz",
-      "remove": "Quita el sonido de salida del canal de voz"
     },
 
     "tags": {
@@ -68,7 +56,7 @@
       "size": "¡El archivo es demasiado grande!"
     },
     "url": {
-      "invalid": "¡Enlace URL no válido!"
+      "invalid": "¡Enlace no válido!"
     }
   },
 
