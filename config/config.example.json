@@ -12,8 +12,8 @@
   "timeout": 10,
   "deafen": false,
   "game": "",
-  "rolesAllowedToRemoveSounds": [
+  "elevatedRoles": [
     "sound remover",
-    "mod"
-]
+    "moderator"
+  ]
 }
