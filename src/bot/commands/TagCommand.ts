@@ -1,11 +1,11 @@
-import { Message, Permissions } from 'discord.js';
+import { Message } from 'discord.js';
 
 import * as sounds from '@util/db/Sounds';
 import localize from '@util/i18n/localize';
 import { getSounds } from '@util/SoundUtil';
 import Config from '@config/Config';
 import Command from './base/Command';
-import userHasElevatedRole from './helpers/checkElevatedRights';
+import userHasElevatedRole from './helpers/userHasElevatedRole';
 
 export default class TagCommand implements Command {
   public readonly TRIGGERS = ['tag'];
@@ -39,10 +39,8 @@ export default class TagCommand implements Command {
     if (params[0] === 'clear') {
       if (!message.member) return;
 
-      const allowedToRunCommand = userHasElevatedRole(message.member.roles.cache);
-      if (!message.member.hasPermission(Permissions.FLAGS.ADMINISTRATOR!) && !allowedToRunCommand) {
-        return;
-      }
+      const allowedToRunCommand = userHasElevatedRole(message.member);
+      if (allowedToRunCommand) return;
 
       sounds.clearTags(sound);
       return;

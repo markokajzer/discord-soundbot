@@ -1,10 +1,10 @@
-import { Message, Permissions } from 'discord.js';
+import { Message } from 'discord.js';
 
 import * as ignoreList from '@util/db/IgnoreList';
 import localize from '@util/i18n/localize';
 import Config from '@config/Config';
 import Command from './base/Command';
-import userHasElevatedRole from './helpers/checkElevatedRights';
+import userHasElevatedRole from './helpers/userHasElevatedRole';
 
 export default class UnignoreCommand implements Command {
   public readonly TRIGGERS = ['unignore'];
@@ -19,10 +19,8 @@ export default class UnignoreCommand implements Command {
   public run(message: Message) {
     if (!message.member) return;
 
-    const allowedToRunCommand = userHasElevatedRole(message.member.roles.cache);
-    if (!message.member.hasPermission(Permissions.FLAGS.ADMINISTRATOR!) && !allowedToRunCommand) {
-      return;
-    }
+    const allowedToRunCommand = userHasElevatedRole(message.member);
+    if (!allowedToRunCommand) return;
 
     const { users } = message.mentions;
     if (users.size < 1) {
