@@ -11,7 +11,7 @@ export default class ExitCommand implements Command {
 
   public run(message: Message, params: string[]) {
     let exitSound;
-    let userId
+    let userId;
     if (params.length > this.NUMBER_OF_PARAMETERS) {
       message.channel.send(this.USAGE);
       return;
