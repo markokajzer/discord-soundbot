@@ -18,10 +18,10 @@ export default class EntranceCommand implements Command {
     if (params.length === 1) {
       var [entranceSound] = params;
       var user_id = message.author.id;
-    }else{
+    } else {
       if (!message.member) return;
       if (!message.member.hasPermission(Permissions.FLAGS.ADMINISTRATOR!)) return;
-      
+
       var [entranceSound, user_id] = params;
     }
 
