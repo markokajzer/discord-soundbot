@@ -118,6 +118,8 @@ Every user can set his own entrance sound, a sound that will play whenever the u
 
 The same is possible for exit sounds with `!exit <sound>` which will play the specified sound when leaving a voice channel.
 
+Administrators can set the entrance/exit sounds for other users.  Simply add their user id after the sound, e.g. `!entrance <sound> 1234567890`
+
 ### Tagging and searching sounds
 
 When your library of sounds gets too big and you forget what kinds of sounds you have, you can add tags to sounds.

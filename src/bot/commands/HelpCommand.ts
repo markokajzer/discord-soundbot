@@ -47,7 +47,7 @@ export default class HelpCommand implements Command {
       `stop                                   ${localize.t('help.sounds.stop')}`,
       `leave                                  ${localize.t('help.sounds.stop')}`,
 
-      `entrance <sound> ?[user_id]            ${localize.t('help.entrance.set')}`,
+      `entrance <sound> ?<user_id>            ${localize.t('help.entrance.set')}`,
       `entrance                               ${localize.t('help.entrance.remove')}`,
       `exit <sound>                           ${localize.t('help.exit.set')}`,
       `exit                                   ${localize.t('help.exit.remove')}`,
