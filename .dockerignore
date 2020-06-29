@@ -1,21 +1,13 @@
-.git
-.gitignore
-.npmignore
-.node-version
+*
 
-dist
-node_modules
-vendor
+!bin
+!lib
+!config/locales
 
-config/config.json
-db.json
-sounds
+!sounds
 
-.eslintignore
-.eslintrc.yml
-docker-compose.yml
-Dockerfile
-jest.config.js
+!src
 
-CHANGELOG.md
-README.md
+!package.json
+!yarn.lock
+!tsconfig.json

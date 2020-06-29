@@ -30,7 +30,7 @@
     "lodash": "4.17.15",
     "lowdb": "1.0.0",
     "replace-in-file": "4.2.0",
-    "ytdl-core": "1.0.7"
+    "ytdl-core": "2.1.4"
   },
   "optionalDependencies": {
     "bufferutil": "4.0.1",
@@ -65,8 +65,8 @@
   "scripts": {
     "clean": "rm -rf dist",
     "build": "tsc -p tsconfig.json",
-    "format:check": "prettier --config .prettierrc.yml --ignore-path .prettierignore --list-different '**/**.ts'",
-    "format": "prettier --config .prettierrc.yml --ignore-path .prettierignore --write '**/**.ts'",
+    "format:check": "prettier --config .prettierrc.yml --list-different '**/**.ts'",
+    "format": "prettier --config .prettierrc.yml --write '**/**.ts'",
     "lint": "eslint --rulesdir ./vendor/rules/ -c .eslintrc.yml --ext ts .",
     "postbuild": "ts-node lib/postbuild.ts",
     "serve": "node dist/bin/soundbot.js",
