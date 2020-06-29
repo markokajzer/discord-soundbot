@@ -2,19 +2,12 @@ import { Message } from 'discord.js';
 
 import * as ignoreList from '@util/db/IgnoreList';
 import localize from '@util/i18n/localize';
-import Config from '@config/Config';
 import Command from './base/Command';
 import userHasElevatedRole from './helpers/userHasElevatedRole';
 
 export default class UnignoreCommand implements Command {
   public readonly TRIGGERS = ['unignore'];
   public readonly USAGE = 'Usage: !unignore <user>';
-
-  private readonly config: Config;
-
-  constructor(config: Config) {
-    this.config = config;
-  }
 
   public run(message: Message) {
     if (!message.member) return;

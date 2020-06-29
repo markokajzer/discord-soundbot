@@ -3,7 +3,6 @@ import { Message } from 'discord.js';
 import * as sounds from '@util/db/Sounds';
 import localize from '@util/i18n/localize';
 import { getSounds } from '@util/SoundUtil';
-import Config from '@config/Config';
 import Command from './base/Command';
 import userHasElevatedRole from './helpers/userHasElevatedRole';
 
@@ -11,12 +10,6 @@ export default class TagCommand implements Command {
   public readonly TRIGGERS = ['tag'];
   public readonly NUMBER_OF_PARAMETERS = 1;
   public readonly USAGE = 'Usage: !tag <sound> [<tag> ... <tagN> | clear]';
-
-  private readonly config: Config;
-
-  constructor(config: Config) {
-    this.config = config;
-  }
 
   public run(message: Message, params: string[]) {
     if (params.length < this.NUMBER_OF_PARAMETERS) {

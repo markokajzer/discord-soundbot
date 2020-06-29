@@ -65,9 +65,9 @@ const commands = [
   new AddCommand(attachmentDownloader, youtubeDownloader),
   new SoundsCommand(config),
   new SearchCommand(),
-  new RenameCommand(config),
-  new RemoveCommand(config),
-  new TagCommand(config),
+  new RenameCommand(),
+  new RemoveCommand(),
+  new TagCommand(),
   new TagsCommand(),
   new DownloadCommand(),
 
@@ -80,8 +80,8 @@ const commands = [
   // CONFIGURATION RELATED COMMANDS
   new AvatarCommand(config),
   new ConfigCommand(config),
-  new IgnoreCommand(config),
-  new UnignoreCommand(config)
+  new IgnoreCommand(),
+  new UnignoreCommand()
 ];
 
 const commandCollection = new CommandCollection(commands);

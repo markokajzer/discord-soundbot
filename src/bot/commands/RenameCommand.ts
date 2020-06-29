@@ -5,7 +5,6 @@ import { Message } from 'discord.js';
 import * as soundsDb from '@util/db/Sounds';
 import localize from '@util/i18n/localize';
 import { getExtensionForSound, getSounds } from '@util/SoundUtil';
-import Config from '@config/Config';
 import Command from './base/Command';
 import userHasElevatedRole from './helpers/userHasElevatedRole';
 
@@ -13,12 +12,6 @@ export default class RenameCommand implements Command {
   public readonly TRIGGERS = ['rename'];
   public readonly NUMBER_OF_PARAMETERS = 2;
   public readonly USAGE = 'Usage: !rename <old> <new>';
-
-  private readonly config: Config;
-
-  constructor(config: Config) {
-    this.config = config;
-  }
 
   public run(message: Message, params: string[]) {
     if (!message.member) return;

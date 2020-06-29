@@ -5,7 +5,6 @@ import { Message } from 'discord.js';
 import * as sounds from '@util/db/Sounds';
 import localize from '@util/i18n/localize';
 import { existsSound, getPathForSound } from '@util/SoundUtil';
-import Config from '@config/Config';
 import Command from './base/Command';
 import userHasElevatedRole from './helpers/userHasElevatedRole';
 
@@ -13,12 +12,6 @@ export default class RemoveCommand implements Command {
   public readonly TRIGGERS = ['remove'];
   public readonly NUMBER_OF_PARAMETERS = 1;
   public readonly USAGE = 'Usage: !remove <sound>';
-
-  private readonly config: Config;
-
-  constructor(config: Config) {
-    this.config = config;
-  }
 
   public run(message: Message, params: string[]) {
     if (!message.member) return;
