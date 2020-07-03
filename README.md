@@ -2,6 +2,9 @@ Discord Soundbot
 ================
 
 [<img title="Join us on Discord" src="https://discordapp.com/api/guilds/236732117524938754/widget.png?style=shield">](https://discord.gg/JBw2BNx)
+[![Docker Pulls](https://img.shields.io/docker/pulls/markokajzer/discord-soundbot.svg?style=shield)](https://hub.docker.com/r/markokajzer/discord-soundbot/tags/)
+[![](https://images.microbadger.com/badges/image/markokajzer/discord-soundbot.svg?style=shield)](https://microbadger.com/images/markokajzer/discord-soundbot)
+[![license](https://img.shields.io/github/license/markokajzer/discord-soundbot.svg?style=shield)](https://opensource.org/licenses/MIT)
 
 A Soundboard Bot for Discord to play your favorite sounds or music. You can add and play sounds, ignore users, set an avatar and more!
 
