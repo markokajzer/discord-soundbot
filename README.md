@@ -5,7 +5,7 @@ Discord Soundbot
 
 [![Discord](https://img.shields.io/discord/236732117524938754.svg?style=for-the-badge&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/JBw2BNx)
 ![typescript-image](https://img.shields.io/badge/Typescript-294E80.svg?style=for-the-badge&logo=typescript)
-[![Docker Pulls](https://img.shields.io/docker/pulls/markokajzer/discord-soundbot.svg?style=for-the-badge)](https://hub.docker.com/r/markokajzer/discord-soundbot/tags/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/markokajzer/discord-soundbot.svg?style=for-the-badge&logo=docker&label=Pulls)](https://hub.docker.com/r/markokajzer/discord-soundbot/)
 [![Sponsors](https://img.shields.io/static/v1?style=for-the-badge&label=Sponsor&message=%E2%9D%A4&logo=GitHub&link=https://github.com/sponsors/markokajzer&color=ff69b4)](https://github.com/sponsors/markokajzer)
 
 </div>
