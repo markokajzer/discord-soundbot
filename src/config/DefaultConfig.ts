@@ -14,7 +14,7 @@ const DEFAULT_CONFIG: ConfigInterface = {
   timeout: 10, // Minutes
   deafen: false,
   game: 'SoundBoard',
-  elevatedRoles: ['admin']
+  elevatedRoles: []
 };
 
 export default DEFAULT_CONFIG;
