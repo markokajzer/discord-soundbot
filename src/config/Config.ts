@@ -31,10 +31,12 @@ export default class Config implements ConfigInterface {
     'stayInChannel',
     'timeout',
     'deafen',
-    'game'
+    'game',
+    'elevatedRoles'
   ];
 
   private readonly JSON_KEYS = ['clientId', 'token', ...this.MODIFIABLE_FIELDS];
+  private readonly ARRAY_VALUES = ['acceptedExtensions', 'elevatedRoles'];
 
   [index: string]: any;
 
@@ -103,11 +105,13 @@ export default class Config implements ConfigInterface {
       .filter(envKey => this.JSON_KEYS.includes(camelCase(envKey)))
       .forEach(envKey => {
         let envValue = [process.env[envKey]!];
-        if (envKey === 'ACCEPTED_EXTENSIONS') {
+        const configKey = camelCase(envKey);
+
+        if (this.ARRAY_VALUES.includes(configKey)) {
           envValue = envValue[0].split(',');
         }
 
-        this.set(camelCase(envKey), envValue);
+        this.set(configKey, envValue);
       });
   }
 

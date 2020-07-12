@@ -93,9 +93,11 @@ describe('Setting config from Environment Variables', () => {
 
   test('You can set array config values by using comma seperation', () => {
     process.env.ACCEPTED_EXTENSIONS = '.mp3,.ogg,.wav,.mp4,.flac';
+    process.env.ELEVATED_ROLES = 'admin,test';
 
     const testedConfig = new Config();
 
     expect(testedConfig.acceptedExtensions).toEqual(['.mp3', '.ogg', '.wav', '.mp4', '.flac']);
+    expect(testedConfig.elevatedRoles).toEqual(['admin', 'test']);
   });
 });
