@@ -11,6 +11,6 @@
   "stayInChannel": false,
   "timeout": 10,
   "deafen": false,
-  "game": "",
-  "elevatedRoles": ["sound remover", "moderator"]
+  "game": "SoundBoard",
+  "elevatedRoles": ["admin"]
 }
