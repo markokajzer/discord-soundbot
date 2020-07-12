@@ -3,6 +3,7 @@
 **Features**
 
 + Add possibility to set custom `timeout` when using `stayInChannel` via config option
++ Add possibility to specify `elavatedRoles` to customize group of people that can manage sounds (Thank you [@ibito](https://github.com/ibito)!)
 + Create one click Docker setup
 
 **Bugfixes**
