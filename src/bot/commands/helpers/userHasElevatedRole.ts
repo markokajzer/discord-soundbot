@@ -3,9 +3,9 @@ import { GuildMember, Permissions } from 'discord.js';
 
 const userHasElevatedRole = (member: GuildMember) =>
   member.roles.cache.some(
-      member.hasPermission(Permissions.FLAGS.ADMINISTRATOR!)
     role =>
       config.elevatedRoles.includes(role.name) ||
+      member.hasPermission(Permissions.FLAGS.ADMINISTRATOR)
   );
 
 export default userHasElevatedRole;
