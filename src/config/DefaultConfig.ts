@@ -13,7 +13,8 @@ const DEFAULT_CONFIG: ConfigInterface = {
   stayInChannel: false,
   timeout: 10, // Minutes
   deafen: false,
-  game: 'SoundBoard'
+  game: 'SoundBoard',
+  elevatedRoles: ['Moderator']
 };
 
 export default DEFAULT_CONFIG;
