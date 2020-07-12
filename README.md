@@ -105,7 +105,7 @@ Type `!help` or `!commands` to print a list of available commands. To see the we
 
 You can add, rename, download, tag, play, and remove sounds, ignore users, set the avatar, and more.
 
-*Note*: The commands `!rename`, `!remove`, `!tag <sound> clear`, `!ignore`, `!unignore`, `!avatar` and `!config` are restricted and can only be accessed by **administrators**.
+*Note*: The commands `!rename`, `!remove`, `!tag <sound> clear`, `!ignore`, `!unignore`, `!avatar` and `!config` are restricted and can only be accessed by **administrators** by default. To configure this, adjust the `elevatedRoles` config option.
 
 
 ### Adding sounds
