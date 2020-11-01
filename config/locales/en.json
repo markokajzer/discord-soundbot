@@ -111,5 +111,9 @@
       "success": "`{field}` set to `{value}`!",
       "notFound": "Config does not have option `{field}`!"
     }
+  },
+
+  "errors": {
+    "permissions": "I need permissions to join the channel."
   }
 }

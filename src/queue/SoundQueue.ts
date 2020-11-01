@@ -4,6 +4,7 @@ import Config from '@config/Config';
 import * as sounds from '@util/db/Sounds';
 import { getPathForSound } from '@util/SoundUtil';
 
+import localize from '@util/i18n/localize';
 import ChannelTimeout from './ChannelTimeout';
 import QueueItem from './QueueItem';
 
@@ -121,7 +122,12 @@ export default class SoundQueue {
     if (this.config.timeout > 0) ChannelTimeout.start(connection);
   }
 
-  private handleError(error: any) {
+  private async handleError(error: any) {
+    if (error.code === 'VOICE_JOIN_CHANNEL' && this.currentSound?.message) {
+      await this.currentSound.message.channel.send(localize.t('errors.permissions'));
+      process.exit();
+    }
+
     console.error('Error occured!', '\n', error);
 
     this.currentSound = null;

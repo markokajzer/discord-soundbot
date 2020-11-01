@@ -1,4 +1,4 @@
-## Unreleased
+## 2.1.0 (Unreleased)
 
 **Features**
 
@@ -9,6 +9,8 @@
 **Bugfixes**
 
 + Fix !avatar not sending the correct URL
++ Better resilience against errors when joining voice channel
++ Better handle missing permissions
 
 ## 2.0.0 (2020-03-06)
 
