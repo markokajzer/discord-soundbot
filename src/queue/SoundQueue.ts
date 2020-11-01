@@ -74,7 +74,7 @@ export default class SoundQueue {
       .then(connection => this.deafen(connection))
       .then(connection => this.playSound(connection, sound))
       .then(connection => this.onFinishedPlayingSound(connection))
-      .catch(error => console.error('Error occured!', '\n', error));
+      .catch(error => this.handleError(error));
   }
 
   private deafen(connection: VoiceConnection) {
@@ -119,6 +119,13 @@ export default class SoundQueue {
     }
 
     if (this.config.timeout > 0) ChannelTimeout.start(connection);
+  }
+
+  private handleError(error: any) {
+    console.error('Error occured!', '\n', error);
+
+    this.currentSound = null;
+    this.dispatcher = null;
   }
 
   private deleteCurrentMessage() {
