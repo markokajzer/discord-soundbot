@@ -11,7 +11,7 @@ import YoutubeValidator from './validator/YoutubeValidator';
 interface ConvertOptions {
   soundName: string;
   startTime: string | undefined;
-  endTime: string | undefined;
+  duration: string | undefined;
 }
 
 interface DownloadOptions extends ConvertOptions {
@@ -30,18 +30,18 @@ export default class YoutubeDownloader extends BaseDownloader {
   public handle(message: Message, params: string[]) {
     if (params.length < 2 || params.length > 4) return;
 
-    const [soundName, url, startTime, endTime] = params;
+    const [soundName, url, startTime, duration] = params;
 
     this.validator
       .validate(soundName, url)
-      .then(() => this.addSound({ url, soundName, startTime, endTime }))
+      .then(() => this.addSound({ url, soundName, startTime, duration }))
       .then(result => message.channel.send(result))
       .catch(result => message.channel.send(result));
   }
 
-  private addSound({ url, soundName, startTime, endTime }: DownloadOptions) {
+  private addSound({ url, soundName, startTime, duration }: DownloadOptions) {
     return this.download(url)
-      .then(() => this.convert({ soundName, startTime, endTime }))
+      .then(() => this.convert({ soundName, startTime, duration }))
       .then(() => this.cleanUp(soundName))
       .catch(this.handleError);
   }
@@ -55,11 +55,11 @@ export default class YoutubeDownloader extends BaseDownloader {
     });
   }
 
-  private convert({ soundName, startTime, endTime }: ConvertOptions) {
+  private convert({ soundName, startTime, duration }: ConvertOptions) {
     let ffmpegCommand = ffmpeg('tmp.mp4');
 
     if (startTime) ffmpegCommand = ffmpegCommand.setStartTime(startTime);
-    if (endTime) ffmpegCommand = ffmpegCommand.setDuration(endTime);
+    if (duration) ffmpegCommand = ffmpegCommand.setDuration(duration);
 
     return new Promise((resolve, reject) => {
       ffmpegCommand
