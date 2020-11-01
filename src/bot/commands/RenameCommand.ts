@@ -1,10 +1,10 @@
+import { Message } from 'discord.js';
 import fs from 'fs';
 
-import { Message } from 'discord.js';
+import * as soundsDb from '~/util/db/Sounds';
+import localize from '~/util/i18n/localize';
+import { getExtensionForSound, getSounds } from '~/util/SoundUtil';
 
-import * as soundsDb from '@util/db/Sounds';
-import localize from '@util/i18n/localize';
-import { getExtensionForSound, getSounds } from '@util/SoundUtil';
 import Command from './base/Command';
 import userHasElevatedRole from './helpers/userHasElevatedRole';
 

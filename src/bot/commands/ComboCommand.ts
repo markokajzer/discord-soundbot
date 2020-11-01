@@ -1,9 +1,10 @@
 import { Message } from 'discord.js';
 
-import QueueItem from '@queue/QueueItem';
-import SoundQueue from '@queue/SoundQueue';
-import localize from '@util/i18n/localize';
-import { getSounds } from '@util/SoundUtil';
+import QueueItem from '~/queue/QueueItem';
+import SoundQueue from '~/queue/SoundQueue';
+import localize from '~/util/i18n/localize';
+import { getSounds } from '~/util/SoundUtil';
+
 import Command from './base/Command';
 
 export default class ComboCommand implements Command {

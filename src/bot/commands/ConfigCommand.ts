@@ -1,7 +1,8 @@
 import { ClientUser, Message } from 'discord.js';
 
-import Config from '@config/Config';
-import localize from '@util/i18n/localize';
+import Config from '~/config/Config';
+import localize from '~/util/i18n/localize';
+
 import Command from './base/Command';
 import userHasElevatedRole from './helpers/userHasElevatedRole';
 

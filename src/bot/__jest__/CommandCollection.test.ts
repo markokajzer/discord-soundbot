@@ -1,6 +1,8 @@
 import { ClientUser } from 'discord.js';
-import Config from '@config/Config';
-import SoundQueue from '@queue/SoundQueue';
+
+import Config from '~/config/Config';
+import SoundQueue from '~/queue/SoundQueue';
+
 import getMessageFixture from '../../__jest__/util/getMessageFixture';
 import CommandCollection from '../CommandCollection';
 import AvatarCommand from '../commands/AvatarCommand';

@@ -1,7 +1,9 @@
-import { Message } from 'discord.js';
 import '../discord/Message';
 
-import * as ignoreList from '@util/db/IgnoreList';
+import { Message } from 'discord.js';
+
+import * as ignoreList from '~/util/db/IgnoreList';
+
 import CommandCollection from '../CommandCollection';
 import MessageHandler from '../MessageHandler';
 

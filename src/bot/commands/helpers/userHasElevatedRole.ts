@@ -1,5 +1,6 @@
-import { config } from '@util/Container';
 import { GuildMember, Permissions } from 'discord.js';
+
+import { config } from '~/util/Container';
 
 const userHasElevatedRole = (member: GuildMember) =>
   member.roles.cache.some(

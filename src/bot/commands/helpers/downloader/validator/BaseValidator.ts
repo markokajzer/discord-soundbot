@@ -1,5 +1,5 @@
-import localize from '@util/i18n/localize';
-import { existsSound } from '@util/SoundUtil';
+import localize from '~/util/i18n/localize';
+import { existsSound } from '~/util/SoundUtil';
 
 export default abstract class BaseValidator {
   public abstract validate(...params: any[]): Promise<void[]>;

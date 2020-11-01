@@ -1,4 +1,4 @@
-import { add, remove, exists } from '../IgnoreList';
+import { add, exists, remove } from '../IgnoreList';
 
 jest.mock('../connection');
 

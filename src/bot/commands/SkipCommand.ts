@@ -1,4 +1,5 @@
-import SoundQueue from '@queue/SoundQueue';
+import SoundQueue from '~/queue/SoundQueue';
+
 import Command from './base/Command';
 
 export default class SkipCommand implements Command {

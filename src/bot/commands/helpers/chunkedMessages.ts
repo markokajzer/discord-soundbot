@@ -1,4 +1,4 @@
-import localize from '@util/i18n/localize';
+import localize from '~/util/i18n/localize';
 
 const MAX_MESSAGE_LENGTH = 2000;
 const NEWLINE_LENGTH = '\n'.length;

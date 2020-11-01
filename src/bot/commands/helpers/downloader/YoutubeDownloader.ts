@@ -1,10 +1,10 @@
-import fs from 'fs';
-
 import { Message } from 'discord.js';
 import ffmpeg from 'fluent-ffmpeg';
+import fs from 'fs';
 import ytdl from 'ytdl-core';
 
-import localize from '@util/i18n/localize';
+import localize from '~/util/i18n/localize';
+
 import BaseDownloader from './BaseDownloader';
 import YoutubeValidator from './validator/YoutubeValidator';
 

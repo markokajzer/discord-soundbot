@@ -6,6 +6,7 @@ plugins:
   - "@typescript-eslint"
   - jest
   - prettier
+  - simple-import-sort
 
 extends:
   - airbnb-base
@@ -26,6 +27,7 @@ parserOptions:
 rules:
   import/extensions: off
   import/no-unresolved: off
+  import/order: off
 
   arrow-body-style:
     - error
@@ -67,6 +69,22 @@ rules:
 
 # eslint-plugin-jest
   jest/no-truthy-falsy: error
+
+# simple-import-sort
+  simple-import-sort/sort:
+    - error
+    - groups:
+      # Side effect imports.
+      - ["^\\u0000"]
+      # Packages.
+      # Things that start with a letter (or digit or underscore), or `@` followed by a letter.
+      - ["^@?\\w"]
+      # Absolute imports and other imports such as Vue-style `@/foo`.
+      # Anything that does not start with a dot.
+      - ["^[^.]", "~/"]
+      # Relative imports.
+      # Anything that starts with a dot.
+      - ["^\\."]
 
 # Custom rules
   prefer-early-return: error

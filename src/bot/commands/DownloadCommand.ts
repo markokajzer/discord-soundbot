@@ -1,6 +1,7 @@
 import { Message, MessageAttachment } from 'discord.js';
 
-import { existsSound, getPathForSound } from '@util/SoundUtil';
+import { existsSound, getPathForSound } from '~/util/SoundUtil';
+
 import Command from './base/Command';
 
 export default class DownloadCommand implements Command {

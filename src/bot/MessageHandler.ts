@@ -1,8 +1,10 @@
-import { Message } from 'discord.js';
 import './discord/Message';
 
-import * as ignoreList from '@util/db/IgnoreList';
-import { config } from '@util/Container';
+import { Message } from 'discord.js';
+
+import { config } from '~/util/Container';
+import * as ignoreList from '~/util/db/IgnoreList';
+
 import CommandCollection from './CommandCollection';
 
 export default class MessageHandler {

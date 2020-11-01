@@ -1,10 +1,10 @@
+import { Message, MessageAttachment } from 'discord.js';
 import fs from 'fs';
 import { IncomingMessage } from 'http';
 import https from 'https';
 
-import { Message, MessageAttachment } from 'discord.js';
+import localize from '~/util/i18n/localize';
 
-import localize from '@util/i18n/localize';
 import BaseDownloader from './BaseDownloader';
 import AttachmentValidator from './validator/AttachmentValidator';
 

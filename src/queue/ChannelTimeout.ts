@@ -1,6 +1,6 @@
 import { VoiceConnection } from 'discord.js';
 
-import { config } from '@util/Container';
+import { config } from '~/util/Container';
 
 export default class ChannelTimeout {
   private static timeout: NodeJS.Timeout | undefined = undefined;

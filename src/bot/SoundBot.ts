@@ -1,12 +1,13 @@
 import { Client, Guild, Message, TextChannel, VoiceState } from 'discord.js';
 
-import Config from '@config/Config';
-import QueueItem from '@queue/QueueItem';
-import SoundQueue from '@queue/SoundQueue';
-import * as entrances from '@util/db/Entrances';
-import * as exits from '@util/db/Exits';
-import localize from '@util/i18n/localize';
-import { getSounds } from '@util/SoundUtil';
+import Config from '~/config/Config';
+import QueueItem from '~/queue/QueueItem';
+import SoundQueue from '~/queue/SoundQueue';
+import * as entrances from '~/util/db/Entrances';
+import * as exits from '~/util/db/Exits';
+import localize from '~/util/i18n/localize';
+import { getSounds } from '~/util/SoundUtil';
+
 import CommandCollection from './CommandCollection';
 import Command from './commands/base/Command';
 import MessageHandler from './MessageHandler';

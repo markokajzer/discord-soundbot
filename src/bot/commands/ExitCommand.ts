@@ -1,7 +1,8 @@
 import { Message } from 'discord.js';
 
-import * as exits from '@util/db/Exits';
-import { getSounds } from '@util/SoundUtil';
+import * as exits from '~/util/db/Exits';
+import { getSounds } from '~/util/SoundUtil';
+
 import Command from './base/Command';
 
 export default class ExitCommand implements Command {

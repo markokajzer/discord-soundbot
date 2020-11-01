@@ -1,7 +1,8 @@
 import { Message } from 'discord.js';
 
-import * as soundsDb from '@util/db/Sounds';
-import { getSounds } from '@util/SoundUtil';
+import * as soundsDb from '~/util/db/Sounds';
+import { getSounds } from '~/util/SoundUtil';
+
 import Command from './base/Command';
 import chunkedMessages from './helpers/chunkedMessages';
 

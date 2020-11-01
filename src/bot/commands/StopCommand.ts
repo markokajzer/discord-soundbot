@@ -1,6 +1,7 @@
 import { Message } from 'discord.js';
 
-import SoundQueue from '@queue/SoundQueue';
+import SoundQueue from '~/queue/SoundQueue';
+
 import Command from './base/Command';
 
 export default class StopCommand implements Command {

@@ -1,7 +1,6 @@
 import fs from 'fs';
-import path from 'path';
-
 import i18n from 'i18n';
+import path from 'path';
 
 import { I18nProvider } from './I18nProvider';
 

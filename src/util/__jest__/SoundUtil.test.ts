@@ -2,10 +2,10 @@ import fs from 'fs';
 
 import {
   existsSound,
-  getSoundsWithExtension,
-  getSounds,
   getExtensionForSound,
-  getPathForSound
+  getPathForSound,
+  getSounds,
+  getSoundsWithExtension
 } from '../SoundUtil';
 
 jest.mock('../Container');

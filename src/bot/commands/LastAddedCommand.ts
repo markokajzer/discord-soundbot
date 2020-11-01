@@ -1,8 +1,8 @@
+import { Message } from 'discord.js';
 import fs from 'fs';
 
-import { Message } from 'discord.js';
+import { getPathForSound, getSoundsWithExtension } from '~/util/SoundUtil';
 
-import { getPathForSound, getSoundsWithExtension } from '@util/SoundUtil';
 import Command from './base/Command';
 
 export default class LastAddedCommand implements Command {

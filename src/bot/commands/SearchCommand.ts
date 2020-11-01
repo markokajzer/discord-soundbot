@@ -1,8 +1,9 @@
 import { Message } from 'discord.js';
 
-import * as sounds from '@util/db/Sounds';
-import localize from '@util/i18n/localize';
-import { getSounds } from '@util/SoundUtil';
+import * as sounds from '~/util/db/Sounds';
+import localize from '~/util/i18n/localize';
+import { getSounds } from '~/util/SoundUtil';
+
 import Command from './base/Command';
 
 export default class SearchCommand implements Command {

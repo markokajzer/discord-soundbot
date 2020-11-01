@@ -1,6 +1,6 @@
 import fs from 'fs';
-import path from 'path';
 import camelCase from 'lodash/camelCase';
+import path from 'path';
 
 import ConfigInterface, { ConfigValue } from './ConfigInterface';
 import DEFAULT_CONFIG from './DefaultConfig';

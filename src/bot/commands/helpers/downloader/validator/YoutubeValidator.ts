@@ -1,6 +1,7 @@
 import URL from 'url';
 
-import localize from '@util/i18n/localize';
+import localize from '~/util/i18n/localize';
+
 import BaseValidator from './BaseValidator';
 
 export default class YoutubeValidator extends BaseValidator {

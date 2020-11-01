@@ -1,10 +1,10 @@
 import { Message, StreamDispatcher, VoiceConnection } from 'discord.js';
 
-import Config from '@config/Config';
-import * as sounds from '@util/db/Sounds';
-import { getPathForSound } from '@util/SoundUtil';
+import Config from '~/config/Config';
+import * as sounds from '~/util/db/Sounds';
+import localize from '~/util/i18n/localize';
+import { getPathForSound } from '~/util/SoundUtil';
 
-import localize from '@util/i18n/localize';
 import ChannelTimeout from './ChannelTimeout';
 import QueueItem from './QueueItem';
 

@@ -12,9 +12,7 @@
 
     "baseUrl": ".",
     "paths": {
-      "@config/*": ["src/config/*"],
-      "@queue/*": ["src/queue/*"],
-      "@util/*": ["src/util/*"]
+      "~/*": ["src/*"]
     },
     "incremental": true
   },

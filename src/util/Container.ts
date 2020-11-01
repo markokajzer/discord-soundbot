@@ -1,14 +1,7 @@
-import Config from '@config/Config';
-import SoundQueue from '@queue/SoundQueue';
+import Config from '~/config/Config';
+import SoundQueue from '~/queue/SoundQueue';
+
 import CommandCollection from '../bot/CommandCollection';
-import MessageHandler from '../bot/MessageHandler';
-import SoundBot from '../bot/SoundBot';
-
-import YoutubeDownloader from '../bot/commands/helpers/downloader/YoutubeDownloader';
-import YoutubeValidator from '../bot/commands/helpers/downloader/validator/YoutubeValidator';
-import AttachmentDownloader from '../bot/commands/helpers/downloader/AttachmentDownloader';
-import AttachmentValidator from '../bot/commands/helpers/downloader/validator/AttachmentValidator';
-
 import AddCommand from '../bot/commands/AddCommand';
 import AvatarCommand from '../bot/commands/AvatarCommand';
 import ComboCommand from '../bot/commands/ComboCommand';
@@ -17,6 +10,10 @@ import DownloadCommand from '../bot/commands/DownloadCommand';
 import EntranceCommand from '../bot/commands/EntranceCommand';
 import ExitCommand from '../bot/commands/ExitCommand';
 import HelpCommand from '../bot/commands/HelpCommand';
+import AttachmentDownloader from '../bot/commands/helpers/downloader/AttachmentDownloader';
+import AttachmentValidator from '../bot/commands/helpers/downloader/validator/AttachmentValidator';
+import YoutubeValidator from '../bot/commands/helpers/downloader/validator/YoutubeValidator';
+import YoutubeDownloader from '../bot/commands/helpers/downloader/YoutubeDownloader';
 import IgnoreCommand from '../bot/commands/IgnoreCommand';
 import LastAddedCommand from '../bot/commands/LastAddedCommand';
 import LoopCommand from '../bot/commands/LoopCommand';
@@ -35,6 +32,8 @@ import TagCommand from '../bot/commands/TagCommand';
 import TagsCommand from '../bot/commands/TagsCommand';
 import UnignoreCommand from '../bot/commands/UnignoreCommand';
 import WelcomeCommand from '../bot/commands/WelcomeCommand';
+import MessageHandler from '../bot/MessageHandler';
+import SoundBot from '../bot/SoundBot';
 
 export const config = new Config();
 const queue = new SoundQueue(config);

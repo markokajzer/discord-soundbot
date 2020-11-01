@@ -1,7 +1,6 @@
 import { Message } from 'discord.js';
 
 import Command from './base/Command';
-
 import AttachmentDownloader from './helpers/downloader/AttachmentDownloader';
 import YoutubeDownloader from './helpers/downloader/YoutubeDownloader';
 
