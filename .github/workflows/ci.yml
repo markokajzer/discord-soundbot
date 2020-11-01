@@ -1,9 +1,12 @@
 name: CI
 
 on:
+  push:
+    branches:
+      - master
   pull_request:
     branches:
-    - master
+      - master
 
 jobs:
   lint:
@@ -11,17 +14,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Setup Node
-      uses: actions/setup-node@v1
-      with:
-        node-version: '12.x'
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Install dependencies
-      run: yarn install
-    - name: Check formatting
-      run: yarn format:check
-    - name: Lint
-      run: yarn lint --quiet
-    - name: Test
-      run: yarn jest
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Check formatting
+        run: yarn format:check
+
+      - name: Lint
+        run: yarn lint --quiet
+
+      - name: Test
+        run: yarn jest
