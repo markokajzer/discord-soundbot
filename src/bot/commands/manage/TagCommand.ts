@@ -4,10 +4,10 @@ import * as sounds from '~/util/db/Sounds';
 import localize from '~/util/i18n/localize';
 import { getSounds } from '~/util/SoundUtil';
 
-import Command from './base/Command';
-import userHasElevatedRole from './helpers/userHasElevatedRole';
+import Command from '../base/Command';
+import userHasElevatedRole from '../util/userHasElevatedRole';
 
-export default class TagCommand implements Command {
+export class TagCommand implements Command {
   public readonly TRIGGERS = ['tag'];
   public readonly NUMBER_OF_PARAMETERS = 1;
   public readonly USAGE = 'Usage: !tag <sound> [<tag> ... <tagN> | clear]';

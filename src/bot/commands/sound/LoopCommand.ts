@@ -5,9 +5,9 @@ import SoundQueue from '~/queue/SoundQueue';
 import localize from '~/util/i18n/localize';
 import { existsSound } from '~/util/SoundUtil';
 
-import Command from './base/Command';
+import Command from '../base/Command';
 
-export default class LoopCommand implements Command {
+export class LoopCommand implements Command {
   public readonly TRIGGERS = ['loop', 'repeat'];
   public readonly NUMBER_OF_PARAMETERS = 2;
   public readonly USAGE = 'Usage: !loop <sound> <count>';

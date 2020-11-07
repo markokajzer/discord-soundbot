@@ -2,15 +2,15 @@ import { Message } from 'discord.js';
 
 import QueueItem from '~/queue/QueueItem';
 import SoundQueue from '~/queue/SoundQueue';
+import * as soundsDb from '~/util/db/Sounds';
 import localize from '~/util/i18n/localize';
-import { existsSound } from '~/util/SoundUtil';
+import { getSounds } from '~/util/SoundUtil';
 
-import Command from './base/Command';
+import Command from '../base/Command';
 
-export default class NextCommand implements Command {
-  public readonly TRIGGERS = ['next'];
+export class RandomCommand implements Command {
+  public readonly TRIGGERS = ['random'];
   public readonly NUMBER_OF_PARAMETERS = 1;
-  public readonly USAGE = '!next <sound>';
 
   private readonly queue: SoundQueue;
 
@@ -21,21 +21,16 @@ export default class NextCommand implements Command {
   public run(message: Message, params: string[]) {
     if (!message.member) return;
 
-    if (params.length !== this.NUMBER_OF_PARAMETERS) {
-      message.channel.send(this.USAGE);
-      return;
-    }
-
-    const [sound] = params;
-    if (!existsSound(sound)) return;
-
     const { channel: voiceChannel } = message.member.voice;
     if (!voiceChannel) {
       message.reply(localize.t('helpers.voiceChannelFinder.error'));
       return;
     }
 
-    this.queue.addBefore(new QueueItem(sound, voiceChannel, message));
-    this.queue.next();
+    const sounds =
+      params.length === this.NUMBER_OF_PARAMETERS ? soundsDb.withTag(params[0]) : getSounds();
+
+    const random = sounds[Math.floor(Math.random() * sounds.length)];
+    this.queue.add(new QueueItem(random, voiceChannel, message));
   }
 }

@@ -3,10 +3,10 @@ import { ClientUser, Message } from 'discord.js';
 import Config from '~/config/Config';
 import localize from '~/util/i18n/localize';
 
-import Command from './base/Command';
-import userHasElevatedRole from './helpers/userHasElevatedRole';
+import Command from '../base/Command';
+import userHasElevatedRole from '../util/userHasElevatedRole';
 
-export default class ConfigCommand implements Command {
+export class ConfigCommand implements Command {
   public readonly TRIGGERS = ['config', 'set'];
   public readonly NUMBER_OF_PARAMETERS = 2;
   public readonly USAGE = 'Usage: !config <option> <value>';

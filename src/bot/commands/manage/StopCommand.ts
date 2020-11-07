@@ -2,9 +2,9 @@ import { Message } from 'discord.js';
 
 import SoundQueue from '~/queue/SoundQueue';
 
-import Command from './base/Command';
+import Command from '../base/Command';
 
-export default class StopCommand implements Command {
+export class StopCommand implements Command {
   public readonly TRIGGERS = ['leave', 'stop'];
   private readonly queue: SoundQueue;
 

@@ -4,9 +4,9 @@ import * as sounds from '~/util/db/Sounds';
 import localize from '~/util/i18n/localize';
 import { getSounds } from '~/util/SoundUtil';
 
-import Command from './base/Command';
+import Command from '../base/Command';
 
-export default class SearchCommand implements Command {
+export class SearchCommand implements Command {
   public readonly TRIGGERS = ['search'];
   public readonly NUMBER_OF_PARAMETERS = 1;
   public readonly USAGE = 'Usage: !search <tag>';

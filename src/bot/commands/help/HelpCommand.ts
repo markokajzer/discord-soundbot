@@ -3,10 +3,10 @@ import { Message } from 'discord.js';
 import Config from '~/config/Config';
 import localize from '~/util/i18n/localize';
 
-import Command from './base/Command';
-import chunkedMessages from './helpers/chunkedMessages';
+import Command from '../base/Command';
+import chunkedMessages from '../util/chunkedMessages';
 
-export default class HelpCommand implements Command {
+export class HelpCommand implements Command {
   public readonly TRIGGERS = ['commands', 'help'];
   private readonly config: Config;
 

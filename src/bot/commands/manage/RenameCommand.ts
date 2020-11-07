@@ -5,10 +5,10 @@ import * as soundsDb from '~/util/db/Sounds';
 import localize from '~/util/i18n/localize';
 import { getExtensionForSound, getSounds } from '~/util/SoundUtil';
 
-import Command from './base/Command';
-import userHasElevatedRole from './helpers/userHasElevatedRole';
+import Command from '../base/Command';
+import userHasElevatedRole from '../util/userHasElevatedRole';
 
-export default class RenameCommand implements Command {
+export class RenameCommand implements Command {
   public readonly TRIGGERS = ['rename'];
   public readonly NUMBER_OF_PARAMETERS = 2;
   public readonly USAGE = 'Usage: !rename <old> <new>';

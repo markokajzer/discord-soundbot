@@ -28,6 +28,7 @@ rules:
   import/extensions: off
   import/no-unresolved: off
   import/order: off
+  import/prefer-default-export: off
 
   arrow-body-style:
     - error
@@ -85,6 +86,9 @@ rules:
       # Relative imports.
       # Anything that starts with a dot.
       - ["^\\."]
+
+
+
 
 # Custom rules
   prefer-early-return: error

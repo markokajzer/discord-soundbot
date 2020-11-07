@@ -3,12 +3,12 @@ import { Message } from 'discord.js';
 import * as ignoreList from '~/util/db/IgnoreList';
 import localize from '~/util/i18n/localize';
 
-import Command from './base/Command';
-import userHasElevatedRole from './helpers/userHasElevatedRole';
+import Command from '../base/Command';
+import userHasElevatedRole from '../util/userHasElevatedRole';
 
-export default class UnignoreCommand implements Command {
-  public readonly TRIGGERS = ['unignore'];
-  public readonly USAGE = 'Usage: !unignore <user>';
+export class IgnoreCommand implements Command {
+  public readonly TRIGGERS = ['ignore'];
+  public readonly USAGE = 'Usage: !ignore <user>';
 
   public run(message: Message) {
     if (!message.member) return;
@@ -24,8 +24,8 @@ export default class UnignoreCommand implements Command {
     }
 
     users.forEach(user => {
-      ignoreList.remove(user.id);
-      message.channel.send(localize.t('commands.ignore.remove', { user: user.username }));
+      ignoreList.add(user.id);
+      message.channel.send(localize.t('commands.ignore.add', { user: user.username }));
     });
   }
 }

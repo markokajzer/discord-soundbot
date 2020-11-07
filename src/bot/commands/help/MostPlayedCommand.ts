@@ -3,9 +3,9 @@ import { Message } from 'discord.js';
 import Sound from '~/util/db/models/Sound';
 import * as soundsDb from '~/util/db/Sounds';
 
-import Command from './base/Command';
+import Command from '../base/Command';
 
-export default class MostPlayedCommand implements Command {
+export class MostPlayedCommand implements Command {
   public readonly TRIGGERS = ['mostplayed'];
 
   public run(message: Message) {

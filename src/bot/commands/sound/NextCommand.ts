@@ -5,10 +5,12 @@ import SoundQueue from '~/queue/SoundQueue';
 import localize from '~/util/i18n/localize';
 import { existsSound } from '~/util/SoundUtil';
 
-import Command from './base/Command';
+import Command from '../base/Command';
 
-export default class SoundCommand implements Command {
-  public readonly TRIGGERS = [];
+export class NextCommand implements Command {
+  public readonly TRIGGERS = ['next'];
+  public readonly NUMBER_OF_PARAMETERS = 1;
+  public readonly USAGE = '!next <sound>';
 
   private readonly queue: SoundQueue;
 
@@ -16,10 +18,15 @@ export default class SoundCommand implements Command {
     this.queue = queue;
   }
 
-  public run(message: Message) {
+  public run(message: Message, params: string[]) {
     if (!message.member) return;
 
-    const sound = message.content;
+    if (params.length !== this.NUMBER_OF_PARAMETERS) {
+      message.channel.send(this.USAGE);
+      return;
+    }
+
+    const [sound] = params;
     if (!existsSound(sound)) return;
 
     const { channel: voiceChannel } = message.member.voice;
@@ -28,6 +35,7 @@ export default class SoundCommand implements Command {
       return;
     }
 
-    this.queue.add(new QueueItem(sound, voiceChannel, message));
+    this.queue.addBefore(new QueueItem(sound, voiceChannel, message));
+    this.queue.next();
   }
 }

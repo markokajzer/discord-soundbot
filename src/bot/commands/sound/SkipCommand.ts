@@ -1,8 +1,8 @@
 import SoundQueue from '~/queue/SoundQueue';
 
-import Command from './base/Command';
+import Command from '../base/Command';
 
-export default class SkipCommand implements Command {
+export class SkipCommand implements Command {
   public readonly TRIGGERS = ['skip'];
 
   private readonly queue: SoundQueue;

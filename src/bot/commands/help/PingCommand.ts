@@ -1,8 +1,8 @@
 import { Message } from 'discord.js';
 
-import Command from './base/Command';
+import Command from '../base/Command';
 
-export default class PingCommand implements Command {
+export class PingCommand implements Command {
   public readonly TRIGGERS = ['ping'];
 
   public run(message: Message) {

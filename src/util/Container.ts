@@ -2,36 +2,44 @@ import Config from '~/config/Config';
 import SoundQueue from '~/queue/SoundQueue';
 
 import CommandCollection from '../bot/CommandCollection';
-import AddCommand from '../bot/commands/AddCommand';
-import AvatarCommand from '../bot/commands/AvatarCommand';
-import ComboCommand from '../bot/commands/ComboCommand';
-import ConfigCommand from '../bot/commands/ConfigCommand';
-import DownloadCommand from '../bot/commands/DownloadCommand';
-import EntranceCommand from '../bot/commands/EntranceCommand';
-import ExitCommand from '../bot/commands/ExitCommand';
-import HelpCommand from '../bot/commands/HelpCommand';
-import AttachmentDownloader from '../bot/commands/helpers/downloader/AttachmentDownloader';
-import AttachmentValidator from '../bot/commands/helpers/downloader/validator/AttachmentValidator';
-import YoutubeValidator from '../bot/commands/helpers/downloader/validator/YoutubeValidator';
-import YoutubeDownloader from '../bot/commands/helpers/downloader/YoutubeDownloader';
-import IgnoreCommand from '../bot/commands/IgnoreCommand';
-import LastAddedCommand from '../bot/commands/LastAddedCommand';
-import LoopCommand from '../bot/commands/LoopCommand';
-import MostPlayedCommand from '../bot/commands/MostPlayedCommand';
-import NextCommand from '../bot/commands/NextCommand';
-import PingCommand from '../bot/commands/PingCommand';
-import RandomCommand from '../bot/commands/RandomCommand';
-import RemoveCommand from '../bot/commands/RemoveCommand';
-import RenameCommand from '../bot/commands/RenameCommand';
-import SearchCommand from '../bot/commands/SearchCommand';
-import SkipCommand from '../bot/commands/SkipCommand';
-import SoundCommand from '../bot/commands/SoundCommand';
-import SoundsCommand from '../bot/commands/SoundsCommand';
-import StopCommand from '../bot/commands/StopCommand';
-import TagCommand from '../bot/commands/TagCommand';
-import TagsCommand from '../bot/commands/TagsCommand';
-import UnignoreCommand from '../bot/commands/UnignoreCommand';
-import WelcomeCommand from '../bot/commands/WelcomeCommand';
+import {
+  AvatarCommand,
+  ConfigCommand,
+  IgnoreCommand,
+  UnignoreCommand
+} from '../bot/commands/config';
+import {
+  HelpCommand,
+  LastAddedCommand,
+  MostPlayedCommand,
+  PingCommand,
+  WelcomeCommand
+} from '../bot/commands/help';
+import {
+  AddCommand,
+  DownloadCommand,
+  EntranceCommand,
+  ExitCommand,
+  RemoveCommand,
+  RenameCommand,
+  SearchCommand,
+  SoundsCommand,
+  StopCommand,
+  TagCommand,
+  TagsCommand
+} from '../bot/commands/manage';
+import {
+  ComboCommand,
+  LoopCommand,
+  NextCommand,
+  RandomCommand,
+  SkipCommand,
+  SoundCommand
+} from '../bot/commands/sound';
+import AttachmentDownloader from '../bot/commands/util/downloader/AttachmentDownloader';
+import AttachmentValidator from '../bot/commands/util/downloader/validator/AttachmentValidator';
+import YoutubeValidator from '../bot/commands/util/downloader/validator/YoutubeValidator';
+import YoutubeDownloader from '../bot/commands/util/downloader/YoutubeDownloader';
 import MessageHandler from '../bot/MessageHandler';
 import SoundBot from '../bot/SoundBot';
 

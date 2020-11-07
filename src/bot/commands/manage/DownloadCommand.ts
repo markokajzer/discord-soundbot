@@ -2,9 +2,9 @@ import { Message, MessageAttachment } from 'discord.js';
 
 import { existsSound, getPathForSound } from '~/util/SoundUtil';
 
-import Command from './base/Command';
+import Command from '../base/Command';
 
-export default class DownloadCommand implements Command {
+export class DownloadCommand implements Command {
   public readonly TRIGGERS = ['download'];
   public readonly NUMBER_OF_PARAMETERS = 1;
   public readonly USAGE = 'Usage: !download <sound>';

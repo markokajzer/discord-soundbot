@@ -3,10 +3,10 @@ import { ClientUser, Message } from 'discord.js';
 import Config from '~/config/Config';
 import localize from '~/util/i18n/localize';
 
-import UserCommand from './base/UserCommand';
-import userHasElevatedRole from './helpers/userHasElevatedRole';
+import UserCommand from '../base/UserCommand';
+import userHasElevatedRole from '../util/userHasElevatedRole';
 
-export default class AvatarCommand implements UserCommand {
+export class AvatarCommand implements UserCommand {
   public readonly TRIGGERS = ['avatar'];
   public readonly NUMBER_OF_PARAMETERS = 1;
   public readonly USAGE = 'Usage: !avatar [remove]';

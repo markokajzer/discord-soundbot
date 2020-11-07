@@ -2,7 +2,7 @@ import { ClientUser, Message } from 'discord.js';
 
 import Command from './commands/base/Command';
 import UserCommand from './commands/base/UserCommand';
-import SoundCommand from './commands/SoundCommand';
+import { SoundCommand } from './commands/sound';
 
 export default class CommandCollection {
   private readonly triggers: Map<string, Command>;

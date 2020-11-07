@@ -3,9 +3,9 @@ import { Message } from 'discord.js';
 import * as entrances from '~/util/db/Entrances';
 import { getSounds } from '~/util/SoundUtil';
 
-import Command from './base/Command';
+import Command from '../base/Command';
 
-export default class EntranceCommand implements Command {
+export class EntranceCommand implements Command {
   public readonly TRIGGERS = ['entrance'];
 
   public run(message: Message, params: string[]) {
