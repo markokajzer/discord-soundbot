@@ -1,0 +1,20 @@
+name: npm publish
+
+on:
+  push:
+    tags:
+      - *
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Pack tarball
+        run: npm pack
+
+      - name: Publish to npm
+        run: npm publish
+        with:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
