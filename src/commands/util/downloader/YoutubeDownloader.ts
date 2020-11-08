@@ -56,17 +56,13 @@ export default class YoutubeDownloader extends BaseDownloader {
   }
 
   private convert({ soundName, startTime, duration }: ConvertOptions) {
-    let ffmpegCommand = ffmpeg('tmp.mp4');
+    let ffmpegCommand = ffmpeg('tmp.mp4').output(`./sounds/${soundName}.mp3`);
 
     if (startTime) ffmpegCommand = ffmpegCommand.setStartTime(startTime);
     if (duration) ffmpegCommand = ffmpegCommand.setDuration(duration);
 
     return new Promise((resolve, reject) => {
-      ffmpegCommand
-        .output(`./sounds/${soundName}.mp3`)
-        .on('end', resolve)
-        .on('error', reject)
-        .run();
+      ffmpegCommand.on('end', resolve).on('error', reject).run();
     });
   }
 
