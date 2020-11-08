@@ -80,7 +80,7 @@ export default class SoundQueue {
 
   private deafen(connection: VoiceConnection) {
     // Can only deafen when in a channel, therefore need connection
-    if (connection.voice.selfDeaf !== this.config.deafen) {
+    if (connection.voice && connection.voice.selfDeaf !== this.config.deafen) {
       connection.voice.setDeaf(this.config.deafen);
     }
 
@@ -122,7 +122,7 @@ export default class SoundQueue {
     if (this.config.timeout > 0) ChannelTimeout.start(connection);
   }
 
-  private async handleError(error: any) {
+  private async handleError(error: { code: string }) {
     if (error.code === 'VOICE_JOIN_CHANNEL' && this.currentSound?.message) {
       await this.currentSound.message.channel.send(localize.t('errors.permissions'));
       process.exit();
