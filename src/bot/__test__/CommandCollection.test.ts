@@ -1,18 +1,18 @@
 import { ClientUser } from 'discord.js';
 
+import Command from '~/commands/base/Command';
+import { AvatarCommand } from '~/commands/config/AvatarCommand';
+import { HelpCommand } from '~/commands/help/HelpCommand';
+import { SoundCommand } from '~/commands/sound/SoundCommand';
 import Config from '~/config/Config';
 import SoundQueue from '~/queue/SoundQueue';
 
-import getMessageFixture from '../../__jest__/util/getMessageFixture';
-import Command from '../../commands/base/Command';
+import getMessageFixture from '../../../test/getMessageFixture';
 import CommandCollection from '../CommandCollection';
-import AvatarCommand from '../commands/AvatarCommand';
-import HelpCommand from '../commands/HelpCommand';
-import SoundCommand from '../commands/SoundCommand';
 
-jest.mock('../commands/AvatarCommand');
-jest.mock('../commands/HelpCommand');
-jest.mock('../commands/SoundCommand');
+jest.mock('~/commands/config/AvatarCommand');
+jest.mock('~/commands/help/HelpCommand');
+jest.mock('~/commands/sound/SoundCommand');
 
 const queue = ({} as unknown) as SoundQueue;
 const config = ({} as unknown) as Config;
@@ -30,6 +30,8 @@ describe('CommandCollection', () => {
 
   it('correctly registers commands', () => {
     commands.registerCommands([helpCommand]);
+    // Access private field
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const triggers = (commands as any).triggers as Map<string, Command>;
 
     expect(Array.from(triggers.keys())).toEqual(['commands', 'help']);
