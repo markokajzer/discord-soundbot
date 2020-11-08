@@ -1,12 +1,12 @@
 import fs from 'fs';
 import path from 'path';
 
-const enumerateKeys = (obj: Record<string, string | Record<string, string>>): string[] => {
+const enumerateKeys = (obj: Dictionary<string | Dictionary<string>>): string[] => {
   const keys: string[] = [];
 
   Object.keys(obj).forEach(key => {
     if (typeof obj[key] === 'object') {
-      const subkeys = enumerateKeys(obj[key] as Record<string, string>);
+      const subkeys = enumerateKeys(obj[key] as Dictionary<string>);
       keys.push(...subkeys.map(subkey => `${key}.${subkey}`));
       return;
     }

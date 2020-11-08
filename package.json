@@ -72,7 +72,7 @@
     "postbuild": "ts-node lib/postbuild.ts",
     "serve": "node dist/bin/soundbot.js",
     "start": "npm run build && npm run serve",
-    "translate": "ts-node lib/checkTranslations.ts",
+    "translate": "ts-node --files lib/checkTranslations.ts",
     "rebuild": "npm run clean && npm run build",
     "release": "npm run rebuild && npm run lint && npm run format"
   }
