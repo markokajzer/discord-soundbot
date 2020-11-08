@@ -17,7 +17,7 @@ const enumerateKeys = (obj: Dictionary<string | Dictionary<string>>): string[] =
   return keys;
 };
 
-const localesPath = path.join(__dirname, '..', '..', 'config', 'locales');
+const localesPath = path.join(__dirname, '..', 'config', 'locales');
 const files = fs.readdirSync(localesPath);
 
 const locales = files.map(file => path.basename(file, '.json'));
