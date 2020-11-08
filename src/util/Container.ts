@@ -2,19 +2,16 @@ import Config from '~/config/Config';
 import SoundQueue from '~/queue/SoundQueue';
 
 import CommandCollection from '../bot/CommandCollection';
-import {
-  AvatarCommand,
-  ConfigCommand,
-  IgnoreCommand,
-  UnignoreCommand
-} from '../bot/commands/config';
+import MessageHandler from '../bot/MessageHandler';
+import SoundBot from '../bot/SoundBot';
+import { AvatarCommand, ConfigCommand, IgnoreCommand, UnignoreCommand } from '../commands/config';
 import {
   HelpCommand,
   LastAddedCommand,
   MostPlayedCommand,
   PingCommand,
   WelcomeCommand
-} from '../bot/commands/help';
+} from '../commands/help';
 import {
   AddCommand,
   DownloadCommand,
@@ -27,7 +24,7 @@ import {
   StopCommand,
   TagCommand,
   TagsCommand
-} from '../bot/commands/manage';
+} from '../commands/manage';
 import {
   ComboCommand,
   LoopCommand,
@@ -35,13 +32,11 @@ import {
   RandomCommand,
   SkipCommand,
   SoundCommand
-} from '../bot/commands/sound';
-import AttachmentDownloader from '../bot/commands/util/downloader/AttachmentDownloader';
-import AttachmentValidator from '../bot/commands/util/downloader/validator/AttachmentValidator';
-import YoutubeValidator from '../bot/commands/util/downloader/validator/YoutubeValidator';
-import YoutubeDownloader from '../bot/commands/util/downloader/YoutubeDownloader';
-import MessageHandler from '../bot/MessageHandler';
-import SoundBot from '../bot/SoundBot';
+} from '../commands/sound';
+import AttachmentDownloader from '../commands/util/downloader/AttachmentDownloader';
+import AttachmentValidator from '../commands/util/downloader/validator/AttachmentValidator';
+import YoutubeValidator from '../commands/util/downloader/validator/YoutubeValidator';
+import YoutubeDownloader from '../commands/util/downloader/YoutubeDownloader';
 
 export const config = new Config();
 const queue = new SoundQueue(config);

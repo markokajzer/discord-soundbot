@@ -4,9 +4,9 @@ import Config from '~/config/Config';
 import SoundQueue from '~/queue/SoundQueue';
 
 import getMessageFixture from '../../__jest__/util/getMessageFixture';
+import Command from '../../commands/base/Command';
 import CommandCollection from '../CommandCollection';
 import AvatarCommand from '../commands/AvatarCommand';
-import Command from '../commands/base/Command';
 import HelpCommand from '../commands/HelpCommand';
 import SoundCommand from '../commands/SoundCommand';
 

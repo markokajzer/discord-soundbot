@@ -3,8 +3,8 @@ import ConfigInterface from '~/config/ConfigInterface';
 import Container from '~/util/Container';
 import localize from '~/util/i18n/localize';
 
-import Command from './bot/commands/base/Command';
 import SoundBot from './bot/SoundBot';
+import Command from './commands/base/Command';
 
 class DiscordSoundBot {
   private readonly config: Config;

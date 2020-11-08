@@ -8,8 +8,8 @@ import * as exits from '~/util/db/Exits';
 import localize from '~/util/i18n/localize';
 import { getSounds } from '~/util/SoundUtil';
 
+import Command from '../commands/base/Command';
 import CommandCollection from './CommandCollection';
-import Command from './commands/base/Command';
 import MessageHandler from './MessageHandler';
 
 export default class SoundBot extends Client {

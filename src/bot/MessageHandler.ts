@@ -1,4 +1,4 @@
-import './discord/Message';
+import '../discord/Message';
 
 import { Message } from 'discord.js';
 
