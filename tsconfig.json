@@ -9,6 +9,10 @@
     "lib": [
       "es2017"
     ],
+    "typeRoots": [
+      "node_modules/@types",
+      "src/types"
+    ],
 
     "baseUrl": ".",
     "paths": {

@@ -2,6 +2,7 @@ export { AddCommand } from './AddCommand';
 export { DownloadCommand } from './DownloadCommand';
 export { EntranceCommand } from './EntranceCommand';
 export { ExitCommand } from './ExitCommand';
+export { ModifyCommand } from './ModifyCommand';
 export { RemoveCommand } from './RemoveCommand';
 export { RenameCommand } from './RenameCommand';
 export { SearchCommand } from './SearchCommand';

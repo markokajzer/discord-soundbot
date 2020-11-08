@@ -84,9 +84,18 @@
       },
       "url": "Current avatar: {url}"
     },
+    "config": {
+      "success": "`{field}` set to `{value}`!",
+      "notFound": "Config does not have option `{field}`!"
+    },
     "ignore": {
       "add": "Ignoring {user}!",
       "remove": "No longer ignoring {user}!"
+    },
+    "modify": {
+      "success": "Successfully set `{modifier}` of {sound}!",
+      "error": "Something went wrong when changing `{modifier}` of {sound}!",
+      "notFound": "No such modifier: `{modifier}`!"
     },
     "remove": {
       "notFound": "{sound} not found!",
@@ -106,10 +115,6 @@
     "tag": {
       "found": "Tags for {sound}: [{tags}]",
       "notFound": "{sound} not found!"
-    },
-    "config": {
-      "success": "`{field}` set to `{value}`!",
-      "notFound": "Config does not have option `{field}`!"
     }
   },
 
