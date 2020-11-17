@@ -5,9 +5,9 @@ import { getPathForSound, getSoundsWithExtension } from '~/util/SoundUtil';
 
 import Command from '../base/Command';
 
-export class LastAddedCommand implements Command {
-  public readonly TRIGGERS = ['lastadded'];
-  private readonly AMOUNT = 5;
+export class LastAddedCommand extends Command {
+  public readonly triggers = ['lastadded'];
+  private readonly amount = 5;
 
   public run(message: Message) {
     message.channel.send(['```', ...this.getLastAddedSounds(), '```'].join('\n'));
@@ -20,7 +20,7 @@ export class LastAddedCommand implements Command {
         creation: fs.statSync(getPathForSound(sound.name)).birthtime
       }))
       .sort((a, b) => b.creation.valueOf() - a.creation.valueOf())
-      .slice(0, this.AMOUNT)
+      .slice(0, this.amount)
       .map(sound => sound.name);
   }
 }

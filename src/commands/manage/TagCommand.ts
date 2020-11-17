@@ -7,14 +7,14 @@ import { getSounds } from '~/util/SoundUtil';
 import Command from '../base/Command';
 import userHasElevatedRole from '../util/userHasElevatedRole';
 
-export class TagCommand implements Command {
-  public readonly TRIGGERS = ['tag'];
-  public readonly NUMBER_OF_PARAMETERS = 1;
-  public readonly USAGE = 'Usage: !tag <sound> [<tag> ... <tagN> | clear]';
+export class TagCommand extends Command {
+  public readonly triggers = ['tag'];
+  public readonly numberOfParameters = 1;
+  public readonly usage = 'Usage: !tag <sound> [<tag> ... <tagN> | clear]';
 
   public run(message: Message, params: string[]) {
-    if (params.length < this.NUMBER_OF_PARAMETERS) {
-      message.channel.send(this.USAGE);
+    if (params.length < this.numberOfParameters) {
+      message.channel.send(this.usage);
       return;
     }
 

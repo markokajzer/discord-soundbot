@@ -5,8 +5,8 @@ import { getSounds } from '~/util/SoundUtil';
 
 import Command from '../base/Command';
 
-export class ExitCommand implements Command {
-  public readonly TRIGGERS = ['exit'];
+export class ExitCommand extends Command {
+  public readonly triggers = ['exit'];
 
   public run(message: Message, params: string[]) {
     const [exitSound] = params;

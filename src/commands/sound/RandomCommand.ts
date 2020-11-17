@@ -1,22 +1,15 @@
 import { Message } from 'discord.js';
 
 import QueueItem from '~/queue/QueueItem';
-import SoundQueue from '~/queue/SoundQueue';
 import * as soundsDb from '~/util/db/Sounds';
 import localize from '~/util/i18n/localize';
 import { getSounds } from '~/util/SoundUtil';
 
-import Command from '../base/Command';
+import QueueCommand from '../base/QueueCommand';
 
-export class RandomCommand implements Command {
-  public readonly TRIGGERS = ['random'];
-  public readonly NUMBER_OF_PARAMETERS = 1;
-
-  private readonly queue: SoundQueue;
-
-  constructor(queue: SoundQueue) {
-    this.queue = queue;
-  }
+export class RandomCommand extends QueueCommand {
+  public readonly triggers = ['random'];
+  public readonly numberOfParameters = 1;
 
   public run(message: Message, params: string[]) {
     if (!message.member) return;
@@ -28,7 +21,7 @@ export class RandomCommand implements Command {
     }
 
     const sounds =
-      params.length === this.NUMBER_OF_PARAMETERS ? soundsDb.withTag(params[0]) : getSounds();
+      params.length === this.numberOfParameters ? soundsDb.withTag(params[0]) : getSounds();
 
     const random = sounds[Math.floor(Math.random() * sounds.length)];
     this.queue.add(new QueueItem(random, voiceChannel, message));

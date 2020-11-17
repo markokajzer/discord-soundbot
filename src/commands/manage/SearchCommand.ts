@@ -6,14 +6,14 @@ import { getSounds } from '~/util/SoundUtil';
 
 import Command from '../base/Command';
 
-export class SearchCommand implements Command {
-  public readonly TRIGGERS = ['search'];
-  public readonly NUMBER_OF_PARAMETERS = 1;
-  public readonly USAGE = 'Usage: !search <tag>';
+export class SearchCommand extends Command {
+  public readonly triggers = ['search'];
+  public readonly numberOfParameters = 1;
+  public readonly usage = 'Usage: !search <tag>';
 
   public run(message: Message, params: string[]) {
-    if (params.length !== this.NUMBER_OF_PARAMETERS) {
-      message.channel.send(this.USAGE);
+    if (params.length !== this.numberOfParameters) {
+      message.channel.send(this.usage);
       return;
     }
 

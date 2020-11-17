@@ -1,22 +1,17 @@
 import { ClientUser, Message } from 'discord.js';
 
-import Config from '~/config/Config';
 import localize from '~/util/i18n/localize';
 
+import ConfigCommand from '../base/ConfigCommand';
 import UserCommand from '../base/UserCommand';
 import userHasElevatedRole from '../util/userHasElevatedRole';
 
-export class AvatarCommand implements UserCommand {
-  public readonly TRIGGERS = ['avatar'];
-  public readonly NUMBER_OF_PARAMETERS = 1;
-  public readonly USAGE = 'Usage: !avatar [remove]';
+export class AvatarCommand extends ConfigCommand implements UserCommand {
+  public readonly triggers = ['avatar'];
+  public readonly numberOfParameters = 1;
+  public readonly usage = 'Usage: !avatar [remove]';
 
-  private readonly config: Config;
-  private user!: ClientUser;
-
-  constructor(config: Config) {
-    this.config = config;
-  }
+  protected user!: ClientUser;
 
   public setClientUser(user: ClientUser) {
     this.user = user;
@@ -31,7 +26,7 @@ export class AvatarCommand implements UserCommand {
       return;
     }
 
-    if (params.length === this.NUMBER_OF_PARAMETERS && params[0] === 'remove') {
+    if (params.length === this.numberOfParameters && params[0] === 'remove') {
       this.user.setAvatar('');
       return;
     }
@@ -42,7 +37,7 @@ export class AvatarCommand implements UserCommand {
     }
 
     if (message.attachments.size !== 1) {
-      message.channel.send(this.USAGE);
+      message.channel.send(this.usage);
       return;
     }
 

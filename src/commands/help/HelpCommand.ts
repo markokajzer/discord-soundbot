@@ -6,11 +6,13 @@ import localize from '~/util/i18n/localize';
 import Command from '../base/Command';
 import chunkedMessages from '../util/chunkedMessages';
 
-export class HelpCommand implements Command {
-  public readonly TRIGGERS = ['commands', 'help'];
+export class HelpCommand extends Command {
+  public readonly triggers = ['commands', 'help'];
+
   private readonly config: Config;
 
   constructor(config: Config) {
+    super();
     this.config = config;
   }
 

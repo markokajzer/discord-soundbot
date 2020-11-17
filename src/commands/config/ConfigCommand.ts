@@ -1,22 +1,17 @@
 import { ClientUser, Message } from 'discord.js';
 
-import Config from '~/config/Config';
 import localize from '~/util/i18n/localize';
 
-import Command from '../base/Command';
+import BaseConfigCommand from '../base/ConfigCommand';
+import UserCommand from '../base/UserCommand';
 import userHasElevatedRole from '../util/userHasElevatedRole';
 
-export class ConfigCommand implements Command {
-  public readonly TRIGGERS = ['config', 'set'];
-  public readonly NUMBER_OF_PARAMETERS = 2;
-  public readonly USAGE = 'Usage: !config <option> <value>';
+export class ConfigCommand extends BaseConfigCommand implements UserCommand {
+  public readonly triggers = ['config', 'set'];
+  public readonly numberOfParameters = 2;
+  public readonly usage = 'Usage: !config <option> <value>';
 
-  private readonly config: Config;
-  private user!: ClientUser;
-
-  constructor(config: Config) {
-    this.config = config;
-  }
+  protected user!: ClientUser;
 
   public setClientUser(user: ClientUser) {
     this.user = user;
@@ -31,8 +26,8 @@ export class ConfigCommand implements Command {
       return;
     }
 
-    if (params.length < this.NUMBER_OF_PARAMETERS) {
-      message.channel.send(this.USAGE);
+    if (params.length < this.numberOfParameters) {
+      message.channel.send(this.usage);
       return;
     }
 

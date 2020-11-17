@@ -4,14 +4,14 @@ import { existsSound, getPathForSound } from '~/util/SoundUtil';
 
 import Command from '../base/Command';
 
-export class DownloadCommand implements Command {
-  public readonly TRIGGERS = ['download'];
-  public readonly NUMBER_OF_PARAMETERS = 1;
-  public readonly USAGE = 'Usage: !download <sound>';
+export class DownloadCommand extends Command {
+  public readonly triggers = ['download'];
+  public readonly numberOfParameters = 1;
+  public readonly usage = 'Usage: !download <sound>';
 
   public run(message: Message, params: string[]) {
-    if (params.length !== this.NUMBER_OF_PARAMETERS) {
-      message.channel.send(this.USAGE);
+    if (params.length !== this.numberOfParameters) {
+      message.channel.send(this.usage);
       return;
     }
 

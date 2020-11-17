@@ -5,8 +5,8 @@ import { getSounds } from '~/util/SoundUtil';
 
 import Command from '../base/Command';
 
-export class EntranceCommand implements Command {
-  public readonly TRIGGERS = ['entrance'];
+export class EntranceCommand extends Command {
+  public readonly triggers = ['entrance'];
 
   public run(message: Message, params: string[]) {
     const [entranceSound] = params;

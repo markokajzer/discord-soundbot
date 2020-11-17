@@ -8,10 +8,10 @@ import { getExtensionForSound, getSounds } from '~/util/SoundUtil';
 import Command from '../base/Command';
 import userHasElevatedRole from '../util/userHasElevatedRole';
 
-export class RenameCommand implements Command {
-  public readonly TRIGGERS = ['rename'];
-  public readonly NUMBER_OF_PARAMETERS = 2;
-  public readonly USAGE = 'Usage: !rename <old> <new>';
+export class RenameCommand extends Command {
+  public readonly triggers = ['rename'];
+  public readonly numberOfParameters = 2;
+  public readonly usage = 'Usage: !rename <old> <new>';
 
   public run(message: Message, params: string[]) {
     if (!message.member) return;
@@ -19,8 +19,8 @@ export class RenameCommand implements Command {
     const allowedToRunCommand = userHasElevatedRole(message.member);
     if (!allowedToRunCommand) return;
 
-    if (params.length !== this.NUMBER_OF_PARAMETERS) {
-      message.channel.send(this.USAGE);
+    if (params.length !== this.numberOfParameters) {
+      message.channel.send(this.usage);
       return;
     }
 

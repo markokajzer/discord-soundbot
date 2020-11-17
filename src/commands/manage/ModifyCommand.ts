@@ -19,8 +19,8 @@ const MODIFIER_OPTIONS: Dictionary<CommandParams> = {
   }
 };
 
-export class ModifyCommand implements Command {
-  public readonly TRIGGERS = ['modify', 'change'];
+export class ModifyCommand extends Command {
+  public readonly triggers = ['modify', 'change'];
 
   public run(message: Message, params: string[]) {
     const [sound, modifier, ...commandParams] = params;

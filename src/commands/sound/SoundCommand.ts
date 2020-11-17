@@ -1,20 +1,13 @@
 import { Message } from 'discord.js';
 
 import QueueItem from '~/queue/QueueItem';
-import SoundQueue from '~/queue/SoundQueue';
 import localize from '~/util/i18n/localize';
 import { existsSound } from '~/util/SoundUtil';
 
-import Command from '../base/Command';
+import QueueCommand from '../base/QueueCommand';
 
-export class SoundCommand implements Command {
-  public readonly TRIGGERS = [];
-
-  private readonly queue: SoundQueue;
-
-  constructor(queue: SoundQueue) {
-    this.queue = queue;
-  }
+export class SoundCommand extends QueueCommand {
+  public readonly triggers = [];
 
   public run(message: Message) {
     if (!message.member) return;

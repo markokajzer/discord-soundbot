@@ -1,9 +1,10 @@
 import { Message } from 'discord.js';
 
-export default interface Command {
-  readonly TRIGGERS: string[];
-  readonly NUMBER_OF_PARAMETERS?: number;
-  readonly USAGE?: string;
+export default abstract class Command {
+  abstract readonly triggers: string[];
+  readonly numberOfParameters?: number;
+  readonly usage?: string;
+  readonly elevated: boolean = false;
 
-  run(message: Message, params?: string[]): void;
+  abstract run(message: Message, params?: string[]): void;
 }

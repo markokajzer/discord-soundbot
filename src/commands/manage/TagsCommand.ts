@@ -6,8 +6,8 @@ import { getSounds } from '~/util/SoundUtil';
 import Command from '../base/Command';
 import chunkedMessages from '../util/chunkedMessages';
 
-export class TagsCommand implements Command {
-  public readonly TRIGGERS = ['tags'];
+export class TagsCommand extends Command {
+  public readonly triggers = ['tags'];
 
   public run(message: Message, params: string[]) {
     const sounds = getSounds();

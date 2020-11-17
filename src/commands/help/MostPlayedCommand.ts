@@ -5,8 +5,8 @@ import * as soundsDb from '~/util/db/Sounds';
 
 import Command from '../base/Command';
 
-export class MostPlayedCommand implements Command {
-  public readonly TRIGGERS = ['mostplayed'];
+export class MostPlayedCommand extends Command {
+  public readonly triggers = ['mostplayed'];
 
   public run(message: Message) {
     const formattedMessage = this.getFormattedMessage();

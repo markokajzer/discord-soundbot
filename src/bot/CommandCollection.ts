@@ -12,7 +12,7 @@ export default class CommandCollection {
   constructor(commands: Command[]) {
     this.triggers = new Map();
     this.commands = [];
-    this.soundCommand = commands.find(command => !command.TRIGGERS.length) as SoundCommand;
+    this.soundCommand = commands.find(command => !command.triggers.length) as SoundCommand;
 
     this.registerCommands(commands);
   }
@@ -23,8 +23,11 @@ export default class CommandCollection {
   }
 
   public registerUserCommands(user: ClientUser) {
-    const userCommands = this.commands.filter(command => (command as UserCommand).setClientUser);
-    (userCommands as UserCommand[]).forEach(command => command.setClientUser(user));
+    // NOTE: Filter for user commands and set their user
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    const userCommands: UserCommand[] = this.commands.filter(command => !!command.setClientUser);
+    userCommands.forEach(command => command.setClientUser(user));
   }
 
   public execute(message: Message) {
@@ -42,6 +45,6 @@ export default class CommandCollection {
   }
 
   private registerTriggers(command: Command) {
-    command.TRIGGERS.forEach(trigger => this.triggers.set(trigger, command));
+    command.triggers.forEach(trigger => this.triggers.set(trigger, command));
   }
 }

@@ -1,28 +1,21 @@
 import { Message } from 'discord.js';
 
 import QueueItem from '~/queue/QueueItem';
-import SoundQueue from '~/queue/SoundQueue';
 import localize from '~/util/i18n/localize';
 import { existsSound } from '~/util/SoundUtil';
 
-import Command from '../base/Command';
+import QueueCommand from '../base/QueueCommand';
 
-export class NextCommand implements Command {
-  public readonly TRIGGERS = ['next'];
-  public readonly NUMBER_OF_PARAMETERS = 1;
-  public readonly USAGE = '!next <sound>';
-
-  private readonly queue: SoundQueue;
-
-  constructor(queue: SoundQueue) {
-    this.queue = queue;
-  }
+export class NextCommand extends QueueCommand {
+  public readonly triggers = ['next'];
+  public readonly numberOfParameters = 1;
+  public readonly usage = '!next <sound>';
 
   public run(message: Message, params: string[]) {
     if (!message.member) return;
 
-    if (params.length !== this.NUMBER_OF_PARAMETERS) {
-      message.channel.send(this.USAGE);
+    if (params.length !== this.numberOfParameters) {
+      message.channel.send(this.usage);
       return;
     }
 
