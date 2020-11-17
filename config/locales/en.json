@@ -119,6 +119,7 @@
   },
 
   "errors": {
+    "unauthorized": "You need to be an admin or have an elevated role to perform this command",
     "permissions": "I need permissions to join the channel."
   }
 }

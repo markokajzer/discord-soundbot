@@ -14,7 +14,10 @@ export class IgnoreCommand implements Command {
     if (!message.member) return;
 
     const allowedToRunCommand = userHasElevatedRole(message.member);
-    if (!allowedToRunCommand) return;
+    if (!allowedToRunCommand) {
+      message.channel.send(localize.t('errors.unauthorized'));
+      return;
+    }
 
     const { users } = message.mentions;
     if (users.size < 1) {

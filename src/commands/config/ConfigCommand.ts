@@ -26,7 +26,10 @@ export class ConfigCommand implements Command {
     if (!message.member) return;
 
     const allowedToRunCommand = userHasElevatedRole(message.member);
-    if (!allowedToRunCommand) return;
+    if (!allowedToRunCommand) {
+      message.channel.send(localize.t('errors.unauthorized'));
+      return;
+    }
 
     if (params.length < this.NUMBER_OF_PARAMETERS) {
       message.channel.send(this.USAGE);
