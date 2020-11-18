@@ -1,6 +1,5 @@
 import { ClientUser } from 'discord.js';
 
-import Command from '~/commands/base/Command';
 import { AvatarCommand } from '~/commands/config/AvatarCommand';
 import { HelpCommand } from '~/commands/help/HelpCommand';
 import { SoundCommand } from '~/commands/sound/SoundCommand';
@@ -28,24 +27,41 @@ describe('CommandCollection', () => {
     commands = new CommandCollection([soundCommand]);
   });
 
-  it('correctly registers commands', () => {
-    commands.registerCommands([helpCommand]);
-    // @ts-ignore
-    const triggers = commands.triggers as Map<string, Command>;
+  describe('registerCommands', () => {
+    it('correctly registers commands', () => {
+      commands.registerCommands([helpCommand]);
 
-    expect(Array.from(triggers.keys())).toEqual(['commands', 'help']);
-    expect(triggers.get('commands')).toEqual(helpCommand);
-    expect(triggers.get('help')).toEqual(helpCommand);
+      // @ts-ignore
+      const { triggers } = commands;
+
+      expect(Array.from(triggers.keys())).toEqual(['commands', 'help']);
+      expect(triggers.get('commands')).toEqual(helpCommand);
+      expect(triggers.get('help')).toEqual(helpCommand);
+    });
   });
 
-  it('correctly registers user commands', () => {
-    jest.spyOn(avatarCommand, 'setClientUser');
+  describe('registerUserCommands', () => {
+    it('correctly registers user commands', () => {
+      jest.spyOn(avatarCommand, 'setClientUser');
 
-    commands.registerCommands([avatarCommand]);
+      commands.registerCommands([avatarCommand]);
 
-    const user = ({ id: 'USER_ID' } as unknown) as ClientUser;
-    commands.registerUserCommands(user);
+      const user = ({ id: 'USER_ID' } as unknown) as ClientUser;
+      commands.registerUserCommands(user);
 
-    expect(avatarCommand.setClientUser).toHaveBeenCalledWith(user);
+      expect(avatarCommand.setClientUser).toHaveBeenCalledWith(user);
+    });
+  });
+
+  describe('get', () => {
+    it('returns SoundCommand if no trigger registered for message', () => {
+      expect(commands.get('airhorn')).toEqual(soundCommand);
+    });
+
+    it('returns the command refering to a given trigger', () => {
+      commands.registerCommands([helpCommand]);
+
+      expect(commands.get('help')).toEqual(helpCommand);
+    });
   });
 });
