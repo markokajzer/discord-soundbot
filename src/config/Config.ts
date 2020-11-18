@@ -38,6 +38,7 @@ export default class Config implements ConfigInterface {
   private readonly JSON_KEYS = ['clientId', 'token', ...this.MODIFIABLE_FIELDS];
   private readonly ARRAY_VALUES = ['acceptedExtensions', 'elevatedRoles'];
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [index: string]: any;
 
   constructor() {

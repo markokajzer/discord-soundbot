@@ -2,7 +2,7 @@ import localize from '~/util/i18n/localize';
 import { existsSound } from '~/util/SoundUtil';
 
 export default abstract class BaseValidator {
-  public abstract validate(...params: any[]): Promise<void[]>;
+  public abstract validate(...params: unknown[]): Promise<void[]>;
 
   protected validateName(name: string) {
     if (name.match(/[^a-z0-9]/)) {
