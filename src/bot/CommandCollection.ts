@@ -1,5 +1,8 @@
 import { ClientUser, Message } from 'discord.js';
 
+import userHasElevatedRole from '~/commands/util/userHasElevatedRole';
+import localize from '~/util/i18n/localize';
+
 import Command from '../commands/base/Command';
 import UserCommand from '../commands/base/UserCommand';
 import { SoundCommand } from '../commands/sound';
@@ -30,18 +33,17 @@ export default class CommandCollection {
     userCommands.forEach(command => command.setClientUser(user));
   }
 
+  // TODO: Move this to MessageHandler
   public execute(message: Message) {
     const [command, ...params] = message.content.split(' ');
 
-    if (this.triggers.has(command)) {
-      const messageToRun = message;
-      messageToRun.content = message.content.substring(command.length + 1);
-
-      this.triggers.get(command)!.run(message, params);
+    const commandToRun = this.triggers.get(command) || this.soundCommand;
+    if (commandToRun.elevated && !userHasElevatedRole(message.member)) {
+      message.channel.send(localize.t('errors.unauthorized'));
       return;
     }
 
-    this.soundCommand.run(message);
+    commandToRun.run(message, params);
   }
 
   private registerTriggers(command: Command) {

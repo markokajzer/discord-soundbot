@@ -4,12 +4,12 @@ import localize from '~/util/i18n/localize';
 
 import ConfigCommand from '../base/ConfigCommand';
 import UserCommand from '../base/UserCommand';
-import userHasElevatedRole from '../util/userHasElevatedRole';
 
 export class AvatarCommand extends ConfigCommand implements UserCommand {
   public readonly triggers = ['avatar'];
   public readonly numberOfParameters = 1;
   public readonly usage = 'Usage: !avatar [remove]';
+  public readonly elevated = true;
 
   protected user!: ClientUser;
 
@@ -18,14 +18,6 @@ export class AvatarCommand extends ConfigCommand implements UserCommand {
   }
 
   public run(message: Message, params: string[]) {
-    if (!message.member) return;
-
-    const allowedToRunCommand = userHasElevatedRole(message.member);
-    if (!allowedToRunCommand) {
-      message.channel.send(localize.t('errors.unauthorized'));
-      return;
-    }
-
     if (params.length === this.numberOfParameters && params[0] === 'remove') {
       this.user.setAvatar('');
       return;

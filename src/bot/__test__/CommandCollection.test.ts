@@ -1,4 +1,4 @@
-import { ClientUser } from 'discord.js';
+import { ClientUser, Collection, GuildMember } from 'discord.js';
 
 import Command from '~/commands/base/Command';
 import { AvatarCommand } from '~/commands/config/AvatarCommand';
@@ -10,6 +10,7 @@ import SoundQueue from '~/queue/SoundQueue';
 import getMessageFixture from '../../../test/getMessageFixture';
 import CommandCollection from '../CommandCollection';
 
+jest.mock('~/util/Container');
 jest.mock('~/commands/config/AvatarCommand');
 jest.mock('~/commands/help/HelpCommand');
 jest.mock('~/commands/sound/SoundCommand');
@@ -58,8 +59,7 @@ describe('CommandCollection', () => {
     const message = getMessageFixture({ content: 'help' });
     commands.execute(message);
 
-    expect(helpCommand.run).toHaveBeenCalledWith({ ...message, content: '' }, []);
-    expect(message.content).toEqual('');
+    expect(helpCommand.run).toHaveBeenCalledWith(message, []);
   });
 
   it('executes sound command if no command was found', () => {
@@ -69,7 +69,17 @@ describe('CommandCollection', () => {
     const message = getMessageFixture({ content: 'sound' });
     commands.execute(message);
 
-    expect(soundCommand.run).toHaveBeenCalledWith(message);
-    expect(message.content).toEqual('sound');
+    expect(soundCommand.run).toHaveBeenCalledWith(message, []);
+  });
+
+  it('does not execute an elevated command if user does not have elevated role', () => {
+    jest.spyOn(soundCommand, 'run');
+
+    commands.registerCommands([avatarCommand]);
+
+    const message = getMessageFixture({ content: 'avatar' });
+    commands.execute(message);
+
+    expect(soundCommand.run).not.toHaveBeenCalled();
   });
 });

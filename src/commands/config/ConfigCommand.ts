@@ -4,12 +4,12 @@ import localize from '~/util/i18n/localize';
 
 import BaseConfigCommand from '../base/ConfigCommand';
 import UserCommand from '../base/UserCommand';
-import userHasElevatedRole from '../util/userHasElevatedRole';
 
 export class ConfigCommand extends BaseConfigCommand implements UserCommand {
   public readonly triggers = ['config', 'set'];
   public readonly numberOfParameters = 2;
   public readonly usage = 'Usage: !config <option> <value>';
+  public readonly elevated = true;
 
   protected user!: ClientUser;
 
@@ -18,14 +18,6 @@ export class ConfigCommand extends BaseConfigCommand implements UserCommand {
   }
 
   public run(message: Message, params: string[]) {
-    if (!message.member) return;
-
-    const allowedToRunCommand = userHasElevatedRole(message.member);
-    if (!allowedToRunCommand) {
-      message.channel.send(localize.t('errors.unauthorized'));
-      return;
-    }
-
     if (params.length < this.numberOfParameters) {
       message.channel.send(this.usage);
       return;
