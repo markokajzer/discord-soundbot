@@ -1,7 +1,7 @@
 export type ConfigValue = boolean | number | string | string[];
 
 export default interface ConfigInterface {
-  [key: string]: ConfigValue | undefined;
+  [key: string]: Nullable<ConfigValue>;
 
   clientId: string;
   token: string;

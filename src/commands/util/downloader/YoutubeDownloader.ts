@@ -10,8 +10,8 @@ import YoutubeValidator from './validator/YoutubeValidator';
 
 interface ConvertOptions {
   soundName: string;
-  startTime: string | undefined;
-  duration: string | undefined;
+  startTime: Nullable<string>;
+  duration: Nullable<string>;
 }
 
 interface DownloadOptions extends ConvertOptions {

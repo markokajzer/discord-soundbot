@@ -12,8 +12,8 @@ export default class SoundQueue {
   private readonly config: Config;
 
   private queue: QueueItem[] = [];
-  private currentSound: QueueItem | null = null;
-  private dispatcher: StreamDispatcher | null = null;
+  private currentSound: Nullable<QueueItem>;
+  private dispatcher: Nullable<StreamDispatcher>;
 
   constructor(config: Config) {
     this.config = config;
@@ -46,7 +46,7 @@ export default class SoundQueue {
   }
 
   private isStartable() {
-    return this.currentSound === null;
+    return !this.currentSound;
   }
 
   private deleteMessages() {

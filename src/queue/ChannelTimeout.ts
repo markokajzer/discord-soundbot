@@ -3,7 +3,7 @@ import { VoiceConnection } from 'discord.js';
 import { config } from '~/util/Container';
 
 export default class ChannelTimeout {
-  private static timeout: NodeJS.Timeout | undefined = undefined;
+  private static timeout: Nullable<NodeJS.Timeout>;
 
   public static start(connection: VoiceConnection) {
     if (this.timeout) clearTimeout(this.timeout);

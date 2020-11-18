@@ -49,7 +49,7 @@ export default class Config implements ConfigInterface {
     return this.MODIFIABLE_FIELDS.includes(field);
   }
 
-  public set(field: string, value: string[]): ConfigValue | undefined {
+  public set(field: string, value: string[]): Nullable<ConfigValue> {
     if (!this.JSON_KEYS.includes(field)) return undefined;
 
     let newValue: ConfigValue;
