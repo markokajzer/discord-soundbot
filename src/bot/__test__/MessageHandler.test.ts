@@ -1,28 +1,59 @@
-import '../../discord/Message';
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 
 import { Message } from 'discord.js';
 
+import { AvatarCommand } from '~/commands/config/AvatarCommand';
+import { HelpCommand } from '~/commands/help/HelpCommand';
+import { SoundCommand } from '~/commands/sound/SoundCommand';
+import Config from '~/config/Config';
+import SoundQueue from '~/queue/SoundQueue';
 import * as ignoreList from '~/util/db/IgnoreList';
 
 import CommandCollection from '../CommandCollection';
 import MessageHandler from '../MessageHandler';
 
-jest.mock('../../util/Container');
+jest.mock('~/util/Container');
+jest.mock('~/commands/config/AvatarCommand');
+jest.mock('~/commands/help/HelpCommand');
+jest.mock('~/commands/sound/SoundCommand');
+
+const queue = ({} as unknown) as SoundQueue;
+const config = ({} as unknown) as Config;
+
+const avatarCommand = new AvatarCommand(config);
+const helpCommand = new HelpCommand(config);
+const soundCommand = new SoundCommand(queue);
 
 const PREFIX = '!';
-const commandCollection = new CommandCollection([]);
 
 describe('MessageHandler', () => {
-  const messageHandler = new MessageHandler(commandCollection);
+  let commands!: CommandCollection;
+  let messageHandler!: MessageHandler;
+
+  const validMessage = ({
+    author: { bot: false },
+    channel: {
+      send: jest.fn()
+    },
+    content: PREFIX,
+    hasPrefix: () => true,
+    isDirectMessage: () => false
+  } as unknown) as Message;
+
+  beforeEach(() => {
+    commands = new CommandCollection([soundCommand]);
+    messageHandler = new MessageHandler(commands);
+
+    // @ts-ignore
+    jest.spyOn(messageHandler, 'execute');
+    jest.spyOn(ignoreList, 'exists').mockImplementation(() => false);
+  });
 
   describe('handle', () => {
-    jest.spyOn(commandCollection, 'execute');
-
     describe('when message is from bot', () => {
       const message = ({
-        author: { bot: true },
-        hasPrefix: () => true,
-        isDirectMessage: () => false
+        ...validMessage,
+        author: { bot: true }
       } as unknown) as Message;
 
       it('does nothing', () => {
@@ -32,82 +63,94 @@ describe('MessageHandler', () => {
 
         expect(message.author.bot).toBe(true);
         expect(message.isDirectMessage).not.toHaveBeenCalled();
-        expect(commandCollection.execute).not.toHaveBeenCalled();
+
+        // @ts-ignore
+        expect(messageHandler.execute).not.toHaveBeenCalled();
       });
     });
 
-    describe('when message is DM', () => {
+    it('does nothing when message is DM', () => {
       const message = ({
-        author: { bot: false },
-        channel: { type: 'dm' },
-        hasPrefix: () => true,
+        ...validMessage,
         isDirectMessage: () => true
       } as unknown) as Message;
+      jest.spyOn(message, 'hasPrefix');
 
-      it('does nothing', () => {
-        jest.spyOn(message, 'hasPrefix');
+      messageHandler.handle(message);
 
-        messageHandler.handle(message);
+      expect(message.isDirectMessage()).toBe(true);
+      expect(message.hasPrefix).not.toHaveBeenCalled();
 
-        expect(message.isDirectMessage()).toBe(true);
-        expect(message.hasPrefix).not.toHaveBeenCalled();
-        expect(commandCollection.execute).not.toHaveBeenCalled();
-      });
+      // @ts-ignore
+      expect(messageHandler.execute).not.toHaveBeenCalled();
     });
 
     describe('when message does not have prefix', () => {
       const message = ({
-        author: { bot: false },
-        channel: {},
+        ...validMessage,
         content: `NOT_${PREFIX}`,
-        hasPrefix: () => false,
-        isDirectMessage: () => false
+        hasPrefix: () => false
       } as unknown) as Message;
 
       it('does nothing', () => {
-        jest.spyOn(ignoreList, 'exists');
-
         messageHandler.handle(message);
 
         expect(message.hasPrefix(PREFIX)).toBe(false);
         expect(ignoreList.exists).not.toHaveBeenCalled();
-        expect(commandCollection.execute).not.toHaveBeenCalled();
+
+        // @ts-ignore
+        expect(messageHandler.execute).not.toHaveBeenCalled();
       });
     });
 
     describe('when user is ignored', () => {
-      const message = ({
-        author: { bot: false },
-        channel: {},
-        content: PREFIX,
-        hasPrefix: () => true,
-        isDirectMessage: () => false
-      } as unknown) as Message;
-
       it('does nothing', () => {
         jest.spyOn(ignoreList, 'exists').mockImplementation(() => true);
-        messageHandler.handle(message);
+        messageHandler.handle(validMessage);
 
-        expect(commandCollection.execute).not.toHaveBeenCalled();
+        // @ts-ignore
+        expect(messageHandler.execute).not.toHaveBeenCalled();
       });
     });
 
     describe('when message is valid', () => {
-      const message = ({
-        author: { bot: false },
-        channel: {},
-        content: PREFIX,
-        hasPrefix: () => true,
-        isDirectMessage: () => false
-      } as unknown) as Message;
-
       it('executes the command', () => {
-        jest.spyOn(ignoreList, 'exists').mockImplementation(() => false);
-        jest.spyOn(commandCollection, 'execute').mockImplementation();
-        messageHandler.handle(message);
+        messageHandler.handle(validMessage);
 
-        expect(commandCollection.execute).toHaveBeenCalledWith({ ...message, content: '' });
+        // @ts-ignore
+        expect(messageHandler.execute).toHaveBeenCalledWith({ ...validMessage, content: '' });
       });
+    });
+
+    it('executes a given command', () => {
+      jest.spyOn(helpCommand, 'run');
+
+      commands.registerCommands([helpCommand]);
+
+      const message = ({ ...validMessage, content: '!help' } as unknown) as Message;
+      messageHandler.handle(message);
+
+      expect(helpCommand.run).toHaveBeenCalledWith(message, []);
+    });
+
+    it('executes sound command if no command was found', () => {
+      jest.spyOn(soundCommand, 'run');
+
+      commands.registerCommands([helpCommand]);
+      const message = ({ ...validMessage, content: '!playsound' } as unknown) as Message;
+      messageHandler.handle(message);
+
+      expect(soundCommand.run).toHaveBeenCalledWith(message, []);
+    });
+
+    it('does not execute an elevated command if user does not have elevated role', () => {
+      commands.registerCommands([avatarCommand]);
+      jest.spyOn(avatarCommand, 'run');
+
+      const message = ({ ...validMessage, content: '!avatar' } as unknown) as Message;
+      messageHandler.handle(message);
+
+      expect(avatarCommand.run).not.toHaveBeenCalled();
     });
   });
 });

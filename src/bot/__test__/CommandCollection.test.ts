@@ -1,4 +1,6 @@
-import { ClientUser, Collection, GuildMember } from 'discord.js';
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+
+import { ClientUser } from 'discord.js';
 
 import Command from '~/commands/base/Command';
 import { AvatarCommand } from '~/commands/config/AvatarCommand';
@@ -7,7 +9,6 @@ import { SoundCommand } from '~/commands/sound/SoundCommand';
 import Config from '~/config/Config';
 import SoundQueue from '~/queue/SoundQueue';
 
-import getMessageFixture from '../../../test/getMessageFixture';
 import CommandCollection from '../CommandCollection';
 
 jest.mock('~/util/Container');
@@ -31,9 +32,8 @@ describe('CommandCollection', () => {
 
   it('correctly registers commands', () => {
     commands.registerCommands([helpCommand]);
-    // Access private field
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const triggers = (commands as any).triggers as Map<string, Command>;
+    // @ts-ignore
+    const triggers = commands.triggers as Map<string, Command>;
 
     expect(Array.from(triggers.keys())).toEqual(['commands', 'help']);
     expect(triggers.get('commands')).toEqual(helpCommand);
@@ -49,37 +49,5 @@ describe('CommandCollection', () => {
     commands.registerUserCommands(user);
 
     expect(avatarCommand.setClientUser).toHaveBeenCalledWith(user);
-  });
-
-  it('executes a given command', () => {
-    jest.spyOn(helpCommand, 'run');
-
-    commands.registerCommands([helpCommand]);
-
-    const message = getMessageFixture({ content: 'help' });
-    commands.execute(message);
-
-    expect(helpCommand.run).toHaveBeenCalledWith(message, []);
-  });
-
-  it('executes sound command if no command was found', () => {
-    jest.spyOn(soundCommand, 'run');
-
-    commands.registerCommands([helpCommand]);
-    const message = getMessageFixture({ content: 'sound' });
-    commands.execute(message);
-
-    expect(soundCommand.run).toHaveBeenCalledWith(message, []);
-  });
-
-  it('does not execute an elevated command if user does not have elevated role', () => {
-    jest.spyOn(soundCommand, 'run');
-
-    commands.registerCommands([avatarCommand]);
-
-    const message = getMessageFixture({ content: 'avatar' });
-    commands.execute(message);
-
-    expect(soundCommand.run).not.toHaveBeenCalled();
   });
 });
