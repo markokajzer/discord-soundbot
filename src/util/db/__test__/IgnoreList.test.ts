@@ -1,17 +1,29 @@
+import connection from '../connection';
 import { add, exists, remove } from '../IgnoreList';
 
 jest.mock('../connection');
 
 describe('IgnoreList', () => {
-  const user = '123';
+  const userId = '123';
 
   it('adds users', () => {
-    add(user);
-    expect(exists(user)).toEqual(true);
+    add(userId);
+
+    expect(exists(userId)).toEqual(true);
+  });
+
+  it.only('does nothing when user already added', () => {
+    jest.spyOn(connection, 'get');
+    add(userId);
+    add(userId);
+
+    // NOTE: Once for checking+adding, one more for checking if exists
+    expect(connection.get).toHaveBeenCalledTimes(3);
   });
 
   it('removes users', () => {
-    remove(user);
-    expect(exists(user)).toEqual(false);
+    remove(userId);
+
+    expect(exists(userId)).toEqual(false);
   });
 });
