@@ -2,15 +2,22 @@
 
 **Features**
 
-+ Add possibility to set custom `timeout` when using `stayInChannel` via config option
++ Add `!modify` command to adjust the volume of a sound file
++ Add possibility to set custom `timeout` when using `stayInChannel`
 + Add possibility to specify `elavatedRoles` to customize group of people that can manage sounds (Thank you [@ibito](https://github.com/ibito)!)
++ Better handle missing permissions for restricted commands
 + Create one click Docker setup
 
 **Bugfixes**
 
-+ Fix !avatar not sending the correct URL
++ Fix `!avatar` not sending the correct URL
 + Better resilience against errors when joining voice channel
-+ Better handle missing permissions
++ Properly handle missing permissions when joining voice channel
+
+**Under the hood**
+
++ Update discord.js
++ Update dependencies
 
 ## 2.0.0 (2020-03-06)
 
