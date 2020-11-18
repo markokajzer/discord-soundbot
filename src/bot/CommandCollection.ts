@@ -5,13 +5,11 @@ import UserCommand from '../commands/base/UserCommand';
 import { SoundCommand } from '../commands/sound';
 
 export default class CommandCollection {
-  private readonly triggers: Map<string, Command>;
-  private readonly commands: Command[];
+  private readonly triggers: Map<string, Command> = new Map();
+  private readonly commands: Command[] = [];
   private readonly soundCommand: SoundCommand;
 
   constructor(commands: Command[]) {
-    this.triggers = new Map();
-    this.commands = [];
     this.soundCommand = commands.find(command => !command.triggers.length) as SoundCommand;
 
     this.registerCommands(commands);
