@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-
 import { Message } from 'discord.js';
 
 import { AvatarCommand } from '~/commands/config/AvatarCommand';

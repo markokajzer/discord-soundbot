@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-
 import { ClientUser } from 'discord.js';
 
 import Command from '~/commands/base/Command';

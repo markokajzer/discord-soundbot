@@ -24,7 +24,6 @@ export default class CommandCollection {
 
   public registerUserCommands(user: ClientUser) {
     // NOTE: Filter for user commands and set their user
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const userCommands: UserCommand[] = this.commands.filter(command => !!command.setClientUser);
     userCommands.forEach(command => command.setClientUser(user));
