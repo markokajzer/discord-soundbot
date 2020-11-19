@@ -4,7 +4,7 @@
 
 + Add `!modify` command to adjust the volume of a sound file
 + Add possibility to set custom `timeout` when using `stayInChannel`
-+ Add possibility to specify `elavatedRoles` to customize group of people that can manage sounds (Thank you [@ibito](https://github.com/ibito)!)
++ Add possibility to specify `elavatedRoles` to customize group of people that can manage sounds (#85, Thank you [@ibito](https://github.com/ibito)!)
 + Better handle missing permissions for restricted commands
 + Create one click Docker setup
 
@@ -45,7 +45,7 @@
 **Features**
 
 + Allow adding additional commands when using the bot as a module
-+ Added Dutch translation (Thank you [@nstapelbroek](https://github.com/nstapelbroek)!)
++ Added Dutch translation (#41, Thank you [@nstapelbroek](https://github.com/nstapelbroek)!)
 + Added `!loop` command to easily queue a sound multiple times in a row
 + Added `!next` command which interrupts the current sound with a new one while keeping the queue
 + Added `!skip` command which allows skipping the current sound
