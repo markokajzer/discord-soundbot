@@ -6,13 +6,17 @@ jest.mock('../connection');
 describe('IgnoreList', () => {
   const userId = '123';
 
+  beforeEach(() => {
+    connection.set('ignoreList', []).write();
+  });
+
   it('adds users', () => {
     add(userId);
 
     expect(exists(userId)).toEqual(true);
   });
 
-  it.only('does nothing when user already added', () => {
+  it('does nothing when user already added', () => {
     jest.spyOn(connection, 'get');
     add(userId);
     add(userId);
