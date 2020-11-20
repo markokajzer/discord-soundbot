@@ -1,20 +1,12 @@
 import { Message } from 'discord.js';
 
-import Config from '~/config/Config';
 import localize from '~/util/i18n/localize';
 
-import Command from '../base/Command';
+import ConfigCommand from '../base/ConfigCommand';
 import chunkedMessages from '../util/chunkedMessages';
 
-export class HelpCommand extends Command {
+export class HelpCommand extends ConfigCommand {
   public readonly triggers = ['commands', 'help'];
-
-  private readonly config: Config;
-
-  constructor(config: Config) {
-    super();
-    this.config = config;
-  }
 
   public run(message: Message) {
     const helpMessage = this.getFormattedListOfCommands();
