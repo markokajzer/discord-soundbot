@@ -42,6 +42,9 @@ export class HelpCommand extends ConfigCommand {
       `stop                                   ${localize.t('help.sounds.stop')}`,
       `leave                                  ${localize.t('help.sounds.stop')}`,
 
+      `modify <sound> volume <value>`,
+      `modify <sound> clip <start> <end>`,
+
       `entrance <sound>                       ${localize.t('help.entrance.set')}`,
       `entrance                               ${localize.t('help.entrance.remove')}`,
       `exit <sound>                           ${localize.t('help.exit.set')}`,
