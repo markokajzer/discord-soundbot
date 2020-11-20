@@ -142,6 +142,24 @@ To search for specific sounds use `!search <tag>`. It will look for the name of 
 
 To see all sounds with their respective tags use `!tags`.
 
+### Adjusting sounds
+
+Sounds can be adjusted in various ways.
+
+Use `!modify <sound> volume <value>` to adjust the volume of a sound. You can increase the volume, or lower it by using fractional values.
+
+```
+  > !modify airhorn volume 4
+  > !modify johncena volume 0.5
+```
+
+To adjust the length or to clip a sound, you can use `!modify <sound> clip <start> <end>`. Both start and end time need to be of the form hh:mm:ss.xxx where the hours, minutes, and milliseconds are optional. Additionally you can leave out the end time to only remove the beginning of a sound.
+
+```
+  > !modify airhorn clip 12:23 12:25
+  > !modify johncena clip 23
+```
+
 ### Renaming sounds
 
 Sounds can be renamed by using `!rename <old> <new>`. The bot will respond with a status update.
