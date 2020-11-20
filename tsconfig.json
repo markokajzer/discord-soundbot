@@ -14,9 +14,8 @@
       "src/types"
     ],
 
-    "baseUrl": ".",
     "paths": {
-      "~/*": ["src/*"]
+      "~/*": ["./src/*"]
     },
     "incremental": true
   },
