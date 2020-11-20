@@ -14,8 +14,8 @@ interface CommandParams {
 
 const MODIFIER_OPTIONS: Dictionary<CommandParams> = {
   volume: {
-    usage: 'Usage: !modify <sound> volume 1',
-    parameters: 1
+    parameters: 1,
+    usage: 'Usage: !modify <sound> volume 1'
   }
 };
 

@@ -14,8 +14,8 @@ const localize = {
   getCurrentLocale,
   getLocales,
   setLocale,
-  translate,
-  t
+  t,
+  translate
 };
 
 export default localize;

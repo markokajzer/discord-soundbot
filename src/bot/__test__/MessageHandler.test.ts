@@ -39,15 +39,15 @@ describe('MessageHandler', () => {
         } as unknown) as UserManager
       } as Client,
       {
-        id: '123456',
         author: {
           bot: false
         },
-        content: ''
+        content: '',
+        id: '123456'
       },
       ({
-        type: 'text',
-        send: jest.fn()
+        send: jest.fn(),
+        type: 'text'
       } as unknown) as TextChannel
     );
 

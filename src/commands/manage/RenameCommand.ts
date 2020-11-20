@@ -40,6 +40,6 @@ export class RenameCommand extends Command {
     fs.renameSync(oldFile, newFile);
     soundsDb.rename(oldName, newName);
 
-    message.channel.send(localize.t('commands.rename.success', { oldName, newName }));
+    message.channel.send(localize.t('commands.rename.success', { newName, oldName }));
   }
 }

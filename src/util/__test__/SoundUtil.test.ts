@@ -22,9 +22,9 @@ describe('SoundUtil', () => {
   describe('getSoundsWithExtension', () => {
     it('returns sounds with extension', () => {
       expect(getSoundsWithExtension()).toEqual([
-        { name: 'bitconnect', extension: 'mp3' },
-        { name: 'testing', extension: 'mp3' },
-        { name: 'wonderful', extension: 'mp3' }
+        { extension: 'mp3', name: 'bitconnect' },
+        { extension: 'mp3', name: 'testing' },
+        { extension: 'mp3', name: 'wonderful' }
       ]);
     });
   });

@@ -34,14 +34,14 @@ export default class YoutubeDownloader extends BaseDownloader {
 
     this.validator
       .validate(soundName, url)
-      .then(() => this.addSound({ url, soundName, startTime, duration }))
+      .then(() => this.addSound({ duration, soundName, startTime, url }))
       .then(result => message.channel.send(result))
       .catch(result => message.channel.send(result));
   }
 
   private addSound({ url, soundName, startTime, duration }: DownloadOptions) {
     return this.download(url)
-      .then(() => this.convert({ soundName, startTime, duration }))
+      .then(() => this.convert({ duration, soundName, startTime }))
       .then(() => this.cleanUp(soundName))
       .catch(this.handleError);
   }

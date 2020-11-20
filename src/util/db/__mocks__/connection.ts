@@ -6,10 +6,10 @@ const connection = lowdb(adapter);
 
 connection
   .defaults({
-    sounds: [],
-    ignoreList: [],
     entrances: {},
-    exits: {}
+    exits: {},
+    ignoreList: [],
+    sounds: []
   })
   .write();
 

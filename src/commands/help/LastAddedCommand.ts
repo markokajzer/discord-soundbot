@@ -16,8 +16,8 @@ export class LastAddedCommand extends Command {
   private getLastAddedSounds() {
     return getSoundsWithExtension()
       .map(sound => ({
-        name: sound.name,
-        creation: fs.statSync(getPathForSound(sound.name)).birthtime
+        creation: fs.statSync(getPathForSound(sound.name)).birthtime,
+        name: sound.name
       }))
       .sort((a, b) => b.creation.valueOf() - a.creation.valueOf())
       .slice(0, this.amount)
