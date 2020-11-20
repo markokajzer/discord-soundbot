@@ -5,6 +5,10 @@ describe('getSecondsFromTime', () => {
     expect(() => getSecondsFromTime('gibberish')).toThrow();
   });
 
+  it('returns null if string is empty', () => {
+    expect(getSecondsFromTime(null)).toBeNull();
+  });
+
   it('returns the seconds of a timestring with seconds', () => {
     expect(getSecondsFromTime('42')).toEqual(42);
   });

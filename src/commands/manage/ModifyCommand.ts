@@ -83,14 +83,11 @@ export class ModifyCommand extends Command {
   }
 
   private clipSound(currentFile: string, newFile: string, startTime: string, endTime: string) {
-    const start = getSecondsFromTime(startTime);
+    const start = getSecondsFromTime(startTime)!;
     const end = getSecondsFromTime(endTime);
-    const duration = end - start;
 
-    const ffmpegCommand = ffmpeg(currentFile)
-      .setStartTime(start)
-      .setDuration(duration)
-      .output(newFile);
+    let ffmpegCommand = ffmpeg(currentFile).output(newFile).setStartTime(start);
+    if (end) ffmpegCommand = ffmpegCommand.setDuration(end - start);
 
     return new Promise((resolve, reject) =>
       ffmpegCommand.on('end', resolve).on('error', reject).run()
