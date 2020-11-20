@@ -2,6 +2,7 @@ import { Message } from 'discord.js';
 import ffmpeg from 'fluent-ffmpeg';
 import fs from 'fs';
 
+import getSecondsFromTime from '~/util/getSecondsFromTime';
 import localize from '~/util/i18n/localize';
 import { existsSound, getExtensionForSound } from '~/util/SoundUtil';
 
@@ -9,12 +10,16 @@ import Command from '../base/Command';
 
 interface CommandParams {
   usage: string;
-  parameters: number;
+  parameters: { max: number; min: number };
 }
 
 const MODIFIER_OPTIONS: Dictionary<CommandParams> = {
+  clip: {
+    parameters: { max: 2, min: 1 },
+    usage: 'Usage: !modify <sound> clip 14 18'
+  },
   volume: {
-    parameters: 1,
+    parameters: { max: 1, min: 1 },
     usage: 'Usage: !modify <sound> volume 1'
   }
 };
@@ -32,7 +37,10 @@ export class ModifyCommand extends Command {
       return;
     }
 
-    if (commandParams.length < options.parameters || commandParams.length > options.parameters) {
+    if (
+      commandParams.length < options.parameters.min ||
+      commandParams.length > options.parameters.max
+    ) {
       message.channel.send(options.usage);
       return;
     }
@@ -45,6 +53,7 @@ export class ModifyCommand extends Command {
       .catch(() => message.channel.send(localize.t('commands.modify.error', { modifier, sound })));
   }
 
+  // NOTE: We checked for param  already before so we can ignore any related errors
   private performModification(
     currentFile: string,
     newFile: string,
@@ -53,9 +62,11 @@ export class ModifyCommand extends Command {
   ) {
     switch (modifier) {
       case 'volume':
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
+        // @ts-expect-error
         return this.modifyVolume(currentFile, newFile, ...params);
+      case 'clip':
+        // @ts-expect-error
+        return this.clipSound(currentFile, newFile, ...params);
       default:
         return Promise.reject();
     }
@@ -64,6 +75,21 @@ export class ModifyCommand extends Command {
   private modifyVolume(currentFile: string, newFile: string, value: string) {
     const ffmpegCommand = ffmpeg(currentFile)
       .audioFilters([{ filter: 'volume', options: value }])
+      .output(newFile);
+
+    return new Promise((resolve, reject) =>
+      ffmpegCommand.on('end', resolve).on('error', reject).run()
+    );
+  }
+
+  private clipSound(currentFile: string, newFile: string, startTime: string, endTime: string) {
+    const start = getSecondsFromTime(startTime);
+    const end = getSecondsFromTime(endTime);
+    const duration = end - start;
+
+    const ffmpegCommand = ffmpeg(currentFile)
+      .setStartTime(start)
+      .setDuration(duration)
       .output(newFile);
 
     return new Promise((resolve, reject) =>

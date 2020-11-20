@@ -2,7 +2,9 @@
 
 **Features**
 
-+ Add `!modify` command to adjust the volume of a sound file
++ Add `!modify` command
+  + Enables adjusting the volume of a sound with `!modify <sound> volume <value>`
+  + Enables clipping sounds with `!modify <sound> clip <start> <end>`
 + Add possibility to set custom `timeout` when using `stayInChannel`
 + Add possibility to specify `elavatedRoles` to customize group of people that can manage sounds (#85, Thank you [@ibito](https://github.com/ibito)!)
 + Better handle missing permissions for restricted commands
