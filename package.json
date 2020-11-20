@@ -23,14 +23,14 @@
   "author": "Marko Kajzer <markokajzer91@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@discordjs/opus": "0.3.2",
+    "@discordjs/opus": "0.3.3",
     "discord.js": "12.4.1",
     "fluent-ffmpeg": "2.1.2",
     "i18n": "0.13.2",
-    "lodash": "4.17.19",
+    "lodash": "4.17.20",
     "lowdb": "1.0.0",
     "replace-in-file": "6.1.0",
-    "ytdl-core": "4.0.1"
+    "ytdl-core": "4.0.5"
   },
   "optionalDependencies": {
     "bufferutil": "4.0.1",
