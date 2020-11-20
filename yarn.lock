@@ -756,10 +756,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/i18n@0.8.7":
-  version "0.8.7"
-  resolved "https://registry.yarnpkg.com/@types/i18n/-/i18n-0.8.7.tgz#f8aa1eba769747568dcea94e57a96bc5f6a852b6"
-  integrity sha512-Twh+PFhbjv+HBls9RJV81dsdhkdW2U2sBCvU0xQYreTWx+e6RtcPIFAXU11okvvTKYsVaJMVB8NgedUP+vvR5w==
+"@types/i18n@0.8.8":
+  version "0.8.8"
+  resolved "https://registry.yarnpkg.com/@types/i18n/-/i18n-0.8.8.tgz#aefea4cf90785bac06158dd9b1bc64a82bb86046"
+  integrity sha512-RI4LFAraGrimMTxXkediCMXGVLC6ksXIIo3U+d3E4n+Mhw3uIDbmokO7DHlPB/eu6Tn6KBv4IUE1WrrEDRdNUQ==
 
 "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.0":
   version "2.0.1"
@@ -1588,12 +1588,6 @@ data-urls@^2.0.0:
     abab "^2.0.3"
     whatwg-mimetype "^2.3.0"
     whatwg-url "^8.0.0"
-
-debug@*:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/debug/-/debug-3.1.0.tgz#5bb5a0672628b64149566ba16819e61518c67261"
-  dependencies:
-    ms "2.0.0"
 
 debug@^2.2.0, debug@^2.3.3, debug@^2.6.9:
   version "2.6.9"
@@ -2598,13 +2592,13 @@ human-signals@^1.1.1:
   resolved "https://registry.yarnpkg.com/human-signals/-/human-signals-1.1.1.tgz#c5b1cd14f50aeae09ab6c59fe63ba3395fe4dfa3"
   integrity sha512-SEQu7vl8KjNL2eoGBLF3+wAjpsNfA9XMlXAYj/3EdaNfAlxKthD1xjEQfGOUhllCGGJVNY34bRr6lPINhNjyZw==
 
-i18n@0.11.1:
-  version "0.11.1"
-  resolved "https://registry.yarnpkg.com/i18n/-/i18n-0.11.1.tgz#f06a37afbb37bd3e9714ce15f436dccc6146ded2"
-  integrity sha512-j9JGOlvbUatVU5cXua+AHilotkt0wRI4ZEhkyh/v/tKcwbtMjpauxjrBcFBqTCz+Ew6Xr7cCJkA+4DLYQB1YUg==
+i18n@0.13.2:
+  version "0.13.2"
+  resolved "https://registry.yarnpkg.com/i18n/-/i18n-0.13.2.tgz#3886678fe7cbbed45bac2ce53b8144c788a1c1b5"
+  integrity sha512-PB65bHhQESMBIl/xVNChEAzoxZ5W6FrZ1H9Ma/YcPeSfE7VS9b0sqwBPusa0CfzSKUPSl+uMhRIgyv3jkE7XNw==
   dependencies:
-    debug "*"
-    make-plural "^6.2.1"
+    debug "^4.1.1"
+    make-plural "^6.2.2"
     math-interval-parser "^2.0.1"
     messageformat "^2.3.0"
     mustache "^4.0.1"
@@ -3594,7 +3588,7 @@ make-plural@^4.3.0:
   optionalDependencies:
     minimist "^1.2.0"
 
-make-plural@^6.2.1:
+make-plural@^6.2.2:
   version "6.2.2"
   resolved "https://registry.yarnpkg.com/make-plural/-/make-plural-6.2.2.tgz#beb5fd751355e72660eeb2218bb98eec92853c6c"
   integrity sha512-8iTuFioatnTTmb/YJjywkVIHLjcwkFD9Ms0JpxjEm9Mo8eQYkh1z+55dwv4yc1jQ8ftVBxWQbihvZL1DfzGGWA==

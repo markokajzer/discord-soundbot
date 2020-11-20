@@ -12,6 +12,7 @@ i18n.configure({
   directory: localesPath,
   locales: files.map(file => path.basename(file, '.json')),
   objectNotation: true,
+  retryInDefaultLocale: true,
   updateFiles: false
 });
 
