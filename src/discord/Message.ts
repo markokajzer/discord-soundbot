@@ -1,6 +1,8 @@
 import { Message } from 'discord.js';
 
 declare module 'discord.js' {
+  // NOTE: Monkeypatching
+  // eslint-disable-next-line no-shadow
   interface Message {
     hasPrefix(prefix: string): boolean;
     isDirectMessage(): boolean;
