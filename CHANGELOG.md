@@ -7,6 +7,7 @@
   + Enables clipping sounds with `!modify <sound> clip <start> <end>`
 + Add possibility to set custom `timeout` when using `stayInChannel`
 + Add possibility to specify `elavatedRoles` to customize group of people that can manage sounds (#85, Thank you [@ibito](https://github.com/ibito)!)
++ Simplify `!add` from YouTube by actually making the last parameter the end time instead of the duration
 + Better handle missing permissions for restricted commands
 + Create one click Docker setup
 
