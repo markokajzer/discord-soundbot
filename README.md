@@ -112,7 +112,12 @@ You can add, rename, download, tag, play, and remove sounds, ignore users, set t
 
 You can add sounds to the bot by typing `!add` and attaching a file. Accepted file formats and a limit to the size are configurable. The name of the sound can only contain alphanumeric characters.
 
-You can instead also add a sound from YouTube with `!add <name> <link>`. A range in decimals can be specified with `!add <name> <link> <start> <duration>` where the duration is optional. Both the start time and the duration have to be specified as timestamp strings with the format [[hh:]mm:]ss[.xxx].
+You can instead also add a sound from YouTube with `!add <name> <link>`. A range in decimals can be specified with `!add <name> <link> <start> <end>` where the end time is optional. Both the start time and the end have to be specified as timestamp strings with the format hh:mm:ss.xxx.
+
+```
+  > !add gta https://www.youtube.com/watch?v=6gQNgh6iSBM 6 9
+  > !add bruh https://www.youtube.com/watch?v=2ZIpFytCSVc 12:23
+```
 
 ### Playing sounds
 

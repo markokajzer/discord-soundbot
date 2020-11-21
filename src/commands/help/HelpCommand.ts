@@ -27,7 +27,7 @@ export class HelpCommand extends ConfigCommand {
       `add                                    ${localize.t('help.sounds.add')}`,
       `add <name> <link>                      ${localize.t('help.sounds.add')}`,
       `add <name> <link> <start>              ${localize.t('help.sounds.add')}`,
-      `add <name> <link> <start> <duration>   ${localize.t('help.sounds.add')}`,
+      `add <name> <link> <start> <end?>       ${localize.t('help.sounds.add')}`,
       `<sound>                                ${localize.t('help.sounds.play')}`,
       `combo <sound> <sound> ...              ${localize.t('help.sounds.combo')}`,
       `random                                 ${localize.t('help.sounds.random')}`,
@@ -43,7 +43,7 @@ export class HelpCommand extends ConfigCommand {
       `leave                                  ${localize.t('help.sounds.stop')}`,
 
       `modify <sound> volume <value>`,
-      `modify <sound> clip <start> <end>`,
+      `modify <sound> clip <start> <end?>`,
 
       `entrance <sound>                       ${localize.t('help.entrance.set')}`,
       `entrance                               ${localize.t('help.entrance.remove')}`,

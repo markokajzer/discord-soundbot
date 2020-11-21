@@ -3,6 +3,7 @@ import ffmpeg from 'fluent-ffmpeg';
 import fs from 'fs';
 import ytdl from 'ytdl-core';
 
+import getSecondsFromTime from '~/util/getSecondsFromTime';
 import localize from '~/util/i18n/localize';
 
 import BaseDownloader from './BaseDownloader';
@@ -11,7 +12,7 @@ import YoutubeValidator from './validator/YoutubeValidator';
 interface ConvertOptions {
   soundName: string;
   startTime: Nullable<string>;
-  duration: Nullable<string>;
+  endTime: Nullable<string>;
 }
 
 interface DownloadOptions extends ConvertOptions {
@@ -30,18 +31,18 @@ export default class YoutubeDownloader extends BaseDownloader {
   public handle(message: Message, params: string[]) {
     if (params.length < 2 || params.length > 4) return;
 
-    const [soundName, url, startTime, duration] = params;
+    const [soundName, url, startTime, endTime] = params;
 
     this.validator
       .validate(soundName, url)
-      .then(() => this.addSound({ duration, soundName, startTime, url }))
+      .then(() => this.addSound({ endTime, soundName, startTime, url }))
       .then(result => message.channel.send(result))
       .catch(result => message.channel.send(result));
   }
 
-  private addSound({ url, soundName, startTime, duration }: DownloadOptions) {
+  private addSound({ url, soundName, startTime, endTime }: DownloadOptions) {
     return this.download(url)
-      .then(() => this.convert({ duration, soundName, startTime }))
+      .then(() => this.convert({ endTime, soundName, startTime }))
       .then(() => this.cleanUp(soundName))
       .catch(this.handleError);
   }
@@ -55,11 +56,14 @@ export default class YoutubeDownloader extends BaseDownloader {
     });
   }
 
-  private convert({ soundName, startTime, duration }: ConvertOptions) {
+  private convert({ soundName, startTime, endTime }: ConvertOptions) {
     let ffmpegCommand = ffmpeg('tmp.mp4').output(`./sounds/${soundName}.mp3`);
 
-    if (startTime) ffmpegCommand = ffmpegCommand.setStartTime(startTime);
-    if (duration) ffmpegCommand = ffmpegCommand.setDuration(duration);
+    const start = getSecondsFromTime(startTime);
+    const end = getSecondsFromTime(endTime);
+
+    if (start) ffmpegCommand = ffmpegCommand.setStartTime(start);
+    if (start && end) ffmpegCommand = ffmpegCommand.setDuration(end - start);
 
     return new Promise((resolve, reject) => {
       ffmpegCommand.on('end', resolve).on('error', reject).run();

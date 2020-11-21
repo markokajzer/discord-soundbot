@@ -16,7 +16,7 @@ interface CommandParams {
 const MODIFIER_OPTIONS: Dictionary<CommandParams> = {
   clip: {
     parameters: { max: 2, min: 1 },
-    usage: 'Usage: !modify <sound> clip 14 18'
+    usage: 'Usage: !modify <sound> clip 14 18?'
   },
   volume: {
     parameters: { max: 1, min: 1 },
