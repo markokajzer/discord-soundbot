@@ -3,7 +3,7 @@ name: npm publish
 on:
   push:
     tags:
-      - *
+      - v*
 
 jobs:
   publish:
@@ -28,5 +28,5 @@ jobs:
 
       - name: Publish to npm
         run: npm publish
-        with:
+        env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
