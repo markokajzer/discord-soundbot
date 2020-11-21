@@ -19,7 +19,7 @@
 
 **Under the hood**
 
-+ Update discord.js
++ Update discord.js to v12.4.1
 + Update dependencies
 
 ## 2.0.0 (2020-03-06)
