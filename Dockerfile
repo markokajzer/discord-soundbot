@@ -1,5 +1,5 @@
 # Base will install runtime dependencies and configure generics
-FROM node:12-slim as base
+FROM node:14-slim as base
 
 LABEL maintainer="Marko Kajzer <markokajzer91@gmail.com>, Nico Stapelbroek <discord-soundbot@nstapelbroek.com>"
 
