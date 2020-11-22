@@ -1,23 +1,17 @@
 import { Message } from 'discord.js';
 import ffmpeg from 'fluent-ffmpeg';
 import fs from 'fs';
+import util from 'util';
 import ytdl from 'ytdl-core';
 
 import getSecondsFromTime from '~/util/getSecondsFromTime';
 import localize from '~/util/i18n/localize';
 
+import DownloadOptions, { ConvertOptions } from '../CommandOptions';
 import YoutubeValidator from '../validator/YoutubeValidator';
 import BaseDownloader from './BaseDownloader';
 
-interface ConvertOptions {
-  soundName: string;
-  startTime: Nullable<string>;
-  endTime: Nullable<string>;
-}
-
-interface DownloadOptions extends ConvertOptions {
-  url: string;
-}
+const unlink = util.promisify(fs.unlink);
 
 export default class YoutubeDownloader extends BaseDownloader {
   protected readonly validator: YoutubeValidator;
@@ -27,23 +21,25 @@ export default class YoutubeDownloader extends BaseDownloader {
     this.validator = youtubeValidator;
   }
 
-  public handle(message: Message, params: string[]) {
+  public async handle(message: Message, params: string[]) {
+    // TODO: Move this check to AddCommand
     if (params.length < 2 || params.length > 4) return;
 
     const [soundName, url, startTime, endTime] = params;
 
-    this.validator
-      .validate(soundName, url)
-      .then(() => this.addSound({ endTime, soundName, startTime, url }))
-      .then(result => message.channel.send(result))
-      .catch(result => message.channel.send(result));
+    try {
+      await this.validator.validate(soundName, url);
+      await this.addSound({ endTime, soundName, startTime, url });
+      message.channel.send(localize.t('commands.add.success', { name: soundName }));
+    } catch (error) {
+      this.handleError(message, error);
+    }
   }
 
-  private addSound({ url, soundName, startTime, endTime }: DownloadOptions) {
-    return this.download(url)
-      .then(() => this.convert({ endTime, soundName, startTime }))
-      .then(() => this.cleanUp(soundName))
-      .catch(this.handleError);
+  private async addSound({ url, ...convertOptions }: DownloadOptions) {
+    await this.download(url);
+    await this.convert(convertOptions);
+    await this.cleanUp();
   }
 
   private download(url: string) {
@@ -64,20 +60,18 @@ export default class YoutubeDownloader extends BaseDownloader {
     if (start) ffmpegCommand = ffmpegCommand.setStartTime(start);
     if (start && end) ffmpegCommand = ffmpegCommand.setDuration(end - start);
 
-    return new Promise((resolve, reject) => {
-      ffmpegCommand.on('end', resolve).on('error', reject).run();
-    });
+    return new Promise((resolve, reject) =>
+      ffmpegCommand.on('end', resolve).on('error', reject).run()
+    );
   }
 
-  private cleanUp(name: string) {
-    fs.unlinkSync('tmp.mp4');
-
-    return Promise.resolve(localize.t('commands.add.success', { name }));
+  private cleanUp() {
+    return unlink('tmp.mp4');
   }
 
-  private handleError(error: Error) {
-    console.error(error);
+  private handleError(message: Message, error: Error) {
+    console.error({ error });
 
-    return Promise.reject(localize.t('commands.add.error'));
+    message.channel.send(localize.t('commands.add.error'));
   }
 }
