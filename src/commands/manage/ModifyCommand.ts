@@ -1,4 +1,4 @@
-import { Message, MessageEmbed } from 'discord.js';
+import { Message } from 'discord.js';
 import ffmpeg from 'fluent-ffmpeg';
 import fs from 'fs';
 import util from 'util';
@@ -8,34 +8,11 @@ import localize from '~/util/i18n/localize';
 import { existsSound, getExtensionForSound } from '~/util/SoundUtil';
 
 import Command from '../base/Command';
+import ErrorParams from './modify/ErrorParams';
+import FileInfo from './modify/FileInfo';
+import MODIFIER_OPTIONS from './modify/ModifierOptions';
 
 const rename = util.promisify(fs.rename);
-
-interface CommandParams {
-  usage: string;
-  parameters: { max: number; min: number };
-}
-
-const MODIFIER_OPTIONS: Dictionary<CommandParams> = {
-  clip: {
-    parameters: { max: 2, min: 1 },
-    usage: 'Usage: !modify <sound> clip 14 18?'
-  },
-  volume: {
-    parameters: { max: 1, min: 1 },
-    usage: 'Usage: !modify <sound> volume 1'
-  }
-};
-
-interface FileInfo {
-  currentFile: string;
-  newFile: string;
-}
-
-interface ErrorParams {
-  modifier: string;
-  sound: string;
-}
 
 export class ModifyCommand extends Command {
   public readonly triggers = ['modify', 'change'];
