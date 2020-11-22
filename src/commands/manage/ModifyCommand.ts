@@ -1,12 +1,20 @@
 import { Message } from 'discord.js';
 import ffmpeg from 'fluent-ffmpeg';
 import fs from 'fs';
+import util from 'util';
 
 import getSecondsFromTime from '~/util/getSecondsFromTime';
 import localize from '~/util/i18n/localize';
 import { existsSound, getExtensionForSound } from '~/util/SoundUtil';
 
 import Command from '../base/Command';
+
+const rename = util.promisify(fs.rename);
+
+interface FileInfo {
+  currentFile: string;
+  newFile: string;
+}
 
 interface CommandParams {
   usage: string;
@@ -27,7 +35,7 @@ const MODIFIER_OPTIONS: Dictionary<CommandParams> = {
 export class ModifyCommand extends Command {
   public readonly triggers = ['modify', 'change'];
 
-  public run(message: Message, params: string[]) {
+  public async run(message: Message, params: string[]) {
     const [sound, modifier, ...commandParams] = params;
     if (!existsSound(sound)) return;
 
@@ -45,34 +53,35 @@ export class ModifyCommand extends Command {
       return;
     }
 
-    const { currentFile, newFile } = this.getFileNameFor(sound);
+    const fileInfo = this.getFileNameFor(sound);
 
-    this.performModification(currentFile, newFile, modifier, commandParams)
-      .then(() => this.replace(newFile, currentFile))
-      .then(() => message.channel.send(localize.t('commands.modify.success', { modifier, sound })))
-      .catch(() => message.channel.send(localize.t('commands.modify.error', { modifier, sound })));
+    try {
+      await this.performModification(fileInfo, modifier, commandParams);
+      await this.replace(fileInfo);
+      message.channel.send(localize.t('commands.modify.success', { modifier, sound }));
+    } catch {
+      message.channel.send(localize.t('commands.modify.error', { modifier, sound }));
+    }
   }
 
-  // NOTE: We checked for param  already before so we can ignore any related errors
-  private performModification(
-    currentFile: string,
-    newFile: string,
+  // NOTE: We checked for param already before so we can ignore any related errors
+  private async performModification(
+    file: FileInfo,
     modifier: string,
     params: string[]
-  ) {
+  ): Promise<void> {
     switch (modifier) {
       case 'volume':
-        // @ts-expect-error
-        return this.modifyVolume(currentFile, newFile, ...params);
+        return this.modifyVolume(file, ...params);
       case 'clip':
-        // @ts-expect-error
-        return this.clipSound(currentFile, newFile, ...params);
+        return this.clipSound(file, ...params);
       default:
         return Promise.reject();
     }
   }
 
-  private modifyVolume(currentFile: string, newFile: string, value: string) {
+  private modifyVolume({ currentFile, newFile }: FileInfo, ...params: string[]): Promise<void> {
+    const [value] = params;
     const ffmpegCommand = ffmpeg(currentFile)
       .audioFilters([{ filter: 'volume', options: value }])
       .output(newFile);
@@ -82,7 +91,10 @@ export class ModifyCommand extends Command {
     );
   }
 
-  private clipSound(currentFile: string, newFile: string, startTime: string, endTime: string) {
+  private clipSound({ currentFile, newFile }: FileInfo, ...params: string[]): Promise<void> {
+    const [startTime, endTime] = params;
+
+    // NOTE: We checked params already, so start is definitely here
     const start = getSecondsFromTime(startTime)!;
     const end = getSecondsFromTime(endTime);
 
@@ -94,13 +106,11 @@ export class ModifyCommand extends Command {
     );
   }
 
-  private replace(oldFile: string, newFile: string) {
-    fs.renameSync(oldFile, newFile);
-
-    return Promise.resolve();
+  private replace({ currentFile, newFile }: FileInfo) {
+    return rename(currentFile, newFile);
   }
 
-  private getFileNameFor(sound: string) {
+  private getFileNameFor(sound: string): FileInfo {
     const extension = getExtensionForSound(sound);
     const currentFile = `./sounds/${sound}.${extension}`;
 
