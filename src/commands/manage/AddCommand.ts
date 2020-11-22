@@ -1,8 +1,8 @@
 import { Message } from 'discord.js';
 
 import Command from '../base/Command';
-import AttachmentDownloader from '../util/downloader/AttachmentDownloader';
-import YoutubeDownloader from '../util/downloader/YoutubeDownloader';
+import AttachmentDownloader from './add/downloader/AttachmentDownloader';
+import YoutubeDownloader from './add/downloader/YoutubeDownloader';
 
 export class AddCommand extends Command {
   public readonly triggers = ['add'];

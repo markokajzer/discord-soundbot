@@ -10,7 +10,6 @@ export default class AttachmentValidator extends BaseValidator {
 
   constructor(config: Config) {
     super();
-
     this.config = config;
   }
 

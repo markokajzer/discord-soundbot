@@ -5,15 +5,14 @@ import https from 'https';
 
 import localize from '~/util/i18n/localize';
 
+import AttachmentValidator from '../validator/AttachmentValidator';
 import BaseDownloader from './BaseDownloader';
-import AttachmentValidator from './validator/AttachmentValidator';
 
 export default class AttachmentDownloader extends BaseDownloader {
   protected readonly validator: AttachmentValidator;
 
   constructor(attachmentValidator: AttachmentValidator) {
     super();
-
     this.validator = attachmentValidator;
   }
 

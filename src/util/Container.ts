@@ -26,6 +26,10 @@ import {
   TagCommand,
   TagsCommand
 } from '../commands/manage';
+import AttachmentDownloader from '../commands/manage/add/downloader/AttachmentDownloader';
+import YoutubeDownloader from '../commands/manage/add/downloader/YoutubeDownloader';
+import AttachmentValidator from '../commands/manage/add/validator/AttachmentValidator';
+import YoutubeValidator from '../commands/manage/add/validator/YoutubeValidator';
 import {
   ComboCommand,
   LoopCommand,
@@ -34,10 +38,6 @@ import {
   SkipCommand,
   SoundCommand
 } from '../commands/sound';
-import AttachmentDownloader from '../commands/util/downloader/AttachmentDownloader';
-import AttachmentValidator from '../commands/util/downloader/validator/AttachmentValidator';
-import YoutubeValidator from '../commands/util/downloader/validator/YoutubeValidator';
-import YoutubeDownloader from '../commands/util/downloader/YoutubeDownloader';
 
 export const config = new Config();
 const queue = new SoundQueue(config);

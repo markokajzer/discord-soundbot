@@ -1,6 +1,6 @@
 import { Message } from 'discord.js';
 
-import BaseValidator from './validator/BaseValidator';
+import BaseValidator from '../validator/BaseValidator';
 
 export default abstract class BaseDownloader {
   protected readonly validator!: BaseValidator;

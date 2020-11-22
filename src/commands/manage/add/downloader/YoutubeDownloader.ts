@@ -6,8 +6,8 @@ import ytdl from 'ytdl-core';
 import getSecondsFromTime from '~/util/getSecondsFromTime';
 import localize from '~/util/i18n/localize';
 
+import YoutubeValidator from '../validator/YoutubeValidator';
 import BaseDownloader from './BaseDownloader';
-import YoutubeValidator from './validator/YoutubeValidator';
 
 interface ConvertOptions {
   soundName: string;
@@ -24,7 +24,6 @@ export default class YoutubeDownloader extends BaseDownloader {
 
   constructor(youtubeValidator: YoutubeValidator) {
     super();
-
     this.validator = youtubeValidator;
   }
 
