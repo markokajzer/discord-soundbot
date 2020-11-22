@@ -1,9 +1,20 @@
-// Parses a string of the form [[hh:]mm:]ss[.xxx]) and returns a number representing the seconds
-//   from that time
+import localize from './i18n/localize';
+
+export class FormatError extends Error {
+  name = 'FormatError';
+  constructor() {
+    super(localize.t('errors.format.time'));
+  }
+}
+
+/**
+ * Parses a string of the form [[hh:]mm:]ss[.xxx]) and returns a number representing the seconds
+ * from that time
+ */
 const getSecondsFromTime = (time: Nullable<string>): Nullable<number> => {
   if (!time) return null;
   if (!time.match(/(\d{1,2}:)?(\d{1,2}:)?(\d{1,2})(\.\d{1,3})?/)) {
-    throw Error('Input does not represent a timestamp');
+    throw new FormatError();
   }
 
   const [front, millis = '0'] = time.split('.');

@@ -1,20 +1,15 @@
-import { Message } from 'discord.js';
+import { Message, MessageEmbed } from 'discord.js';
 import ffmpeg from 'fluent-ffmpeg';
 import fs from 'fs';
 import util from 'util';
 
-import getSecondsFromTime from '~/util/getSecondsFromTime';
+import getSecondsFromTime, { FormatError } from '~/util/getSecondsFromTime';
 import localize from '~/util/i18n/localize';
 import { existsSound, getExtensionForSound } from '~/util/SoundUtil';
 
 import Command from '../base/Command';
 
 const rename = util.promisify(fs.rename);
-
-interface FileInfo {
-  currentFile: string;
-  newFile: string;
-}
 
 interface CommandParams {
   usage: string;
@@ -31,6 +26,16 @@ const MODIFIER_OPTIONS: Dictionary<CommandParams> = {
     usage: 'Usage: !modify <sound> volume 1'
   }
 };
+
+interface FileInfo {
+  currentFile: string;
+  newFile: string;
+}
+
+interface ErrorParams {
+  modifier: string;
+  sound: string;
+}
 
 export class ModifyCommand extends Command {
   public readonly triggers = ['modify', 'change'];
@@ -59,8 +64,8 @@ export class ModifyCommand extends Command {
       await this.performModification(fileInfo, modifier, commandParams);
       await this.replace(fileInfo);
       message.channel.send(localize.t('commands.modify.success', { modifier, sound }));
-    } catch {
-      message.channel.send(localize.t('commands.modify.error', { modifier, sound }));
+    } catch (error) {
+      this.handleError(message, error, { modifier, sound });
     }
   }
 
@@ -71,10 +76,10 @@ export class ModifyCommand extends Command {
     params: string[]
   ): Promise<void> {
     switch (modifier) {
-      case 'volume':
-        return this.modifyVolume(file, ...params);
       case 'clip':
         return this.clipSound(file, ...params);
+      case 'volume':
+        return this.modifyVolume(file, ...params);
       default:
         return Promise.reject();
     }
@@ -118,5 +123,14 @@ export class ModifyCommand extends Command {
     const newFile = `./sounds/${sound}-${timestamp}.${extension}`;
 
     return { currentFile, newFile };
+  }
+
+  private handleError(message: Message, error: Error, { modifier, sound }: ErrorParams) {
+    if (error instanceof FormatError) {
+      message.channel.send(error.message);
+      return;
+    }
+
+    message.channel.send(localize.t('commands.modify.error', { modifier, sound }));
   }
 }
