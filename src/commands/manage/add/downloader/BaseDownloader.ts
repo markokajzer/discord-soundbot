@@ -5,7 +5,7 @@ import localize from '~/util/i18n/localize';
 import BaseValidator from '../validator/BaseValidator';
 
 export default abstract class BaseDownloader {
-  protected readonly validator!: BaseValidator;
+  protected abstract readonly validator: BaseValidator;
 
   public abstract handle(message: Message, params: string[]): void;
 
