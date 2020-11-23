@@ -16,16 +16,18 @@ export default class AttachmentDownloader extends BaseDownloader {
     this.validator = attachmentValidator;
   }
 
-  public handle(message: Message) {
+  public async handle(message: Message) {
     try {
-      message.attachments.forEach(async attachment => {
+      for (const attachment of message.attachments.array()) {
         this.validator.validate(attachment);
+        // NOTE: This could be optimized, but it is okay to do it in succession and code is cleaner
+        // eslint-disable-next-line no-await-in-loop
         await this.addSound(attachment);
 
         // NOTE: Checked for attachment name during validation
         const name = attachment.name!.split('.')[0];
         message.channel.send(localize.t('commands.add.success', { name }));
-      });
+      }
     } catch (error) {
       this.handleError(message, error);
     }

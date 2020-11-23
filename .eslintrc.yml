@@ -54,6 +54,16 @@ rules:
   no-multi-spaces:
     - error
     - ignoreEOLComments: true
+  # NOTE: We can allow for..of because this is a node project
+  # See https://github.com/airbnb/javascript/blob/63098cbb6c05376dbefc9a91351f5727540c1ce1/packages/eslint-config-airbnb-base/rules/style.js#L339
+  no-restricted-syntax:
+    - error
+    - selector: ForInStatement
+      message: for..in loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{keys,values,entries}, and iterate over the resulting array.
+    - selector: LabeledStatement
+      message: Labels are a form of GOTO; using them makes code confusing and hard to maintain and understand.
+    - selector: WithStatement
+      message: "`with` is disallowed in strict mode because it makes code impossible to predict and optimize."
   no-unused-vars:
     - error
     - vars: all
