@@ -3,6 +3,7 @@ import fs from 'fs';
 import { IncomingMessage } from 'http';
 import https from 'https';
 
+import { UnspecificError } from '~/util/Errors';
 import localize from '~/util/i18n/localize';
 
 import AttachmentValidator from '../validator/AttachmentValidator';
@@ -51,8 +52,7 @@ export default class AttachmentDownloader extends BaseDownloader {
   }
 
   private saveResponseToFile(response: IncomingMessage, filename: string) {
-    // TODO: Handle this error
-    if (response.statusCode !== 200) return;
+    if (response.statusCode !== 200) throw new UnspecificError();
 
     response.pipe(fs.createWriteStream(`./sounds/${filename}`));
   }
