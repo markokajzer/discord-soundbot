@@ -18,28 +18,33 @@ export default class AttachmentDownloader extends BaseDownloader {
 
   public async handle(message: Message) {
     try {
-      for (const attachment of message.attachments.array()) {
-        this.validator.validate(attachment);
-        // NOTE: This could be optimized, but it is okay to do it in succession and code is cleaner
-        // eslint-disable-next-line no-await-in-loop
-        await this.addSound(attachment);
-
-        // NOTE: Checked for attachment name during validation
-        const name = attachment.name!.split('.')[0];
-        message.channel.send(localize.t('commands.add.success', { name }));
-      }
+      await this.addSounds(message);
     } catch (error) {
       this.handleError(message, error);
     }
   }
 
-  private async addSound(attachment: MessageAttachment) {
-    const response = await this.makeRequest(attachment.url);
+  private async addSounds(message: Message) {
+    // NOTE: .forEach swallows exceptions in an async setup, so use for..of
+    for (const attachment of message.attachments.array()) {
+      this.validator.validate(attachment);
+
+      // NOTE: This could be optimized, but it is okay to do it in succession and code is cleaner
+      // eslint-disable-next-line no-await-in-loop
+      await this.fetchAndSaveSound(attachment);
+
+      // NOTE: Checked for attachment name during validation
+      const name = attachment.name!.split('.')[0];
+      message.channel.send(localize.t('commands.add.success', { name }));
+    }
+  }
+
+  private async fetchAndSaveSound(attachment: MessageAttachment) {
+    const response = await this.downloadFile(attachment.url);
     this.saveResponseToFile(response, attachment.name!.toLowerCase());
   }
 
-  // TODO: Rename this to downloadSoundfile
-  private makeRequest(url: string) {
+  private downloadFile(url: string) {
     return new Promise<IncomingMessage>((resolve, reject) => {
       https.get(url).on('response', resolve).on('error', reject);
     });
