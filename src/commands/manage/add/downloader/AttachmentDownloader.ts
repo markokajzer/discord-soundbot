@@ -17,42 +17,36 @@ export default class AttachmentDownloader extends BaseDownloader {
   }
 
   public handle(message: Message) {
-    message.attachments.forEach(attachment =>
-      this.validator
-        .validate(attachment)
-        .then(() => this.addSound(attachment))
-        .then(response => message.channel.send(response))
-        .catch(response => message.channel.send(response))
-    );
+    try {
+      message.attachments.forEach(async attachment => {
+        this.validator.validate(attachment);
+        await this.addSound(attachment);
+
+        // NOTE: Checked for attachment name during validation
+        const name = attachment.name!.split('.')[0];
+        message.channel.send(localize.t('commands.add.success', { name }));
+      });
+    } catch (error) {
+      this.handleError(message, error);
+    }
   }
 
-  private addSound(attachment: MessageAttachment) {
-    return this.makeRequest(attachment.url)
-      .then(response =>
-        // Checked for attachment name during validation
-        this.saveResponseToFile(response as IncomingMessage, attachment.name!.toLowerCase())
-      )
-      .then(name => Promise.resolve(localize.t('commands.add.success', { name })))
-      .catch(this.handleError);
+  private async addSound(attachment: MessageAttachment) {
+    const response = await this.makeRequest(attachment.url);
+    this.saveResponseToFile(response, attachment.name!.toLowerCase());
   }
 
+  // TODO: Rename this to downloadSoundfile
   private makeRequest(url: string) {
-    return new Promise((resolve, reject) => {
+    return new Promise<IncomingMessage>((resolve, reject) => {
       https.get(url).on('response', resolve).on('error', reject);
     });
   }
 
   private saveResponseToFile(response: IncomingMessage, filename: string) {
-    if (response.statusCode === 200) {
-      response.pipe(fs.createWriteStream(`./sounds/${filename}`));
-    }
+    // TODO: Handle this error
+    if (response.statusCode !== 200) return;
 
-    return Promise.resolve(filename.split('.')[0]);
-  }
-
-  private handleError(error: Error) {
-    console.error(error);
-
-    return Promise.reject(localize.t('commands.add.error'));
+    response.pipe(fs.createWriteStream(`./sounds/${filename}`));
   }
 }

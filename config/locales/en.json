@@ -64,18 +64,13 @@
     "attachment": {
       "exists": "{name} already exists!",
       "extension": "Sound has to be in accepted format, one of [{extensions}]!",
-      "format": "Filename has to be all letters and numbers!",
       "size": "File is too big!"
-    },
-    "url": {
-      "invalid": "URL is not valid!"
     }
   },
 
   "commands": {
     "add": {
-      "success": "{name} added!",
-      "error": "Something went wrong!"
+      "success": "{name} added!"
     },
     "avatar": {
       "errors": {
@@ -119,10 +114,13 @@
   },
 
   "errors": {
+    "unspecific": "💥 Something went wrong! Please try again, or let the bot creator know what happened.",
     "unauthorized": "You need to be an admin or have an elevated role to perform this command",
     "permissions": "I need permissions to join the channel.",
     "format": {
-      "time": "💥⌚ Specified time was not given in the form of [[hh:]mm:]ss[.xxx]."
+      "sound": "💥📛 Filename has to be all letters and numbers!",
+      "time": "💥⌚ Specified time was not given in the form of [[hh:]mm:]ss[.xxx].",
+      "url": "💥🚋 Please specify a valid URL from YouTube."
     }
   }
 }

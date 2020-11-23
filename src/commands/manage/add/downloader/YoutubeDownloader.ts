@@ -28,7 +28,7 @@ export default class YoutubeDownloader extends BaseDownloader {
     const [soundName, url, startTime, endTime] = params;
 
     try {
-      await this.validator.validate(soundName, url);
+      this.validator.validate(soundName, url);
       await this.addSound({ endTime, soundName, startTime, url });
       message.channel.send(localize.t('commands.add.success', { name: soundName }));
     } catch (error) {
@@ -67,11 +67,5 @@ export default class YoutubeDownloader extends BaseDownloader {
 
   private cleanUp() {
     return unlink('tmp.mp4');
-  }
-
-  private handleError(message: Message, error: Error) {
-    console.error({ error });
-
-    message.channel.send(localize.t('commands.add.error'));
   }
 }

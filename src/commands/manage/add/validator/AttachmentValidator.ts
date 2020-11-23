@@ -1,9 +1,23 @@
+/* eslint-disable max-classes-per-file */
+
 import { MessageAttachment } from 'discord.js';
 
 import Config from '~/config/Config';
 import localize from '~/util/i18n/localize';
 
-import BaseValidator from './BaseValidator';
+import BaseValidator, { ValidationError } from './BaseValidator';
+
+export class AttachmentExtensionError extends ValidationError {
+  constructor(extensions: string[]) {
+    super(localize.t('validation.attachment.extension', { extensions: extensions.join(', ') }));
+  }
+}
+
+export class AttachmentSizeError extends ValidationError {
+  constructor() {
+    super(localize.t('validation.attachment.size'));
+  }
+}
 
 export default class AttachmentValidator extends BaseValidator {
   private readonly config: Config;
@@ -23,28 +37,21 @@ export default class AttachmentValidator extends BaseValidator {
     const fileName = attachment.name.toLowerCase();
     const soundName = fileName.substring(0, fileName.lastIndexOf('.'));
 
-    return Promise.all([
-      this.validateExtension(fileName),
-      this.validateName(soundName),
-      this.validateSize(attachment.size),
-      this.validateUniqueness(soundName)
-    ]);
+    this.validateExtension(fileName);
+    this.validateName(soundName);
+    this.validateSize(attachment.size);
+    this.validateUniqueness(soundName);
   }
 
   private validateExtension(fileName: string) {
-    if (!this.config.acceptedExtensions.some(ext => fileName.endsWith(ext))) {
-      const extensions = this.config.acceptedExtensions.join(', ');
-      return Promise.reject(localize.t('validation.attachment.extension', { extensions }));
-    }
+    if (this.config.acceptedExtensions.some(ext => fileName.endsWith(ext))) return;
 
-    return Promise.resolve();
+    throw new AttachmentExtensionError(this.config.acceptedExtensions);
   }
 
   private validateSize(filesize: number) {
-    if (filesize > this.config.maximumFileSize) {
-      return Promise.reject(localize.t('validation.attachment.size'));
-    }
+    if (filesize <= this.config.maximumFileSize) return;
 
-    return Promise.resolve();
+    throw new AttachmentSizeError();
   }
 }
