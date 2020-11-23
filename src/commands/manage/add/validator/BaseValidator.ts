@@ -1,23 +1,7 @@
 /* eslint-disable max-classes-per-file */
 
-import localize from '~/util/i18n/localize';
+import { DuplicationError, NameError } from '~/util/Errors';
 import { existsSound } from '~/util/SoundUtil';
-
-export class ValidationError extends Error {
-  name = 'ValidationError';
-}
-
-export class NameError extends ValidationError {
-  constructor() {
-    super(localize.t('errors.format.sound'));
-  }
-}
-
-export class DuplicationError extends ValidationError {
-  constructor(name: string) {
-    super(localize.t('validation.attachment.exists', { name }));
-  }
-}
 
 export default abstract class BaseValidator {
   public abstract validate(...params: unknown[]): void;

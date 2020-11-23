@@ -2,15 +2,9 @@
 
 import URL from 'url';
 
-import localize from '~/util/i18n/localize';
+import { InvalidUrlError } from '~/util/Errors';
 
-import BaseValidator, { ValidationError } from './BaseValidator';
-
-export class InvalidUrlError extends ValidationError {
-  constructor() {
-    super(localize.t('errors.format.url'));
-  }
-}
+import BaseValidator from './BaseValidator';
 
 export default class YoutubeValidator extends BaseValidator {
   private readonly VALID_HOSTS = ['www.youtube.com', 'youtu.be'];
