@@ -1,103 +1,98 @@
 {
-  "url": "Gebruik de volgende link om de bot te laten verbinden met je server!\nhttps://discordapp.com/oauth2/authorize?client_id={clientId}&scope=bot",
-  "welcome": "**Bedankt dat je me hebt toegevoegd!** 🔥\n- Mijn commando's beginnen met een `{prefix}`. Wil je dit veranderen? Bekijk alle configuratie opties hier: **<https://github.com/markokajzer/discord-soundbot/wiki/Configuration>**.\n- Je kunt een lijst van beschikbare commando's tonen met `{prefix}help.`\n- Begin met het toevoegen van een geluid. Gebruik `{prefix}add` en sleep een geluidsbestand!\n- Meer hulp nodig? Kom op onze support server: **<https://discordapp.com/invite/JBw2BNx>**.",
-
-  "help": {
-    "headline": "Begin je commando's met een `{prefix}` voor de volgende acties:",
-
-    "welcome": "Toon het welkomstbericht",
-    "commands": "Toon dit bericht",
-
-    "sounds": {
-      "all": "Toon beschikbare geluiden",
-      "add": "Voeg een bijgevoegd geluid toe",
-      "play": "Speel een geluid af",
-      "combo": "Speel geluiden achter elkaar af",
-      "random": "Speel een willekeurig geluid af",
-      "rename": "Hernoem een geluid",
-      "remove": "Verwijder een geluid",
-      "download": "Verstuur een geluid naar de chat",
-      "stop": "Stop met afspelen en haal de afspeelwachtrij leeg"
+    "commands": {
+        "add": {
+            "success": "{name} toegevoegd!"
+        },
+        "avatar": {
+            "errors": {
+                "noAvatar": "Er is nog geen Avatar ingesteld. Probeer er eentje toe te voegen met `{prefix}avatar` en een afbeelding!",
+                "tooFast": "Je bent te snel met het vanderen van de Avatar. Probeer het later opnieuw."
+            },
+            "url": "Huidige avatar: {url}"
+        },
+        "config": {
+            "notFound": "Configuratie heeft geen optie voor `{field}`!",
+            "success": "`{field}` is ingesteld op `{value}`!"
+        },
+        "ignore": {
+            "add": "{user} wordt nu genegeerd!",
+            "remove": "Gestopt met het negeren van {user}!"
+        },
+        "remove": {
+            "notFound": "{sound} niet gevonden!",
+            "success": "{sound} verwijderd!"
+        },
+        "rename": {
+            "notFound": "{oldName} niet gevonden!",
+            "success": "{oldName} hernoemd naar {newName}!"
+        },
+        "search": {
+            "notFound": "Geen geluiden gevonden."
+        },
+        "sounds": {
+            "notFound": "Je hebt nog geen geluiden ingesteld! Probeer er eentje toe te voegen met het {prefix}add commando."
+        },
+        "tag": {
+            "found": "Labels voor {sound}: [{tags}]",
+            "notFound": "{sound} niet gevonden!"
+        }
     },
-
-    "tags": {
-      "all": "Toon een lijst van alle geluiden met labels",
-      "add": "Voeg een label toe aan een geluid",
-      "list": "Toon een lijst van labels voor een geluid",
-      "clear": "Verwijder alle labels van een geluid",
-      "search": "Zoek geluiden met een specifieke tag"
+    "errors": {
+        "format": {
+            "sound": "💥📛 Bestandsnaam mag alleen letters en cijfers bevatten!",
+            "url": "💥🚋 URL is niet geldig!"
+        },
+        "sounds": {
+            "exists": "{sound} bestaat al!"
+        },
+        "unspecific": "💥 Er is iets mis gegaan!"
     },
-
-    "mostplayed": "Toon meest gebruikte geluiden",
-    "lastadded": "Toon nieuwste geluiden",
-    "ignore": "Negeer een gebruiker",
-    "unignore": "Deze gebruiker niet meer negeren",
-    "avatar": "Zet, toon of verwijder de avatar",
-    "config": "Verander de configuratie"
-  },
-
-  "helpers": {
-    "messageChunker": {
-      "page": "```Pagina {current} van {total}```"
+    "help": {
+        "avatar": "Zet, toon of verwijder de avatar",
+        "commands": "Toon dit bericht",
+        "config": "Verander de configuratie",
+        "headline": "Begin je commando's met een `{prefix}` voor de volgende acties:",
+        "ignore": "Negeer een gebruiker",
+        "lastadded": "Toon nieuwste geluiden",
+        "mostplayed": "Toon meest gebruikte geluiden",
+        "sounds": {
+            "add": "Voeg een bijgevoegd geluid toe",
+            "all": "Toon beschikbare geluiden",
+            "combo": "Speel geluiden achter elkaar af",
+            "download": "Verstuur een geluid naar de chat",
+            "play": "Speel een geluid af",
+            "random": "Speel een willekeurig geluid af",
+            "remove": "Verwijder een geluid",
+            "rename": "Hernoem een geluid",
+            "stop": "Stop met afspelen en haal de afspeelwachtrij leeg"
+        },
+        "tags": {
+            "add": "Voeg een label toe aan een geluid",
+            "all": "Toon een lijst van alle geluiden met labels",
+            "clear": "Verwijder alle labels van een geluid",
+            "list": "Toon een lijst van labels voor een geluid",
+            "search": "Zoek geluiden met een specifieke tag"
+        },
+        "unignore": "Deze gebruiker niet meer negeren",
+        "welcome": "Toon het welkomstbericht"
     },
-    "userFinder": {
-      "error": "Gebruiker niet gevonden op deze server."
+    "helpers": {
+        "messageChunker": {
+            "page": "```Pagina {current} van {total}```"
+        },
+        "userFinder": {
+            "error": "Gebruiker niet gevonden op deze server."
+        },
+        "voiceChannelFinder": {
+            "error": "Je moet eerst een voice channel joinen!"
+        }
     },
-    "voiceChannelFinder": {
-      "error": "Je moet eerst een voice channel joinen!"
-    }
-  },
-
-  "validation": {
-    "attachment": {
-      "exists": "{name} bestaat al!",
-      "extension": "Geluidsbestand moet in een geaccepteerd formaat komen [{extensions}]!",
-      "format": "Bestandsnaam mag alleen letters en cijfers bevatten!",
-      "size": "Bestand is te groot!"
+    "url": "Gebruik de volgende link om de bot te laten verbinden met je server!\nhttps://discordapp.com/oauth2/authorize?client_id={clientId}&scope=bot",
+    "validation": {
+        "attachment": {
+            "extension": "Geluidsbestand moet in een geaccepteerd formaat komen [{extensions}]!",
+            "size": "Bestand is te groot!"
+        }
     },
-    "url": {
-      "invalid": "URL is niet geldig!"
-    }
-  },
-
-  "commands": {
-    "add": {
-      "success": "{name} toegevoegd!",
-      "error": "Er is iets mis gegaan!"
-    },
-    "avatar": {
-      "errors": {
-        "noAvatar": "Er is nog geen Avatar ingesteld. Probeer er eentje toe te voegen met `{prefix}avatar` en een afbeelding!",
-        "tooFast": "Je bent te snel met het vanderen van de Avatar. Probeer het later opnieuw."
-      },
-      "url": "Huidige avatar: {url}"
-    },
-    "ignore": {
-      "add": "{user} wordt nu genegeerd!",
-      "remove": "Gestopt met het negeren van {user}!"
-    },
-    "remove": {
-      "notFound": "{sound} niet gevonden!",
-      "success": "{sound} verwijderd!"
-    },
-    "rename": {
-      "exists": "{newName} bestaat al!",
-      "notFound": "{oldName} niet gevonden!",
-      "success": "{oldName} hernoemd naar {newName}!"
-    },
-    "search": {
-      "notFound": "Geen geluiden gevonden."
-    },
-    "sounds": {
-      "notFound": "Je hebt nog geen geluiden ingesteld! Probeer er eentje toe te voegen met het {prefix}add commando."
-    },
-    "tag": {
-      "found": "Labels voor {sound}: [{tags}]",
-      "notFound": "{sound} niet gevonden!"
-    },
-    "config": {
-      "success": "`{field}` is ingesteld op `{value}`!",
-      "notFound": "Configuratie heeft geen optie voor `{field}`!"
-    }
-  }
+    "welcome": "**Bedankt dat je me hebt toegevoegd!** 🔥\n- Mijn commando's beginnen met een `{prefix}`. Wil je dit veranderen? Bekijk alle configuratie opties hier: **<https://github.com/markokajzer/discord-soundbot/wiki/Configuration>**.\n- Je kunt een lijst van beschikbare commando's tonen met `{prefix}help.`\n- Begin met het toevoegen van een geluid. Gebruik `{prefix}add` en sleep een geluidsbestand!\n- Meer hulp nodig? Kom op onze support server: **<https://discordapp.com/invite/JBw2BNx>**."
 }
