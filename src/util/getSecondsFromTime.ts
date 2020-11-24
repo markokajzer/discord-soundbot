@@ -1,11 +1,4 @@
-import localize from './i18n/localize';
-
-export class FormatError extends Error {
-  name = 'FormatError';
-  constructor() {
-    super(localize.t('errors.format.time'));
-  }
-}
+import { FormatError } from './Errors';
 
 /**
  * Parses a string of the form [[hh:]mm:]ss[.xxx]) and returns a number representing the seconds

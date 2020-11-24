@@ -3,7 +3,8 @@ import ffmpeg from 'fluent-ffmpeg';
 import fs from 'fs';
 import util from 'util';
 
-import getSecondsFromTime, { FormatError } from '~/util/getSecondsFromTime';
+import { FormatError } from '~/util/Errors';
+import getSecondsFromTime from '~/util/getSecondsFromTime';
 import localize from '~/util/i18n/localize';
 import { existsSound, getExtensionForSound } from '~/util/SoundUtil';
 
