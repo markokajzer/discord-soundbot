@@ -21,8 +21,8 @@ export class NameError extends ValidationError {
 }
 
 export class DuplicationError extends ValidationError {
-  constructor(name: string) {
-    super(localize.t('validation.attachment.exists', { name }));
+  constructor(sound: string) {
+    super(localize.t('errors.sound.exists', { sound }));
   }
 }
 

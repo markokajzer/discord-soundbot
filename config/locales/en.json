@@ -62,7 +62,6 @@
 
   "validation": {
     "attachment": {
-      "exists": "{name} already exists!",
       "extension": "Sound has to be in accepted format, one of [{extensions}]!",
       "size": "File is too big!"
     }
@@ -97,7 +96,6 @@
       "success": "{sound} removed!"
     },
     "rename": {
-      "exists": "{newName} already exists!",
       "notFound": "{oldName} not found!",
       "success": "{oldName} renamed to {newName}!"
     },
@@ -121,6 +119,9 @@
       "sound": "💥📛 Filename has to be all letters and numbers!",
       "time": "💥⌚ Specified time was not given in the form of [[hh:]mm:]ss[.xxx].",
       "url": "💥🚋 Please specify a valid URL from YouTube."
+    },
+    "sounds": {
+      "exists": "{sound} already exists!"
     }
   }
 }
