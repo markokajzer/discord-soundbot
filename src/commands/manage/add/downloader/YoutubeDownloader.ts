@@ -22,23 +22,25 @@ export default class YoutubeDownloader extends BaseDownloader {
   }
 
   public async handle(message: Message, params: string[]) {
-    // TODO: Move this check to AddCommand
     if (params.length < 2 || params.length > 4) return;
 
-    const [soundName, url, startTime, endTime] = params;
+    const [soundName, url, start, end] = params;
 
     try {
       this.validator.validate(soundName, url);
-      await this.addSound({ endTime, soundName, startTime, url });
+      await this.addSound({ end, soundName, start, url });
       message.channel.send(localize.t('commands.add.success', { name: soundName }));
     } catch (error) {
       this.handleError(message, error);
     }
   }
 
-  private async addSound({ url, ...convertOptions }: DownloadOptions) {
+  private async addSound({ url, start, end, soundName }: DownloadOptions) {
+    const startTime = getSecondsFromTime(start);
+    const endTime = getSecondsFromTime(end);
+
     await this.download(url);
-    await this.convert(convertOptions);
+    await this.convert({ endTime, soundName, startTime });
     await this.cleanUp();
   }
 
@@ -54,11 +56,8 @@ export default class YoutubeDownloader extends BaseDownloader {
   private convert({ soundName, startTime, endTime }: ConvertOptions) {
     let ffmpegCommand = ffmpeg('tmp.mp4').output(`./sounds/${soundName}.mp3`);
 
-    const start = getSecondsFromTime(startTime);
-    const end = getSecondsFromTime(endTime);
-
-    if (start) ffmpegCommand = ffmpegCommand.setStartTime(start);
-    if (start && end) ffmpegCommand = ffmpegCommand.setDuration(end - start);
+    if (startTime) ffmpegCommand = ffmpegCommand.setStartTime(startTime);
+    if (startTime && endTime) ffmpegCommand = ffmpegCommand.setDuration(endTime - startTime);
 
     return new Promise((resolve, reject) =>
       ffmpegCommand.on('end', resolve).on('error', reject).run()

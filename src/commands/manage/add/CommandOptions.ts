@@ -1,9 +1,12 @@
 export interface ConvertOptions {
+  endTime: Nullable<number>;
   soundName: string;
-  startTime: Nullable<string>;
-  endTime: Nullable<string>;
+  startTime: Nullable<number>;
 }
 
-export default interface DownloadOptions extends ConvertOptions {
+export default interface DownloadOptions {
+  end: Nullable<string>;
+  soundName: string;
+  start: Nullable<string>;
   url: string;
 }
