@@ -66,33 +66,35 @@ export default class SoundQueue {
     Array.from(new Set(deleteableMessages)).forEach(message => message.delete());
   }
 
-  private playNext() {
+  private async playNext() {
     this.currentSound = this.queue.shift()!;
     const sound = getPathForSound(this.currentSound.name);
 
-    this.currentSound.channel
-      .join()
-      .then(connection => this.deafen(connection))
-      .then(connection => this.playSound(connection, sound))
-      .then(connection => this.onFinishedPlayingSound(connection))
-      .catch(error => this.handleError(error));
-  }
+    try {
+      const connection = await this.currentSound.channel.join();
+      this.deafen(connection);
 
-  private deafen(connection: VoiceConnection) {
-    // Can only deafen when in a channel, therefore need connection
-    if (connection.voice && connection.voice.selfDeaf !== this.config.deafen) {
-      connection.voice.setDeaf(this.config.deafen);
+      await this.playSound(connection, sound);
+      this.onFinishedPlayingSound(connection);
+    } catch (error) {
+      this.handleError(error);
     }
-
-    return Promise.resolve(connection);
   }
 
-  private playSound(connection: VoiceConnection, name: string): Promise<VoiceConnection> {
+  // NOTE: Can only deafen when in a channel, therefore need connection
+  private deafen(connection: VoiceConnection) {
+    if (!connection.voice) return;
+    if (connection.voice.selfDeaf === this.config.deafen) return;
+
+    connection.voice.setDeaf(this.config.deafen);
+  }
+
+  private playSound(connection: VoiceConnection, name: string): Promise<void> {
     return new Promise(resolve => {
       this.dispatcher = connection
         .play(name, { volume: this.config.volume })
-        .on('finish', () => resolve(connection))
-        .on('close', () => resolve(connection));
+        .on('finish', resolve)
+        .on('close', resolve);
     });
   }
 
