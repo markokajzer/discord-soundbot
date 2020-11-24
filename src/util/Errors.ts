@@ -21,6 +21,18 @@ export class ValidationError extends Error {
   name = 'ValidationError';
 }
 
+export class AttachmentExtensionError extends ValidationError {
+  constructor(extensions: string[]) {
+    super(localize.t('validation.attachment.extension', { extensions: extensions.join(', ') }));
+  }
+}
+
+export class AttachmentSizeError extends ValidationError {
+  constructor() {
+    super(localize.t('validation.attachment.size'));
+  }
+}
+
 export class DuplicationError extends ValidationError {
   constructor(sound: string) {
     super(localize.t('errors.sound.exists', { sound }));

@@ -3,21 +3,9 @@
 import { MessageAttachment } from 'discord.js';
 
 import Config from '~/config/Config';
-import localize from '~/util/i18n/localize';
+import { AttachmentExtensionError, AttachmentSizeError } from '~/util/Errors';
 
-import BaseValidator, { ValidationError } from './BaseValidator';
-
-export class AttachmentExtensionError extends ValidationError {
-  constructor(extensions: string[]) {
-    super(localize.t('validation.attachment.extension', { extensions: extensions.join(', ') }));
-  }
-}
-
-export class AttachmentSizeError extends ValidationError {
-  constructor() {
-    super(localize.t('validation.attachment.size'));
-  }
-}
+import BaseValidator from './BaseValidator';
 
 export default class AttachmentValidator extends BaseValidator {
   private readonly config: Config;
