@@ -75,7 +75,7 @@ export default class SoundQueue {
       this.deafen(connection);
 
       await this.playSound(connection, sound);
-      this.onFinishedPlayingSound(connection);
+      this.handleFinishedPlayingSound(connection);
     } catch (error) {
       this.handleError(error);
     }
@@ -98,7 +98,7 @@ export default class SoundQueue {
     });
   }
 
-  private onFinishedPlayingSound(connection: VoiceConnection) {
+  private handleFinishedPlayingSound(connection: VoiceConnection) {
     const { name, channel, message, count } = this.currentSound!;
     sounds.incrementCount(name);
 
