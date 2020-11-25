@@ -4,7 +4,13 @@ import SoundQueue from '~/queue/SoundQueue';
 import CommandCollection from '../bot/CommandCollection';
 import MessageHandler from '../bot/MessageHandler';
 import SoundBot from '../bot/SoundBot';
-import { AvatarCommand, ConfigCommand, IgnoreCommand, UnignoreCommand } from '../commands/config';
+import {
+  AvatarCommand,
+  ConfigCommand,
+  IgnoreCommand,
+  LanguageCommand,
+  UnignoreCommand
+} from '../commands/config';
 import {
   HelpCommand,
   LastAddedCommand,
@@ -84,6 +90,7 @@ const commands = [
   // CONFIGURATION RELATED COMMANDS
   new AvatarCommand(config),
   new ConfigCommand(config),
+  new LanguageCommand(config),
   new IgnoreCommand(),
   new UnignoreCommand()
 ];
