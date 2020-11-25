@@ -44,6 +44,7 @@
     "@types/jest": "26.0.15",
     "@types/lowdb": "1.0.8",
     "@types/node": "14.14.9",
+    "@types/node-fetch": "^2.5.7",
     "@types/ws": "7.4.0",
     "@typescript-eslint/eslint-plugin": "4.8.1",
     "@typescript-eslint/parser": "4.8.1",
@@ -56,6 +57,7 @@
     "eslint-plugin-simple-import-sort": "^6.0.1",
     "eslint-plugin-sort-keys-fix": "^1.1.1",
     "jest": "26.6.3",
+    "node-fetch": "^2.6.1",
     "prettier": "2.2.0",
     "ts-jest": "26.4.4",
     "ts-node": "9.0.0",
@@ -65,15 +67,16 @@
     "node": ">=12.0.0"
   },
   "scripts": {
-    "clean": "rm -rf dist",
     "build": "tsc -p tsconfig.json",
+    "clean": "rm -rf dist",
     "format:check": "prettier --config .prettierrc.yml --list-different '**/**.ts'",
     "format": "prettier --config .prettierrc.yml --write '**/**.ts'",
     "lint": "eslint --rulesdir ./vendor/rules/ -c .eslintrc.yml --ext ts .",
     "postbuild": "ts-node lib/postbuild.ts",
+    "rebuild": "npm run clean && npm run build",
+    "release": "npm run rebuild && npm run lint && npm run format",
     "serve": "node dist/bin/soundbot.js",
     "start": "npm run build && npm run serve",
-    "rebuild": "npm run clean && npm run build",
-    "release": "npm run rebuild && npm run lint && npm run format"
+    "translations:download": "ts-node lib/downloadTranslations.ts"
   }
 }
