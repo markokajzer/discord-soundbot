@@ -18,6 +18,9 @@
             "add": "Sto ignorando {user}!",
             "remove": "Non sto piu' ignorando {user}!"
         },
+        "lang": {
+            "title": "Lingue disponibili   💬"
+        },
         "remove": {
             "notFound": "{sound} non trovato!",
             "success": "{sound} rimosso!"
@@ -89,6 +92,16 @@
         "voiceChannelFinder": {
             "error": "Unisci ad un canale vocale prima!"
         }
+    },
+    "language": {
+        "de": "Tedesco",
+        "en": "Inglese",
+        "es": "Spagnolo",
+        "fr": "Francese",
+        "hu": "Ungherese",
+        "it": "Italian",
+        "ja": "Giapponese",
+        "nl": "Olandese"
     },
     "url": "Usa il seguente URL per far entrare il BOT nel tuo server!\nhttps://discordapp.com/oauth2/authorize?client_id={clientId}&scope=bot",
     "validation": {

@@ -4,14 +4,14 @@ import fs from 'fs';
 import fetch from 'node-fetch';
 import { URLSearchParams } from 'url';
 
-const LANGUAGES = ['de', 'en', 'es', 'fr', 'hu', 'it', 'ja', 'nl'];
+import config from '../config/poeditor.json';
 
-const API_TOKEN = '5b0997bf65dda0118525394d45c84d14';
+const LANGUAGES = ['de', 'en', 'es', 'fr', 'hu', 'it', 'ja', 'nl'];
 const PROJECT_ID = '392681';
 
 // For request options see https://poeditor.com/docs/api#projects
 const requestOptions = {
-  api_token: API_TOKEN,
+  api_token: config.api_token,
   filters: 'translated',
   id: PROJECT_ID,
   order: 'terms',

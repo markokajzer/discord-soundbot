@@ -18,6 +18,9 @@
             "add": "{user} Figyelmenkívülhagyása",
             "remove": "{user} Nincs tovább figyelmenkívülhagyva!"
         },
+        "lang": {
+            "title": "Elérhető nyelvek   💬"
+        },
         "remove": {
             "notFound": "{sound} nem taláható.",
             "success": "{sound} törölve!"
@@ -85,6 +88,16 @@
         "voiceChannelFinder": {
             "error": "Lépj egy szobába elõször!"
         }
+    },
+    "language": {
+        "de": "Német",
+        "en": "Angol",
+        "es": "Spanyol",
+        "fr": "Francia",
+        "hu": "Magyar",
+        "it": "Italiano",
+        "ja": "Japán",
+        "nl": "Holland"
     },
     "url": "Használd a következõ linket a bot meghívására \nhttps://discordapp.com/oauth2/authorize?client_id={clientId}&scope=bot",
     "validation": {

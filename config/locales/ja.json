@@ -18,6 +18,9 @@
             "add": "{user} からのコマンドを無視するように設定しました。",
             "remove": "{user} からのコマンドを無視しないように設定しました。"
         },
+        "lang": {
+            "title": "利用可能な言語   💬"
+        },
         "remove": {
             "notFound": "{sound} が見つかりませんでした。",
             "success": "{sound} が削除されました。"
@@ -85,6 +88,16 @@
         "voiceChannelFinder": {
             "error": "チャンネルに接続してください。"
         }
+    },
+    "language": {
+        "de": "ドイツ人",
+        "en": "英語",
+        "es": "スペイン語",
+        "fr": "フランス語",
+        "hu": "ハンガリー語",
+        "it": "イタリアの",
+        "ja": "日本人",
+        "nl": "オランダの"
     },
     "url": "Botを招待するには、以下のリンクを開いてください。\nhttps://discordapp.com/oauth2/authorize?client_id={clientId}&scope=bot",
     "validation": {

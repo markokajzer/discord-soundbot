@@ -18,6 +18,11 @@
             "add": "Ignoring {user}!",
             "remove": "No longer ignoring {user}!"
         },
+        "lang": {
+            "success": "Changed language to `{language}`!  {flag}",
+            "title": "Available languages   💬",
+            "usage": "Say **{command} <language>** to pick one!\nExample: **{command} Italian** or **{command} nl**"
+        },
         "modify": {
             "error": "Something went wrong when changing `{modifier}` of {sound}!",
             "notFound": "No such modifier: `{modifier}`!",
@@ -105,6 +110,16 @@
         "voiceChannelFinder": {
             "error": "Join a voice channel first!"
         }
+    },
+    "language": {
+        "de": "German",
+        "en": "English",
+        "es": "Spanish",
+        "fr": "French",
+        "hu": "Hungarian",
+        "it": "Italian",
+        "ja": "Japanese",
+        "nl": "Dutch"
     },
     "url": "Use the following URL to let the bot join your server!\nhttps://discordapp.com/oauth2/authorize?client_id={clientId}&scope=bot",
     "validation": {

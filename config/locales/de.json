@@ -18,6 +18,9 @@
             "add": "Ignoriere {user}!",
             "remove": "Ignoriere {user} nicht länger!"
         },
+        "lang": {
+            "title": "Verfügbare Sprachen   💬"
+        },
         "remove": {
             "notFound": "{sound} nicht gefunden!",
             "success": "{sound} gelöscht!"
@@ -94,6 +97,16 @@
         "voiceChannelFinder": {
             "error": "Gehe zuerst in einen Channel!"
         }
+    },
+    "language": {
+        "de": "Deutsch",
+        "en": "Englisch",
+        "es": "Spanisch",
+        "fr": "Französisch",
+        "hu": "Ungarisch",
+        "it": "Italienisch",
+        "ja": "Japanisch",
+        "nl": "Niederländisch"
     },
     "url": "Benutze den folgenden Link, um den Bot deinem Server hinzuzufügen!\nhttps://discordapp.com/oauth2/authorize?client_id={clientId}&scope=bot",
     "validation": {

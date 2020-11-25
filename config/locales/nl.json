@@ -18,6 +18,9 @@
             "add": "{user} wordt nu genegeerd!",
             "remove": "Gestopt met het negeren van {user}!"
         },
+        "lang": {
+            "title": "Beschikbare talen   💬"
+        },
         "remove": {
             "notFound": "{sound} niet gevonden!",
             "success": "{sound} verwijderd!"
@@ -86,6 +89,16 @@
         "voiceChannelFinder": {
             "error": "Je moet eerst een voice channel joinen!"
         }
+    },
+    "language": {
+        "de": "Duits",
+        "en": "Engels",
+        "es": "Spaans",
+        "fr": "Frans",
+        "hu": "Hongaars",
+        "it": "Italiaans",
+        "ja": "Japans",
+        "nl": "Nederlands"
     },
     "url": "Gebruik de volgende link om de bot te laten verbinden met je server!\nhttps://discordapp.com/oauth2/authorize?client_id={clientId}&scope=bot",
     "validation": {

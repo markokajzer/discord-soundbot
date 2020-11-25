@@ -18,6 +18,9 @@
             "add": "¡Ignorando {user}!",
             "remove": "¡No se está ignorando mas a {user}!"
         },
+        "lang": {
+            "title": "Idiomas Disponibles   💬"
+        },
         "remove": {
             "notFound": "¡{sound} no encontrado!",
             "success": "¡{sound} borrado!"
@@ -86,6 +89,16 @@
         "voiceChannelFinder": {
             "error": "¡Únete a un canal de voz primero!"
         }
+    },
+    "language": {
+        "de": "Alemán",
+        "en": "Inglés",
+        "es": "Español",
+        "fr": "Francés",
+        "hu": "Húngaro",
+        "it": "Italiano",
+        "ja": "Japonés",
+        "nl": "Holandés"
     },
     "url": "Use el siguiente enlace para invitar a unirse a tu servidor\nhttps://discordapp.com/oauth2/authorize?client_id={clientId}&scope=bot",
     "validation": {
