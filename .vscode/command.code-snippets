@@ -9,7 +9,7 @@
       "import Command from '../base/Command';",
       "",
       "export class ${1:NewCommand} extends Command {",
-      "\tpublic readonly TRIGGERS = ['${2:trigger}'];",
+      "\tpublic readonly triggers = ['${2:trigger}'];",
       "",
       "\tpublic run(message: Message, params: string[]) {",
       "\t\t$0",
