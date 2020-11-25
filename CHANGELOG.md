@@ -1,3 +1,17 @@
+## 2.2.0 (Unreleased)
+
+**Features**
+
++ Add `!lang` command
+  + Get information about the available languages
+  + Change the language (equivalent to !set language en)
++ Handle more errors to give useful feedback
+
+**Under the hood**
+
++ Simplify translations
++ Refactored a whole bunch of code
+
 ## 2.1.0 (2020-11-21)
 
 **Features**
