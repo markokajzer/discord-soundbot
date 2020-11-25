@@ -108,6 +108,12 @@ You can add, rename, download, tag, play, and remove sounds, ignore users, set t
 *Note*: The commands `!rename`, `!remove`, `!tag <sound> clear`, `!ignore`, `!unignore`, `!avatar` and `!config` are restricted and can only be accessed by **administrators** by default. To configure this, adjust the `elevatedRoles` config option.
 
 
+### Languages
+
+The bot is available in multiple languages. To see all available languages use `!lang`.
+
+Note, that I do not speak all available languages and therefore some translations might be missing, out of date or just straight up bad. If you feel like contributing, reach out to me on Discord.
+
 ### Adding sounds
 
 You can add sounds to the bot by typing `!add` and attaching a file. Accepted file formats and a limit to the size are configurable. The name of the sound can only contain alphanumeric characters.
