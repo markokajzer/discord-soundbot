@@ -1,4 +1,4 @@
 export default interface FileInfo {
   currentFile: string;
-  newFile: string;
+  tempFile: string;
 }

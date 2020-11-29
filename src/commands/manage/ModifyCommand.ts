@@ -63,25 +63,25 @@ export class ModifyCommand extends Command {
     }
   }
 
-  private modifyVolume({ currentFile, newFile }: FileInfo, ...params: string[]): Promise<void> {
+  private modifyVolume({ currentFile, tempFile }: FileInfo, ...params: string[]): Promise<void> {
     const [value] = params;
     const ffmpegCommand = ffmpeg(currentFile)
       .audioFilters([{ filter: 'volume', options: value }])
-      .output(newFile);
+      .output(tempFile);
 
     return new Promise((resolve, reject) =>
       ffmpegCommand.on('end', resolve).on('error', reject).run()
     );
   }
 
-  private clipSound({ currentFile, newFile }: FileInfo, ...params: string[]): Promise<void> {
+  private clipSound({ currentFile, tempFile }: FileInfo, ...params: string[]): Promise<void> {
     const [startTime, endTime] = params;
 
     // NOTE: We checked params already, so start is definitely here
     const start = getSecondsFromTime(startTime)!;
     const end = getSecondsFromTime(endTime);
 
-    let ffmpegCommand = ffmpeg(currentFile).output(newFile).setStartTime(start);
+    let ffmpegCommand = ffmpeg(currentFile).output(tempFile).setStartTime(start);
     if (end) ffmpegCommand = ffmpegCommand.setDuration(end - start);
 
     return new Promise((resolve, reject) =>
@@ -89,8 +89,8 @@ export class ModifyCommand extends Command {
     );
   }
 
-  private replace({ currentFile, newFile }: FileInfo) {
-    return rename(currentFile, newFile);
+  private replace({ currentFile, tempFile }: FileInfo): Promise<void> {
+    return rename(tempFile, currentFile);
   }
 
   private getFileNameFor(sound: string): FileInfo {
@@ -98,9 +98,9 @@ export class ModifyCommand extends Command {
     const currentFile = `./sounds/${sound}.${extension}`;
 
     const timestamp = Date.now();
-    const newFile = `./sounds/${sound}-${timestamp}.${extension}`;
+    const tempFile = `./sounds/${sound}-${timestamp}.${extension}`;
 
-    return { currentFile, newFile };
+    return { currentFile, tempFile };
   }
 
   private handleError(message: Message, error: Error, { modifier, sound }: ErrorParams) {
