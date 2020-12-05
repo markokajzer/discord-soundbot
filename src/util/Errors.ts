@@ -35,7 +35,7 @@ export class AttachmentSizeError extends ValidationError {
 
 export class DuplicationError extends ValidationError {
   constructor(sound: string) {
-    super(localize.t('errors.sound.exists', { sound }));
+    super(localize.t('errors.sounds.exists', { sound }));
   }
 }
 

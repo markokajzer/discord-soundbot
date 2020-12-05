@@ -30,7 +30,7 @@ export class RenameCommand extends Command {
     }
 
     if (sounds.includes(newName)) {
-      message.channel.send(localize.t('errors.sound.exists', { sound: newName }));
+      message.channel.send(localize.t('errors.sounds.exists', { sound: newName }));
       return;
     }
 
