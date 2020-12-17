@@ -20,7 +20,7 @@
         },
         "lang": {
             "success": "Se cambió el lenguaje a `{language}`!  {flag}",
-            "title": "Available languages   💬",
+            "title": "Lenguajes disponibles   💬",
             "usage": "Usa **{command} <language>** para seleccionar uno!\nEjemplo: **{command} Italian** o **{command} nl**"
         },
         "modify": {
