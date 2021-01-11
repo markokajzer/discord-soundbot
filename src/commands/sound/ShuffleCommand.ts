@@ -22,7 +22,7 @@ export class ShuffleCommand extends QueueCommand {
 
     const [countAsString, tag] = params;
     const shuffleCount = parseInt(countAsString);
-    if (shuffleCount < 1) {
+    if (shuffleCount < 1 || shuffleCount > 15) {
       message.reply(localize.t('helpers.shuffleCount.error'));
       return;
     }
