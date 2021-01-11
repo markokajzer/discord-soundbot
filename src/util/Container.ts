@@ -43,7 +43,8 @@ import {
   RandomCommand,
   ShuffleCommand,
   SkipCommand,
-  SoundCommand} from '../commands/sound';
+  SoundCommand
+} from '../commands/sound';
 
 export const config = new Config();
 const queue = new SoundQueue(config);

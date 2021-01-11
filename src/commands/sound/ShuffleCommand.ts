@@ -33,12 +33,11 @@ export class ShuffleCommand extends QueueCommand {
       return;
     }
 
-    const sounds =
-      params.length === this.numberOfParameters ? soundsDb.withTag(tag) : getSounds();
+    const sounds = params.length === this.numberOfParameters ? soundsDb.withTag(tag) : getSounds();
 
     for (let counter = 0; counter < shuffleCount; counter += 1) {
       const random = sounds[Math.floor(Math.random() * sounds.length)];
       this.queue.add(new QueueItem(random, voiceChannel, message));
-    }  
+    }
   }
 }
