@@ -85,6 +85,7 @@
             "next": "Interrupt currently playing sound with specified sound",
             "play": "Play the specified sound",
             "random": "Play random sound",
+            "shuffle": "Shuffle <count> songs in the queue",
             "remove": "Remove specified sound",
             "rename": "Rename specified sound",
             "skip": "Skip the currently playing sound",
@@ -109,6 +110,9 @@
         },
         "voiceChannelFinder": {
             "error": "Join a voice channel first!"
+        },
+        "shuffleCount": {
+            "error": "Specify correct count!"
         }
     },
     "language": {

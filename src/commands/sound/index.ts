@@ -4,3 +4,4 @@ export { NextCommand } from './NextCommand';
 export { RandomCommand } from './RandomCommand';
 export { SkipCommand } from './SkipCommand';
 export { SoundCommand } from './SoundCommand';
+export { ShuffleCommand } from './ShuffleCommand';

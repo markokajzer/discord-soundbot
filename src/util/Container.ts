@@ -42,7 +42,8 @@ import {
   NextCommand,
   RandomCommand,
   SkipCommand,
-  SoundCommand
+  SoundCommand,
+  ShuffleCommand
 } from '../commands/sound';
 
 export const config = new Config();
@@ -65,6 +66,7 @@ const commands = [
   new NextCommand(queue),
   new SkipCommand(queue),
   new StopCommand(queue),
+  new ShuffleCommand(queue),
 
   // ENTRANCE / EXIT SOUNDS
   new EntranceCommand(),
