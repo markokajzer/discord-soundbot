@@ -19,7 +19,14 @@
             "remove": "¡No se está ignorando mas a {user}!"
         },
         "lang": {
-            "title": "Idiomas Disponibles   💬"
+            "success": "Se cambió el lenguaje a `{language}`!  {flag}",
+            "title": "Lenguajes disponibles   💬",
+            "usage": "Usa **{command} <language>** para seleccionar uno!\nEjemplo: **{command} Italian** o **{command} nl**"
+        },
+        "modify": {
+            "error": "Algo malo ocurrió cuando se cambiaba `{modifier}` de {sound}!",
+            "notFound": "No existe modificador: `{modifier}`!",
+            "success": "Se usó `{modifier}` exitosamente en {sound}!"
         },
         "remove": {
             "notFound": "¡{sound} no encontrado!",
@@ -43,17 +50,28 @@
     "errors": {
         "format": {
             "sound": "💥📛 ¡El nombre del archivo debe ser sólo letras y números!",
-            "url": "💥🚋 ¡Enlace no válido!"
+            "time": "💥⌚ El tiempo especificado no fue puesto en el siguiente formato: [[hh:]mm:]ss[.xxx].",
+            "url": "💥🚋 ¡Por favor especifica una URL válida de YouTube!"
         },
+        "permissions": "Necesito permisos para unirme al canal.",
         "sounds": {
             "exists": "¡{sound} ya existe!"
         },
-        "unspecific": "💥 ¡Algo salió mal!"
+        "unauthorized": "Necesitas ser administrador o tener un rol elevado para ejecutar éste comando",
+        "unspecific": "💥 ¡Algo salió mal!, Por favor intenta de nuevo, o avisa al creador del bot lo que pasó"
     },
     "help": {
         "avatar": "Establece, muestra o borra el avatar",
         "commands": "Muestra éste mensaje",
         "config": "Cambia la configuración",
+        "entrance": {
+            "remove": "Quitar sonido de entrada",
+            "set": "Reproduce el sonido especificado cuando te unes a un canal"
+        },
+        "exit": {
+            "remove": "Quitar sonido de salida",
+            "set": "Reproduce el sonido especificado cuando te desconectas de un canal"
+        },
         "headline": "Use el prefijo `{prefix}` seguido de uno de los siguientes comandos:",
         "ignore": "Ignora al usuario indicado",
         "lastadded": "Muestra los últimos sonidos agregados",
@@ -63,10 +81,12 @@
             "all": "Muestra todos los sonidos disponibles",
             "combo": "Reproduce sonidos en sucesión",
             "download": "Envía el sonido especificado al chat",
+            "next": "Interrumpe el sonido que se está reproduciendo especificando otro sonido",
             "play": "Reproduce el sonido indicado",
             "random": "Reproduce un sonido al azar",
             "remove": "Borra el sonido indicado",
             "rename": "Renombra el sonido indicado",
+            "skip": "Salta el sonido que se está reproduciendo",
             "stop": "Detener la reproducción y borrar la cola"
         },
         "tags": {
