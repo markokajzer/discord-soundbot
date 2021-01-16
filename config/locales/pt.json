@@ -1,0 +1,133 @@
+{
+    "commands": {
+        "add": {
+            "success": "{name} adicionado!"
+        },
+        "avatar": {
+            "errors": {
+                "noAvatar": "Avatar ainda não definido. Tente adicionar um usando `{prefix}avatar` e uma imagem!",
+                "tooFast": "Você está mudando o avatar rápido demais. Tente novamente mais tarde."
+            },
+            "url": "Avatar atual: {url}"
+        },
+        "config": {
+            "notFound": "Configurações não possuem a opção `{field}`!",
+            "success": "`{field}` definido para `{value}`!"
+        },
+        "ignore": {
+            "add": "Ignorando {user}!",
+            "remove": "Deixando de ignorar {user}!"
+        },
+        "lang": {
+            "success": "Lingua alterada para `{language}`!  {flag}",
+            "title": "Linguas atualmente disponiveis   💬",
+            "usage": "Diga **{command} <language>** para escolher uma!\nExemplo: **{command} Português** ou **{command} pt**"
+        },
+        "modify": {
+            "error": "Algo deu errado na tentativa de alterar `{modifier}` de {sound}!",
+            "notFound": "Modificador não encontrado: `{modifier}`!",
+            "success": "Alterado com sucesso `{modifier}` de {sound}!"
+        },
+        "remove": {
+            "notFound": "{sound} não encontrado!",
+            "success": "{sound} removido!"
+        },
+        "rename": {
+            "notFound": "{oldName} não encontrado!",
+            "success": "{oldName} renomeado para {newName}!"
+        },
+        "search": {
+            "notFound": "Nenhum áudio encontrado."
+        },
+        "sounds": {
+            "notFound": "Você ainda não possui sons! Tente adicionar um usando {prefix}add command."
+        },
+        "tag": {
+            "found": "Tags para {sound}: [{tags}]",
+            "notFound": "{sound} não encontrado!"
+        }
+    },
+    "errors": {
+        "format": {
+            "sound": "💥📛 Nome do arquivo deve possuir apenas letras e números!",
+            "time": "💥⌚ Horário especificado não está no padrão [[hh:]mm:]ss[.xxx].",
+            "url": "💥🚋 Por Favor informe uma url do youtube valida."
+        },
+        "permissions": "Eu preciso de permissão para entrar no canal de voz.",
+        "sounds": {
+            "exists": "{sound} já existe!"
+        },
+        "unauthorized": "Você precisa ser administrador",
+        "unspecific": "💥 Algo deu errado! Por Favor tente novamente, ou deixe o criador do bot saber o que aconteceu."
+    },
+    "help": {
+        "avatar": "Defina, mostre ou remova o avatar",
+        "commands": "Mostra essa mensagem",
+        "config": "Muda a configuração",
+        "entrance": {
+            "remove": "Remove o áudio de entrada",
+            "set": "Tocar o som especificado quando você entrar em um canal de voz"
+        },
+        "exit": {
+            "remove": "Remove o som de saida",
+            "set": "Tocar o som especificado quando você sair de um canal de voz"
+        },
+        "headline": "Use o prefixo `{prefix}` com os seguintes comandos:",
+        "ignore": "Ignora um usuario",
+        "lastadded": "Mostra os ultimos áudios adicionados",
+        "mostplayed": "Mostra os áudios mais tocados",
+        "sounds": {
+            "add": "Adiciona o áudio anexado",
+            "all": "Mostra os sons disponiveis",
+            "combo": "Toca todos os áudios em sequencia",
+            "download": "Manda o áudio especificado no bate-papo",
+            "loop": "Toca o áudio especificado <count> vezes ou infinitamente",
+            "next": "Interrompe o áudio tocando por outro áudio",
+            "play": "Toca o som especificado",
+            "random": "Toca um áudio randomico",
+            "remove": "Remove o áudio especificado",
+            "rename": "Renomeia o áudio especificado",
+            "skip": "Pula o áudio que está tocando atualmente",
+            "stop": "Sai do canal de voz e limpa a lista de reprodução"
+        },
+        "tags": {
+            "add": "Adiciona uma tag em um áudio",
+            "all": "Lista todos os sons com tags",
+            "clear": "Limpa as tags de um som especifico",
+            "list": "Lista as tags do som especificado",
+            "search": "Procura áudios que possuam a tag especificada"
+        },
+        "unignore": "Deixa de ignorar um usuario",
+        "welcome": "Mostra uma mensagem de bem-vindo"
+    },
+    "helpers": {
+        "messageChunker": {
+            "page": "```Página {current} de {total}```"
+        },
+        "userFinder": {
+            "error": "Usuário não encontrado neste servidor"
+        },
+        "voiceChannelFinder": {
+            "error": "Conecte-se a um canal de voz antes!"
+        }
+    },
+    "language": {
+        "de": "Alemão",
+        "en": "Inglês",
+        "es": "Espanhol",
+        "fr": "Francês",
+        "hu": "Húngaro",
+        "it": "Italiano",
+        "ja": "Japonês",
+        "nl": "holandês",
+        "pt": "Português"
+    },
+    "url": "Use a seguinte URL para permitir que o robô conecte-se ao seu servidor!\nhttps://discordapp.com/oauth2/authorize?client_id={clientId}&scope=bot",
+    "validation": {
+        "attachment": {
+            "extension": "O áudio tem que está em um formato aceitável, Um desses: [{extensions}]!",
+            "size": "Arquivo muito grande!"
+        }
+    },
+    "welcome": "**Obrigado por me adicionar!** 🔥\n- Meu prefixo é `{prefix}`. Quer mudar isso? De uma olhada em todas as opções aqui: **<https://github.com/markokajzer/discord-soundbot/wiki/Configuration>**.\n- Você pode ver a lista de comandos usando `{prefix}help.`\n- Teste com um dos audios de exemplo `{prefix}airhorn` ou `{prefix}johncena`.\n- Adicione seus próprios audios usando `{prefix}add` e arrastando um audio!\n- Precisa de mais ajuda? Entre no server de suporte: **<https://discordapp.com/invite/JBw2BNx>**."
+}

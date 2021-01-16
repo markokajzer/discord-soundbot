@@ -211,3 +211,4 @@ In particular, thanks to these splendid lads for providing localization:
 + Italian, [@Reckless](https://github.com/MarcoReckless)
 + Spanish, [@ibito](https://github.com/ibito)
 + Japanese, [@Sigmy](https://github.com/sigmy)
++ Brazilian Portuguese, [@Space_Interprise](https://github.com/emanuelfranklyn)
