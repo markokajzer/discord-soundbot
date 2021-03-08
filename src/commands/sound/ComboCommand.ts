@@ -11,17 +11,18 @@ export class ComboCommand extends QueueCommand {
   public readonly numberOfParameters = 1;
   public readonly usage = 'Usage: !combo <sound1> ... <soundN>';
 
-  public run(message: Message, params: string[]) {
-    if (!message.member) return;
+  public async run(message: Message, params: string[]) {
+    if (!message.reference!.guildID) return;
 
     if (params.length < this.numberOfParameters) {
-      message.channel.send(this.usage);
+      await message.edit(this.usage);
       return;
     }
 
-    const { channel: voiceChannel } = message.member.voice;
+    const originalMsg = await message.referencedMessage();
+    const { channel: voiceChannel } = originalMsg.member!.voice;
     if (!voiceChannel) {
-      message.reply(localize.t('helpers.voiceChannelFinder.error'));
+      await message.edit(localize.t('helpers.voiceChannelFinder.error'));
       return;
     }
 

@@ -7,7 +7,7 @@ import ConfigCommand from '../base/ConfigCommand';
 export class WelcomeCommand extends ConfigCommand {
   public readonly triggers = ['welcome'];
 
-  public run(message: Message) {
-    message.channel.send(localize.t('welcome', { prefix: this.config.prefix }));
+  public async run(message: Message) {
+    await message.edit(localize.t('welcome', { prefix: this.config.prefix }));
   }
 }

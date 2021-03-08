@@ -19,7 +19,14 @@
             "remove": "Non sto piu' ignorando {user}!"
         },
         "lang": {
-            "title": "Lingue disponibili   💬"
+            "success": "Impostata lingua in: `{language}`!  {flag}",
+            "title": "Lingue disponibili   💬",
+            "usage": "Scrivi **{command} <lingua>** per scegliere!\nEsempio: **{command} Italian** oppure **{command} nl**"
+        },
+        "modify": {
+            "error": "Qualcosa é andato storto modificando `{modifier}` per {sound}!",
+            "notFound": "Modificatore non trovato: `{modifier}`!",
+            "success": "Impostato modificatore: `{modifier}` per {sound}!"
         },
         "remove": {
             "notFound": "{sound} non trovato!",
@@ -40,14 +47,23 @@
             "notFound": "{sound} non trovato!"
         }
     },
+    "status": {
+        "received" : "⏳ eseguendo {command}",
+        "completed" : "{command} completato"
+    },
     "errors": {
         "format": {
-            "url": "💥🚋 L'URL non e' valido!"
+            "sound": "💥📛 Il nome del file deve contenere solo lettere e numeri!",
+            "time": "💥⌚ Il tempo specificato non é nel formato [[hh:]mm:]ss[.xxx].",
+            "url": "💥🚋 L'URL non é valido!"
         },
+        "permissions": "I need permissions to join the channel.",
         "sounds": {
-            "exists": "{sound} esiste gia'!"
+            "exists": "{sound} esiste giá!",
+            "notFound": "{sound} non trovato."
         },
-        "unspecific": "💥 Qualcosa e' andato storto!"
+        "unauthorized": "Devi essere un admin o avere un ruolo privilegiato per eseguire questo comando",
+        "unspecific": "💥 Qualcosa é andato storto!"
     },
     "help": {
         "avatar": "Mostra, cambia o rimuove l'avatar corrente",

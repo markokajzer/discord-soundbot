@@ -12,13 +12,13 @@ export default abstract class BaseDownloader {
 
   public abstract handle(message: Message, params: string[]): void;
 
-  protected handleError(message: Message, error: Error) {
+  protected async handleError(message: Message, error: Error) {
     if (HANDLED_ERRORS.includes(error.name)) {
-      message.channel.send(error.message);
+      await message.edit(error.message);
       return;
     }
 
     console.error(error);
-    message.channel.send(localize.t('errors.unspecific'));
+    await message.edit(localize.t('errors.unspecific'));
   }
 }

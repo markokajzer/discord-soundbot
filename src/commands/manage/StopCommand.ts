@@ -5,13 +5,13 @@ import QueueCommand from '../base/QueueCommand';
 export class StopCommand extends QueueCommand {
   public readonly triggers = ['leave', 'stop'];
 
-  public run(message: Message) {
-    if (!message.guild) return;
-    if (!message.guild.voice) return;
+  public async run(message: Message) {
+    if (!message.reference!.guildID) return;
 
     this.queue.clear();
 
-    const { connection: voiceConnection } = message.guild.voice;
+    const originalMsg = await message.referencedMessage();
+    const { connection: voiceConnection } = originalMsg.guild!.voice!;
     if (voiceConnection) voiceConnection.disconnect();
   }
 }

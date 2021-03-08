@@ -21,13 +21,14 @@ export default class AttachmentDownloader extends BaseDownloader {
     try {
       await this.addSounds(message);
     } catch (error) {
-      this.handleError(message, error);
+      await this.handleError(message, error);
     }
   }
 
   private async addSounds(message: Message) {
     // NOTE: .forEach swallows exceptions in an async setup, so use for..of
-    for (const attachment of message.attachments.array()) {
+    const originalMsg = await message.referencedMessage();
+    for (const attachment of originalMsg.attachments.array()) {
       this.validator.validate(attachment);
 
       // NOTE: This could be optimized, but it is okay to do it in succession and code is cleaner
@@ -36,7 +37,8 @@ export default class AttachmentDownloader extends BaseDownloader {
 
       // NOTE: Checked for attachment name during validation
       const name = attachment.name!.split('.')[0];
-      message.channel.send(localize.t('commands.add.success', { name }));
+      // eslint-disable-next-line no-await-in-loop
+      await message.edit(localize.t('commands.add.success', { name }));
     }
   }
 

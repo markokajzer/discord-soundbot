@@ -9,12 +9,13 @@ import chunkedMessages from '../util/chunkedMessages';
 export class TagsCommand extends Command {
   public readonly triggers = ['tags'];
 
-  public run(message: Message, params: string[]) {
+  public async run(message: Message, params: string[]) {
     const sounds = getSounds();
     const soundsWithTags = this.formattedMessage(sounds);
+    const author = await message.referencedAuthor();
 
     const page = parseInt(params[0]);
-    chunkedMessages(soundsWithTags, page).forEach(chunk => message.author.send(chunk));
+    chunkedMessages(soundsWithTags, page).forEach(chunk => author.send(chunk));
   }
 
   private formattedMessage(sounds: string[]) {

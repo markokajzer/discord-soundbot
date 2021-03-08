@@ -17,9 +17,9 @@ export class AvatarCommand extends ConfigCommand implements UserCommand {
     this.user = user;
   }
 
-  public run(message: Message, params: string[]) {
+  public async run(message: Message, params: string[]) {
     if (params.length === this.numberOfParameters && params[0] === 'remove') {
-      this.user.setAvatar('');
+      await this.user.setAvatar('');
       return;
     }
 
@@ -29,24 +29,24 @@ export class AvatarCommand extends ConfigCommand implements UserCommand {
     }
 
     if (message.attachments.size !== 1) {
-      message.channel.send(this.usage);
+      await message.edit(this.usage);
       return;
     }
 
-    this.user
+    await this.user
       .setAvatar(message.attachments.first()!.url)
-      .catch(() => message.channel.send(localize.t('commands.avatar.errors.tooFast')));
+      .catch(() => message.edit(localize.t('commands.avatar.errors.tooFast')));
   }
 
-  private listAvatar(message: Message) {
+  private async listAvatar(message: Message) {
     if (!this.user.avatarURL()) {
-      message.channel.send(
+      await message.edit(
         localize.t('commands.avatar.errors.noAvatar', { prefix: this.config.prefix })
       );
       return;
     }
 
-    message.channel.send(
+    await message.edit(
       localize.t('commands.avatar.url', {
         url: this.user.displayAvatarURL({ dynamic: true, format: 'png', size: 256 })
       })

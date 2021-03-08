@@ -6,5 +6,5 @@ export default abstract class Command {
   readonly usage?: string;
   readonly elevated: boolean = false;
 
-  abstract run(message: Message, params?: string[]): void;
+  abstract run(message: Message, params?: string[]): Promise<any>;
 }

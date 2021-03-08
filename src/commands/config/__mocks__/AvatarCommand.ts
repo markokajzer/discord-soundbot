@@ -9,7 +9,7 @@ export class AvatarCommand extends Command implements UserCommand {
     // noop
   }
 
-  public run() {
+  public async run() {
     // noop
   }
 }

@@ -47,6 +47,10 @@
             "notFound": "{sound} not found!"
         }
     },
+    "status": {
+        "received" : "⏳ running {command}",
+        "completed" : "{command} completed"
+    },
     "errors": {
         "format": {
             "sound": "💥📛 Filename has to be all letters and numbers!",
@@ -55,7 +59,8 @@
         },
         "permissions": "I need permissions to join the channel.",
         "sounds": {
-            "exists": "{sound} already exists!"
+            "exists": "{sound} already exists!",
+            "notFound": "{sound} not found"
         },
         "unauthorized": "You need to be an admin or have an elevated role to perform this command",
         "unspecific": "💥 Something went wrong! Please try again, or let the bot creator know what happened."

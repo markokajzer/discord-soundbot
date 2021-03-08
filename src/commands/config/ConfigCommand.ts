@@ -17,23 +17,23 @@ export class ConfigCommand extends BaseConfigCommand implements UserCommand {
     this.user = user;
   }
 
-  public run(message: Message, params: string[]) {
+  public async run(message: Message, params: string[]) {
     if (params.length < this.numberOfParameters) {
-      message.channel.send(this.usage);
+      await message.edit(this.usage);
       return;
     }
 
     const [field, ...value] = params;
 
     if (!this.config.has(field)) {
-      message.channel.send(localize.t('commands.config.notFound', { field }));
+      await message.edit(localize.t('commands.config.notFound', { field }));
       return;
     }
 
     const configValue = this.config.set(field, value)!;
     this.postProcess(field);
 
-    message.channel.send(
+    await message.edit(
       localize.t('commands.config.success', { field, value: configValue.toString() })
     );
   }

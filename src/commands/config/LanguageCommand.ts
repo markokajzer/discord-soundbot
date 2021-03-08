@@ -18,21 +18,21 @@ const FLAGS: Dictionary<string> = {
 export class LanguageCommand extends ConfigCommand {
   public readonly triggers = ['lang'];
 
-  public run(message: Message, params: string[]) {
+  public async run(message: Message, params: string[]) {
     const [chosenLanguage] = params;
     const language =
       chosenLanguage &&
       this.getLanguageMap().findKey((value, key) => [key, value].includes(chosenLanguage));
 
     if (!language) {
-      message.channel.send(this.help());
+      await message.edit(this.help());
       return;
     }
 
     this.config.set('language', [language]);
     localize.setLocale(language);
 
-    message.channel.send(
+    await message.edit(
       localize.t('commands.lang.success', { flag: FLAGS[language], language: chosenLanguage })
     );
   }

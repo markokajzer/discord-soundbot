@@ -9,8 +9,8 @@ export class LastAddedCommand extends Command {
   public readonly triggers = ['lastadded'];
   private readonly amount = 5;
 
-  public run(message: Message) {
-    message.channel.send(['```', ...this.getLastAddedSounds(), '```'].join('\n'));
+  public async run(message: Message) {
+    await message.edit(['```', ...this.getLastAddedSounds(), '```'].join('\n'));
   }
 
   private getLastAddedSounds() {

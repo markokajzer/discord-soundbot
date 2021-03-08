@@ -6,6 +6,8 @@ declare module 'discord.js' {
   interface Message {
     hasPrefix(prefix: string): boolean;
     isDirectMessage(): boolean;
+    referencedMessage(): Promise<Message>;
+    referencedAuthor(): Promise<User>;
   }
 }
 
@@ -15,4 +17,13 @@ Message.prototype.hasPrefix = function hasPrefix(prefix) {
 
 Message.prototype.isDirectMessage = function isDirectMessage() {
   return this.channel.type === 'dm';
+};
+
+Message.prototype.referencedMessage = function referencedMessage() {
+  return this.channel.messages.fetch(this.reference!.messageID!);
+};
+
+Message.prototype.referencedAuthor = async function referencedAuthor() {
+  const rMsg = await this.referencedMessage();
+  return rMsg.author;
 };

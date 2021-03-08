@@ -24,7 +24,7 @@ export class ModifyCommand extends Command {
 
     const options = MODIFIER_OPTIONS[modifier];
     if (!options) {
-      message.channel.send(localize.t('commands.modify.notFound', { modifier }));
+      await message.edit(localize.t('commands.modify.notFound', { modifier }));
       return;
     }
 
@@ -32,7 +32,7 @@ export class ModifyCommand extends Command {
       commandParams.length < options.parameters.min ||
       commandParams.length > options.parameters.max
     ) {
-      message.channel.send(options.usage);
+      await message.edit(options.usage);
       return;
     }
 
@@ -41,9 +41,9 @@ export class ModifyCommand extends Command {
     try {
       await this.performModification(fileInfo, modifier, commandParams);
       await this.replace(fileInfo);
-      message.channel.send(localize.t('commands.modify.success', { modifier, sound }));
+      await message.edit(localize.t('commands.modify.success', { modifier, sound }));
     } catch (error) {
-      this.handleError(message, error, { modifier, sound });
+      await this.handleError(message, error, { modifier, sound });
     }
   }
 
@@ -103,12 +103,12 @@ export class ModifyCommand extends Command {
     return { currentFile, tempFile };
   }
 
-  private handleError(message: Message, error: Error, { modifier, sound }: ErrorParams) {
+  private async handleError(message: Message, error: Error, { modifier, sound }: ErrorParams) {
     if (error instanceof FormatError) {
-      message.channel.send(error.message);
+      await message.edit(error.message);
       return;
     }
 
-    message.channel.send(localize.t('commands.modify.error', { modifier, sound }));
+    await message.edit(localize.t('commands.modify.error', { modifier, sound }));
   }
 }

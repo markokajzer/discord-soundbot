@@ -13,11 +13,11 @@ export class RenameCommand extends Command {
   public readonly usage = 'Usage: !rename <old> <new>';
   public readonly elevated = true;
 
-  public run(message: Message, params: string[]) {
-    if (!message.member) return;
+  public async run(message: Message, params: string[]) {
+    if (!message.reference!.guildID) return;
 
     if (params.length !== this.numberOfParameters) {
-      message.channel.send(this.usage);
+      await message.edit(this.usage);
       return;
     }
 
@@ -25,12 +25,12 @@ export class RenameCommand extends Command {
     const sounds = getSounds();
 
     if (!sounds.includes(oldName)) {
-      message.channel.send(localize.t('commands.rename.notFound', { oldName }));
+      await message.edit(localize.t('commands.rename.notFound', { oldName }));
       return;
     }
 
     if (sounds.includes(newName)) {
-      message.channel.send(localize.t('errors.sounds.exists', { sound: newName }));
+      await message.edit(localize.t('errors.sounds.exists', { sound: newName }));
       return;
     }
 
@@ -40,6 +40,6 @@ export class RenameCommand extends Command {
     fs.renameSync(oldFile, newFile);
     soundsDb.rename(oldName, newName);
 
-    message.channel.send(localize.t('commands.rename.success', { newName, oldName }));
+    await message.edit(localize.t('commands.rename.success', { newName, oldName }));
   }
 }

@@ -9,15 +9,16 @@ import chunkedMessages from '../util/chunkedMessages';
 export class SoundsCommand extends ConfigCommand {
   public readonly triggers = ['sounds'];
 
-  public run(message: Message, params: string[]) {
+  public async run(message: Message, params: string[]) {
     const sounds = getSounds();
+    const author = await message.referencedAuthor();
 
     if (!sounds.length) {
-      message.author.send(localize.t('commands.sounds.notFound', { prefix: this.config.prefix }));
+      await author.send(localize.t('commands.sounds.notFound', { prefix: this.config.prefix }));
       return;
     }
 
     const page = parseInt(params[0]);
-    chunkedMessages(sounds, page).forEach(chunk => message.author.send(chunk));
+    chunkedMessages(sounds, page).forEach(chunk => author.send(chunk));
   }
 }

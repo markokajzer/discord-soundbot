@@ -8,11 +8,12 @@ import chunkedMessages from '../util/chunkedMessages';
 export class HelpCommand extends ConfigCommand {
   public readonly triggers = ['commands', 'help'];
 
-  public run(message: Message) {
+  public async run(message: Message) {
     const helpMessage = this.getFormattedListOfCommands();
     const chunkedHelpMessage = chunkedMessages(helpMessage);
 
-    chunkedHelpMessage.forEach(chunk => message.author.send(chunk));
+    const author = await message.referencedAuthor();
+    chunkedHelpMessage.forEach(chunk => author.send(chunk));
   }
 
   private getFormattedListOfCommands() {

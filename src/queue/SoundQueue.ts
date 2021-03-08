@@ -126,7 +126,7 @@ export default class SoundQueue {
 
   private async handleError(error: { code: string }) {
     if (error.code === 'VOICE_JOIN_CHANNEL' && this.currentSound?.message) {
-      await this.currentSound.message.channel.send(localize.t('errors.permissions'));
+      await this.currentSound.message.edit(localize.t('errors.permissions'));
       process.exit();
     }
 

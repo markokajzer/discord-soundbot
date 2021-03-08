@@ -9,15 +9,19 @@ import QueueCommand from '../base/QueueCommand';
 export class SoundCommand extends QueueCommand {
   public readonly triggers = [];
 
-  public run(message: Message) {
-    if (!message.member) return;
+  public async run(message: Message) {
+    if (!message.reference!.guildID) return;
 
-    const sound = message.content;
-    if (!existsSound(sound)) return;
+    const originalMsg = await message.referencedMessage();
+    const sound = originalMsg.content;
+    if (!existsSound(sound)) {
+      await message.edit(localize.t('errors.sounds.notFound', { sound }));
+      return;
+    }
 
-    const { channel: voiceChannel } = message.member.voice;
+    const { channel: voiceChannel } = originalMsg.member!.voice;
     if (!voiceChannel) {
-      message.reply(localize.t('helpers.voiceChannelFinder.error'));
+      await message.edit(localize.t('helpers.voiceChannelFinder.error'));
       return;
     }
 

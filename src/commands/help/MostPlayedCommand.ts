@@ -8,11 +8,11 @@ import Command from '../base/Command';
 export class MostPlayedCommand extends Command {
   public readonly triggers = ['mostplayed'];
 
-  public run(message: Message) {
+  public async run(message: Message) {
     const formattedMessage = this.getFormattedMessage();
     if (!formattedMessage) return;
 
-    message.channel.send(formattedMessage);
+    await message.edit(formattedMessage);
   }
 
   private getFormattedMessage() {

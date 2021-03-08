@@ -12,21 +12,22 @@ export class TagCommand extends Command {
   public readonly usage = 'Usage: !tag <sound> [<tag> ... <tagN> | clear]';
   public readonly elevated = true;
 
-  public run(message: Message, params: string[]) {
+  public async run(message: Message, params: string[]) {
     if (params.length < this.numberOfParameters) {
-      message.channel.send(this.usage);
+      await message.edit(this.usage);
       return;
     }
 
     const sound = params.shift()!;
     if (!getSounds().includes(sound)) {
-      message.channel.send(localize.t('commands.tag.notFound', { sound }));
+      await message.edit(localize.t('commands.tag.notFound', { sound }));
       return;
     }
 
     if (!params.length) {
       const tags = sounds.listTags(sound).join(', ');
-      message.author.send(localize.t('commands.tag.found', { sound, tags }));
+      const author = await message.referencedAuthor();
+      await author.send(localize.t('commands.tag.found', { sound, tags }));
       return;
     }
 

@@ -10,17 +10,17 @@ export class IgnoreCommand extends Command {
   public readonly usage = 'Usage: !ignore <user>';
   public readonly elevated = true;
 
-  public run(message: Message) {
+  public async run(message: Message) {
     const { users } = message.mentions;
     if (users.size < 1) {
-      message.channel.send(this.usage);
-      message.channel.send(localize.t('helpers.userFinder.error'));
+      await message.edit(this.usage);
+      await message.channel.send(localize.t('helpers.userFinder.error'));
       return;
     }
 
-    users.forEach(user => {
+    await users.forEach(user => {
       ignoreList.add(user.id);
-      message.channel.send(localize.t('commands.ignore.add', { user: user.username }));
+      message.edit(localize.t('commands.ignore.add', { user: user.username }));
     });
   }
 }

@@ -29,9 +29,9 @@ export default class YoutubeDownloader extends BaseDownloader {
     try {
       this.validator.validate(soundName, url);
       await this.addSound({ end, soundName, start, url });
-      message.channel.send(localize.t('commands.add.success', { name: soundName }));
+      await message.edit(localize.t('commands.add.success', { name: soundName }));
     } catch (error) {
-      this.handleError(message, error);
+      await this.handleError(message, error);
     }
   }
 

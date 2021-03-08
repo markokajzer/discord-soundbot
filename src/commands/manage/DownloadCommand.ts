@@ -9,9 +9,9 @@ export class DownloadCommand extends Command {
   public readonly numberOfParameters = 1;
   public readonly usage = 'Usage: !download <sound>';
 
-  public run(message: Message, params: string[]) {
+  public async run(message: Message, params: string[]) {
     if (params.length !== this.numberOfParameters) {
-      message.channel.send(this.usage);
+      await message.edit(this.usage);
       return;
     }
 
@@ -19,6 +19,6 @@ export class DownloadCommand extends Command {
     if (!existsSound(sound)) return;
 
     const attachment = new MessageAttachment(getPathForSound(sound));
-    message.channel.send(attachment);
+    await message.channel.send(attachment);
   }
 }

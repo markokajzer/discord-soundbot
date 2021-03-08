@@ -15,12 +15,14 @@ export class AddCommand extends Command {
     this.youtubeDownloader = youtubeDownloader;
   }
 
-  public run(message: Message, params: string[]) {
-    if (!message.attachments.size) {
-      this.youtubeDownloader.handle(message, params);
+  public async run(message: Message, params: string[]) {
+    const originalMsg = await message.referencedMessage();
+
+    if (!originalMsg.attachments.size) {
+      await this.youtubeDownloader.handle(message, params);
       return;
     }
 
-    this.attachmentDownloader.handle(message);
+    await this.attachmentDownloader.handle(message);
   }
 }

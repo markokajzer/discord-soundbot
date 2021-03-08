@@ -53,15 +53,19 @@ describe('MessageHandler', () => {
 
     // @ts-ignore
     jest.spyOn(messageHandler, 'execute');
+    // eslint-disable-next-line no-unused-vars
+    jest.spyOn(message, 'reply').mockImplementation(async (content, options) => message);
+    // eslint-disable-next-line no-unused-vars
+    jest.spyOn(message, 'edit').mockImplementation(async (content, options) => message);
     jest.spyOn(ignoreList, 'exists').mockImplementation(() => false);
   });
 
   describe('handle', () => {
-    it('does nothing when message is from bot', () => {
+    it('does nothing when message is from bot', async () => {
       Object.defineProperty(message.author, 'bot', { value: true });
       jest.spyOn(message, 'isDirectMessage');
 
-      messageHandler.handle(message);
+      await messageHandler.handle(message);
 
       expect(message.author.bot).toBe(true);
       expect(message.isDirectMessage).not.toHaveBeenCalled();
@@ -70,11 +74,11 @@ describe('MessageHandler', () => {
       expect(messageHandler.execute).not.toHaveBeenCalled();
     });
 
-    it('does nothing when message is DM', () => {
+    it('does nothing when message is DM', async () => {
       Object.defineProperty(message.channel, 'type', { value: 'dm' });
       jest.spyOn(message, 'hasPrefix');
 
-      messageHandler.handle(message);
+      await messageHandler.handle(message);
 
       expect(message.isDirectMessage()).toBe(true);
       expect(message.hasPrefix).not.toHaveBeenCalled();
@@ -83,9 +87,9 @@ describe('MessageHandler', () => {
       expect(messageHandler.execute).not.toHaveBeenCalled();
     });
 
-    it('does nothing when message does not have prefix', () => {
+    it('does nothing when message does not have prefix', async () => {
       Object.defineProperty(message, 'content', { value: 'NOT_PREFIX' });
-      messageHandler.handle(message);
+      await messageHandler.handle(message);
 
       expect(message.hasPrefix(DEFAULT_CONFIG.prefix!)).toBe(false);
       expect(ignoreList.exists).not.toHaveBeenCalled();
@@ -94,44 +98,44 @@ describe('MessageHandler', () => {
       expect(messageHandler.execute).not.toHaveBeenCalled();
     });
 
-    it('does nothing when user is ignored', () => {
+    it('does nothing when user is ignored', async () => {
       jest.spyOn(ignoreList, 'exists').mockImplementation(() => true);
-      messageHandler.handle(message);
+      await messageHandler.handle(message);
 
       // @ts-ignore
       expect(messageHandler.execute).not.toHaveBeenCalled();
     });
 
-    it('executes a given command when the command is valid', () => {
+    it('executes a given command when the command is valid', async () => {
       Object.defineProperty(message, 'content', { value: '!help' });
       jest.spyOn(helpCommand, 'run');
 
       commands.registerCommands([helpCommand]);
-      messageHandler.handle(message);
+      await messageHandler.handle(message);
 
       // @ts-ignore
       expect(messageHandler.execute).toHaveBeenCalledWith(message);
       expect(helpCommand.run).toHaveBeenCalledWith(message, []);
     });
 
-    it('executes sound command if no command was found', () => {
+    it('executes sound command if no command was found', async () => {
       Object.defineProperty(message, 'content', { value: '!airhorn' });
       jest.spyOn(soundCommand, 'run');
 
       commands.registerCommands([helpCommand]);
-      messageHandler.handle(message);
+      await messageHandler.handle(message);
 
       // @ts-ignore
       expect(messageHandler.execute).toHaveBeenCalledWith(message);
       expect(soundCommand.run).toHaveBeenCalledWith(message, []);
     });
 
-    it('does not execute an elevated command if user does not have elevated role', () => {
+    it('does not execute an elevated command if user does not have elevated role', async () => {
       Object.defineProperty(message, 'content', { value: '!avatar' });
       jest.spyOn(avatarCommand, 'run');
 
       commands.registerCommands([avatarCommand]);
-      messageHandler.handle(message);
+      await messageHandler.handle(message);
 
       // @ts-ignore
       expect(messageHandler.execute).toHaveBeenCalledWith(message);
