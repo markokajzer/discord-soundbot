@@ -53,10 +53,8 @@ describe('MessageHandler', () => {
 
     // @ts-ignore
     jest.spyOn(messageHandler, 'execute');
-    // eslint-disable-next-line no-unused-vars
-    jest.spyOn(message, 'reply').mockImplementation(async (content, options) => message);
-    // eslint-disable-next-line no-unused-vars
-    jest.spyOn(message, 'edit').mockImplementation(async (content, options) => message);
+    jest.spyOn(message, 'reply').mockImplementation(async () => message);
+    jest.spyOn(message, 'edit').mockImplementation(async () => message);
     jest.spyOn(ignoreList, 'exists').mockImplementation(() => false);
   });
 

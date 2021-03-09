@@ -1,8 +1,8 @@
 import { Message } from 'discord.js';
 
 import * as entrances from '~/util/db/Entrances';
-import { getSounds } from '~/util/SoundUtil';
 import localize from '~/util/i18n/localize';
+import { getSounds } from '~/util/SoundUtil';
 
 import Command from '../base/Command';
 
