@@ -20,7 +20,7 @@ export default class MessageHandler {
     if (!this.isValidMessage(message)) return;
 
     const messageToHandle = message;
-    messageToHandle.content = message.content.toLowerCase().substring(config.prefix.length);
+    messageToHandle.content = message.content.substring(config.prefix.length);
 
     this.execute(messageToHandle);
   }
