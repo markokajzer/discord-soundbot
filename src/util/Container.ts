@@ -41,6 +41,7 @@ import {
   LoopCommand,
   NextCommand,
   RandomCommand,
+  ShuffleCommand,
   SkipCommand,
   SoundCommand
 } from '../commands/sound';
@@ -65,6 +66,7 @@ const commands = [
   new NextCommand(queue),
   new SkipCommand(queue),
   new StopCommand(queue),
+  new ShuffleCommand(queue),
 
   // ENTRANCE / EXIT SOUNDS
   new EntranceCommand(),

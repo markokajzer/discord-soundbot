@@ -32,6 +32,8 @@ export class HelpCommand extends ConfigCommand {
       `combo <sound> <sound> ...              ${localize.t('help.sounds.combo')}`,
       `random                                 ${localize.t('help.sounds.random')}`,
       `random <tag>                           ${localize.t('help.sounds.random')}`,
+      `shuffle <count>                        ${localize.t('help.sounds.shuffle')}`,
+      `shuffle <count> <tag>                  ${localize.t('help.sounds.shuffle')}`,
       `loop <sound> <count?>                  ${localize.t('help.sounds.loop')}`,
       `repeat <sound> <count?>                ${localize.t('help.sounds.loop')}`,
       `skip                                   ${localize.t('help.sounds.skip')}`,
