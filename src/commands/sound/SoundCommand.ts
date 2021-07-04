@@ -12,7 +12,7 @@ export class SoundCommand extends QueueCommand {
   public run(message: Message) {
     if (!message.member) return;
 
-    const sound = message.content;
+    const sound = message.content.toLowerCase();
     if (!existsSound(sound)) return;
 
     const { channel: voiceChannel } = message.member.voice;

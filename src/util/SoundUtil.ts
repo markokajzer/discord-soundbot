@@ -17,8 +17,10 @@ const getSoundWithExtension = (sound: string) => {
 };
 
 export const getSoundsWithExtension = () => getSoundsFromSoundFolder().map(getSoundWithExtension);
-export const getSounds = () => getSoundsWithExtension().map(sound => sound.name);
-export const getExtensionForSound = (name: string) =>
-  getSoundsWithExtension().find(sound => sound.name === name)!.extension;
+export const getSounds = () => getSoundsWithExtension().map(sound => sound.name.toLowerCase());
+export const getExtensionForSound = (name: string) => {
+  const soundWithExtension = getSoundsWithExtension().find(sound => sound.name === name)
+  if (soundWithExtension?.extension) { return soundWithExtension.extension; }
+}
 export const getPathForSound = (sound: string) => `sounds/${sound}.${getExtensionForSound(sound)}`;
 export const existsSound = (name: string) => getSounds().includes(name);
