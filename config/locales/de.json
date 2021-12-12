@@ -42,9 +42,9 @@
     },
     "errors": {
         "format": {
-            "sound": "💥📛 Name der Datei muss",
+            "sound": "💥📛 Der Name der Datei muss aus Buchstaben und Nummern bestehen!",
             "time": "💥⌚ Die angegebene Zeit war nicht im Format [[hh:]mm:]ss[.xxx].",
-            "url": "💥🚋 Gib eine URL von YouTube an."
+            "url": "💥🚋 Gib eine YouTube-URL an."
         },
         "sounds": {
             "exists": "{sound} existiert bereits!"
@@ -56,8 +56,8 @@
         "commands": "Zeige diese Nachricht",
         "config": "Ändere die Einstellungen",
         "entrance": {
-            "remove": "Entferne Eingangssound",
-            "set": "Spiele den angegebenen Sound, wenn du einem Channel beitrittst"
+            "remove": "Entferne Beitrittssound",
+            "set": "Spiele den angegebenen Sound, wenn du einem Channel beitrittst."
         },
         "headline": "Benutze den Prefix `{prefix}` mit den folgenden Kommandos:",
         "ignore": "Ignoriere angegebenen Benutzer",
@@ -84,7 +84,7 @@
             "list": "Zeige Tags des angegebenen Sounds",
             "search": "Suche Sounds mit dem angegebenen Tag"
         },
-        "unignore": "Ignore den angegebenen Benutzer nicht länger",
+        "unignore": "Ignoriere den angegebenen Benutzer nicht länger",
         "welcome": "Zeige Willkommensnachricht"
     },
     "helpers": {
