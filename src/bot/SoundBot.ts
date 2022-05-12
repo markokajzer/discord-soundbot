@@ -86,7 +86,7 @@ export default class SoundBot extends Client {
   }
 
   private onMessage(message: Message) {
-    this.messageHandler.handle(message);
+    this.messageHandler.handle(message, this.config.deleteMessages);
   }
 
   private onBotJoinsServer(guild: Guild) {

@@ -1,4 +1,4 @@
-import { Message, StreamDispatcher, VoiceConnection } from 'discord.js';
+import { StreamDispatcher, VoiceConnection } from 'discord.js';
 
 import Config from '~/config/Config';
 import * as sounds from '~/util/db/Sounds';
@@ -38,7 +38,6 @@ export default class SoundQueue {
 
   public clear() {
     if (!this.currentSound) return;
-    if (this.config.deleteMessages) this.deleteMessages();
 
     // Prevent further looping
     this.currentSound.count = 0;
@@ -47,23 +46,6 @@ export default class SoundQueue {
 
   private isStartable() {
     return !this.currentSound;
-  }
-
-  private deleteMessages() {
-    if (!this.currentSound) return;
-    if (this.isEmpty()) return;
-
-    let deleteableMessages = this.queue
-      .map(item => item.message)
-      .filter((message): message is Message => !!message);
-
-    const { message: currentMessage } = this.currentSound;
-    if (currentMessage) {
-      deleteableMessages = deleteableMessages.filter(msg => msg.id !== currentMessage.id);
-    }
-
-    // Do not try to delete the same sound multiple times (!combo)
-    Array.from(new Set(deleteableMessages)).forEach(message => message.delete());
   }
 
   private async playNext() {
@@ -104,8 +86,6 @@ export default class SoundQueue {
 
     if (count > 1) {
       this.add(new QueueItem(name, channel, message, count - 1));
-    } else {
-      this.deleteCurrentMessage();
     }
 
     this.currentSound = null;
@@ -136,26 +116,7 @@ export default class SoundQueue {
     this.dispatcher = null;
   }
 
-  private deleteCurrentMessage() {
-    if (!this.config.deleteMessages) return;
-    if (!this.currentSound || !this.currentSound.message) return;
-    if (!this.isLastSoundFromCurrentMessage(this.currentSound.message)) return;
-    if (this.wasMessageAlreadyDeleted(this.currentSound.message)) return;
-
-    this.currentSound.message.delete();
-  }
-
   private isEmpty() {
     return this.queue.length === 0;
-  }
-
-  private wasMessageAlreadyDeleted(message: Message) {
-    if (!message) return false;
-
-    return message.channel.messages.cache.find(msg => msg.id === message.id) === null;
-  }
-
-  private isLastSoundFromCurrentMessage(message: Message) {
-    return !this.queue.some(item => !!item.message && item.message.id === message.id);
   }
 }

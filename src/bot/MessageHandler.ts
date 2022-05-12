@@ -16,13 +16,13 @@ export default class MessageHandler {
     this.commands = commands;
   }
 
-  public handle(message: Message) {
+  public handle(message: Message, deleteMessages?: boolean) {
     if (!this.isValidMessage(message)) return;
 
     const messageToHandle = message;
     messageToHandle.content = message.content.substring(config.prefix.length);
 
-    this.execute(messageToHandle);
+    this.execute(messageToHandle, deleteMessages);
   }
 
   private isValidMessage(message: Message) {
@@ -34,7 +34,7 @@ export default class MessageHandler {
     );
   }
 
-  private execute(message: Message) {
+  private execute(message: Message, deleteMessages?: boolean) {
     const [command, ...params] = message.content.split(' ');
     const commandToRun = this.commands.get(command);
 
@@ -44,5 +44,15 @@ export default class MessageHandler {
     }
 
     commandToRun.run(message, params);
+
+    if (deleteMessages && !message.deleted && !this.wasMessageAlreadyDeleted(message)) {
+      message.delete();
+    }
+  }
+
+  private wasMessageAlreadyDeleted(message: Message) {
+    if (!message) return false;
+
+    return message.channel.messages.cache.find(msg => msg.id === message.id) === null;
   }
 }
