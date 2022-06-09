@@ -24,13 +24,17 @@
   "license": "MIT",
   "dependencies": {
     "@discordjs/opus": "0.3.3",
+    "axios": "^0.27.2",
+    "date-fns": "^2.28.0",
     "discord.js": "12.4.1",
     "fluent-ffmpeg": "2.1.2",
     "i18n": "0.13.2",
     "lodash": "4.17.21",
     "lowdb": "1.0.0",
+    "opusscript": "^0.0.6",
     "replace-in-file": "6.1.0",
-    "ytdl-core": "4.8.3"
+    "uuid": "^8.3.2",
+    "yt-dlp-wrap": "^2.3.11"
   },
   "optionalDependencies": {
     "bufferutil": "4.0.2",
@@ -45,6 +49,7 @@
     "@types/lowdb": "1.0.8",
     "@types/node": "14.14.9",
     "@types/node-fetch": "^2.5.7",
+    "@types/uuid": "^8.3.4",
     "@types/ws": "7.4.0",
     "@typescript-eslint/eslint-plugin": "4.8.1",
     "@typescript-eslint/parser": "4.8.1",

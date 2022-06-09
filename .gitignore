@@ -14,3 +14,7 @@ sounds/*
 
 db.json
 test-db.json
+
+yt-dlp
+.yt-dlp-last-updated
+*.mp4

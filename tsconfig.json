@@ -6,6 +6,7 @@
     "target": "es6",
     "strict": true,
     "outDir": "dist",
+    "skipLibCheck": true,
     "lib": [
       "es2017"
     ],
