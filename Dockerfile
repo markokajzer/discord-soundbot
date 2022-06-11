@@ -1,5 +1,5 @@
 # Base will install runtime dependencies and configure generics
-FROM node:14-slim as base
+FROM node:16-slim as base
 
 LABEL maintainer="Marko Kajzer <markokajzer91@gmail.com>, Nico Stapelbroek <discord-soundbot@nstapelbroek.com>"
 
@@ -49,6 +49,9 @@ RUN wget -qO /tmp/ffmpeg.tar.xz https://johnvansickle.com/ffmpeg/releases/ffmpeg
     rm /tmp/ffmpeg.tar.xz
 
 COPY --from=build --chown=node:node /app .
+
+RUN npm install --global n
+RUN n install 14
 
 USER node
 ENV NODE_ENV=production
