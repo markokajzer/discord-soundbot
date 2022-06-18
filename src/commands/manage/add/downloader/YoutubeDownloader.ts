@@ -39,7 +39,7 @@ export default class YoutubeDownloader extends BaseDownloader {
   }
 
   private async addSound({ url, start, end, soundName }: DownloadOptions) {
-    const startTime = getSecondsFromTime(start);
+    const startTime = getSecondsFromTime(start) ?? 0;
     const endTime = getSecondsFromTime(end);
     const downloadId = uuidv4();
 
@@ -103,8 +103,8 @@ export default class YoutubeDownloader extends BaseDownloader {
   private convert({ soundName, startTime, endTime, downloadId = 'tmp' }: ConvertOptions) {
     let ffmpegCommand = ffmpeg(`${downloadId}.mp4`).output(`./sounds/${soundName}.mp3`);
 
-    if (startTime) ffmpegCommand = ffmpegCommand.setStartTime(startTime);
-    if (startTime && endTime) ffmpegCommand = ffmpegCommand.setDuration(endTime - startTime);
+    ffmpegCommand = ffmpegCommand.setStartTime(startTime);
+    if (endTime) ffmpegCommand = ffmpegCommand.setDuration(endTime - startTime);
 
     return new Promise((resolve, reject) =>
       ffmpegCommand.on('end', resolve).on('error', reject).run()

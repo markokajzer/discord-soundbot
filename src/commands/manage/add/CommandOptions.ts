@@ -1,7 +1,7 @@
 export interface ConvertOptions {
   endTime: Nullable<number>;
   soundName: string;
-  startTime: Nullable<number>;
+  startTime: number;
   downloadId: string;
 }
 
