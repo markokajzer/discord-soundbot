@@ -36,8 +36,7 @@ Check `config/config.example.json` for an example configuration and create a new
 
   ```
   docker pull markokajzer/discord-soundbot && \
-  mkdir -p sounds/ && touch db.json && \
-  docker run --name soundbot --restart=on-failure:10 -e CLIENT_ID=YOUR_CLIENT_ID -e TOKEN=YOUR_TOKEN -v $(pwd)/sounds:/app/sounds -v $(pwd)/db.json:/app/db.json markokajzer/discord-soundbot
+  docker run --name soundbot --restart=on-failure:10 -e CLIENT_ID=YOUR_CLIENT_ID -e TOKEN=YOUR_TOKEN -v $(pwd)/sounds:/app/sounds -v $(pwd)/db:/app/db markokajzer/discord-soundbot
   ```
 
 - To run the bot in the background additionally use the `-d` flag in the last step.

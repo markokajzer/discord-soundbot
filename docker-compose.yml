@@ -5,5 +5,5 @@ services:
     image: soundbot
     volumes:
       - ./sounds:/app/sounds
-      - ./config/config.json:/app/config/config.json
-      - ./db.json:/app/db.json
+      - ./config:/app/config
+      - ./db:/app/db

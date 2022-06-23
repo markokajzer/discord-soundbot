@@ -12,9 +12,9 @@ sounds/*
 !sounds/airhorn.mp3
 !sounds/johncena.mp3
 
-db.json
-test-db.json
+*db.json
 
 yt-dlp
 .yt-dlp-last-updated
+
 *.mp4

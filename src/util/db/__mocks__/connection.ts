@@ -1,7 +1,15 @@
+import fs from 'fs';
 import lowdb from 'lowdb';
 import FileSync from 'lowdb/adapters/FileSync';
 
-const adapter = new FileSync('test-db.json');
+// Support legacy lowdb location
+let dbPath = 'db/test-db.json';
+if (!fs.existsSync(dbPath) && fs.existsSync('test-db.json')) {
+  dbPath = 'test-db.json';
+} else if (!fs.existsSync('db')) {
+  fs.mkdirSync('db');
+}
+const adapter = new FileSync('db/test-db.json');
 const connection = lowdb(adapter);
 
 connection
