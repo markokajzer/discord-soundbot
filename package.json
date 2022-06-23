@@ -23,23 +23,20 @@
   "author": "Marko Kajzer <markokajzer91@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@discordjs/opus": "0.3.3",
+    "@discordjs/opus": "^0.1.0",
     "axios": "^0.27.2",
     "date-fns": "^2.28.0",
     "discord.js": "12.4.1",
+    "erlpack": "^0.1.4",
     "fluent-ffmpeg": "2.1.2",
     "i18n": "0.13.2",
     "lodash": "4.17.21",
     "lowdb": "1.0.0",
     "opusscript": "^0.0.6",
     "replace-in-file": "6.1.0",
+    "sodium": "^3.0.2",
     "uuid": "^8.3.2",
     "yt-dlp-wrap": "^2.3.11"
-  },
-  "optionalDependencies": {
-    "bufferutil": "4.0.2",
-    "erlpack": "discordapp/erlpack",
-    "libsodium-wrappers": "0.7.8"
   },
   "devDependencies": {
     "@types/fluent-ffmpeg": "2.1.16",
@@ -81,7 +78,7 @@
     "rebuild": "npm run clean && npm run build",
     "release": "npm run rebuild && npm run lint && npm run format",
     "serve": "node dist/bin/soundbot.js",
-    "start": "npm run build && npm run serve",
+    "start": "npm run serve",
     "translations:download": "ts-node lib/downloadTranslations.ts"
   }
 }
