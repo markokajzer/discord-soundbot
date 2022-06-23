@@ -1,5 +1,4 @@
-Discord Soundbot
-================
+# Discord Soundbot
 
 <div align="center">
 
@@ -12,13 +11,11 @@ Discord Soundbot
 
 A Soundboard Bot for Discord to play your favorite sounds or music. You can add and play sounds, ignore users, set an avatar and more!
 
-This is a *self-hosted* bot which means that you have to install and start the bot yourself. This is due to the bot being heavily involved with voice functionality. But don't sweat it! You can find a thorough installation and configuration guide in this README!
+This is a _self-hosted_ bot which means that you have to install and start the bot yourself. This is due to the bot being heavily involved with voice functionality. But don't sweat it! You can find a thorough installation and configuration guide in this README!
 
-If you still need any help *after reading this guide and the wiki*, or you want to stay tuned, or simply chat, feel free to [join our Discord server](https://discord.gg/JBw2BNx).
+If you still need any help _after reading this guide and the wiki_, or you want to stay tuned, or simply chat, feel free to [join our Discord server](https://discord.gg/JBw2BNx).
 
 Have fun!
-
-
 
 ## Installation
 
@@ -34,8 +31,8 @@ Check `config/config.example.json` for an example configuration and create a new
 
 ### Running via Docker
 
-+ Make sure to have Docker installed.
-+ Start the bot with the following command while passing your CLIENT_ID and TOKEN that you have obtained in the previous step in to it.
+- Make sure to have Docker installed.
+- Start the bot with the following command while passing your CLIENT_ID and TOKEN that you have obtained in the previous step in to it.
 
   ```
   docker pull markokajzer/discord-soundbot && \
@@ -43,8 +40,8 @@ Check `config/config.example.json` for an example configuration and create a new
   docker run --name soundbot --restart=on-failure:10 -e CLIENT_ID=YOUR_CLIENT_ID -e TOKEN=YOUR_TOKEN -v $(pwd)/sounds:/app/sounds -v $(pwd)/db.json:/app/db.json markokajzer/discord-soundbot
   ```
 
-+ To run the bot in the background additionally use the `-d` flag in the last step.
-+ Pass additional configuration options by adding additional `-e OPTION_NAME=option_value` to the command above.
+- To run the bot in the background additionally use the `-d` flag in the last step.
+- Pass additional configuration options by adding additional `-e OPTION_NAME=option_value` to the command above.
 
 ### Building
 
@@ -52,9 +49,9 @@ When not using Docker, make sure to install **Node.js v12.0.0** or newer and **F
 
 #### Building manually
 
-+ Clone the repository.
-+ Install the dependencies with `yarn install`.
-+ Run the bot with `yarn start`.
+- Clone the repository.
+- Install the dependencies with `yarn install`.
+- Run the bot with `yarn start`.
 
 Need details? You can find more detailed installation guides for [Unix](../../wiki/Unix) (including your Raspberry Pi), [macOS](../../wiki/macOS), and [Windows](../../wiki/Windows).
 
@@ -84,7 +81,6 @@ myBot.start();
 
 For more configuration options see [here](../../wiki/Configuration). You can also add additional commands using this method, see [here](../../wiki/Commands).
 
-
 ### Adding the bot to your server
 
 In both cases the bot will print a message to your console which should look a little bit like this
@@ -98,15 +94,13 @@ Follow the link and allow the bot to join your Discord server.
 
 Try out the sample sounds `!airhorn` and `!johncena`, or see below to learn how to add your own sounds.
 
-
 ## Commands
 
 Type `!help` or `!commands` to print a list of available commands. To see the welcome message (again), use `!welcome`.
 
 You can add, rename, download, tag, play, and remove sounds, ignore users, set the avatar, and more.
 
-*Note*: The commands `!rename`, `!remove`, `!tag <sound> clear`, `!ignore`, `!unignore`, `!avatar` and `!config` are restricted and can only be accessed by **administrators** by default. To configure this, adjust the `elevatedRoles` config option.
-
+_Note_: The commands `!rename`, `!remove`, `!tag <sound> clear`, `!ignore`, `!unignore`, `!avatar` and `!config` are restricted and can only be accessed by **administrators** by default. To configure this, adjust the `elevatedRoles` config option.
 
 ### Languages
 
@@ -197,18 +191,16 @@ The config can be changed by editing the `config.json` file, after which the bot
 
 To change the config on the go, use `!config <option> <value>`. This will change the configuration immediately and update the configuration file.
 
-
-
 ## Contributing
 
 This bot is a dear passion project of mine. If you encounter any bugs, or have any suggestions for new features or improvements, feel free to open an issue or talk to me on Discord. I'll be glad to look into it!
 
 In particular, thanks to these splendid lads for providing localization:
 
-+ Dutch, [@nstapelbroek](https://github.com/nstapelbroek)
-+ French, [@sipahius](https://github.com/hugoSip)
-+ Hungarian, [@alma](https://github.com/stroopwafel1337)
-+ Italian, [@Reckless](https://github.com/MarcoReckless)
-+ Spanish, [@ibito](https://github.com/ibito)
-+ Japanese, [@Sigmy](https://github.com/sigmy)
-+ Brazilian Portuguese, [@Space_Interprise](https://github.com/emanuelfranklyn)
+- Dutch, [@nstapelbroek](https://github.com/nstapelbroek)
+- French, [@sipahius](https://github.com/hugoSip)
+- Hungarian, [@alma](https://github.com/stroopwafel1337)
+- Italian, [@Reckless](https://github.com/MarcoReckless)
+- Spanish, [@ibito](https://github.com/ibito)
+- Japanese, [@Sigmy](https://github.com/sigmy)
+- Brazilian Portuguese, [@Space_Interprise](https://github.com/emanuelfranklyn)
