@@ -23,7 +23,7 @@
   "author": "Marko Kajzer <markokajzer91@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@discordjs/opus": "0.3.3",
+    "@discordjs/opus": "0.8.0",
     "discord.js": "12.4.1",
     "fluent-ffmpeg": "2.1.2",
     "i18n": "0.13.2",
