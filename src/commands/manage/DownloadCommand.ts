@@ -19,6 +19,6 @@ export class DownloadCommand extends Command {
     if (!existsSound(sound)) return;
 
     const attachment = new MessageAttachment(getPathForSound(sound));
-    message.channel.send(attachment);
+    message.channel.send({ attachments: [attachment] });
   }
 }

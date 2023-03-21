@@ -25,7 +25,7 @@ export class LanguageCommand extends ConfigCommand {
       this.getLanguageMap().findKey((value, key) => [key, value].includes(chosenLanguage));
 
     if (!language) {
-      message.channel.send(this.help());
+      message.channel.send({ embeds: [this.help()] });
       return;
     }
 

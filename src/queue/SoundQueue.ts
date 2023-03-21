@@ -1,4 +1,15 @@
-import { Message, StreamDispatcher, VoiceConnection } from 'discord.js';
+import {
+  AudioPlayer,
+  AudioPlayerState,
+  AudioPlayerStatus,
+  createAudioPlayer,
+  createAudioResource,
+  DiscordGatewayAdapterCreator,
+  joinVoiceChannel,
+  VoiceConnection,
+  VoiceConnectionStatus
+} from '@discordjs/voice';
+import { Message } from 'discord.js';
 
 import Config from '~/config/Config';
 import * as sounds from '~/util/db/Sounds';
@@ -11,12 +22,13 @@ import QueueItem from './QueueItem';
 export default class SoundQueue {
   private readonly config: Config;
 
+  private readonly player: AudioPlayer;
   private queue: QueueItem[] = [];
   private currentSound: Nullable<QueueItem>;
-  private dispatcher: Nullable<StreamDispatcher>;
 
   constructor(config: Config) {
     this.config = config;
+    this.player = createAudioPlayer();
   }
 
   public add(item: QueueItem) {
@@ -31,9 +43,7 @@ export default class SoundQueue {
   }
 
   public next() {
-    if (!this.dispatcher) return;
-
-    this.dispatcher.emit('finish');
+    this.player.emit('next');
   }
 
   public clear() {
@@ -68,33 +78,41 @@ export default class SoundQueue {
 
   private async playNext() {
     this.currentSound = this.queue.shift()!;
-    const sound = getPathForSound(this.currentSound.name);
 
     try {
-      const connection = await this.currentSound.channel.join();
-      this.deafen(connection);
+      const connection = joinVoiceChannel({
+        adapterCreator: this.currentSound.channel.guild
+          .voiceAdapterCreator as DiscordGatewayAdapterCreator,
+        channelId: this.currentSound.channel.id,
+        guildId: this.currentSound.channel.guild.id
+      });
 
-      await this.playSound(connection, sound);
+      await this.playSound(connection);
       this.handleFinishedPlayingSound(connection);
-    } catch (error) {
+    } catch (error: any) {
       this.handleError(error);
     }
   }
 
-  // NOTE: Can only deafen when in a channel, therefore need connection
-  private deafen(connection: VoiceConnection) {
-    if (!connection.voice) return;
-    if (connection.voice.selfDeaf === this.config.deafen) return;
+  private playSound(connection: VoiceConnection): Promise<void> {
+    const sound = getPathForSound(this.currentSound!.name);
+    const resource = createAudioResource(sound);
 
-    connection.voice.setDeaf(this.config.deafen);
-  }
+    connection.subscribe(this.player);
 
-  private playSound(connection: VoiceConnection, name: string): Promise<void> {
     return new Promise(resolve => {
-      this.dispatcher = connection
-        .play(name, { volume: this.config.volume })
-        .on('finish', resolve)
-        .on('close', resolve);
+      this.player.play(resource);
+      this.player.on('stateChange', (oldState, newState) => {
+        // TODO: check if this runs multiple times when looping / playing multiple sounds
+        if (this.becameIdleAfterPlaying(oldState, newState)) resolve();
+      });
+      // @ts-expect-error
+      this.player.on('next', resolve);
+
+      // TODO: Forgot why we need this. Investigate.
+      connection.on('stateChange', (_, newState) => {
+        if (newState.status === VoiceConnectionStatus.Disconnected) resolve();
+      });
     });
   }
 
@@ -109,7 +127,6 @@ export default class SoundQueue {
     }
 
     this.currentSound = null;
-    this.dispatcher = null;
 
     if (!this.isEmpty()) {
       this.playNext();
@@ -117,7 +134,7 @@ export default class SoundQueue {
     }
 
     if (!this.config.stayInChannel) {
-      connection.disconnect();
+      connection.destroy();
       return;
     }
 
@@ -133,7 +150,6 @@ export default class SoundQueue {
     console.error('Error occured!', '\n', error);
 
     this.currentSound = null;
-    this.dispatcher = null;
   }
 
   private deleteCurrentMessage() {
@@ -157,5 +173,11 @@ export default class SoundQueue {
 
   private isLastSoundFromCurrentMessage(message: Message) {
     return !this.queue.some(item => !!item.message && item.message.id === message.id);
+  }
+
+  private becameIdleAfterPlaying(oldState: AudioPlayerState, newState: AudioPlayerState) {
+    return (
+      oldState.status === AudioPlayerStatus.Playing && newState.status === AudioPlayerStatus.Idle
+    );
   }
 }

@@ -31,7 +31,7 @@ export default class YoutubeDownloader extends BaseDownloader {
       await this.addSound({ end, soundName, start, url });
       message.channel.send(localize.t('commands.add.success', { name: soundName }));
     } catch (error) {
-      this.handleError(message, error);
+      this.handleError(message, error as Error);
     }
   }
 

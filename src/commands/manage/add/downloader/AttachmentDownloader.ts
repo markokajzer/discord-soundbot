@@ -21,13 +21,13 @@ export default class AttachmentDownloader extends BaseDownloader {
     try {
       await this.addSounds(message);
     } catch (error) {
-      this.handleError(message, error);
+      this.handleError(message, error as Error);
     }
   }
 
   private async addSounds(message: Message) {
     // NOTE: .forEach swallows exceptions in an async setup, so use for..of
-    for (const attachment of message.attachments.array()) {
+    for (const attachment of message.attachments.values()) {
       this.validator.validate(attachment);
 
       // NOTE: This could be optimized, but it is okay to do it in succession and code is cleaner

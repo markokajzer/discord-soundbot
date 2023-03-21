@@ -24,7 +24,28 @@ export default class SoundBot extends Client {
     messageHandler: MessageHandler,
     queue: SoundQueue
   ) {
-    super();
+    // | 'GUILDS'
+    // | 'GUILD_MEMBERS'
+    // | 'GUILD_BANS'
+    // | 'GUILD_EMOJIS_AND_STICKERS'
+    // | 'GUILD_INTEGRATIONS'
+    // | 'GUILD_WEBHOOKS'
+    // | 'GUILD_INVITES'
+    // | 'GUILD_VOICE_STATES'
+    // | 'GUILD_PRESENCES'
+    // | 'GUILD_MESSAGES'
+    // | 'GUILD_MESSAGE_REACTIONS'
+    // | 'GUILD_MESSAGE_TYPING'
+    // | 'DIRECT_MESSAGES'
+    // | 'DIRECT_MESSAGE_REACTIONS'
+    // | 'DIRECT_MESSAGE_TYPING'
+    // | 'MESSAGE_CONTENT'
+    // | 'GUILD_SCHEDULED_EVENTS'
+    // | 'AUTO_MODERATION_CONFIGURATION'
+    // | 'AUTO_MODERATION_EXECUTION';
+    super({
+      intents: ['GUILDS', 'GUILD_MESSAGES', 'GUILD_VOICE_STATES', 'MESSAGE_CONTENT']
+    });
 
     this.config = config;
     this.commands = commands;
@@ -44,10 +65,11 @@ export default class SoundBot extends Client {
 
   private addEventListeners() {
     this.on('ready', this.onReady);
-    this.on('message', this.onMessage);
+    this.on('messageCreate', this.onMessage);
     this.on('voiceStateUpdate', this.onUserLeavesVoiceChannel);
     this.on('voiceStateUpdate', this.onUserJoinsVoiceChannel);
     this.on('guildCreate', this.onBotJoinsServer);
+    // this.on('error', error => console.log({ error }));
   }
 
   private onReady() {
@@ -99,12 +121,12 @@ export default class SoundBot extends Client {
   }
 
   private findFirstWritableChannel(guild: Guild) {
-    if (!guild.me) return undefined;
+    if (!guild.members.me) return undefined;
 
     const channels = guild.channels.cache
-      .filter(channel => channel.type === 'text')
+      .filter(channel => channel.type === 'GUILD_TEXT')
       .filter(channel => {
-        const permissions = channel.permissionsFor(guild.me!);
+        const permissions = channel.permissionsFor(guild.members.me!);
 
         return Boolean(permissions && permissions.has('SEND_MESSAGES'));
       });
