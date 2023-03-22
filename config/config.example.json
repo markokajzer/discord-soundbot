@@ -6,11 +6,9 @@
   "prefix": "!",
   "acceptedExtensions": [".mp3", ".wav"],
   "maximumFileSize": 1000000,
-  "volume": 1.0,
   "deleteMessages": false,
   "stayInChannel": false,
   "timeout": 10,
-  "deafen": false,
   "game": "SoundBoard",
   "elevatedRoles": ["admin"]
 }
