@@ -12,11 +12,9 @@ export default class Config implements ConfigInterface {
   public prefix!: string;
   public acceptedExtensions!: string[];
   public maximumFileSize!: number;
-  public volume!: number;
   public deleteMessages!: boolean;
   public stayInChannel!: boolean;
   public timeout!: number;
-  public deafen!: boolean;
   public game!: string;
   public elevatedRoles!: string[];
 
@@ -26,11 +24,9 @@ export default class Config implements ConfigInterface {
     'prefix',
     'acceptedExtensions',
     'maximumFileSize',
-    'volume',
     'deleteMessages',
     'stayInChannel',
     'timeout',
-    'deafen',
     'game',
     'elevatedRoles'
   ];

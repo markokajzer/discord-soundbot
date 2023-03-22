@@ -9,11 +9,9 @@ export default interface ConfigInterface {
   prefix?: string;
   acceptedExtensions?: string[];
   maximumFileSize?: number;
-  volume?: number;
   deleteMessages?: boolean;
   stayInChannel?: boolean;
   timeout?: number;
-  deafen?: boolean;
   game?: string;
   elevatedRoles: string[];
 }

@@ -35,10 +35,6 @@ describe('Default config', () => {
     expect(testedConfig.stayInChannel).toBe(false);
   });
 
-  test('Default setting to deafen the bot is false', () => {
-    expect(testedConfig.deafen).toBe(false);
-  });
-
   test('Default game is not set', () => {
     expect(testedConfig.game).toEqual('SoundBoard');
   });
@@ -70,25 +66,21 @@ describe('Setting config from Environment Variables', () => {
   test('You can set boolean config values to `true` from the environment', () => {
     process.env.DELETE_MESSAGES = 'tRuE';
     process.env.STAY_IN_CHANNEL = 'TruE';
-    process.env.DEAFEN = 'TRUE';
 
     const testedConfig = new Config();
 
     expect(testedConfig.deleteMessages).toBe(true);
     expect(testedConfig.stayInChannel).toBe(true);
-    expect(testedConfig.deafen).toBe(true);
   });
 
   test('You can set boolean config values to `false` from the environment', () => {
     process.env.DELETE_MESSAGES = 'false';
     process.env.STAY_IN_CHANNEL = 'neen';
-    process.env.DEAFEN = 'anything else than true';
 
     const testedConfig = new Config();
 
     expect(testedConfig.deleteMessages).toBe(false);
     expect(testedConfig.stayInChannel).toBe(false);
-    expect(testedConfig.deafen).toBe(false);
   });
 
   test('You can set array config values by using comma seperation', () => {
