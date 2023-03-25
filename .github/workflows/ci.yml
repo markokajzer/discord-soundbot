@@ -32,4 +32,4 @@ jobs:
         run: yarn lint --quiet
 
       - name: Test
-        run: yarn jest
+        run: yarn test

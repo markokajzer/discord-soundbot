@@ -13,8 +13,8 @@ jest.mock('~/commands/config/AvatarCommand');
 jest.mock('~/commands/help/HelpCommand');
 jest.mock('~/commands/sound/SoundCommand');
 
-const queue = ({} as unknown) as SoundQueue;
-const config = ({} as unknown) as Config;
+const queue = {} as unknown as SoundQueue;
+const config = {} as unknown as Config;
 
 const avatarCommand = new AvatarCommand(config);
 const helpCommand = new HelpCommand(config);
@@ -46,7 +46,7 @@ describe('CommandCollection', () => {
 
       commands.registerCommands([avatarCommand]);
 
-      const user = ({ id: 'USER_ID' } as unknown) as ClientUser;
+      const user = { id: 'USER_ID' } as unknown as ClientUser;
       commands.registerUserCommands(user);
 
       expect(avatarCommand.setClientUser).toHaveBeenCalledWith(user);
