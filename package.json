@@ -34,7 +34,6 @@
   },
   "optionalDependencies": {
     "bufferutil": "^4.0.7",
-    "erlpack": "discordapp/erlpack",
     "libsodium-wrappers": "^0.7.11"
   },
   "devDependencies": {
