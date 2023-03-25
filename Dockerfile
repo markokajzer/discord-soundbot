@@ -35,8 +35,8 @@ FROM builder AS build
 COPY --chown=node:node . /app
 
 # Install compile dependencies
-RUN yarn install --frozen-lockfile --silent && \
-    yarn cache clean --force --silent
+RUN yarn install --frozen-lockfile && \
+    yarn cache clean --force
 
 # Build project
 RUN yarn build
