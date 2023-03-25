@@ -7,11 +7,10 @@ export class StopCommand extends QueueCommand {
 
   public run(message: Message) {
     if (!message.guild) return;
-    if (!message.guild.voice) return;
+    if (!message.guild.members.me) return;
 
     this.queue.clear();
 
-    const { connection: voiceConnection } = message.guild.voice;
-    if (voiceConnection) voiceConnection.disconnect();
+    message.guild.members.me.voice.disconnect();
   }
 }

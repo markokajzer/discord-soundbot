@@ -1,4 +1,4 @@
-import { VoiceConnection } from 'discord.js';
+import { VoiceConnection } from '@discordjs/voice';
 
 import { config } from '~/util/Container';
 

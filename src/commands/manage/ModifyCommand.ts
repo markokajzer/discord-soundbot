@@ -43,7 +43,7 @@ export class ModifyCommand extends Command {
       await this.replace(fileInfo);
       message.channel.send(localize.t('commands.modify.success', { modifier, sound }));
     } catch (error) {
-      this.handleError(message, error, { modifier, sound });
+      this.handleError(message, error as Error, { modifier, sound });
     }
   }
 

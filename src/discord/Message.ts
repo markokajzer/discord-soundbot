@@ -14,5 +14,5 @@ Message.prototype.hasPrefix = function hasPrefix(prefix) {
 };
 
 Message.prototype.isDirectMessage = function isDirectMessage() {
-  return this.channel.type === 'dm';
+  return this.channel.type === 'DM';
 };
