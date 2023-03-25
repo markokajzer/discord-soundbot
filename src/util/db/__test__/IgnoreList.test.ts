@@ -13,7 +13,7 @@ describe('IgnoreList', () => {
   it('adds users', () => {
     add(userId);
 
-    expect(exists(userId)).toEqual(true);
+    expect(exists(userId)).toBe(true);
   });
 
   it('does nothing when user already added', () => {
@@ -28,6 +28,6 @@ describe('IgnoreList', () => {
   it('removes users', () => {
     remove(userId);
 
-    expect(exists(userId)).toEqual(false);
+    expect(exists(userId)).toBe(false);
   });
 });

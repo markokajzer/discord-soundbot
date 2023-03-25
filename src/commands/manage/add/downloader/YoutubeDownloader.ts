@@ -59,9 +59,9 @@ export default class YoutubeDownloader extends BaseDownloader {
     if (startTime) ffmpegCommand = ffmpegCommand.setStartTime(startTime);
     if (startTime && endTime) ffmpegCommand = ffmpegCommand.setDuration(endTime - startTime);
 
-    return new Promise((resolve, reject) =>
-      ffmpegCommand.on('end', resolve).on('error', reject).run()
-    );
+    return new Promise((resolve, reject) => {
+      ffmpegCommand.on('end', resolve).on('error', reject).run();
+    });
   }
 
   private cleanUp() {

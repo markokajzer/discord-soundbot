@@ -8,7 +8,7 @@ jest.mock('~/util/Container');
 
 describe('userHasElevatedRoles', () => {
   it('returns false when member is undefined', () => {
-    expect(userHasElevatedRole(undefined)).toEqual(false);
+    expect(userHasElevatedRole(undefined)).toBe(false);
   });
 
   it('returns false when member does not have elevated role', () => {
@@ -24,7 +24,7 @@ describe('userHasElevatedRoles', () => {
       } as GuildMemberRoleManager
     } as unknown) as GuildMember;
 
-    expect(userHasElevatedRole(member)).toEqual(false);
+    expect(userHasElevatedRole(member)).toBe(false);
   });
 
   it('returns true when member is admin', () => {
@@ -32,7 +32,7 @@ describe('userHasElevatedRoles', () => {
       hasPermission: (permission: number) => permission === Permissions.FLAGS.ADMINISTRATOR
     } as unknown) as GuildMember;
 
-    expect(userHasElevatedRole(member)).toEqual(true);
+    expect(userHasElevatedRole(member)).toBe(true);
   });
 
   it('returns true when member has elevated role', () => {
@@ -48,6 +48,6 @@ describe('userHasElevatedRoles', () => {
       } as GuildMemberRoleManager
     } as unknown) as GuildMember;
 
-    expect(userHasElevatedRole(member)).toEqual(true);
+    expect(userHasElevatedRole(member)).toBe(true);
   });
 });

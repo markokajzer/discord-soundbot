@@ -69,9 +69,9 @@ export class ModifyCommand extends Command {
       .audioFilters([{ filter: 'volume', options: value }])
       .output(tempFile);
 
-    return new Promise((resolve, reject) =>
-      ffmpegCommand.on('end', resolve).on('error', reject).run()
-    );
+    return new Promise((resolve, reject) => {
+      ffmpegCommand.on('end', resolve).on('error', reject).run();
+    });
   }
 
   private clipSound({ currentFile, tempFile }: FileInfo, ...params: string[]): Promise<void> {
@@ -84,9 +84,9 @@ export class ModifyCommand extends Command {
     let ffmpegCommand = ffmpeg(currentFile).output(tempFile).setStartTime(start);
     if (end) ffmpegCommand = ffmpegCommand.setDuration(end - start);
 
-    return new Promise((resolve, reject) =>
-      ffmpegCommand.on('end', resolve).on('error', reject).run()
-    );
+    return new Promise((resolve, reject) => {
+      ffmpegCommand.on('end', resolve).on('error', reject).run();
+    });
   }
 
   private replace({ currentFile, tempFile }: FileInfo): Promise<void> {

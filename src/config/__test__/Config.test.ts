@@ -7,16 +7,16 @@ describe('Default config', () => {
   const testedConfig = new Config();
 
   test('Default clientID and token are empty', () => {
-    expect(testedConfig.clientId).toEqual('');
-    expect(testedConfig.token).toEqual('');
+    expect(testedConfig.clientId).toBe('');
+    expect(testedConfig.token).toBe('');
   });
 
   test('Default language is English', () => {
-    expect(testedConfig.language).toEqual('en');
+    expect(testedConfig.language).toBe('en');
   });
 
   test('Default command prefix is !', () => {
-    expect(testedConfig.prefix).toEqual('!');
+    expect(testedConfig.prefix).toBe('!');
   });
 
   test('Default whitelisted extensions are mp3 and wav files', () => {
@@ -24,7 +24,7 @@ describe('Default config', () => {
   });
 
   test('Default maximum filesize is 1MB', () => {
-    expect(testedConfig.maximumFileSize).toEqual(1000000);
+    expect(testedConfig.maximumFileSize).toBe(1000000);
   });
 
   test('Default setting to delete messages is false', () => {
@@ -36,7 +36,7 @@ describe('Default config', () => {
   });
 
   test('Default game is not set', () => {
-    expect(testedConfig.game).toEqual('SoundBoard');
+    expect(testedConfig.game).toBe('SoundBoard');
   });
 });
 

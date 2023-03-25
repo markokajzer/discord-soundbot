@@ -10,7 +10,7 @@ describe('getSecondsFromTime', () => {
   });
 
   it('returns the seconds of a timestring with seconds', () => {
-    expect(getSecondsFromTime('42')).toEqual(42);
+    expect(getSecondsFromTime('42')).toBe(42);
   });
 
   it('returns the seconds of a timestring with minutes', () => {

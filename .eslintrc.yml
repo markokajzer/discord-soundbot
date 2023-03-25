@@ -15,7 +15,6 @@ extends:
   - plugin:jest/recommended
   - plugin:jest/style
   - prettier
-  - prettier/@typescript-eslint
 
 
 env:
@@ -81,7 +80,7 @@ rules:
   "@typescript-eslint/no-object-literal-type-assertion": off
 
 # eslint-plugin-jest
-  jest/no-truthy-falsy: error
+  jest/no-restricted-matchers: error
 
 # simple-import-sort
   simple-import-sort/imports:
