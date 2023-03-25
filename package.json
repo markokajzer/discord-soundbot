@@ -26,11 +26,11 @@
     "@discordjs/opus": "^0.9.0",
     "@discordjs/voice": "^0.15.0",
     "discord.js": "^13.13.1",
-    "fluent-ffmpeg": "2.1.2",
+    "fluent-ffmpeg": "^2.1.2",
     "i18n": "0.13.2",
     "lodash": "4.17.21",
     "lowdb": "1.0.0",
-    "ytdl-core": "4.8.3"
+    "ytdl-core": "^4.11.2"
   },
   "optionalDependencies": {
     "bufferutil": "^4.0.7",
