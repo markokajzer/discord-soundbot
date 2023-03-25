@@ -64,11 +64,6 @@ rules:
       message: Labels are a form of GOTO; using them makes code confusing and hard to maintain and understand.
     - selector: WithStatement
       message: "`with` is disallowed in strict mode because it makes code impossible to predict and optimize."
-  no-unused-vars:
-    - error
-    - vars: all
-      args: all
-      argsIgnorePattern: ^_
   radix: off
 
 # @typescript-eslint
@@ -106,8 +101,6 @@ rules:
 
 # sort-keys-fix
   sort-keys-fix/sort-keys-fix: error
-
-
 
 # Custom rules
   prefer-early-return: error
