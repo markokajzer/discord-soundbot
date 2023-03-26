@@ -1,4 +1,12 @@
-## 2.2.0 (Unreleased)
+## 3.0.0 (2023-03-26)
+
+**Breaking changes**
+
++ Remove `deafen` config option
+  + This is the default behaviour for bots now, see [here](https://github.com/discordjs/discord.js/blob/51de9668e58865fe8be416d6e580644c37ce53eb/packages/voice/src/joinVoiceChannel.ts#L38)
++ Remove `volume` config option
+  + This option impacts performance because the stream **always** has to be processed by `ffmpeg`, even if the volume was not changed, see [here](https://discordjs.guide/voice/audio-resources.html#not-using-inline-volume)
+
 
 **Features**
 
@@ -7,9 +15,13 @@
   + Change the language (equivalent to !set language en)
 + Handle more errors to give useful feedback
 
+**Bugfixes**
+
++ Fix issue with `ytdl` not finding the correct format
+
 **Under the hood**
 
-+ Simplify translations
++ Update to Discord.js v14
 + Refactored a whole bunch of code
 
 ## 2.1.0 (2020-11-21)
