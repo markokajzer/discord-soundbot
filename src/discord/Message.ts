@@ -1,4 +1,4 @@
-import { Message } from 'discord.js';
+import { ChannelType, Message } from 'discord.js';
 
 declare module 'discord.js' {
   // NOTE: Monkeypatching
@@ -14,5 +14,5 @@ Message.prototype.hasPrefix = function hasPrefix(prefix) {
 };
 
 Message.prototype.isDirectMessage = function isDirectMessage() {
-  return this.channel.type === 'DM';
+  return this.channel.type === ChannelType.DM;
 };

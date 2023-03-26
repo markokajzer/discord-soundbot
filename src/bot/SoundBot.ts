@@ -1,4 +1,13 @@
-import { Client, Guild, Message, TextChannel, VoiceState } from 'discord.js';
+import {
+  ChannelType,
+  Client,
+  GatewayIntentBits,
+  Guild,
+  Message,
+  PermissionFlagsBits,
+  TextChannel,
+  VoiceState
+} from 'discord.js';
 
 import Config from '~/config/Config';
 import QueueItem from '~/queue/QueueItem';
@@ -24,27 +33,13 @@ export default class SoundBot extends Client {
     messageHandler: MessageHandler,
     queue: SoundQueue
   ) {
-    // | 'GUILDS'
-    // | 'GUILD_MEMBERS'
-    // | 'GUILD_BANS'
-    // | 'GUILD_EMOJIS_AND_STICKERS'
-    // | 'GUILD_INTEGRATIONS'
-    // | 'GUILD_WEBHOOKS'
-    // | 'GUILD_INVITES'
-    // | 'GUILD_VOICE_STATES'
-    // | 'GUILD_PRESENCES'
-    // | 'GUILD_MESSAGES'
-    // | 'GUILD_MESSAGE_REACTIONS'
-    // | 'GUILD_MESSAGE_TYPING'
-    // | 'DIRECT_MESSAGES'
-    // | 'DIRECT_MESSAGE_REACTIONS'
-    // | 'DIRECT_MESSAGE_TYPING'
-    // | 'MESSAGE_CONTENT'
-    // | 'GUILD_SCHEDULED_EVENTS'
-    // | 'AUTO_MODERATION_CONFIGURATION'
-    // | 'AUTO_MODERATION_EXECUTION';
     super({
-      intents: ['GUILDS', 'GUILD_MESSAGES', 'GUILD_VOICE_STATES', 'MESSAGE_CONTENT']
+      intents: [
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.GuildVoiceStates,
+        GatewayIntentBits.MessageContent
+      ]
     });
 
     this.config = config;
@@ -124,11 +119,11 @@ export default class SoundBot extends Client {
     if (!guild.members.me) return undefined;
 
     const channels = guild.channels.cache
-      .filter(channel => channel.type === 'GUILD_TEXT')
+      .filter(channel => channel.type === ChannelType.GuildText)
       .filter(channel => {
         const permissions = channel.permissionsFor(guild.members.me!);
 
-        return Boolean(permissions && permissions.has('SEND_MESSAGES'));
+        return Boolean(permissions && permissions.has(PermissionFlagsBits.SendMessages));
       });
 
     if (!channels.size) return undefined;

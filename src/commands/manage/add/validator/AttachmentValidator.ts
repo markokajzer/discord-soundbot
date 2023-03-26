@@ -1,6 +1,6 @@
 /* eslint-disable max-classes-per-file */
 
-import { MessageAttachment } from 'discord.js';
+import { Attachment } from 'discord.js';
 
 import Config from '~/config/Config';
 import { AttachmentExtensionError, AttachmentSizeError } from '~/util/Errors';
@@ -15,11 +15,11 @@ export default class AttachmentValidator extends BaseValidator {
     this.config = config;
   }
 
-  public validate(attachment: MessageAttachment) {
+  public validate(attachment: Attachment) {
     return this.validateAttachment(attachment);
   }
 
-  private validateAttachment(attachment: MessageAttachment) {
+  private validateAttachment(attachment: Attachment) {
     if (!attachment.name) throw new Error('Attachment without name :confused:');
 
     const fileName = attachment.name.toLowerCase();

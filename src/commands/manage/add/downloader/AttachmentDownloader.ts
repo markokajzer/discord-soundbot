@@ -1,4 +1,4 @@
-import { Message, MessageAttachment } from 'discord.js';
+import { Attachment, Message } from 'discord.js';
 import fs from 'fs';
 import { IncomingMessage } from 'http';
 import https from 'https';
@@ -40,7 +40,7 @@ export default class AttachmentDownloader extends BaseDownloader {
     }
   }
 
-  private async fetchAndSaveSound(attachment: MessageAttachment) {
+  private async fetchAndSaveSound(attachment: Attachment) {
     const response = await this.downloadFile(attachment.url);
     this.saveResponseToFile(response, attachment.name!.toLowerCase());
   }

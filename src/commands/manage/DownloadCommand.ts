@@ -1,4 +1,4 @@
-import { Message, MessageAttachment } from 'discord.js';
+import { AttachmentBuilder, Message } from 'discord.js';
 
 import { existsSound, getPathForSound } from '~/util/SoundUtil';
 
@@ -18,7 +18,7 @@ export class DownloadCommand extends Command {
     const sound = params[0];
     if (!existsSound(sound)) return;
 
-    const attachment = new MessageAttachment(getPathForSound(sound));
-    message.channel.send({ attachments: [attachment] });
+    const attachment = new AttachmentBuilder(getPathForSound(sound));
+    message.channel.send({ files: [attachment] });
   }
 }

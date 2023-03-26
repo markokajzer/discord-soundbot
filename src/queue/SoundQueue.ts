@@ -168,7 +168,7 @@ export default class SoundQueue {
   private wasMessageAlreadyDeleted(message: Message) {
     if (!message) return false;
 
-    return message.channel.messages.cache.find(msg => msg.id === message.id) === null;
+    return !message.channel.messages.cache.has(message.id);
   }
 
   private isLastSoundFromCurrentMessage(message: Message) {

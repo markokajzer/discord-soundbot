@@ -1,4 +1,4 @@
-import { Collection, Message, MessageEmbed } from 'discord.js';
+import { Collection, EmbedBuilder, Message } from 'discord.js';
 
 import localize from '~/util/i18n/localize';
 
@@ -38,7 +38,7 @@ export class LanguageCommand extends ConfigCommand {
   }
 
   private help() {
-    return new MessageEmbed()
+    return new EmbedBuilder()
       .setColor('#0099ff')
       .setTitle(localize.t('commands.lang.title'))
       .setDescription(

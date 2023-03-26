@@ -33,9 +33,9 @@ export class AvatarCommand extends ConfigCommand implements UserCommand {
       return;
     }
 
-    this.user
-      .setAvatar(message.attachments.first()!.url)
-      .catch(() => message.channel.send(localize.t('commands.avatar.errors.tooFast')));
+    this.user.setAvatar(message.attachments.first()!.url).catch(() => {
+      message.channel.send(localize.t('commands.avatar.errors.tooFast'));
+    });
   }
 
   private listAvatar(message: Message) {
@@ -48,7 +48,7 @@ export class AvatarCommand extends ConfigCommand implements UserCommand {
 
     message.channel.send(
       localize.t('commands.avatar.url', {
-        url: this.user.displayAvatarURL({ dynamic: true, format: 'png', size: 256 })
+        url: this.user.displayAvatarURL({ size: 256 })
       })
     );
   }
