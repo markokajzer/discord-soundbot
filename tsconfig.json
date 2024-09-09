@@ -3,22 +3,21 @@
     "module": "commonjs",
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "target": "es6",
-    "strict": true,
+    "target": "ES2022",
     "outDir": "dist",
-    "lib": [
-      "es2017"
-    ],
-    "typeRoots": [
-      "node_modules/@types",
-      "src/types"
-    ],
+    "incremental": true,
 
     "baseUrl": ".",
     "paths": {
       "~/*": ["./src/*"]
     },
-    "incremental": true
+
+    "typeRoots": [
+      "node_modules/@types",
+      "src/types"
+    ],
+
+    "strict": true
   },
   "include": [
     "src/**/*",
