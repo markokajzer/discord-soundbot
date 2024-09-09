@@ -68,7 +68,7 @@
     "start": "npm run build && npm run serve",
     "test": "jest",
     "translations:download": "ts-node lib/downloadTranslations.ts",
-    "typecheck": "tsc"
+    "typecheck": "tsc --noEmit"
   },
   "_moduleAliases": {
     "~": "./dist/src"
