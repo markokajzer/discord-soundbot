@@ -1,15 +1,15 @@
-import { Message } from 'discord.js';
+import type { Message } from "discord.js";
 
-import QueueItem from '~/queue/QueueItem';
-import localize from '~/util/i18n/localize';
-import { existsSound } from '~/util/SoundUtil';
+import QueueItem from "~/queue/QueueItem";
+import localize from "~/util/i18n/localize";
+import { existsSound } from "~/util/SoundUtil";
 
-import QueueCommand from '../base/QueueCommand';
+import QueueCommand from "../base/QueueCommand";
 
 export class NextCommand extends QueueCommand {
-  public readonly triggers = ['next'];
+  public readonly triggers = ["next"];
   public readonly numberOfParameters = 1;
-  public readonly usage = '!next <sound>';
+  public readonly usage = "!next <sound>";
 
   public run(message: Message, params: string[]) {
     if (!message.member) return;
@@ -24,7 +24,7 @@ export class NextCommand extends QueueCommand {
 
     const { channel: voiceChannel } = message.member.voice;
     if (!voiceChannel) {
-      message.reply(localize.t('helpers.voiceChannelFinder.error'));
+      message.reply(localize.t("helpers.voiceChannelFinder.error"));
       return;
     }
 

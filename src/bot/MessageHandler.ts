@@ -1,13 +1,13 @@
-import '../discord/Message';
+import "../discord/Message";
 
-import { Message } from 'discord.js';
+import type { Message } from "discord.js";
 
-import userHasElevatedRole from '~/commands/util/userHasElevatedRole';
-import { config } from '~/util/Container';
-import * as ignoreList from '~/util/db/IgnoreList';
-import localize from '~/util/i18n/localize';
+import userHasElevatedRole from "~/commands/util/userHasElevatedRole";
+import { config } from "~/util/Container";
+import * as ignoreList from "~/util/db/IgnoreList";
+import localize from "~/util/i18n/localize";
 
-import CommandCollection from './CommandCollection';
+import type CommandCollection from "./CommandCollection";
 
 export default class MessageHandler {
   private readonly commands: CommandCollection;
@@ -35,11 +35,11 @@ export default class MessageHandler {
   }
 
   private execute(message: Message) {
-    const [command, ...params] = message.content.split(' ');
+    const [command, ...params] = message.content.split(" ");
     const commandToRun = this.commands.get(command);
 
     if (commandToRun.elevated && !userHasElevatedRole(message.member)) {
-      message.channel.send(localize.t('errors.unauthorized'));
+      message.channel.send(localize.t("errors.unauthorized"));
       return;
     }
 

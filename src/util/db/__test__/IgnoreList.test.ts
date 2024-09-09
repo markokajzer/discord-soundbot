@@ -1,23 +1,23 @@
-import connection from '../connection';
-import { add, exists, remove } from '../IgnoreList';
+import connection from "../connection";
+import { add, exists, remove } from "../IgnoreList";
 
-jest.mock('../connection');
+jest.mock("../connection");
 
-describe('IgnoreList', () => {
-  const userId = '123';
+describe("IgnoreList", () => {
+  const userId = "123";
 
   beforeEach(() => {
-    connection.set('ignoreList', []).write();
+    connection.set("ignoreList", []).write();
   });
 
-  it('adds users', () => {
+  it("adds users", () => {
     add(userId);
 
     expect(exists(userId)).toBe(true);
   });
 
-  it('does nothing when user already added', () => {
-    jest.spyOn(connection, 'get');
+  it("does nothing when user already added", () => {
+    jest.spyOn(connection, "get");
     add(userId);
     add(userId);
 
@@ -25,7 +25,7 @@ describe('IgnoreList', () => {
     expect(connection.get).toHaveBeenCalledTimes(3);
   });
 
-  it('removes users', () => {
+  it("removes users", () => {
     remove(userId);
 
     expect(exists(userId)).toBe(false);

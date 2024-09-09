@@ -1,15 +1,16 @@
-import { Message } from 'discord.js';
-import ffmpeg from 'fluent-ffmpeg';
-import fs from 'fs';
-import util from 'util';
-import ytdl from 'ytdl-core';
+import type { Message } from "discord.js";
+import ffmpeg from "fluent-ffmpeg";
+import fs from "node:fs";
+import util from "node:util";
+import ytdl from "ytdl-core";
 
-import getSecondsFromTime from '~/util/getSecondsFromTime';
-import localize from '~/util/i18n/localize';
+import getSecondsFromTime from "~/util/getSecondsFromTime";
+import localize from "~/util/i18n/localize";
 
-import DownloadOptions, { ConvertOptions } from '../CommandOptions';
-import YoutubeValidator from '../validator/YoutubeValidator';
-import BaseDownloader from './BaseDownloader';
+import type DownloadOptions from "../CommandOptions";
+import type { ConvertOptions } from "../CommandOptions";
+import type YoutubeValidator from "../validator/YoutubeValidator";
+import BaseDownloader from "./BaseDownloader";
 
 const unlink = util.promisify(fs.unlink);
 
@@ -29,7 +30,7 @@ export default class YoutubeDownloader extends BaseDownloader {
     try {
       this.validator.validate(soundName, url);
       await this.addSound({ end, soundName, start, url });
-      message.channel.send(localize.t('commands.add.success', { name: soundName }));
+      message.channel.send(localize.t("commands.add.success", { name: soundName }));
     } catch (error) {
       this.handleError(message, error as Error);
     }
@@ -46,25 +47,25 @@ export default class YoutubeDownloader extends BaseDownloader {
 
   private download(url: string) {
     return new Promise((resolve, reject) => {
-      ytdl(url, { filter: 'audio', quality: 'highestaudio' })
-        .pipe(fs.createWriteStream('tmp.mp4'))
-        .on('finish', resolve)
-        .on('error', reject);
+      ytdl(url, { filter: "audio", quality: "highestaudio" })
+        .pipe(fs.createWriteStream("tmp.mp4"))
+        .on("finish", resolve)
+        .on("error", reject);
     });
   }
 
   private convert({ soundName, startTime, endTime }: ConvertOptions) {
-    let ffmpegCommand = ffmpeg('tmp.mp4').toFormat('mp3').output(`./sounds/${soundName}.mp3`);
+    let ffmpegCommand = ffmpeg("tmp.mp4").toFormat("mp3").output(`./sounds/${soundName}.mp3`);
 
     if (startTime) ffmpegCommand = ffmpegCommand.setStartTime(startTime);
     if (startTime && endTime) ffmpegCommand = ffmpegCommand.setDuration(endTime - startTime);
 
     return new Promise((resolve, reject) => {
-      ffmpegCommand.on('end', resolve).on('error', reject).run();
+      ffmpegCommand.on("end", resolve).on("error", reject).run();
     });
   }
 
   private cleanUp() {
-    return unlink('tmp.mp4');
+    return unlink("tmp.mp4");
   }
 }

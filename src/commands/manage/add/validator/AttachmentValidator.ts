@@ -1,11 +1,11 @@
 /* eslint-disable max-classes-per-file */
 
-import { Attachment } from 'discord.js';
+import type { Attachment } from "discord.js";
 
-import Config from '~/config/Config';
-import { AttachmentExtensionError, AttachmentSizeError } from '~/util/Errors';
+import type Config from "~/config/Config";
+import { AttachmentExtensionError, AttachmentSizeError } from "~/util/Errors";
 
-import BaseValidator from './BaseValidator';
+import BaseValidator from "./BaseValidator";
 
 export default class AttachmentValidator extends BaseValidator {
   private readonly config: Config;
@@ -20,10 +20,8 @@ export default class AttachmentValidator extends BaseValidator {
   }
 
   private validateAttachment(attachment: Attachment) {
-    if (!attachment.name) throw new Error('Attachment without name :confused:');
-
     const fileName = attachment.name.toLowerCase();
-    const soundName = fileName.substring(0, fileName.lastIndexOf('.'));
+    const soundName = fileName.substring(0, fileName.lastIndexOf("."));
 
     this.validateExtension(fileName);
     this.validateName(soundName);
@@ -32,7 +30,7 @@ export default class AttachmentValidator extends BaseValidator {
   }
 
   private validateExtension(fileName: string) {
-    if (this.config.acceptedExtensions.some(ext => fileName.endsWith(ext))) return;
+    if (this.config.acceptedExtensions.some((ext) => fileName.endsWith(ext))) return;
 
     throw new AttachmentExtensionError(this.config.acceptedExtensions);
   }

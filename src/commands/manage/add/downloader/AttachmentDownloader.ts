@@ -1,13 +1,13 @@
-import { Attachment, Message } from 'discord.js';
-import fs from 'fs';
-import { IncomingMessage } from 'http';
-import https from 'https';
+import fs from "node:fs";
+import type { IncomingMessage } from "node:http";
+import https from "node:https";
+import type { Attachment, Message } from "discord.js";
 
-import { UnspecificError } from '~/util/Errors';
-import localize from '~/util/i18n/localize';
+import { UnspecificError } from "~/util/Errors";
+import localize from "~/util/i18n/localize";
 
-import AttachmentValidator from '../validator/AttachmentValidator';
-import BaseDownloader from './BaseDownloader';
+import type AttachmentValidator from "../validator/AttachmentValidator";
+import BaseDownloader from "./BaseDownloader";
 
 export default class AttachmentDownloader extends BaseDownloader {
   protected readonly validator: AttachmentValidator;
@@ -34,20 +34,19 @@ export default class AttachmentDownloader extends BaseDownloader {
       // eslint-disable-next-line no-await-in-loop
       await this.fetchAndSaveSound(attachment);
 
-      // NOTE: Checked for attachment name during validation
-      const name = attachment.name!.split('.')[0];
-      message.channel.send(localize.t('commands.add.success', { name }));
+      const name = attachment.name.split(".")[0];
+      message.channel.send(localize.t("commands.add.success", { name }));
     }
   }
 
   private async fetchAndSaveSound(attachment: Attachment) {
     const response = await this.downloadFile(attachment.url);
-    this.saveResponseToFile(response, attachment.name!.toLowerCase());
+    this.saveResponseToFile(response, attachment.name.toLowerCase());
   }
 
   private downloadFile(url: string) {
     return new Promise<IncomingMessage>((resolve, reject) => {
-      https.get(url).on('response', resolve).on('error', reject);
+      https.get(url).on("response", resolve).on("error", reject);
     });
   }
 

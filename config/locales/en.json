@@ -1,132 +1,132 @@
 {
-    "commands": {
-        "add": {
-            "success": "{name} added!"
-        },
-        "avatar": {
-            "errors": {
-                "noAvatar": "Avatar not set yet. Try adding one with `{prefix}avatar` and an image!",
-                "tooFast": "You are changing your avatar too fast. Try again later."
-            },
-            "url": "Current avatar: {url}"
-        },
-        "config": {
-            "notFound": "Config does not have option `{field}`!",
-            "success": "`{field}` set to `{value}`!"
-        },
-        "ignore": {
-            "add": "Ignoring {user}!",
-            "remove": "No longer ignoring {user}!"
-        },
-        "lang": {
-            "success": "Changed language to `{language}`!  {flag}",
-            "title": "Available languages   💬",
-            "usage": "Say **{command} <language>** to pick one!\nExample: **{command} Italian** or **{command} nl**"
-        },
-        "modify": {
-            "error": "Something went wrong when changing `{modifier}` of {sound}!",
-            "notFound": "No such modifier: `{modifier}`!",
-            "success": "Successfully set `{modifier}` of {sound}!"
-        },
-        "remove": {
-            "notFound": "{sound} not found!",
-            "success": "{sound} removed!"
-        },
-        "rename": {
-            "notFound": "{oldName} not found!",
-            "success": "{oldName} renamed to {newName}!"
-        },
-        "search": {
-            "notFound": "No sounds found."
-        },
-        "sounds": {
-            "notFound": "You don't have any sounds yet! Try adding one with the {prefix}add command."
-        },
-        "tag": {
-            "found": "Tags for {sound}: [{tags}]",
-            "notFound": "{sound} not found!"
-        }
+  "commands": {
+    "add": {
+      "success": "{name} added!"
     },
-    "errors": {
-        "format": {
-            "sound": "💥📛 Filename has to be all letters and numbers!",
-            "time": "💥⌚ Specified time was not given in the form of [[hh:]mm:]ss[.xxx].",
-            "url": "💥🚋 Please specify a valid URL from YouTube."
-        },
-        "permissions": "I need permissions to join the channel.",
-        "sounds": {
-            "exists": "{sound} already exists!"
-        },
-        "unauthorized": "You need to be an admin or have an elevated role to perform this command",
-        "unspecific": "💥 Something went wrong! Please try again, or let the bot creator know what happened."
+    "avatar": {
+      "errors": {
+        "noAvatar": "Avatar not set yet. Try adding one with `{prefix}avatar` and an image!",
+        "tooFast": "You are changing your avatar too fast. Try again later."
+      },
+      "url": "Current avatar: {url}"
     },
-    "help": {
-        "avatar": "Set, show or remove the avatar",
-        "commands": "Show this message",
-        "config": "Change the configuration",
-        "entrance": {
-            "remove": "Remove entrance sound",
-            "set": "Play the specified sound when you join a channel"
-        },
-        "exit": {
-            "remove": "Remove exit sound",
-            "set": "Play the specified sound when you leave a channel"
-        },
-        "headline": "Use the prefix `{prefix}` with the following commands:",
-        "ignore": "Ignore specified user",
-        "lastadded": "Show last added sounds",
-        "mostplayed": "Show most used sounds",
-        "sounds": {
-            "add": "Add the attached sound",
-            "all": "Show available sounds",
-            "combo": "Play sounds in succession",
-            "download": "Send specified sound to chat",
-            "loop": "Loop specified sound <count> times or endlessly",
-            "next": "Interrupt currently playing sound with specified sound",
-            "play": "Play the specified sound",
-            "random": "Play random sound",
-            "remove": "Remove specified sound",
-            "rename": "Rename specified sound",
-            "skip": "Skip the currently playing sound",
-            "stop": "Leave channel and clear the queue"
-        },
-        "tags": {
-            "add": "Add tag to sound",
-            "all": "List all sounds with tags",
-            "clear": "Clear tags of specified sound",
-            "list": "List tags of specified sound",
-            "search": "Search sounds with specified tag"
-        },
-        "unignore": "Unignore specified user",
-        "welcome": "Show welcome message"
+    "config": {
+      "notFound": "Config does not have option `{field}`!",
+      "success": "`{field}` set to `{value}`!"
     },
-    "helpers": {
-        "messageChunker": {
-            "page": "```Page {current} of {total}```"
-        },
-        "userFinder": {
-            "error": "User not found on this server."
-        },
-        "voiceChannelFinder": {
-            "error": "Join a voice channel first!"
-        }
+    "ignore": {
+      "add": "Ignoring {user}!",
+      "remove": "No longer ignoring {user}!"
     },
-    "language": {
-        "de": "German",
-        "en": "English",
-        "es": "Spanish",
-        "fr": "French",
-        "hu": "Hungarian",
-        "it": "Italian",
-        "ja": "Japanese",
-        "nl": "Dutch"
+    "lang": {
+      "success": "Changed language to `{language}`!  {flag}",
+      "title": "Available languages   💬",
+      "usage": "Say **{command} <language>** to pick one!\nExample: **{command} Italian** or **{command} nl**"
     },
-    "url": "Use the following URL to let the bot join your server!\nhttps://discordapp.com/oauth2/authorize?client_id={clientId}&scope=bot",
-    "validation": {
-        "attachment": {
-            "extension": "Sound has to be in accepted format, one of [{extensions}]!",
-            "size": "File is too big!"
-        }
+    "modify": {
+      "error": "Something went wrong when changing `{modifier}` of {sound}!",
+      "notFound": "No such modifier: `{modifier}`!",
+      "success": "Successfully set `{modifier}` of {sound}!"
     },
-    "welcome": "**Thank you for adding me!** 🔥\n- My prefix is `{prefix}`. Want to change it? Check all configuration options here: **<https://github.com/markokajzer/discord-soundbot/wiki/Configuration>**.\n- You can see a list of commands with `{prefix}help.`\n- Get started with one of the sample sounds `{prefix}airhorn` or `{prefix}johncena`.\n- Add your own sounds by using `{prefix}add` and dragging in a sound file!\n- Need more help? Join the support server: **<https://discordapp.com/invite/JBw2BNx>**."
+    "remove": {
+      "notFound": "{sound} not found!",
+      "success": "{sound} removed!"
+    },
+    "rename": {
+      "notFound": "{oldName} not found!",
+      "success": "{oldName} renamed to {newName}!"
+    },
+    "search": {
+      "notFound": "No sounds found."
+    },
+    "sounds": {
+      "notFound": "You don't have any sounds yet! Try adding one with the {prefix}add command."
+    },
+    "tag": {
+      "found": "Tags for {sound}: [{tags}]",
+      "notFound": "{sound} not found!"
+    }
+  },
+  "errors": {
+    "format": {
+      "sound": "💥📛 Filename has to be all letters and numbers!",
+      "time": "💥⌚ Specified time was not given in the form of [[hh:]mm:]ss[.xxx].",
+      "url": "💥🚋 Please specify a valid URL from YouTube."
+    },
+    "permissions": "I need permissions to join the channel.",
+    "sounds": {
+      "exists": "{sound} already exists!"
+    },
+    "unauthorized": "You need to be an admin or have an elevated role to perform this command",
+    "unspecific": "💥 Something went wrong! Please try again, or let the bot creator know what happened."
+  },
+  "help": {
+    "avatar": "Set, show or remove the avatar",
+    "commands": "Show this message",
+    "config": "Change the configuration",
+    "entrance": {
+      "remove": "Remove entrance sound",
+      "set": "Play the specified sound when you join a channel"
+    },
+    "exit": {
+      "remove": "Remove exit sound",
+      "set": "Play the specified sound when you leave a channel"
+    },
+    "headline": "Use the prefix `{prefix}` with the following commands:",
+    "ignore": "Ignore specified user",
+    "lastadded": "Show last added sounds",
+    "mostplayed": "Show most used sounds",
+    "sounds": {
+      "add": "Add the attached sound",
+      "all": "Show available sounds",
+      "combo": "Play sounds in succession",
+      "download": "Send specified sound to chat",
+      "loop": "Loop specified sound <count> times or endlessly",
+      "next": "Interrupt currently playing sound with specified sound",
+      "play": "Play the specified sound",
+      "random": "Play random sound",
+      "remove": "Remove specified sound",
+      "rename": "Rename specified sound",
+      "skip": "Skip the currently playing sound",
+      "stop": "Leave channel and clear the queue"
+    },
+    "tags": {
+      "add": "Add tag to sound",
+      "all": "List all sounds with tags",
+      "clear": "Clear tags of specified sound",
+      "list": "List tags of specified sound",
+      "search": "Search sounds with specified tag"
+    },
+    "unignore": "Unignore specified user",
+    "welcome": "Show welcome message"
+  },
+  "helpers": {
+    "messageChunker": {
+      "page": "```Page {current} of {total}```"
+    },
+    "userFinder": {
+      "error": "User not found on this server."
+    },
+    "voiceChannelFinder": {
+      "error": "Join a voice channel first!"
+    }
+  },
+  "language": {
+    "de": "German",
+    "en": "English",
+    "es": "Spanish",
+    "fr": "French",
+    "hu": "Hungarian",
+    "it": "Italian",
+    "ja": "Japanese",
+    "nl": "Dutch"
+  },
+  "url": "Use the following URL to let the bot join your server!\nhttps://discordapp.com/oauth2/authorize?client_id={clientId}&scope=bot",
+  "validation": {
+    "attachment": {
+      "extension": "Sound has to be in accepted format, one of [{extensions}]!",
+      "size": "File is too big!"
+    }
+  },
+  "welcome": "**Thank you for adding me!** 🔥\n- My prefix is `{prefix}`. Want to change it? Check all configuration options here: **<https://github.com/markokajzer/discord-soundbot/wiki/Configuration>**.\n- You can see a list of commands with `{prefix}help.`\n- Get started with one of the sample sounds `{prefix}airhorn` or `{prefix}johncena`.\n- Add your own sounds by using `{prefix}add` and dragging in a sound file!\n- Need more help? Join the support server: **<https://discordapp.com/invite/JBw2BNx>**."
 }

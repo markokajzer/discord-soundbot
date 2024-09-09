@@ -1,16 +1,16 @@
-import { Message } from 'discord.js';
-import fs from 'fs';
+import type { Message } from "discord.js";
+import fs from "node:fs";
 
-import * as soundsDb from '~/util/db/Sounds';
-import localize from '~/util/i18n/localize';
-import { getExtensionForSound, getSounds } from '~/util/SoundUtil';
+import * as soundsDb from "~/util/db/Sounds";
+import localize from "~/util/i18n/localize";
+import { getExtensionForSound, getSounds } from "~/util/SoundUtil";
 
-import Command from '../base/Command';
+import Command from "../base/Command";
 
 export class RenameCommand extends Command {
-  public readonly triggers = ['rename'];
+  public readonly triggers = ["rename"];
   public readonly numberOfParameters = 2;
-  public readonly usage = 'Usage: !rename <old> <new>';
+  public readonly usage = "Usage: !rename <old> <new>";
   public readonly elevated = true;
 
   public run(message: Message, params: string[]) {
@@ -25,12 +25,12 @@ export class RenameCommand extends Command {
     const sounds = getSounds();
 
     if (!sounds.includes(oldName)) {
-      message.channel.send(localize.t('commands.rename.notFound', { oldName }));
+      message.channel.send(localize.t("commands.rename.notFound", { oldName }));
       return;
     }
 
     if (sounds.includes(newName)) {
-      message.channel.send(localize.t('errors.sounds.exists', { sound: newName }));
+      message.channel.send(localize.t("errors.sounds.exists", { sound: newName }));
       return;
     }
 
@@ -40,6 +40,6 @@ export class RenameCommand extends Command {
     fs.renameSync(oldFile, newFile);
     soundsDb.rename(oldName, newName);
 
-    message.channel.send(localize.t('commands.rename.success', { newName, oldName }));
+    message.channel.send(localize.t("commands.rename.success", { newName, oldName }));
   }
 }

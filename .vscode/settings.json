@@ -1,16 +1,13 @@
 {
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit"
+    "quickfix.biome": "explicit",
+    "source.organizeImports.biome": "explicit"
   },
-
-  "eslint.options": {
-    "rulePaths": ["./vendor/rules"]
-  },
-  "eslint.validate": ["typescript"],
 
   "typescript.tsdk": "node_modules/typescript/lib",
 
   "[typescript]": {
-    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "biomejs.biome",
+    "editor.formatOnSave": true
   }
 }

@@ -1,7 +1,7 @@
-import Command from '../../base/Command';
+import Command from "../../base/Command";
 
 export class HelpCommand extends Command {
-  public readonly triggers = ['commands', 'help'];
+  public readonly triggers = ["commands", "help"];
 
   public run() {
     // noop

@@ -1,12 +1,12 @@
-import { Message } from 'discord.js';
+import type { Message } from "discord.js";
 
-import * as exits from '~/util/db/Exits';
-import { getSounds } from '~/util/SoundUtil';
+import * as exits from "~/util/db/Exits";
+import { getSounds } from "~/util/SoundUtil";
 
-import Command from '../base/Command';
+import Command from "../base/Command";
 
 export class ExitCommand extends Command {
-  public readonly triggers = ['exit'];
+  public readonly triggers = ["exit"];
 
   public run(message: Message, params: string[]) {
     const [exitSound] = params;

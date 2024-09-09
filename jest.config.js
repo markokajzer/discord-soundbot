@@ -31,11 +31,7 @@ module.exports = {
   // coveragePathIgnorePatterns: [
   //   "/node_modules/"
   // ],
-  coveragePathIgnorePatterns: [
-    "/node_modules/",
-    "/test/",
-    ".d.ts"
-  ],
+  coveragePathIgnorePatterns: ["/node_modules/", "/test/", ".d.ts"],
 
   // A list of reporter names that Jest uses when writing coverage reports
   // coverageReporters: [
@@ -81,11 +77,7 @@ module.exports = {
   //   "tsx",
   //   "node"
   // ],
-  moduleFileExtensions: [
-    "js",
-    "json",
-    "ts"
-  ],
+  moduleFileExtensions: ["js", "json", "ts"],
 
   // A map from regular expressions to module names that allow to stub out resources with a single module
   // moduleNameMapper: {},
@@ -130,9 +122,7 @@ module.exports = {
   // roots: [
   //   "<rootDir>"
   // ],
-  roots: [
-    "<rootDir>/src"
-  ],
+  roots: ["<rootDir>/src"],
 
   // Allows you to use a custom runner instead of Jest's default test runner
   // runner: "jest-runner",
@@ -185,7 +175,7 @@ module.exports = {
   // A map from regular expressions to paths to transformers
   // transform: null,
   transform: {
-    ".ts": "ts-jest"
+    ".ts": "ts-jest",
   },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation

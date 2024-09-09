@@ -1,6 +1,6 @@
-import connection from './connection';
+import connection from "./connection";
 
-const table = 'exits';
+const table = "exits";
 
 export const get = (userId: string) => connection.get(`${table}.${userId}`).value();
 export const exists = (userId: string) => !!get(userId);

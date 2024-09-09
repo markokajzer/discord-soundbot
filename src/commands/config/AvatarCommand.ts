@@ -1,14 +1,14 @@
-import { ClientUser, Message } from 'discord.js';
+import type { ClientUser, Message } from "discord.js";
 
-import localize from '~/util/i18n/localize';
+import localize from "~/util/i18n/localize";
 
-import ConfigCommand from '../base/ConfigCommand';
-import UserCommand from '../base/UserCommand';
+import ConfigCommand from "../base/ConfigCommand";
+import type UserCommand from "../base/UserCommand";
 
 export class AvatarCommand extends ConfigCommand implements UserCommand {
-  public readonly triggers = ['avatar'];
+  public readonly triggers = ["avatar"];
   public readonly numberOfParameters = 1;
-  public readonly usage = 'Usage: !avatar [remove]';
+  public readonly usage = "Usage: !avatar [remove]";
   public readonly elevated = true;
 
   protected user!: ClientUser;
@@ -18,8 +18,8 @@ export class AvatarCommand extends ConfigCommand implements UserCommand {
   }
 
   public run(message: Message, params: string[]) {
-    if (params.length === this.numberOfParameters && params[0] === 'remove') {
-      this.user.setAvatar('');
+    if (params.length === this.numberOfParameters && params[0] === "remove") {
+      this.user.setAvatar("");
       return;
     }
 
@@ -33,22 +33,23 @@ export class AvatarCommand extends ConfigCommand implements UserCommand {
       return;
     }
 
+    // biome-ignore lint/style/noNonNullAssertion: ensured exactly one attachment above
     this.user.setAvatar(message.attachments.first()!.url).catch(() => {
-      message.channel.send(localize.t('commands.avatar.errors.tooFast'));
+      message.channel.send(localize.t("commands.avatar.errors.tooFast"));
     });
   }
 
   private listAvatar(message: Message) {
     if (!this.user.avatarURL()) {
       message.channel.send(
-        localize.t('commands.avatar.errors.noAvatar', { prefix: this.config.prefix })
+        localize.t("commands.avatar.errors.noAvatar", { prefix: this.config.prefix })
       );
       return;
     }
 
     message.channel.send(
-      localize.t('commands.avatar.url', {
-        url: this.user.displayAvatarURL({ size: 256 })
+      localize.t("commands.avatar.url", {
+        url: this.user.displayAvatarURL({ size: 256 }),
       })
     );
   }

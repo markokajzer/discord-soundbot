@@ -1,12 +1,12 @@
-import { Message } from 'discord.js';
+import type { Message } from "discord.js";
 
-import Sound from '~/util/db/models/Sound';
-import * as soundsDb from '~/util/db/Sounds';
+import type Sound from "~/util/db/models/Sound";
+import * as soundsDb from "~/util/db/Sounds";
 
-import Command from '../base/Command';
+import Command from "../base/Command";
 
 export class MostPlayedCommand extends Command {
-  public readonly triggers = ['mostplayed'];
+  public readonly triggers = ["mostplayed"];
 
   public run(message: Message) {
     const formattedMessage = this.getFormattedMessage();
@@ -19,8 +19,8 @@ export class MostPlayedCommand extends Command {
     const sounds = soundsDb.mostPlayed();
     if (!sounds.length) return undefined;
 
-    const longestSound = this.findLongestWord(sounds.map(sound => sound.name));
-    const longestCount = this.findLongestWord(sounds.map(sound => String(sound.count)));
+    const longestSound = this.findLongestWord(sounds.map((sound) => sound.name));
+    const longestCount = this.findLongestWord(sounds.map((sound) => String(sound.count)));
     return this.formatSounds(sounds, longestSound.length, longestCount.length);
   }
 
@@ -29,11 +29,11 @@ export class MostPlayedCommand extends Command {
   }
 
   private formatSounds(sounds: Sound[], soundLength: number, countLength: number) {
-    const lines = sounds.map(sound => {
-      const spacesForSound = ' '.repeat(soundLength - sound.name.length + 1);
-      const spacesForCount = ' '.repeat(countLength - String(sound.count).length);
+    const lines = sounds.map((sound) => {
+      const spacesForSound = " ".repeat(soundLength - sound.name.length + 1);
+      const spacesForCount = " ".repeat(countLength - String(sound.count).length);
       return `${sound.name}:${spacesForSound}${spacesForCount}${sound.count}`;
     });
-    return ['```', ...lines, '```'].join('\n');
+    return ["```", ...lines, "```"].join("\n");
   }
 }

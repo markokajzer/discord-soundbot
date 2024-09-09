@@ -1,5 +1,5 @@
 export const config = {
-  acceptedExtensions: ['.mp3'],
-  elevatedRoles: ['admin'],
-  prefix: '!'
+  acceptedExtensions: [".mp3"],
+  elevatedRoles: ["admin"],
+  prefix: "!",
 };

@@ -1,7 +1,7 @@
 /* eslint-disable max-classes-per-file */
 
-import { DuplicationError, NameError } from '~/util/Errors';
-import { existsSound } from '~/util/SoundUtil';
+import { DuplicationError, NameError } from "~/util/Errors";
+import { existsSound } from "~/util/SoundUtil";
 
 export default abstract class BaseValidator {
   public abstract validate(...params: unknown[]): void;

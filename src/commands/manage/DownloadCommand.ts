@@ -1,13 +1,13 @@
-import { AttachmentBuilder, Message } from 'discord.js';
+import { AttachmentBuilder, type Message } from "discord.js";
 
-import { existsSound, getPathForSound } from '~/util/SoundUtil';
+import { existsSound, getPathForSound } from "~/util/SoundUtil";
 
-import Command from '../base/Command';
+import Command from "../base/Command";
 
 export class DownloadCommand extends Command {
-  public readonly triggers = ['download'];
+  public readonly triggers = ["download"];
   public readonly numberOfParameters = 1;
-  public readonly usage = 'Usage: !download <sound>';
+  public readonly usage = "Usage: !download <sound>";
 
   public run(message: Message, params: string[]) {
     if (params.length !== this.numberOfParameters) {

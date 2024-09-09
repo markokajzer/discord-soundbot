@@ -1,115 +1,115 @@
 {
-    "commands": {
-        "add": {
-            "success": "{name} ajouté !"
-        },
-        "avatar": {
-            "errors": {
-                "noAvatar": "L'avatar n'a pas été défini. Essayez d'en ajouter un avec `{prefix}avatar` et une image !",
-                "tooFast": "Vous changer votre avatar trop rapidement. Réessayez dans quelques instants."
-            },
-            "url": "Avatar en place: {url}"
-        },
-        "config": {
-            "notFound": "Configuration n'a pas d'option `{field}` !",
-            "success": "`{field}` défini sur `{value}` !"
-        },
-        "ignore": {
-            "add": "L'utilisateur {user} est maintenant ignoré !",
-            "remove": "L'utilisateur {user} n'est plus ignoré !"
-        },
-        "lang": {
-            "title": "Langues disponibles   💬"
-        },
-        "remove": {
-            "notFound": "{sound} introuvable !",
-            "success": "{sound} supprimé !"
-        },
-        "rename": {
-            "notFound": "{oldName} introuvable !",
-            "success": "{oldName} a été renommé en {newName} !"
-        },
-        "search": {
-            "notFound": "Aucun son trouvé."
-        },
-        "sounds": {
-            "notFound": "Vous n'avez pas encore de sons ! Essayez d'en ajouter avec la commande {prefix}add."
-        },
-        "tag": {
-            "found": "Tags pour {sound}: [{tags}]",
-            "notFound": "{sound} introuvable !"
-        }
+  "commands": {
+    "add": {
+      "success": "{name} ajouté !"
     },
-    "errors": {
-        "format": {
-            "sound": "💥📛 Le nom de fichier ne doit contenir que des chiffres et des lettres !",
-            "url": "💥🚋 L'URL n'est pas valide !"
-        },
-        "sounds": {
-            "exists": "{sound} existe déjà !"
-        },
-        "unspecific": "💥 Oups, une erreur s'est produite !"
+    "avatar": {
+      "errors": {
+        "noAvatar": "L'avatar n'a pas été défini. Essayez d'en ajouter un avec `{prefix}avatar` et une image !",
+        "tooFast": "Vous changer votre avatar trop rapidement. Réessayez dans quelques instants."
+      },
+      "url": "Avatar en place: {url}"
     },
-    "help": {
-        "avatar": "Définir, afficher ou supprimer l'avatar",
-        "commands": "Afficher ce message",
-        "config": "Changer la configuration",
-        "entrance": {
-            "remove": "Supprime votre son d'entrée dans un salon",
-            "set": "Joue le son spécifié lorsque vous entrez dans un salon"
-        },
-        "headline": "Utilisez le préfixe `{prefix}` avec les commandes suivantes :",
-        "ignore": "Ignorer l'utilisateur spécifié",
-        "lastadded": "Affiche les sons ajoutés le plus récemment",
-        "mostplayed": "Affiche la liste des sons les plus joués",
-        "sounds": {
-            "add": "Ajouter le son joint (uploadé)",
-            "all": "Afficher la liste des sons disponibles",
-            "combo": "Jouer les sons successivement",
-            "download": "Envoyer le son spécifié dant la discussion",
-            "play": "Jouer le son spécifié",
-            "random": "Jouer un son aléatoire",
-            "remove": "Supprimer le son spécifié",
-            "rename": "Renommer le son spécifié",
-            "stop": "Arrêter le son et vider la file de lecture"
-        },
-        "tags": {
-            "add": "Ajouter un tag au son",
-            "all": "Affiche la liste de tous les sons avec des tags",
-            "clear": "Supprimer les tags du son spécifié",
-            "list": "Affiche la liste des tags associé au son spécifié",
-            "search": "Rechercher les sons qui ont le tags spécifié"
-        },
-        "unignore": "Arrêter d'ignorer l'utilisateur spéficié",
-        "welcome": "Afficher le message de bienvenue"
+    "config": {
+      "notFound": "Configuration n'a pas d'option `{field}` !",
+      "success": "`{field}` défini sur `{value}` !"
     },
-    "helpers": {
-        "messageChunker": {
-            "page": "```Page {current} de {total}```"
-        },
-        "userFinder": {
-            "error": "Utilisateur introuvable sur ce serveur."
-        },
-        "voiceChannelFinder": {
-            "error": "Commencez par rejoindre un salon vocal !"
-        }
+    "ignore": {
+      "add": "L'utilisateur {user} est maintenant ignoré !",
+      "remove": "L'utilisateur {user} n'est plus ignoré !"
     },
-    "language": {
-        "de": "Allemande",
-        "en": "anglais",
-        "es": "Espagnol",
-        "fr": "Français",
-        "hu": "Hongrois",
-        "it": "Italien",
-        "ja": "Japonais",
-        "nl": "Nederlands"
+    "lang": {
+      "title": "Langues disponibles   💬"
     },
-    "url": "Utilisez le lien suivant pour inviter le bot sur votre serveur !\nhttps://discordapp.com/oauth2/authorize?client_id={clientId}&scope=bot",
-    "validation": {
-        "attachment": {
-            "extension": "Le fichier son doit être dans un des formats suivants : [{extensions}] !",
-            "size": "Le fichier est trop gros !"
-        }
+    "remove": {
+      "notFound": "{sound} introuvable !",
+      "success": "{sound} supprimé !"
     },
-    "welcome": "**Merci de m'avoir ajouté !** 🔥\n- Mon préfixe est `{prefix}`. Voulez-vous le changer ? Vous pouvez trouver toutes les options de configuration ici : **<https://github.com/markokajzer/discord-soundbot/wiki/Configuration>**.\n- Vous pouvez afficher la liste des commandes avec : `{prefix}help.`\n- Pour commencer, ajoutez un son. Utilisez `{prefix}add` glissez-déposez un fichier son !\n- Besoin d'aide ? Rejoignez le serveur de support : **<https://discordapp.com/invite/JBw2BNx>**."
+    "rename": {
+      "notFound": "{oldName} introuvable !",
+      "success": "{oldName} a été renommé en {newName} !"
+    },
+    "search": {
+      "notFound": "Aucun son trouvé."
+    },
+    "sounds": {
+      "notFound": "Vous n'avez pas encore de sons ! Essayez d'en ajouter avec la commande {prefix}add."
+    },
+    "tag": {
+      "found": "Tags pour {sound}: [{tags}]",
+      "notFound": "{sound} introuvable !"
+    }
+  },
+  "errors": {
+    "format": {
+      "sound": "💥📛 Le nom de fichier ne doit contenir que des chiffres et des lettres !",
+      "url": "💥🚋 L'URL n'est pas valide !"
+    },
+    "sounds": {
+      "exists": "{sound} existe déjà !"
+    },
+    "unspecific": "💥 Oups, une erreur s'est produite !"
+  },
+  "help": {
+    "avatar": "Définir, afficher ou supprimer l'avatar",
+    "commands": "Afficher ce message",
+    "config": "Changer la configuration",
+    "entrance": {
+      "remove": "Supprime votre son d'entrée dans un salon",
+      "set": "Joue le son spécifié lorsque vous entrez dans un salon"
+    },
+    "headline": "Utilisez le préfixe `{prefix}` avec les commandes suivantes :",
+    "ignore": "Ignorer l'utilisateur spécifié",
+    "lastadded": "Affiche les sons ajoutés le plus récemment",
+    "mostplayed": "Affiche la liste des sons les plus joués",
+    "sounds": {
+      "add": "Ajouter le son joint (uploadé)",
+      "all": "Afficher la liste des sons disponibles",
+      "combo": "Jouer les sons successivement",
+      "download": "Envoyer le son spécifié dant la discussion",
+      "play": "Jouer le son spécifié",
+      "random": "Jouer un son aléatoire",
+      "remove": "Supprimer le son spécifié",
+      "rename": "Renommer le son spécifié",
+      "stop": "Arrêter le son et vider la file de lecture"
+    },
+    "tags": {
+      "add": "Ajouter un tag au son",
+      "all": "Affiche la liste de tous les sons avec des tags",
+      "clear": "Supprimer les tags du son spécifié",
+      "list": "Affiche la liste des tags associé au son spécifié",
+      "search": "Rechercher les sons qui ont le tags spécifié"
+    },
+    "unignore": "Arrêter d'ignorer l'utilisateur spéficié",
+    "welcome": "Afficher le message de bienvenue"
+  },
+  "helpers": {
+    "messageChunker": {
+      "page": "```Page {current} de {total}```"
+    },
+    "userFinder": {
+      "error": "Utilisateur introuvable sur ce serveur."
+    },
+    "voiceChannelFinder": {
+      "error": "Commencez par rejoindre un salon vocal !"
+    }
+  },
+  "language": {
+    "de": "Allemande",
+    "en": "anglais",
+    "es": "Espagnol",
+    "fr": "Français",
+    "hu": "Hongrois",
+    "it": "Italien",
+    "ja": "Japonais",
+    "nl": "Nederlands"
+  },
+  "url": "Utilisez le lien suivant pour inviter le bot sur votre serveur !\nhttps://discordapp.com/oauth2/authorize?client_id={clientId}&scope=bot",
+  "validation": {
+    "attachment": {
+      "extension": "Le fichier son doit être dans un des formats suivants : [{extensions}] !",
+      "size": "Le fichier est trop gros !"
+    }
+  },
+  "welcome": "**Merci de m'avoir ajouté !** 🔥\n- Mon préfixe est `{prefix}`. Voulez-vous le changer ? Vous pouvez trouver toutes les options de configuration ici : **<https://github.com/markokajzer/discord-soundbot/wiki/Configuration>**.\n- Vous pouvez afficher la liste des commandes avec : `{prefix}help.`\n- Pour commencer, ajoutez un son. Utilisez `{prefix}add` glissez-déposez un fichier son !\n- Besoin d'aide ? Rejoignez le serveur de support : **<https://discordapp.com/invite/JBw2BNx>**."
 }

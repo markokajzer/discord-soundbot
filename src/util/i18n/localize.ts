@@ -1,5 +1,5 @@
-import i18n from './i18n';
-import { Replacements } from './I18nProvider';
+import i18n from "./i18n";
+import type { Replacements } from "./I18nProvider";
 
 const getCurrentLocale = () => i18n.getLocale();
 const getLocales = () => i18n.getLocales();
@@ -15,7 +15,7 @@ const localize = {
   getLocales,
   setLocale,
   t,
-  translate
+  translate,
 };
 
 export default localize;

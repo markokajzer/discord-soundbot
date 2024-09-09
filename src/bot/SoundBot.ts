@@ -2,24 +2,24 @@ import {
   ChannelType,
   Client,
   GatewayIntentBits,
-  Guild,
-  Message,
+  type Guild,
+  type Message,
   PermissionFlagsBits,
-  TextChannel,
-  VoiceState
-} from 'discord.js';
+  type TextChannel,
+  type VoiceState,
+} from "discord.js";
 
-import Config from '~/config/Config';
-import QueueItem from '~/queue/QueueItem';
-import SoundQueue from '~/queue/SoundQueue';
-import * as entrances from '~/util/db/Entrances';
-import * as exits from '~/util/db/Exits';
-import localize from '~/util/i18n/localize';
-import { getSounds } from '~/util/SoundUtil';
+import type Config from "~/config/Config";
+import QueueItem from "~/queue/QueueItem";
+import type SoundQueue from "~/queue/SoundQueue";
+import { getSounds } from "~/util/SoundUtil";
+import * as entrances from "~/util/db/Entrances";
+import * as exits from "~/util/db/Exits";
+import localize from "~/util/i18n/localize";
 
-import Command from '../commands/base/Command';
-import CommandCollection from './CommandCollection';
-import MessageHandler from './MessageHandler';
+import type Command from "../commands/base/Command";
+import type CommandCollection from "./CommandCollection";
+import type MessageHandler from "./MessageHandler";
 
 export default class SoundBot extends Client {
   private readonly config: Config;
@@ -38,8 +38,8 @@ export default class SoundBot extends Client {
         GatewayIntentBits.Guilds,
         GatewayIntentBits.GuildMessages,
         GatewayIntentBits.GuildVoiceStates,
-        GatewayIntentBits.MessageContent
-      ]
+        GatewayIntentBits.MessageContent,
+      ],
     });
 
     this.config = config;
@@ -59,11 +59,11 @@ export default class SoundBot extends Client {
   }
 
   private addEventListeners() {
-    this.on('ready', this.onReady);
-    this.on('messageCreate', this.onMessage);
-    this.on('voiceStateUpdate', this.onUserLeavesVoiceChannel);
-    this.on('voiceStateUpdate', this.onUserJoinsVoiceChannel);
-    this.on('guildCreate', this.onBotJoinsServer);
+    this.on("ready", this.onReady);
+    this.on("messageCreate", this.onMessage);
+    this.on("voiceStateUpdate", this.onUserLeavesVoiceChannel);
+    this.on("voiceStateUpdate", this.onUserJoinsVoiceChannel);
+    this.on("guildCreate", this.onBotJoinsServer);
     // this.on('error', error => console.log({ error }));
   }
 
@@ -112,18 +112,19 @@ export default class SoundBot extends Client {
     const channel = this.findFirstWritableChannel(guild);
     if (!channel) return;
 
-    channel.send(localize.t('welcome', { prefix: this.config.prefix }));
+    channel.send(localize.t("welcome", { prefix: this.config.prefix }));
   }
 
   private findFirstWritableChannel(guild: Guild) {
     if (!guild.members.me) return undefined;
 
     const channels = guild.channels.cache
-      .filter(channel => channel.type === ChannelType.GuildText)
-      .filter(channel => {
+      .filter((channel) => channel.type === ChannelType.GuildText)
+      .filter((channel) => {
+        // biome-ignore lint/style/noNonNullAssertion: no idea how this would be nil, imo the typing is wrong lmao
         const permissions = channel.permissionsFor(guild.members.me!);
 
-        return Boolean(permissions && permissions.has(PermissionFlagsBits.SendMessages));
+        return Boolean(permissions?.has(PermissionFlagsBits.SendMessages));
       });
 
     if (!channels.size) return undefined;

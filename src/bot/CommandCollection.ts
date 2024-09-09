@@ -1,8 +1,8 @@
-import { ClientUser } from 'discord.js';
+import type { ClientUser } from "discord.js";
 
-import Command from '../commands/base/Command';
-import UserCommand from '../commands/base/UserCommand';
-import { SoundCommand } from '../commands/sound';
+import type Command from "../commands/base/Command";
+import type UserCommand from "../commands/base/UserCommand";
+import type { SoundCommand } from "../commands/sound";
 
 export default class CommandCollection {
   private readonly triggers: Map<string, Command> = new Map();
@@ -10,21 +10,21 @@ export default class CommandCollection {
   private readonly soundCommand: SoundCommand;
 
   constructor(commands: Command[]) {
-    this.soundCommand = commands.find(command => !command.triggers.length) as SoundCommand;
+    this.soundCommand = commands.find((command) => !command.triggers.length) as SoundCommand;
 
     this.registerCommands(commands);
   }
 
   public registerCommands(commands: Command[]) {
     this.commands.push(...commands);
-    commands.forEach(command => this.registerTriggers(command));
+    commands.forEach((command) => this.registerTriggers(command));
   }
 
   public registerUserCommands(user: ClientUser) {
     // NOTE: Filter for user commands and set their user
     // @ts-ignore
-    const userCommands: UserCommand[] = this.commands.filter(command => !!command.setClientUser);
-    userCommands.forEach(command => command.setClientUser(user));
+    const userCommands: UserCommand[] = this.commands.filter((command) => !!command.setClientUser);
+    userCommands.forEach((command) => command.setClientUser(user));
   }
 
   public get(command: string) {
@@ -32,6 +32,6 @@ export default class CommandCollection {
   }
 
   private registerTriggers(command: Command) {
-    command.triggers.forEach(trigger => this.triggers.set(trigger, command));
+    command.triggers.forEach((trigger) => this.triggers.set(trigger, command));
   }
 }

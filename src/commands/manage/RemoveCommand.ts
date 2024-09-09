@@ -1,16 +1,16 @@
-import { Message } from 'discord.js';
-import fs from 'fs';
+import fs from "node:fs";
+import type { Message } from "discord.js";
 
-import * as sounds from '~/util/db/Sounds';
-import localize from '~/util/i18n/localize';
-import { existsSound, getPathForSound } from '~/util/SoundUtil';
+import { existsSound, getPathForSound } from "~/util/SoundUtil";
+import * as sounds from "~/util/db/Sounds";
+import localize from "~/util/i18n/localize";
 
-import Command from '../base/Command';
+import Command from "../base/Command";
 
 export class RemoveCommand extends Command {
-  public readonly triggers = ['remove'];
+  public readonly triggers = ["remove"];
   public readonly numberOfParameters = 1;
-  public readonly usage = 'Usage: !remove <sound>';
+  public readonly usage = "Usage: !remove <sound>";
   public readonly elevated = true;
 
   public run(message: Message, params: string[]) {
@@ -19,9 +19,10 @@ export class RemoveCommand extends Command {
       return;
     }
 
+    // biome-ignore lint/style/noNonNullAssertion: verified params above
     const sound = params.shift()!;
     if (!existsSound(sound)) {
-      message.channel.send(localize.t('commands.remove.notFound', { sound }));
+      message.channel.send(localize.t("commands.remove.notFound", { sound }));
       return;
     }
 
@@ -29,6 +30,6 @@ export class RemoveCommand extends Command {
     fs.unlinkSync(file);
     sounds.remove(sound);
 
-    message.channel.send(localize.t('commands.remove.success', { sound }));
+    message.channel.send(localize.t("commands.remove.success", { sound }));
   }
 }

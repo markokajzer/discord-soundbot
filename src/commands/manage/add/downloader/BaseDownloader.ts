@@ -1,9 +1,9 @@
-import { Message } from 'discord.js';
+import type { Message } from "discord.js";
 
-import { FormatError, ValidationError } from '~/util/Errors';
-import localize from '~/util/i18n/localize';
+import { FormatError, ValidationError } from "~/util/Errors";
+import localize from "~/util/i18n/localize";
 
-import BaseValidator from '../validator/BaseValidator';
+import type BaseValidator from "../validator/BaseValidator";
 
 const HANDLED_ERRORS = [FormatError.name, ValidationError.name];
 
@@ -19,6 +19,6 @@ export default abstract class BaseDownloader {
     }
 
     console.error(error);
-    message.channel.send(localize.t('errors.unspecific'));
+    message.channel.send(localize.t("errors.unspecific"));
   }
 }

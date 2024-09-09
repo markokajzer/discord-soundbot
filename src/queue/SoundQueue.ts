@@ -1,23 +1,23 @@
 import {
-  AudioPlayer,
-  AudioPlayerState,
+  type AudioPlayer,
+  type AudioPlayerState,
   AudioPlayerStatus,
+  type DiscordGatewayAdapterCreator,
+  type VoiceConnection,
+  VoiceConnectionStatus,
   createAudioPlayer,
   createAudioResource,
-  DiscordGatewayAdapterCreator,
   joinVoiceChannel,
-  VoiceConnection,
-  VoiceConnectionStatus
-} from '@discordjs/voice';
-import { Message } from 'discord.js';
+} from "@discordjs/voice";
+import { DiscordAPIError, type Message } from "discord.js";
 
-import Config from '~/config/Config';
-import * as sounds from '~/util/db/Sounds';
-import localize from '~/util/i18n/localize';
-import { getPathForSound } from '~/util/SoundUtil';
+import type Config from "~/config/Config";
+import { getPathForSound } from "~/util/SoundUtil";
+import * as sounds from "~/util/db/Sounds";
+import localize from "~/util/i18n/localize";
 
-import ChannelTimeout from './ChannelTimeout';
-import QueueItem from './QueueItem';
+import ChannelTimeout from "./ChannelTimeout";
+import QueueItem from "./QueueItem";
 
 export default class SoundQueue {
   private readonly config: Config;
@@ -43,7 +43,7 @@ export default class SoundQueue {
   }
 
   public next() {
-    this.player.emit('next');
+    this.player.emit("next");
   }
 
   public clear() {
@@ -64,60 +64,65 @@ export default class SoundQueue {
     if (this.isEmpty()) return;
 
     let deleteableMessages = this.queue
-      .map(item => item.message)
+      .map((item) => item.message)
       .filter((message): message is Message => !!message);
 
     const { message: currentMessage } = this.currentSound;
     if (currentMessage) {
-      deleteableMessages = deleteableMessages.filter(msg => msg.id !== currentMessage.id);
+      deleteableMessages = deleteableMessages.filter((msg) => msg.id !== currentMessage.id);
     }
 
     // Do not try to delete the same sound multiple times (!combo)
-    Array.from(new Set(deleteableMessages)).forEach(message => message.delete());
+    Array.from(new Set(deleteableMessages)).forEach((message) => message.delete());
   }
 
   private async playNext() {
-    this.currentSound = this.queue.shift()!;
+    this.currentSound = this.queue.shift();
+    if (!this.currentSound) throw new Error("Queue was empty");
 
     try {
       const connection = joinVoiceChannel({
         adapterCreator: this.currentSound.channel.guild
           .voiceAdapterCreator as DiscordGatewayAdapterCreator,
         channelId: this.currentSound.channel.id,
-        guildId: this.currentSound.channel.guild.id
+        guildId: this.currentSound.channel.guild.id,
       });
 
       await this.playSound(connection);
       this.handleFinishedPlayingSound(connection);
-    } catch (error: any) {
+    } catch (error) {
       this.handleError(error);
     }
   }
 
   private playSound(connection: VoiceConnection): Promise<void> {
-    const sound = getPathForSound(this.currentSound!.name);
+    if (!this.currentSound) throw Error("No currentSound in context");
+
+    const sound = getPathForSound(this.currentSound.name);
     const resource = createAudioResource(sound);
 
     connection.subscribe(this.player);
 
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       this.player.play(resource);
-      this.player.on('stateChange', (oldState, newState) => {
+      this.player.on("stateChange", (oldState, newState) => {
         // TODO: check if this runs multiple times when looping / playing multiple sounds
         if (this.becameIdleAfterPlaying(oldState, newState)) resolve();
       });
       // @ts-expect-error
-      this.player.on('next', resolve);
+      this.player.on("next", resolve);
 
       // TODO: Forgot why we need this. Investigate.
-      connection.on('stateChange', (_, newState) => {
+      connection.on("stateChange", (_, newState) => {
         if (newState.status === VoiceConnectionStatus.Disconnected) resolve();
       });
     });
   }
 
   private handleFinishedPlayingSound(connection: VoiceConnection) {
-    const { name, channel, message, count } = this.currentSound!;
+    if (!this.currentSound) throw Error("No currentSound in context");
+
+    const { name, channel, message, count } = this.currentSound;
     sounds.incrementCount(name);
 
     if (count > 1) {
@@ -141,13 +146,17 @@ export default class SoundQueue {
     if (this.config.timeout > 0) ChannelTimeout.start(connection);
   }
 
-  private async handleError(error: { code: string }) {
-    if (error.code === 'VOICE_JOIN_CHANNEL' && this.currentSound?.message) {
-      await this.currentSound.message.channel.send(localize.t('errors.permissions'));
+  private async handleError(error: unknown) {
+    if (
+      error instanceof DiscordAPIError &&
+      error.code === "VOICE_JOIN_CHANNEL" &&
+      this.currentSound?.message
+    ) {
+      await this.currentSound.message.channel.send(localize.t("errors.permissions"));
       process.exit();
     }
 
-    console.error('Error occured!', '\n', error);
+    console.error("Error occured!", "\n", error);
 
     this.currentSound = null;
   }
@@ -172,7 +181,7 @@ export default class SoundQueue {
   }
 
   private isLastSoundFromCurrentMessage(message: Message) {
-    return !this.queue.some(item => !!item.message && item.message.id === message.id);
+    return !this.queue.some((item) => !!item.message && item.message.id === message.id);
   }
 
   private becameIdleAfterPlaying(oldState: AudioPlayerState, newState: AudioPlayerState) {
