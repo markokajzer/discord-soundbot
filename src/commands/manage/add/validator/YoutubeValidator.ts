@@ -1,13 +1,13 @@
 /* eslint-disable max-classes-per-file */
 
-import URL from 'url';
+import URL from "node:url";
 
-import { InvalidUrlError } from '~/util/Errors';
+import { InvalidUrlError } from "~/util/Errors";
 
-import BaseValidator from './BaseValidator';
+import BaseValidator from "./BaseValidator";
 
 export default class YoutubeValidator extends BaseValidator {
-  private readonly VALID_HOSTS = ['www.youtube.com', 'youtu.be'];
+  private readonly VALID_HOSTS = ["www.youtube.com", "youtu.be"];
 
   public validate(name: string, url: string) {
     this.validateName(name);

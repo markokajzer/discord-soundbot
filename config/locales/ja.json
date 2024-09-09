@@ -1,110 +1,110 @@
 {
-    "commands": {
-        "add": {
-            "success": "{name} が追加されました。"
-        },
-        "avatar": {
-            "errors": {
-                "noAvatar": "アバターが設定されていません。`{prefix}avatar`をつけて画像ファイルを送信することで、アバターを変更することができます。",
-                "tooFast": "アバターの変更が早すぎます。あとでもう一度お試しください。"
-            },
-            "url": "現在のアバター: {url}"
-        },
-        "config": {
-            "notFound": "Config にはオプション `{field}` はありません。",
-            "success": "`{field}` は `{value}` に設定されています。"
-        },
-        "ignore": {
-            "add": "{user} からのコマンドを無視するように設定しました。",
-            "remove": "{user} からのコマンドを無視しないように設定しました。"
-        },
-        "lang": {
-            "title": "利用可能な言語   💬"
-        },
-        "remove": {
-            "notFound": "{sound} が見つかりませんでした。",
-            "success": "{sound} が削除されました。"
-        },
-        "rename": {
-            "notFound": "{oldName} が見つかりませんでした。",
-            "success": "{oldName} の名前が {newName} に変更されました。"
-        },
-        "search": {
-            "notFound": "音声が見つかりません。"
-        },
-        "sounds": {
-            "notFound": "音声が追加されていません。 {prefix}add コマンドを使って、音声ファイルを追加してください。"
-        },
-        "tag": {
-            "found": "{sound} のタグ: [{tags}]",
-            "notFound": "{sound} が見つかりませんでした。"
-        }
+  "commands": {
+    "add": {
+      "success": "{name} が追加されました。"
     },
-    "errors": {
-        "format": {
-            "url": "💥🚋 URLは無効です。"
-        },
-        "sounds": {
-            "exists": "{sound} はすでに存在しています。"
-        },
-        "unspecific": "💥 エラーが発生しました。"
+    "avatar": {
+      "errors": {
+        "noAvatar": "アバターが設定されていません。`{prefix}avatar`をつけて画像ファイルを送信することで、アバターを変更することができます。",
+        "tooFast": "アバターの変更が早すぎます。あとでもう一度お試しください。"
+      },
+      "url": "現在のアバター: {url}"
     },
-    "help": {
-        "avatar": "Botのアイコンを設定、表示、または削除します",
-        "commands": "このメッセージを表示します",
-        "config": "構成を変更します",
-        "headline": "`{prefix}`をコマンドの最初につけることで使用できます:",
-        "ignore": "指定したユーザーからのコマンドを無視するようにします",
-        "lastadded": "最後に追加された音声を表示します",
-        "mostplayed": "最も使われた音声を表示します",
-        "sounds": {
-            "add": "添付ファイルをBotに追加します",
-            "all": "追加されている音声の一覧を表示します",
-            "combo": "連続して音を鳴らす",
-            "download": "指定された音声のファイルを送信します",
-            "play": "指定された音声を再生します",
-            "random": "ランダムで音声を再生します",
-            "remove": "指定された音声を削除します",
-            "rename": "指定された音声の名前を変更します",
-            "stop": "再生中の音声を止めて、キューをクリアします"
-        },
-        "tags": {
-            "add": "音声にタグを追加します",
-            "all": "タグのついた音声の一覧を表示します",
-            "clear": "指定された音声のタグを全て削除します",
-            "list": "指定された音声のタグを表示します",
-            "search": "指定されたタグのついた音声の一覧を表示します"
-        },
-        "unignore": "指定したユーザーからのコマンドを無視しないようにします",
-        "welcome": "ウェルカムメッセージを表示する"
+    "config": {
+      "notFound": "Config にはオプション `{field}` はありません。",
+      "success": "`{field}` は `{value}` に設定されています。"
     },
-    "helpers": {
-        "messageChunker": {
-            "page": "```{current} / {total} ページ```"
-        },
-        "userFinder": {
-            "error": "ユーザーが見つかりませんでした。"
-        },
-        "voiceChannelFinder": {
-            "error": "チャンネルに接続してください。"
-        }
+    "ignore": {
+      "add": "{user} からのコマンドを無視するように設定しました。",
+      "remove": "{user} からのコマンドを無視しないように設定しました。"
     },
-    "language": {
-        "de": "ドイツ人",
-        "en": "英語",
-        "es": "スペイン語",
-        "fr": "フランス語",
-        "hu": "ハンガリー語",
-        "it": "イタリアの",
-        "ja": "日本人",
-        "nl": "オランダの"
+    "lang": {
+      "title": "利用可能な言語   💬"
     },
-    "url": "Botを招待するには、以下のリンクを開いてください。\nhttps://discordapp.com/oauth2/authorize?client_id={clientId}&scope=bot",
-    "validation": {
-        "attachment": {
-            "extension": "音声ファイルの拡張子が対応していません。対応している拡張子は [{extensions}] です。",
-            "size": "ファイルが大きすぎます。"
-        }
+    "remove": {
+      "notFound": "{sound} が見つかりませんでした。",
+      "success": "{sound} が削除されました。"
     },
-    "welcome": "**追加してくれてありがとうございます** 🙏\n- コマンドのプレフィックスは`{prefix}`です。 コンフィグを設定することで、プレフィックスを変更できます。コンフィグの設定はリンク先を参照してください: **<https://github.com/markokajzer/discord-soundbot/wiki/Configuration>**.\n- `{prefix}help`コマンドでコマンドの一覧を見ることができます。\n- 早速、音声を追加してみましょう。音声ファイルを`{prefix}add`というメッセージをつけて送信すると追加できます。\n- サポートが必要な場合は、公式サーバーに参加してください: **<https://discordapp.com/invite/JBw2BNx>**."
+    "rename": {
+      "notFound": "{oldName} が見つかりませんでした。",
+      "success": "{oldName} の名前が {newName} に変更されました。"
+    },
+    "search": {
+      "notFound": "音声が見つかりません。"
+    },
+    "sounds": {
+      "notFound": "音声が追加されていません。 {prefix}add コマンドを使って、音声ファイルを追加してください。"
+    },
+    "tag": {
+      "found": "{sound} のタグ: [{tags}]",
+      "notFound": "{sound} が見つかりませんでした。"
+    }
+  },
+  "errors": {
+    "format": {
+      "url": "💥🚋 URLは無効です。"
+    },
+    "sounds": {
+      "exists": "{sound} はすでに存在しています。"
+    },
+    "unspecific": "💥 エラーが発生しました。"
+  },
+  "help": {
+    "avatar": "Botのアイコンを設定、表示、または削除します",
+    "commands": "このメッセージを表示します",
+    "config": "構成を変更します",
+    "headline": "`{prefix}`をコマンドの最初につけることで使用できます:",
+    "ignore": "指定したユーザーからのコマンドを無視するようにします",
+    "lastadded": "最後に追加された音声を表示します",
+    "mostplayed": "最も使われた音声を表示します",
+    "sounds": {
+      "add": "添付ファイルをBotに追加します",
+      "all": "追加されている音声の一覧を表示します",
+      "combo": "連続して音を鳴らす",
+      "download": "指定された音声のファイルを送信します",
+      "play": "指定された音声を再生します",
+      "random": "ランダムで音声を再生します",
+      "remove": "指定された音声を削除します",
+      "rename": "指定された音声の名前を変更します",
+      "stop": "再生中の音声を止めて、キューをクリアします"
+    },
+    "tags": {
+      "add": "音声にタグを追加します",
+      "all": "タグのついた音声の一覧を表示します",
+      "clear": "指定された音声のタグを全て削除します",
+      "list": "指定された音声のタグを表示します",
+      "search": "指定されたタグのついた音声の一覧を表示します"
+    },
+    "unignore": "指定したユーザーからのコマンドを無視しないようにします",
+    "welcome": "ウェルカムメッセージを表示する"
+  },
+  "helpers": {
+    "messageChunker": {
+      "page": "```{current} / {total} ページ```"
+    },
+    "userFinder": {
+      "error": "ユーザーが見つかりませんでした。"
+    },
+    "voiceChannelFinder": {
+      "error": "チャンネルに接続してください。"
+    }
+  },
+  "language": {
+    "de": "ドイツ人",
+    "en": "英語",
+    "es": "スペイン語",
+    "fr": "フランス語",
+    "hu": "ハンガリー語",
+    "it": "イタリアの",
+    "ja": "日本人",
+    "nl": "オランダの"
+  },
+  "url": "Botを招待するには、以下のリンクを開いてください。\nhttps://discordapp.com/oauth2/authorize?client_id={clientId}&scope=bot",
+  "validation": {
+    "attachment": {
+      "extension": "音声ファイルの拡張子が対応していません。対応している拡張子は [{extensions}] です。",
+      "size": "ファイルが大きすぎます。"
+    }
+  },
+  "welcome": "**追加してくれてありがとうございます** 🙏\n- コマンドのプレフィックスは`{prefix}`です。 コンフィグを設定することで、プレフィックスを変更できます。コンフィグの設定はリンク先を参照してください: **<https://github.com/markokajzer/discord-soundbot/wiki/Configuration>**.\n- `{prefix}help`コマンドでコマンドの一覧を見ることができます。\n- 早速、音声を追加してみましょう。音声ファイルを`{prefix}add`というメッセージをつけて送信すると追加できます。\n- サポートが必要な場合は、公式サーバーに参加してください: **<https://discordapp.com/invite/JBw2BNx>**."
 }

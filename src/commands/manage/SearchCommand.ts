@@ -1,15 +1,15 @@
-import { Message } from 'discord.js';
+import type { Message } from "discord.js";
 
-import * as sounds from '~/util/db/Sounds';
-import localize from '~/util/i18n/localize';
-import { getSounds } from '~/util/SoundUtil';
+import { getSounds } from "~/util/SoundUtil";
+import * as sounds from "~/util/db/Sounds";
+import localize from "~/util/i18n/localize";
 
-import Command from '../base/Command';
+import Command from "../base/Command";
 
 export class SearchCommand extends Command {
-  public readonly triggers = ['search'];
+  public readonly triggers = ["search"];
   public readonly numberOfParameters = 1;
-  public readonly usage = 'Usage: !search <tag>';
+  public readonly usage = "Usage: !search <tag>";
 
   public run(message: Message, params: string[]) {
     if (params.length !== this.numberOfParameters) {
@@ -17,16 +17,17 @@ export class SearchCommand extends Command {
       return;
     }
 
+    // biome-ignore lint/style/noNonNullAssertion: verified params above
     const tag = params.shift()!;
-    const results = getSounds().filter(sound => sound.includes(tag));
-    sounds.withTag(tag).forEach(sound => results.push(sound));
+    const results = getSounds().filter((sound) => sound.includes(tag));
+    sounds.withTag(tag).forEach((sound) => results.push(sound));
 
     if (!results.length) {
-      message.author.send(localize.t('commands.search.notFound'));
+      message.author.send(localize.t("commands.search.notFound"));
       return;
     }
 
     const uniqueResults = [...new Set(results)].sort();
-    message.author.send(uniqueResults.join('\n'));
+    message.author.send(uniqueResults.join("\n"));
   }
 }

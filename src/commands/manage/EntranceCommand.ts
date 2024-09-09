@@ -1,12 +1,12 @@
-import { Message } from 'discord.js';
+import type { Message } from "discord.js";
 
-import * as entrances from '~/util/db/Entrances';
-import { getSounds } from '~/util/SoundUtil';
+import * as entrances from "~/util/db/Entrances";
+import { getSounds } from "~/util/SoundUtil";
 
-import Command from '../base/Command';
+import Command from "../base/Command";
 
 export class EntranceCommand extends Command {
-  public readonly triggers = ['entrance'];
+  public readonly triggers = ["entrance"];
 
   public run(message: Message, params: string[]) {
     const [entranceSound] = params;

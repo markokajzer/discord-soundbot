@@ -1,6 +1,6 @@
-import { ChannelType, Message } from 'discord.js';
+import { ChannelType, Message } from "discord.js";
 
-declare module 'discord.js' {
+declare module "discord.js" {
   // NOTE: Monkeypatching
   // eslint-disable-next-line no-shadow
   interface Message {

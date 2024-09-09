@@ -1,23 +1,23 @@
-import Config from '~/config/Config';
-import SoundQueue from '~/queue/SoundQueue';
+import Config from "~/config/Config";
+import SoundQueue from "~/queue/SoundQueue";
 
-import CommandCollection from '../bot/CommandCollection';
-import MessageHandler from '../bot/MessageHandler';
-import SoundBot from '../bot/SoundBot';
+import CommandCollection from "../bot/CommandCollection";
+import MessageHandler from "../bot/MessageHandler";
+import SoundBot from "../bot/SoundBot";
 import {
   AvatarCommand,
   ConfigCommand,
   IgnoreCommand,
   LanguageCommand,
-  UnignoreCommand
-} from '../commands/config';
+  UnignoreCommand,
+} from "../commands/config";
 import {
   HelpCommand,
   LastAddedCommand,
   MostPlayedCommand,
   PingCommand,
-  WelcomeCommand
-} from '../commands/help';
+  WelcomeCommand,
+} from "../commands/help";
 import {
   AddCommand,
   DownloadCommand,
@@ -30,20 +30,20 @@ import {
   SoundsCommand,
   StopCommand,
   TagCommand,
-  TagsCommand
-} from '../commands/manage';
-import AttachmentDownloader from '../commands/manage/add/downloader/AttachmentDownloader';
-import YoutubeDownloader from '../commands/manage/add/downloader/YoutubeDownloader';
-import AttachmentValidator from '../commands/manage/add/validator/AttachmentValidator';
-import YoutubeValidator from '../commands/manage/add/validator/YoutubeValidator';
+  TagsCommand,
+} from "../commands/manage";
+import AttachmentDownloader from "../commands/manage/add/downloader/AttachmentDownloader";
+import YoutubeDownloader from "../commands/manage/add/downloader/YoutubeDownloader";
+import AttachmentValidator from "../commands/manage/add/validator/AttachmentValidator";
+import YoutubeValidator from "../commands/manage/add/validator/YoutubeValidator";
 import {
   ComboCommand,
   LoopCommand,
   NextCommand,
   RandomCommand,
   SkipCommand,
-  SoundCommand
-} from '../commands/sound';
+  SoundCommand,
+} from "../commands/sound";
 
 export const config = new Config();
 const queue = new SoundQueue(config);
@@ -92,7 +92,7 @@ const commands = [
   new ConfigCommand(config),
   new LanguageCommand(config),
   new IgnoreCommand(),
-  new UnignoreCommand()
+  new UnignoreCommand(),
 ];
 
 const commandCollection = new CommandCollection(commands);
@@ -107,5 +107,5 @@ interface SoundBotContainer {
 
 export default {
   config,
-  soundBot
+  soundBot,
 } as SoundBotContainer;

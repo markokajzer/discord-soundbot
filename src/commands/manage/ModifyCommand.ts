@@ -1,22 +1,22 @@
-import { Message } from 'discord.js';
-import ffmpeg from 'fluent-ffmpeg';
-import fs from 'fs';
-import util from 'util';
+import fs from "node:fs";
+import util from "node:util";
+import type { Message } from "discord.js";
+import ffmpeg from "fluent-ffmpeg";
 
-import { FormatError } from '~/util/Errors';
-import getSecondsFromTime from '~/util/getSecondsFromTime';
-import localize from '~/util/i18n/localize';
-import { existsSound, getExtensionForSound } from '~/util/SoundUtil';
+import { FormatError } from "~/util/Errors";
+import { existsSound, getExtensionForSound } from "~/util/SoundUtil";
+import getSecondsFromTime from "~/util/getSecondsFromTime";
+import localize from "~/util/i18n/localize";
 
-import Command from '../base/Command';
-import ErrorParams from './modify/ErrorParams';
-import FileInfo from './modify/FileInfo';
-import MODIFIER_OPTIONS from './modify/ModifierOptions';
+import Command from "../base/Command";
+import type ErrorParams from "./modify/ErrorParams";
+import type FileInfo from "./modify/FileInfo";
+import MODIFIER_OPTIONS from "./modify/ModifierOptions";
 
 const rename = util.promisify(fs.rename);
 
 export class ModifyCommand extends Command {
-  public readonly triggers = ['modify', 'change'];
+  public readonly triggers = ["modify", "change"];
 
   public async run(message: Message, params: string[]) {
     const [sound, modifier, ...commandParams] = params;
@@ -24,7 +24,7 @@ export class ModifyCommand extends Command {
 
     const options = MODIFIER_OPTIONS[modifier];
     if (!options) {
-      message.channel.send(localize.t('commands.modify.notFound', { modifier }));
+      message.channel.send(localize.t("commands.modify.notFound", { modifier }));
       return;
     }
 
@@ -41,7 +41,7 @@ export class ModifyCommand extends Command {
     try {
       await this.performModification(fileInfo, modifier, commandParams);
       await this.replace(fileInfo);
-      message.channel.send(localize.t('commands.modify.success', { modifier, sound }));
+      message.channel.send(localize.t("commands.modify.success", { modifier, sound }));
     } catch (error) {
       this.handleError(message, error as Error, { modifier, sound });
     }
@@ -54,9 +54,9 @@ export class ModifyCommand extends Command {
     params: string[]
   ): Promise<void> {
     switch (modifier) {
-      case 'clip':
+      case "clip":
         return this.clipSound(file, ...params);
-      case 'volume':
+      case "volume":
         return this.modifyVolume(file, ...params);
       default:
         return Promise.reject();
@@ -66,18 +66,18 @@ export class ModifyCommand extends Command {
   private modifyVolume({ currentFile, tempFile }: FileInfo, ...params: string[]): Promise<void> {
     const [value] = params;
     const ffmpegCommand = ffmpeg(currentFile)
-      .audioFilters([{ filter: 'volume', options: value }])
+      .audioFilters([{ filter: "volume", options: value }])
       .output(tempFile);
 
     return new Promise((resolve, reject) => {
-      ffmpegCommand.on('end', resolve).on('error', reject).run();
+      ffmpegCommand.on("end", resolve).on("error", reject).run();
     });
   }
 
   private clipSound({ currentFile, tempFile }: FileInfo, ...params: string[]): Promise<void> {
     const [startTime, endTime] = params;
 
-    // NOTE: We checked params already, so start is definitely here
+    // biome-ignore lint/style/noNonNullAssertion: We checked params already, so start is definitely here
     const start = getSecondsFromTime(startTime)!;
     const end = getSecondsFromTime(endTime);
 
@@ -85,7 +85,7 @@ export class ModifyCommand extends Command {
     if (end) ffmpegCommand = ffmpegCommand.setDuration(end - start);
 
     return new Promise((resolve, reject) => {
-      ffmpegCommand.on('end', resolve).on('error', reject).run();
+      ffmpegCommand.on("end", resolve).on("error", reject).run();
     });
   }
 
@@ -109,6 +109,6 @@ export class ModifyCommand extends Command {
       return;
     }
 
-    message.channel.send(localize.t('commands.modify.error', { modifier, sound }));
+    message.channel.send(localize.t("commands.modify.error", { modifier, sound }));
   }
 }

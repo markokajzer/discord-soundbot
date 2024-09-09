@@ -1,4 +1,4 @@
-import { Message, VoiceBasedChannel } from 'discord.js';
+import type { Message, VoiceBasedChannel } from "discord.js";
 
 export default class QueueItem {
   public readonly name: string;

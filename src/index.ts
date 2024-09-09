@@ -1,10 +1,10 @@
-import Config from '~/config/Config';
-import ConfigInterface from '~/config/ConfigInterface';
-import Container from '~/util/Container';
-import localize from '~/util/i18n/localize';
+import type Config from "~/config/Config";
+import type ConfigInterface from "~/config/ConfigInterface";
+import Container from "~/util/Container";
+import localize from "~/util/i18n/localize";
 
-import SoundBot from './bot/SoundBot';
-import Command from './commands/base/Command';
+import type SoundBot from "./bot/SoundBot";
+import type Command from "./commands/base/Command";
 
 class DiscordSoundBot {
   private readonly config: Config;
@@ -19,7 +19,7 @@ class DiscordSoundBot {
 
   public start() {
     this.bot.start();
-    console.info(localize.t('url', { clientId: this.config.clientId }));
+    console.info(localize.t("url", { clientId: this.config.clientId }));
   }
 
   private initializeWith(config: ConfigInterface, commands: Command[]) {

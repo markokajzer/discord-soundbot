@@ -1,11 +1,11 @@
-import { Message } from 'discord.js';
+import type { Message } from "discord.js";
 
-import Command from '../base/Command';
+import Command from "../base/Command";
 
 export class PingCommand extends Command {
-  public readonly triggers = ['ping'];
+  public readonly triggers = ["ping"];
 
   public run(message: Message) {
-    message.channel.send('Pong!');
+    message.channel.send("Pong!");
   }
 }

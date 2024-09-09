@@ -1,7 +1,7 @@
-import lowdb from 'lowdb';
-import FileSync from 'lowdb/adapters/FileSync';
+import lowdb from "lowdb";
+import FileSync from "lowdb/adapters/FileSync";
 
-const adapter = new FileSync('db.json');
+const adapter = new FileSync("db.json");
 const connection = lowdb(adapter);
 
 connection
@@ -9,7 +9,7 @@ connection
     entrances: {},
     exits: {},
     ignoreList: [],
-    sounds: []
+    sounds: [],
   })
   .write();
 

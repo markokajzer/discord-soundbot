@@ -12,20 +12,11 @@
       "~/*": ["./src/*"]
     },
 
-    "typeRoots": [
-      "node_modules/@types",
-      "src/types"
-    ],
+    "typeRoots": ["node_modules/@types", "src/types"],
 
     "strict": true
   },
-  "include": [
-    "src/**/*",
-    "bin/**/*"
-  ],
+  "include": ["src/**/*", "bin/**/*"],
 
-  "exclude": [
-    "**/__test__",
-    "**/__mocks__"
-  ]
+  "exclude": ["**/__test__", "**/__mocks__"]
 }

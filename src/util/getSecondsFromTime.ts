@@ -1,4 +1,4 @@
-import { FormatError } from './Errors';
+import { FormatError } from "./Errors";
 
 /**
  * Parses a string of the form [[hh:]mm:]ss[.xxx]) and returns a number representing the seconds
@@ -10,14 +10,14 @@ const getSecondsFromTime = (time: Nullable<string>): Nullable<number> => {
     throw new FormatError();
   }
 
-  const [front, millis = '0'] = time.split('.');
-  const [seconds, minutes = '0', hours = '0'] = front.split(':').reverse();
+  const [front, millis = "0"] = time.split(".");
+  const [seconds, minutes = "0", hours = "0"] = front.split(":").reverse();
 
   return (
-    parseInt(hours) * 60 * 60 +
-    parseInt(minutes) * 60 +
-    parseInt(seconds) +
-    parseFloat(`0.${millis}`)
+    Number.parseInt(hours) * 60 * 60 +
+    Number.parseInt(minutes) * 60 +
+    Number.parseInt(seconds) +
+    Number.parseFloat(`0.${millis}`)
   );
 };
 

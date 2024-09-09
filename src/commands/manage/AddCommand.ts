@@ -1,11 +1,11 @@
-import { Message } from 'discord.js';
+import type { Message } from "discord.js";
 
-import Command from '../base/Command';
-import AttachmentDownloader from './add/downloader/AttachmentDownloader';
-import YoutubeDownloader from './add/downloader/YoutubeDownloader';
+import Command from "../base/Command";
+import type AttachmentDownloader from "./add/downloader/AttachmentDownloader";
+import type YoutubeDownloader from "./add/downloader/YoutubeDownloader";
 
 export class AddCommand extends Command {
-  public readonly triggers = ['add'];
+  public readonly triggers = ["add"];
   private readonly attachmentDownloader: AttachmentDownloader;
   private readonly youtubeDownloader: YoutubeDownloader;
 

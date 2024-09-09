@@ -1,6 +1,6 @@
-import SoundQueue from '~/queue/SoundQueue';
+import type SoundQueue from "~/queue/SoundQueue";
 
-import Command from './Command';
+import Command from "./Command";
 
 export default abstract class QueueCommand extends Command {
   protected readonly queue: SoundQueue;

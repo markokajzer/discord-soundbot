@@ -1,5 +1,5 @@
-import fs from 'fs';
+import fs from "node:fs";
 
-jest.mock('~/util/i18n/i18n');
+jest.mock("~/util/i18n/i18n");
 
-if (fs.existsSync('./test-db.json')) fs.unlinkSync('./test-db.json');
+if (fs.existsSync("./test-db.json")) fs.unlinkSync("./test-db.json");
