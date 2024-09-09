@@ -9,8 +9,7 @@ on:
       - main
 
 jobs:
-  lint:
-    name: Lint and Test
+  format:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,14 +20,33 @@ jobs:
           node-version: '16.x'
           cache: yarn
 
-      - name: Install dependencies
-        run: yarn install
+      - run: yarn install
+      - run: yarn format:check
 
-      - name: Check formatting
-        run: yarn format:check
+  lint:
+    runs-on: ubuntu-latest
 
-      - name: Lint
-        run: yarn lint --quiet
+    steps:
+      - uses: actions/checkout@v4
 
-      - name: Test
-        run: yarn test
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '16.x'
+          cache: yarn
+
+      - run: yarn install
+      - run: yarn lint --quiet
+
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '16.x'
+          cache: yarn
+
+      - run: yarn install
+      - run: yarn test
