@@ -53,8 +53,8 @@ When not using Docker, make sure to install **Node.js v20.0.0** or newer and **F
 #### Building manually
 
 + Clone the repository.
-+ Install the dependencies with `yarn install`.
-+ Run the bot with `yarn start`.
++ Install the dependencies with `npm install`.
++ Run the bot with `npm start`.
 
 Need details? You can find more detailed installation guides for [Unix](../../wiki/Unix) (including your Raspberry Pi), [macOS](../../wiki/macOS), and [Windows](../../wiki/Windows).
 
@@ -65,9 +65,6 @@ You can also add the bot as a project dependency to your Node project, by simply
 ```
   # For npm
   $ npm install discord-soundbot
-
-  # For yarn
-  $ yarn add discord-soundbot
 ```
 
 Start the bot.

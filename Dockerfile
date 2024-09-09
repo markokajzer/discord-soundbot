@@ -35,11 +35,11 @@ FROM builder AS build
 COPY --chown=node:node . /app
 
 # Install compile dependencies
-RUN yarn install --frozen-lockfile && \
-    yarn cache clean --force
+RUN npm install && \
+    npm cache clean --force
 
 # Build project
-RUN yarn build
+RUN npm run build
 
 ####################################################################################################
 
@@ -52,4 +52,4 @@ COPY --from=build --chown=node:node /app .
 USER node
 ENV NODE_ENV=production
 ENTRYPOINT ["/tini", "--"]
-CMD ["yarn", "serve"]
+CMD ["npm", "run", "serve"]
