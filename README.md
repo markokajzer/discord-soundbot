@@ -48,7 +48,7 @@ Check `config/config.example.json` for an example configuration and create a new
 
 ### Building
 
-When not using Docker, make sure to install **Node.js v12.0.0** or newer and **FFmpeg** for its voice functionality. You can install `ffmpeg` via your favorite package manager.
+When not using Docker, make sure to install **Node.js v20.0.0** or newer and **FFmpeg** for its voice functionality. You can install `ffmpeg` via your favorite package manager.
 
 #### Building manually
 
