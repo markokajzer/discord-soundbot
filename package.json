@@ -43,10 +43,10 @@
     "@biomejs/biome": "^2.3.8",
     "@types/fluent-ffmpeg": "2.1.16",
     "@types/i18n": "^0.13.12",
-    "@types/jest": "^29.5.0",
+    "@types/jest": "^30.0.0",
     "@types/lowdb": "1.0.15",
     "@types/node": "^24.0.0",
-    "jest": "^29.5.0",
+    "jest": "^30.2.0",
     "node-fetch": "^3.3.2",
     "ts-jest": "^29.0.5",
     "typescript": "~5.9.3"
