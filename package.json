@@ -30,7 +30,7 @@
     "fluent-ffmpeg": "^2.1.2",
     "i18n": "^0.15.3",
     "lodash": "4.17.21",
-    "lowdb": "1.0.0",
+    "lowdb": "^7.0.1",
     "module-alias": "^2.2.3",
     "ytdl-core": "^4.11.5"
   },
@@ -44,7 +44,7 @@
     "@types/fluent-ffmpeg": "2.1.16",
     "@types/i18n": "^0.13.12",
     "@types/jest": "^30.0.0",
-    "@types/lowdb": "1.0.15",
+    "@types/lodash": "^4.17.21",
     "@types/node": "^24.0.0",
     "jest": "^30.2.0",
     "node-fetch": "^3.3.2",

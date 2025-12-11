@@ -1,7 +1,7 @@
 export default class Sound {
-  public readonly name: string;
-  public readonly count: number;
-  public readonly tags: string[];
+  public name: string;
+  public count: number;
+  public tags: string[];
 
   constructor(name: string) {
     this.name = name;

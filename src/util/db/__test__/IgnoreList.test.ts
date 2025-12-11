@@ -7,7 +7,7 @@ describe("IgnoreList", () => {
   const userId = "123";
 
   beforeEach(() => {
-    connection.set("ignoreList", []).write();
+    connection.data.ignoreList = [];
   });
 
   it("adds users", () => {
@@ -17,12 +17,11 @@ describe("IgnoreList", () => {
   });
 
   it("does nothing when user already added", () => {
-    jest.spyOn(connection, "get");
+    const spy = jest.spyOn(connection, "write");
     add(userId);
     add(userId);
 
-    // NOTE: Once for checking+adding, one more for checking if exists
-    expect(connection.get).toHaveBeenCalledTimes(3);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it("removes users", () => {

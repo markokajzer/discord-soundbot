@@ -1,16 +1,12 @@
-import lowdb from "lowdb";
-import FileSync from "lowdb/adapters/FileSync";
+import { JSONFileSyncPreset } from "lowdb/node";
 
-const adapter = new FileSync("test-db.json");
-const connection = lowdb(adapter);
+const defaultData = {
+  entrances: {} as Record<string, string>,
+  exits: {} as Record<string, string>,
+  ignoreList: [] as string[],
+  sounds: [] as Array<{ name: string; count: number; tags: string[] }>,
+};
 
-connection
-  .defaults({
-    entrances: {},
-    exits: {},
-    ignoreList: [],
-    sounds: [],
-  })
-  .write();
+const db = JSONFileSyncPreset("test-db.json", defaultData);
 
-export default connection;
+export default db;

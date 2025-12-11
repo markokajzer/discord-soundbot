@@ -1,13 +1,14 @@
-import connection from "./connection";
+import db from "./connection";
 
-const table = "entrances";
-
-export const get = (userId: string) => connection.get(`${table}.${userId}`).value();
+export const get = (userId: string) => db.data.entrances[userId];
 export const exists = (userId: string) => !!get(userId);
+
 export const add = (userId: string, sound: string) => {
-  connection.set(`${table}.${userId}`, sound).write();
+  db.data.entrances[userId] = sound;
+  db.write();
 };
 
 export const remove = (userId: string) => {
-  connection.unset(`${table}.${userId}`).write();
+  delete db.data.entrances[userId];
+  db.write();
 };

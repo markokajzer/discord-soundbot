@@ -1,20 +1,18 @@
-import connection from "./connection";
+import db from "./connection";
 
-export const exists = (id: string) =>
-  !!connection
-    .get("ignoreList")
-    .find((v) => v === id)
-    .value();
+export const exists = (id: string) => db.data.ignoreList.includes(id);
 
 export const add = (id: string) => {
   if (exists(id)) return;
 
-  connection.get("ignoreList").push(id).write();
+  db.data.ignoreList.push(id);
+  db.write();
 };
 
 export const remove = (id: string) => {
-  connection
-    .get("ignoreList")
-    .remove((v) => v === id)
-    .write();
+  const index = db.data.ignoreList.indexOf(id);
+  if (index !== -1) {
+    db.data.ignoreList.splice(index, 1);
+    db.write();
+  }
 };

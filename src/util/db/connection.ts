@@ -1,5 +1,4 @@
-import lowdb from "lowdb";
-import FileSync from "lowdb/adapters/FileSync";
+import { JSONFileSyncPreset } from "lowdb/node";
 
 import type Sound from "./models/Sound";
 
@@ -10,16 +9,13 @@ interface Schema {
   sounds: Sound[];
 }
 
-const adapter = new FileSync<Schema>("db.json");
-const connection = lowdb(adapter);
+const defaultData: Schema = {
+  entrances: {},
+  exits: {},
+  ignoreList: [],
+  sounds: [],
+};
 
-connection
-  .defaults({
-    entrances: {},
-    exits: {},
-    ignoreList: [],
-    sounds: [],
-  })
-  .write();
+const db = JSONFileSyncPreset<Schema>("db.json", defaultData);
 
-export default connection;
+export default db;
