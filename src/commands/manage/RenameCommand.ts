@@ -12,7 +12,7 @@ export class RenameCommand extends Command {
   public readonly usage = "Usage: !rename <old> <new>";
   public readonly elevated = true;
 
-  public run(message: Message, params: string[]) {
+  public async run(message: Message, params: string[]) {
     if (!message.member) return;
 
     if (params.length !== this.numberOfParameters) {

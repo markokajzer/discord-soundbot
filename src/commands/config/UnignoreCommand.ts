@@ -8,7 +8,7 @@ export class UnignoreCommand extends Command {
   public readonly usage = "Usage: !unignore <user>";
   public readonly elevated = true;
 
-  public run(message: Message) {
+  public async run(message: Message) {
     const { users } = message.mentions;
     if (users.size < 1) {
       message.channel.send(this.usage);

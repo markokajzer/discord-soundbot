@@ -7,7 +7,7 @@ import chunkedMessages from "../util/chunkedMessages";
 export class SoundsCommand extends ConfigCommand {
   public readonly triggers = ["sounds"];
 
-  public run(message: Message, params: string[]) {
+  public async run(message: Message, params: string[]) {
     const sounds = getSounds();
 
     if (!sounds.length) {

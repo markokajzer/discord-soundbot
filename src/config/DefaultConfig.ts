@@ -6,7 +6,7 @@ const DEFAULT_CONFIG: ConfigInterface = {
 
   // eslint-disable-next-line sort-keys-fix/sort-keys-fix
   acceptedExtensions: [".mp3", ".wav"],
-  deleteMessages: false,
+  cleanup: "sounds",
   elevatedRoles: [],
   game: "SoundBoard",
   language: "en",

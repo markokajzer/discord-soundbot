@@ -12,7 +12,7 @@ export class RemoveCommand extends Command {
   public readonly usage = "Usage: !remove <sound>";
   public readonly elevated = true;
 
-  public run(message: Message, params: string[]) {
+  public async run(message: Message, params: string[]) {
     if (params.length !== this.numberOfParameters) {
       message.channel.send(this.usage);
       return;

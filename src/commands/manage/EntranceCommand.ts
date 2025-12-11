@@ -6,7 +6,7 @@ import Command from "../base/Command";
 export class EntranceCommand extends Command {
   public readonly triggers = ["entrance"];
 
-  public run(message: Message, params: string[]) {
+  public async run(message: Message, params: string[]) {
     const [entranceSound] = params;
     if (!entranceSound) {
       entrances.remove(message.author.id);

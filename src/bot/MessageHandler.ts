@@ -34,7 +34,7 @@ export default class MessageHandler {
     return true;
   }
 
-  private execute(message: Message) {
+  private async execute(message: Message) {
     const [command, ...params] = message.content.split(" ");
     const commandToRun = this.commands.get(command);
 
@@ -43,6 +43,8 @@ export default class MessageHandler {
       return;
     }
 
-    commandToRun.run(message, params);
+    await commandToRun.run(message, params);
+
+    if (config.cleanup === "all" && message.deletable) message.delete();
   }
 }

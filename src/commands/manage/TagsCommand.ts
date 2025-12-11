@@ -7,7 +7,7 @@ import chunkedMessages from "../util/chunkedMessages";
 export class TagsCommand extends Command {
   public readonly triggers = ["tags"];
 
-  public run(message: Message, params: string[]) {
+  public async run(message: Message, params: string[]) {
     const sounds = getSounds();
     const soundsWithTags = this.formattedMessage(sounds);
 

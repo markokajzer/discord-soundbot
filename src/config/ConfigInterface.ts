@@ -9,7 +9,7 @@ export default interface ConfigInterface {
   prefix?: string;
   acceptedExtensions?: string[];
   maximumFileSize?: number;
-  deleteMessages?: boolean;
+  cleanup?: "none" | "sounds" | "all";
   stayInChannel?: boolean;
   timeout?: number;
   game?: string;

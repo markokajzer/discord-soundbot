@@ -9,12 +9,12 @@ export class RandomCommand extends QueueCommand {
   public readonly triggers = ["random"];
   public readonly numberOfParameters = 1;
 
-  public run(message: Message, params: string[]) {
+  public async run(message: Message, params: string[]) {
     if (!message.member) return;
 
     const { channel: voiceChannel } = message.member.voice;
     if (!voiceChannel) {
-      message.reply(localize.t("helpers.voiceChannelFinder.error"));
+      await message.reply(localize.t("helpers.voiceChannelFinder.error"));
       return;
     }
 

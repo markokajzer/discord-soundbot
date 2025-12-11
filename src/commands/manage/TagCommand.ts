@@ -10,7 +10,7 @@ export class TagCommand extends Command {
   public readonly usage = "Usage: !tag <sound> [<tag> ... <tagN> | clear]";
   public readonly elevated = true;
 
-  public run(message: Message, params: string[]) {
+  public async run(message: Message, params: string[]) {
     if (params.length < this.numberOfParameters) {
       message.channel.send(this.usage);
       return;

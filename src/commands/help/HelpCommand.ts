@@ -6,7 +6,7 @@ import chunkedMessages from "../util/chunkedMessages";
 export class HelpCommand extends ConfigCommand {
   public readonly triggers = ["commands", "help"];
 
-  public run(message: Message) {
+  public async run(message: Message) {
     const helpMessage = this.getFormattedListOfCommands();
     const chunkedHelpMessage = chunkedMessages(helpMessage);
 

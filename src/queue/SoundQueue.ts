@@ -48,7 +48,7 @@ export default class SoundQueue {
 
   public clear() {
     if (!this.currentSound) return;
-    if (this.config.deleteMessages) this.deleteMessages();
+    if (this.config.cleanup !== "none") this.deleteMessages();
 
     // Prevent further looping
     this.currentSound.count = 0;
@@ -162,7 +162,7 @@ export default class SoundQueue {
   }
 
   private deleteCurrentMessage() {
-    if (!this.config.deleteMessages) return;
+    if (this.config.cleanup === "none") return;
     if (!this.currentSound || !this.currentSound.message) return;
     if (!this.isLastSoundFromCurrentMessage(this.currentSound.message)) return;
     if (this.wasMessageAlreadyDeleted(this.currentSound.message)) return;

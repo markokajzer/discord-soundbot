@@ -1,3 +1,11 @@
+## Next (unreleased)
+
++ Update all dependencies
++ Replaced `deleteMessages` config option with `cleanup`
+  + `none` -> same as `deleteMessages: false`
+  + `sounds` -> same as `deleteMessages: true`
+  + `all` -> delete sound messages as well as all others
+
 ## 3.0.0 (2023-03-26)
 
 **Breaking changes**

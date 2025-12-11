@@ -27,8 +27,8 @@ describe("Default config", () => {
     expect(testedConfig.maximumFileSize).toBe(1000000);
   });
 
-  test("Default setting to delete messages is false", () => {
-    expect(testedConfig.deleteMessages).toBe(false);
+  test("Default setting to cleanup is none", () => {
+    expect(testedConfig.cleanup).toEqual("none");
   });
 
   test("Default setting to stay in the channel is false", () => {
@@ -64,22 +64,22 @@ describe("Setting config from Environment Variables", () => {
   });
 
   test("You can set boolean config values to `true` from the environment", () => {
-    process.env.DELETE_MESSAGES = "tRuE";
+    process.env.CLEANUP = "all";
     process.env.STAY_IN_CHANNEL = "TruE";
 
     const testedConfig = new Config();
 
-    expect(testedConfig.deleteMessages).toBe(true);
+    expect(testedConfig.cleanup).toEqual("all");
     expect(testedConfig.stayInChannel).toBe(true);
   });
 
   test("You can set boolean config values to `false` from the environment", () => {
-    process.env.DELETE_MESSAGES = "false";
+    process.env.CLEANUP = "sounds";
     process.env.STAY_IN_CHANNEL = "neen";
 
     const testedConfig = new Config();
 
-    expect(testedConfig.deleteMessages).toBe(false);
+    expect(testedConfig.cleanup).toEqual("sounds");
     expect(testedConfig.stayInChannel).toBe(false);
   });
 

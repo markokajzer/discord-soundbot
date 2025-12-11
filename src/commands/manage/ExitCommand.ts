@@ -6,7 +6,7 @@ import Command from "../base/Command";
 export class ExitCommand extends Command {
   public readonly triggers = ["exit"];
 
-  public run(message: Message, params: string[]) {
+  public async run(message: Message, params: string[]) {
     const [exitSound] = params;
     if (!exitSound) {
       exits.remove(message.author.id);

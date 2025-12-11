@@ -18,7 +18,7 @@ const FLAGS: Dictionary<string> = {
 export class LanguageCommand extends ConfigCommand {
   public readonly triggers = ["lang"];
 
-  public run(message: Message, params: string[]) {
+  public async run(message: Message, params: string[]) {
     const [chosenLanguage] = params;
     const language =
       chosenLanguage &&

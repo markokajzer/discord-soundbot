@@ -8,7 +8,7 @@ export class IgnoreCommand extends Command {
   public readonly usage = "Usage: !ignore <user>";
   public readonly elevated = true;
 
-  public run(message: Message) {
+  public async run(message: Message) {
     if (!message.channel.isSendable()) return;
 
     const { users } = message.mentions;

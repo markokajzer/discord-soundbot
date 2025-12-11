@@ -6,7 +6,7 @@ import Command from "../base/Command";
 export class MostPlayedCommand extends Command {
   public readonly triggers = ["mostplayed"];
 
-  public run(message: Message) {
+  public async run(message: Message) {
     const formattedMessage = this.getFormattedMessage();
     if (!formattedMessage) return;
 

@@ -13,7 +13,7 @@ export default class Config implements ConfigInterface {
   public prefix!: string;
   public acceptedExtensions!: string[];
   public maximumFileSize!: number;
-  public deleteMessages!: boolean;
+  public cleanup!: "none" | "sounds" | "all";
   public stayInChannel!: boolean;
   public timeout!: number;
   public game!: string;
@@ -25,7 +25,7 @@ export default class Config implements ConfigInterface {
     "prefix",
     "acceptedExtensions",
     "maximumFileSize",
-    "deleteMessages",
+    "cleanup",
     "stayInChannel",
     "timeout",
     "game",

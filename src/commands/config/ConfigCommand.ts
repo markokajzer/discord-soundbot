@@ -17,7 +17,7 @@ export class ConfigCommand extends BaseConfigCommand implements UserCommand {
     this.user = user;
   }
 
-  public run(message: Message, params: string[]) {
+  public async run(message: Message, params: string[]) {
     if (params.length < this.numberOfParameters) {
       message.channel.send(this.usage);
       return;

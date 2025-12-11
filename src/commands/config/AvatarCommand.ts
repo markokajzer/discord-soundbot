@@ -17,7 +17,7 @@ export class AvatarCommand extends ConfigCommand implements UserCommand {
     this.user = user;
   }
 
-  public run(message: Message, params: string[]) {
+  public async run(message: Message, params: string[]) {
     if (params.length === this.numberOfParameters && params[0] === "remove") {
       this.user.setAvatar("");
       return;

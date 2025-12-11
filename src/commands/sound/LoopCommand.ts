@@ -9,7 +9,7 @@ export class LoopCommand extends QueueCommand {
   public readonly numberOfParameters = 2;
   public readonly usage = "Usage: !loop <sound> <count>";
 
-  public run(message: Message, params: string[]) {
+  public async run(message: Message, params: string[]) {
     if (!message.member) return;
 
     if (params.length > this.numberOfParameters) {
@@ -22,7 +22,7 @@ export class LoopCommand extends QueueCommand {
 
     const { channel: voiceChannel } = message.member.voice;
     if (!voiceChannel) {
-      message.reply(localize.t("helpers.voiceChannelFinder.error"));
+      await message.reply(localize.t("helpers.voiceChannelFinder.error"));
       return;
     }
 

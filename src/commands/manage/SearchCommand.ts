@@ -9,7 +9,7 @@ export class SearchCommand extends Command {
   public readonly numberOfParameters = 1;
   public readonly usage = "Usage: !search <tag>";
 
-  public run(message: Message, params: string[]) {
+  public async run(message: Message, params: string[]) {
     if (params.length !== this.numberOfParameters) {
       message.channel.send(this.usage);
       return;

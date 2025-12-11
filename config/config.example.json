@@ -6,7 +6,7 @@
   "prefix": "!",
   "acceptedExtensions": [".mp3", ".wav"],
   "maximumFileSize": 1000000,
-  "deleteMessages": false,
+  "cleanup": "none",
   "stayInChannel": false,
   "timeout": 10,
   "game": "SoundBoard",

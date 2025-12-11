@@ -7,7 +7,7 @@ import QueueCommand from "../base/QueueCommand";
 export class SoundCommand extends QueueCommand {
   public readonly triggers = [];
 
-  public run(message: Message) {
+  public async run(message: Message) {
     if (!message.member) return;
 
     const sound = message.content;
@@ -15,7 +15,7 @@ export class SoundCommand extends QueueCommand {
 
     const { channel: voiceChannel } = message.member.voice;
     if (!voiceChannel) {
-      message.reply(localize.t("helpers.voiceChannelFinder.error"));
+      await message.reply(localize.t("helpers.voiceChannelFinder.error"));
       return;
     }
 
