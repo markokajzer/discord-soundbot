@@ -1,5 +1,5 @@
 # Base will install runtime dependencies and configure generics
-FROM node:16-slim as base
+FROM node:24-slim as base
 
 LABEL maintainer="Marko Kajzer <markokajzer91@gmail.com>, Nico Stapelbroek <discord-soundbot@nstapelbroek.com>"
 
@@ -20,7 +20,7 @@ FROM base as builder
 
 # Install ffmpeg and other deps
 RUN apt-get -qq update > /dev/null && \
-    apt-get -qq -y install git g++ make python3.11 tar xz-utils > /dev/null && \
+    apt-get -qq -y install git g++ make python3.12 tar xz-utils > /dev/null && \
     rm -rf /var/lib/apt/lists
 RUN wget -qO /tmp/ffmpeg.tar.xz https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-$(dpkg --print-architecture)-static.tar.xz && \
     tar -x -C /usr/local/bin --strip-components 1 -f /tmp/ffmpeg.tar.xz --wildcards '*/ffmpeg' && \
