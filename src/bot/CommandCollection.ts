@@ -22,7 +22,7 @@ export default class CommandCollection {
 
   public registerUserCommands(user: ClientUser) {
     // NOTE: Filter for user commands and set their user
-    // @ts-ignore
+    // @ts-expect-error
     const userCommands: UserCommand[] = this.commands.filter((command) => !!command.setClientUser);
     userCommands.forEach((command) => command.setClientUser(user));
   }

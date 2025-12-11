@@ -40,9 +40,7 @@ export class HelpCommand extends ConfigCommand {
       `stop                                   ${localize.t("help.sounds.stop")}`,
       `leave                                  ${localize.t("help.sounds.stop")}`,
 
-      // biome-ignore lint/style/noUnusedTemplateLiteral: consistency
       `modify <sound> volume <value>`,
-      // biome-ignore lint/style/noUnusedTemplateLiteral: consistency
       `modify <sound> clip <start> <end?>`,
 
       `entrance <sound>                       ${localize.t("help.entrance.set")}`,

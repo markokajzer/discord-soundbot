@@ -1,0 +1,55 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.3.8/schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
+
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
+  },
+
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "lineWidth": 100
+  },
+
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "complexity": {
+        "noForEach": "off"
+      },
+      "correctness": {
+        // 10 is default, this is fine
+        "useParseIntRadix": "off"
+      },
+      "suspicious": {
+        // I use this all the time for shortness
+        "useIterableCallbackReturn": "off"
+      }
+    }
+  },
+
+  "javascript": {
+    "formatter": {
+      "trailingCommas": "es5"
+    }
+  },
+
+  "overrides": [
+    {
+      "includes": ["**/package.json"],
+      "formatter": {
+        "enabled": false
+      }
+    }
+  ]
+}

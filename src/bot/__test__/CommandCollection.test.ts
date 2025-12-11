@@ -31,7 +31,7 @@ describe("CommandCollection", () => {
     it("correctly registers commands", () => {
       commands.registerCommands([helpCommand]);
 
-      // @ts-ignore
+      // @ts-expect-error
       const { triggers } = commands;
 
       expect(Array.from(triggers.keys())).toEqual(["commands", "help"]);
