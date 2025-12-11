@@ -1,7 +1,5 @@
 import fs from "node:fs";
 import { URLSearchParams } from "node:url";
-// NOTE: This is only used in this lib task and is therefore not extraneous
-// eslint-disable-next-line import/no-extraneous-dependencies
 import fetch from "node-fetch";
 
 import config from "../config/poeditor.json";
