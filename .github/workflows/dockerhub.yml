@@ -26,7 +26,7 @@ jobs:
         run: |
           printenv DOCKERHUB_PASSWORD | docker login --username markokajzer --password-stdin
           docker buildx build \
-            --platform linux/amd64,linux/arm64,linux/arm/v7 \
+            --platform linux/amd64,linux/arm64 \
             --tag markokajzer/discord-soundbot:latest \
             --push \
             .
