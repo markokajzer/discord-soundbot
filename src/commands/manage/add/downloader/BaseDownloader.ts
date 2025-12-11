@@ -1,5 +1,3 @@
-import type { Message } from "discord.js";
-
 import { FormatError, ValidationError } from "~/util/Errors";
 import localize from "~/util/i18n/localize";
 

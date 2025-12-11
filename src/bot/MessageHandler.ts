@@ -1,12 +1,11 @@
 import "../discord/Message";
 
-import type { Message } from "discord.js";
+import type { Message as DiscordMessage } from "discord.js";
 
 import userHasElevatedRole from "~/commands/util/userHasElevatedRole";
 import { config } from "~/util/Container";
 import * as ignoreList from "~/util/db/IgnoreList";
 import localize from "~/util/i18n/localize";
-
 import type CommandCollection from "./CommandCollection";
 
 export default class MessageHandler {
@@ -16,7 +15,7 @@ export default class MessageHandler {
     this.commands = commands;
   }
 
-  public handle(message: Message) {
+  public handle(message: DiscordMessage) {
     if (!this.isValidMessage(message)) return;
 
     const messageToHandle = message;
@@ -25,13 +24,14 @@ export default class MessageHandler {
     this.execute(messageToHandle);
   }
 
-  private isValidMessage(message: Message) {
-    return (
-      !message.author.bot &&
-      !message.isDirectMessage() &&
-      message.hasPrefix(config.prefix) &&
-      !ignoreList.exists(message.author.id)
-    );
+  private isValidMessage(message: DiscordMessage): message is Message {
+    if (!message.channel.isSendable()) return false;
+    if (message.author.bot) return false;
+    if (message.isDirectMessage()) return false;
+    if (!message.hasPrefix(config.prefix)) return false;
+    if (ignoreList.exists(message.author.id)) return false;
+
+    return true;
   }
 
   private execute(message: Message) {

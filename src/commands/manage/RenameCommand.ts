@@ -1,4 +1,3 @@
-import type { Message } from "discord.js";
 import fs from "node:fs";
 
 import * as soundsDb from "~/util/db/Sounds";

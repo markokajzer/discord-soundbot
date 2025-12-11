@@ -1,5 +1,3 @@
-import type { Message } from "discord.js";
-
 import localize from "~/util/i18n/localize";
 import { getSounds } from "~/util/SoundUtil";
 
@@ -17,7 +15,7 @@ export class SoundsCommand extends ConfigCommand {
       return;
     }
 
-    const page = Number.parseInt(params[0]);
+    const page = Number.parseInt(params[0], 10);
     chunkedMessages(sounds, page).forEach((chunk) => message.author.send(chunk));
   }
 }

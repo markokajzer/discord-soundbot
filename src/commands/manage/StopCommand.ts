@@ -1,5 +1,3 @@
-import type { Message } from "discord.js";
-
 import QueueCommand from "../base/QueueCommand";
 
 export class StopCommand extends QueueCommand {

@@ -1,5 +1,3 @@
-import type { Message } from "discord.js";
-
 import localize from "~/util/i18n/localize";
 
 import ConfigCommand from "../base/ConfigCommand";

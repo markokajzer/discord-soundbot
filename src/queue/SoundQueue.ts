@@ -2,19 +2,19 @@ import {
   type AudioPlayer,
   type AudioPlayerState,
   AudioPlayerStatus,
-  type DiscordGatewayAdapterCreator,
-  type VoiceConnection,
-  VoiceConnectionStatus,
   createAudioPlayer,
   createAudioResource,
+  type DiscordGatewayAdapterCreator,
   joinVoiceChannel,
+  type VoiceConnection,
+  VoiceConnectionStatus,
 } from "@discordjs/voice";
-import { DiscordAPIError, type Message } from "discord.js";
+import { DiscordAPIError } from "discord.js";
 
 import type Config from "~/config/Config";
-import { getPathForSound } from "~/util/SoundUtil";
 import * as sounds from "~/util/db/Sounds";
 import localize from "~/util/i18n/localize";
+import { getPathForSound } from "~/util/SoundUtil";
 
 import ChannelTimeout from "./ChannelTimeout";
 import QueueItem from "./QueueItem";

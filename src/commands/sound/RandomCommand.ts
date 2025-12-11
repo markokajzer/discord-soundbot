@@ -1,5 +1,3 @@
-import type { Message } from "discord.js";
-
 import QueueItem from "~/queue/QueueItem";
 import * as soundsDb from "~/util/db/Sounds";
 import localize from "~/util/i18n/localize";

@@ -1,5 +1,3 @@
-import type { Message } from "discord.js";
-
 import QueueItem from "~/queue/QueueItem";
 import localize from "~/util/i18n/localize";
 import { existsSound } from "~/util/SoundUtil";
@@ -28,7 +26,7 @@ export class LoopCommand extends QueueCommand {
       return;
     }
 
-    const count = Number.parseInt(countAsString) || Number.MAX_SAFE_INTEGER;
+    const count = Number.parseInt(countAsString, 10) || Number.MAX_SAFE_INTEGER;
     const item = new QueueItem(sound, voiceChannel, message, count);
 
     this.queue.add(item);

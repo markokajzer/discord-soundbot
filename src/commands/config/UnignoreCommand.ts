@@ -1,5 +1,3 @@
-import type { Message } from "discord.js";
-
 import * as ignoreList from "~/util/db/IgnoreList";
 import localize from "~/util/i18n/localize";
 

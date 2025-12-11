@@ -1,4 +1,4 @@
-import type { ClientUser, Message } from "discord.js";
+import type { ClientUser } from "discord.js";
 
 import localize from "~/util/i18n/localize";
 

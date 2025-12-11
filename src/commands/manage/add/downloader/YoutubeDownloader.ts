@@ -1,7 +1,6 @@
-import type { Message } from "discord.js";
-import ffmpeg from "fluent-ffmpeg";
 import fs from "node:fs";
 import util from "node:util";
+import ffmpeg from "fluent-ffmpeg";
 import ytdl from "ytdl-core";
 
 import getSecondsFromTime from "~/util/getSecondsFromTime";

@@ -1,5 +1,3 @@
-import type { Message } from "discord.js";
-
 import type Sound from "~/util/db/models/Sound";
 import * as soundsDb from "~/util/db/Sounds";
 

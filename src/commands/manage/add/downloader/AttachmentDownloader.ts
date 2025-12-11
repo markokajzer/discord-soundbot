@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import type { IncomingMessage } from "node:http";
 import https from "node:https";
-import type { Attachment, Message } from "discord.js";
+import type { Attachment } from "discord.js";
 
 import { UnspecificError } from "~/util/Errors";
 import localize from "~/util/i18n/localize";

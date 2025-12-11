@@ -1,5 +1,3 @@
-import type { Message } from "discord.js";
-
 import * as entrances from "~/util/db/Entrances";
 import { getSounds } from "~/util/SoundUtil";
 

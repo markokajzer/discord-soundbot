@@ -1,5 +1,3 @@
-import type { Message } from "discord.js";
-
 import * as soundsDb from "~/util/db/Sounds";
 import { getSounds } from "~/util/SoundUtil";
 
@@ -13,7 +11,7 @@ export class TagsCommand extends Command {
     const sounds = getSounds();
     const soundsWithTags = this.formattedMessage(sounds);
 
-    const page = Number.parseInt(params[0]);
+    const page = Number.parseInt(params[0], 10);
     chunkedMessages(soundsWithTags, page).forEach((chunk) => message.author.send(chunk));
   }
 

@@ -1,12 +1,11 @@
 import fs from "node:fs";
 import util from "node:util";
-import type { Message } from "discord.js";
 import ffmpeg from "fluent-ffmpeg";
 
 import { FormatError } from "~/util/Errors";
-import { existsSound, getExtensionForSound } from "~/util/SoundUtil";
 import getSecondsFromTime from "~/util/getSecondsFromTime";
 import localize from "~/util/i18n/localize";
+import { existsSound, getExtensionForSound } from "~/util/SoundUtil";
 
 import Command from "../base/Command";
 import type ErrorParams from "./modify/ErrorParams";

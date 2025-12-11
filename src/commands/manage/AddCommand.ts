@@ -1,5 +1,3 @@
-import type { Message } from "discord.js";
-
 import Command from "../base/Command";
 import type AttachmentDownloader from "./add/downloader/AttachmentDownloader";
 import type YoutubeDownloader from "./add/downloader/YoutubeDownloader";

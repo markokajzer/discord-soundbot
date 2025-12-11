@@ -1,4 +1,4 @@
-import { AttachmentBuilder, type Message } from "discord.js";
+import { AttachmentBuilder } from "discord.js";
 
 import { existsSound, getPathForSound } from "~/util/SoundUtil";
 

@@ -1,4 +1,3 @@
-import type { Message } from "discord.js";
 import fs from "node:fs";
 
 import { getPathForSound, getSoundsWithExtension } from "~/util/SoundUtil";

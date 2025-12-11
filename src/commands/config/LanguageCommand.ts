@@ -1,4 +1,4 @@
-import { Collection, EmbedBuilder, type Message } from "discord.js";
+import { Collection, EmbedBuilder } from "discord.js";
 
 import localize from "~/util/i18n/localize";
 

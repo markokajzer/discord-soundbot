@@ -1,5 +1,3 @@
-import type { Message } from "discord.js";
-
 import * as ignoreList from "~/util/db/IgnoreList";
 import localize from "~/util/i18n/localize";
 
@@ -11,6 +9,8 @@ export class IgnoreCommand extends Command {
   public readonly elevated = true;
 
   public run(message: Message) {
+    if (!message.channel.isSendable()) return;
+
     const { users } = message.mentions;
     if (users.size < 1) {
       message.channel.send(this.usage);

@@ -12,10 +12,10 @@ import {
 import type Config from "~/config/Config";
 import QueueItem from "~/queue/QueueItem";
 import type SoundQueue from "~/queue/SoundQueue";
-import { getSounds } from "~/util/SoundUtil";
 import * as entrances from "~/util/db/Entrances";
 import * as exits from "~/util/db/Exits";
 import localize from "~/util/i18n/localize";
+import { getSounds } from "~/util/SoundUtil";
 
 import type Command from "../commands/base/Command";
 import type CommandCollection from "./CommandCollection";

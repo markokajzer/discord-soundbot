@@ -6,17 +6,16 @@
     "target": "ES2022",
     "outDir": "dist",
     "incremental": true,
+    "skipLibCheck": true,
 
     "baseUrl": ".",
     "paths": {
       "~/*": ["./src/*"]
     },
 
-    "typeRoots": ["node_modules/@types", "src/types"],
-
     "strict": true
   },
-  "include": ["src/**/*", "bin/**/*"],
+  "include": ["src/**/*", "bin/**/*", "types"],
 
   "exclude": ["**/__test__", "**/__mocks__"]
 }

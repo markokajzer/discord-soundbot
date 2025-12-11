@@ -1,5 +1,3 @@
-import type { Message } from "discord.js";
-
 import Command from "../base/Command";
 
 export class PingCommand extends Command {
