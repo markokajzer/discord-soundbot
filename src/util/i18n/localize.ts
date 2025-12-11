@@ -1,5 +1,5 @@
-import i18n from "./i18n";
 import type { Replacements } from "./I18nProvider";
+import i18n from "./i18n";
 
 const getCurrentLocale = () => i18n.getLocale();
 const getLocales = () => i18n.getLocales();

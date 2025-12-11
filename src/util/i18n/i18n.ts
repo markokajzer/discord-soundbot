@@ -1,6 +1,6 @@
 import fs from "node:fs";
-import i18n from "i18n";
 import path from "node:path";
+import i18n from "i18n";
 
 import type { I18nProvider } from "./I18nProvider";
 

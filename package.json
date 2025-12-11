@@ -28,7 +28,7 @@
     "@snazzah/davey": "^0.1.8",
     "discord.js": "^14.25.0",
     "fluent-ffmpeg": "^2.1.2",
-    "i18n": "0.13.2",
+    "i18n": "^0.15.3",
     "lodash": "4.17.21",
     "lowdb": "1.0.0",
     "module-alias": "^2.2.3",
@@ -42,7 +42,7 @@
   "devDependencies": {
     "@biomejs/biome": "^2.3.8",
     "@types/fluent-ffmpeg": "2.1.16",
-    "@types/i18n": "0.8.8",
+    "@types/i18n": "^0.13.12",
     "@types/jest": "^29.5.0",
     "@types/lowdb": "1.0.15",
     "@types/node": "^24.0.0",
