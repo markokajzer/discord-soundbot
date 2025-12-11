@@ -1,6 +1,7 @@
 import {
   ChannelType,
   Client,
+  Events,
   GatewayIntentBits,
   type Guild,
   type Message,
@@ -59,11 +60,11 @@ export default class SoundBot extends Client {
   }
 
   private addEventListeners() {
-    this.on("ready", this.onReady);
-    this.on("messageCreate", this.onMessage);
-    this.on("voiceStateUpdate", this.onUserLeavesVoiceChannel);
-    this.on("voiceStateUpdate", this.onUserJoinsVoiceChannel);
-    this.on("guildCreate", this.onBotJoinsServer);
+    this.on(Events.ClientReady, this.onReady);
+    this.on(Events.MessageCreate, this.onMessage);
+    this.on(Events.VoiceStateUpdate, this.onUserLeavesVoiceChannel);
+    this.on(Events.VoiceStateUpdate, this.onUserJoinsVoiceChannel);
+    this.on(Events.GuildCreate, this.onBotJoinsServer);
     // this.on('error', error => console.log({ error }));
   }
 
