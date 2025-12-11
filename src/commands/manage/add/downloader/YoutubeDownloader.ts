@@ -45,10 +45,10 @@ export default class YoutubeDownloader extends BaseDownloader {
   }
 
   private download(url: string) {
-    return new Promise((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
       ytdl(url, { filter: "audio", quality: "highestaudio" })
         .pipe(fs.createWriteStream("tmp.mp4"))
-        .on("finish", resolve)
+        .on("finish", () => resolve())
         .on("error", reject);
     });
   }
@@ -59,8 +59,11 @@ export default class YoutubeDownloader extends BaseDownloader {
     if (startTime) ffmpegCommand = ffmpegCommand.setStartTime(startTime);
     if (startTime && endTime) ffmpegCommand = ffmpegCommand.setDuration(endTime - startTime);
 
-    return new Promise((resolve, reject) => {
-      ffmpegCommand.on("end", resolve).on("error", reject).run();
+    return new Promise<void>((resolve, reject) => {
+      ffmpegCommand
+        .on("end", () => resolve())
+        .on("error", reject)
+        .run();
     });
   }
 
