@@ -1,11 +1,12 @@
 import localize from "~/util/i18n/localize";
 
-import ConfigCommand from "../base/ConfigCommand";
+import Command from "../Command";
 
-export class WelcomeCommand extends ConfigCommand {
+export class WelcomeCommand extends Command {
   public readonly triggers = ["welcome"];
 
   public async run(message: Message) {
-    message.channel.send(localize.t("welcome", { prefix: this.config.prefix }));
+    const { config } = message.client;
+    message.channel.send(localize.t("welcome", { prefix: config.prefix }));
   }
 }

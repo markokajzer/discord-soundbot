@@ -1,7 +1,7 @@
 import * as ignoreList from "~/util/db/IgnoreList";
 import localize from "~/util/i18n/localize";
 
-import Command from "../base/Command";
+import Command from "../Command";
 
 export class UnignoreCommand extends Command {
   public readonly triggers = ["unignore"];

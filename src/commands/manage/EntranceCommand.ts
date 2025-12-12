@@ -1,7 +1,7 @@
 import * as entrances from "~/util/db/Entrances";
 import { getSounds } from "~/util/SoundUtil";
 
-import Command from "../base/Command";
+import Command from "../Command";
 
 export class EntranceCommand extends Command {
   public readonly triggers = ["entrance"];

@@ -1,18 +1,22 @@
-import type { ClientUser } from "discord.js";
+import fs from "node:fs";
+import path from "node:path";
 
-import type Command from "../commands/base/Command";
-import type UserCommand from "../commands/base/UserCommand";
-import type { SoundCommand } from "../commands/sound";
+import type Command from "../commands/Command";
+import type { SoundCommand } from "../commands/sound/SoundCommand";
 
 export default class CommandCollection {
   private readonly triggers: Map<string, Command> = new Map();
   private readonly commands: Command[] = [];
-  private readonly soundCommand: SoundCommand;
+  private readonly soundCommand: Command;
 
-  constructor(commands: Command[]) {
-    this.soundCommand = commands.find((command) => !command.triggers.length) as SoundCommand;
-
-    this.registerCommands(commands);
+  constructor(commands: Command[] = []) {
+    // For testing
+    if (commands.length) {
+      this.registerCommands(commands);
+    } else {
+      this.loadCommands();
+    }
+    this.soundCommand = this.commands.find((cmd) => !cmd.triggers.length) as SoundCommand;
   }
 
   public registerCommands(commands: Command[]) {
@@ -20,15 +24,23 @@ export default class CommandCollection {
     commands.forEach((command) => this.registerTriggers(command));
   }
 
-  public registerUserCommands(user: ClientUser) {
-    // NOTE: Filter for user commands and set their user
-    // @ts-expect-error
-    const userCommands: UserCommand[] = this.commands.filter((command) => !!command.setClientUser);
-    userCommands.forEach((command) => command.setClientUser(user));
-  }
-
   public get(command: string) {
     return this.triggers.get(command) || this.soundCommand;
+  }
+
+  private loadCommands() {
+    const pattern = path.join(__dirname, "../commands/*/*Command.js");
+    const exclude = (f: string) =>
+      f.includes("base") || f.includes("__mocks__") || f.includes("__test__");
+
+    const commands: Command[] = fs.globSync(pattern, { exclude }).map((file) => {
+      const mod = require(file);
+      const CommandClass = Object.values(mod)[0];
+      // @ts-expect-error -- dynamic instantiation
+      return new CommandClass();
+    });
+
+    this.registerCommands(commands);
   }
 
   private registerTriggers(command: Command) {

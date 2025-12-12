@@ -18,22 +18,15 @@ import * as exits from "~/util/db/Exits";
 import localize from "~/util/i18n/localize";
 import { getSounds } from "~/util/SoundUtil";
 
-import type Command from "../commands/base/Command";
-import type CommandCollection from "./CommandCollection";
-import type MessageHandler from "./MessageHandler";
+import type Command from "../commands/Command";
+import MessageHandler from "./MessageHandler";
 
 export default class SoundBot extends Client {
-  private readonly config: Config;
-  private readonly commands: CommandCollection;
-  private readonly messageHandler: MessageHandler;
-  private readonly queue: SoundQueue;
+  public readonly config: Config;
+  public readonly queue: SoundQueue;
+  private readonly messageHandler: MessageHandler = new MessageHandler();
 
-  constructor(
-    config: Config,
-    commands: CommandCollection,
-    messageHandler: MessageHandler,
-    queue: SoundQueue
-  ) {
+  constructor(config: Config, queue: SoundQueue) {
     super({
       intents: [
         GatewayIntentBits.Guilds,
@@ -44,8 +37,6 @@ export default class SoundBot extends Client {
     });
 
     this.config = config;
-    this.commands = commands;
-    this.messageHandler = messageHandler;
     this.queue = queue;
 
     this.addEventListeners();
@@ -56,7 +47,7 @@ export default class SoundBot extends Client {
   }
 
   public registerAdditionalCommands(commands: Command[]) {
-    this.commands.registerCommands(commands);
+    this.messageHandler.registerCommands(commands);
   }
 
   private addEventListeners() {
@@ -72,7 +63,6 @@ export default class SoundBot extends Client {
     if (!this.user) return;
 
     this.user.setActivity(this.config.game);
-    this.commands.registerUserCommands(this.user);
   }
 
   private onUserJoinsVoiceChannel(oldState: VoiceState, newState: VoiceState) {

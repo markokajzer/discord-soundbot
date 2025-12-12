@@ -1,7 +1,7 @@
 import * as exits from "~/util/db/Exits";
 import { getSounds } from "~/util/SoundUtil";
 
-import Command from "../base/Command";
+import Command from "../Command";
 
 export class ExitCommand extends Command {
   public readonly triggers = ["exit"];

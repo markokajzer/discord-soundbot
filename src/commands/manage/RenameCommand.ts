@@ -4,7 +4,7 @@ import * as soundsDb from "~/util/db/Sounds";
 import localize from "~/util/i18n/localize";
 import { getExtensionForSound, getSounds } from "~/util/SoundUtil";
 
-import Command from "../base/Command";
+import Command from "../Command";
 
 export class RenameCommand extends Command {
   public readonly triggers = ["rename"];

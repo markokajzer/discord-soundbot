@@ -4,7 +4,7 @@ import Container from "~/util/Container";
 import localize from "~/util/i18n/localize";
 
 import type SoundBot from "./bot/SoundBot";
-import type Command from "./commands/base/Command";
+import type Command from "./commands/Command";
 
 class DiscordSoundBot {
   private readonly config: Config;

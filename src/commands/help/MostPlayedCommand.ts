@@ -1,7 +1,7 @@
 import type Sound from "~/util/db/models/Sound";
 import * as soundsDb from "~/util/db/Sounds";
 
-import Command from "../base/Command";
+import Command from "../Command";
 
 export class MostPlayedCommand extends Command {
   public readonly triggers = ["mostplayed"];

@@ -1,21 +1,22 @@
+import type Config from "~/config/Config";
 import localize from "~/util/i18n/localize";
-
-import ConfigCommand from "../base/ConfigCommand";
+import Command from "../Command";
 import chunkedMessages from "../util/chunkedMessages";
 
-export class HelpCommand extends ConfigCommand {
+export class HelpCommand extends Command {
   public readonly triggers = ["commands", "help"];
 
   public async run(message: Message) {
-    const helpMessage = this.getFormattedListOfCommands();
+    const { config } = message.client;
+    const helpMessage = this.getFormattedListOfCommands(config);
     const chunkedHelpMessage = chunkedMessages(helpMessage);
 
     chunkedHelpMessage.forEach((chunk) => message.author.send(chunk));
   }
 
-  private getFormattedListOfCommands() {
+  private getFormattedListOfCommands(config: Config) {
     return [
-      localize.t("help.headline", { prefix: this.config.prefix }),
+      localize.t("help.headline", { prefix: config.prefix }),
       "",
       `welcome                                ${localize.t("help.welcome")}`,
       `commands                               ${localize.t("help.commands")}`,

@@ -1,8 +1,7 @@
 import { Collection, EmbedBuilder } from "discord.js";
-
+import type Config from "~/config/Config";
 import localize from "~/util/i18n/localize";
-
-import ConfigCommand from "../base/ConfigCommand";
+import Command from "../Command";
 
 const FLAGS: Dictionary<string> = {
   de: ":flag_de:",
@@ -15,21 +14,23 @@ const FLAGS: Dictionary<string> = {
   nl: ":flag_nl:",
 };
 
-export class LanguageCommand extends ConfigCommand {
+export class LanguageCommand extends Command {
   public readonly triggers = ["lang"];
 
   public async run(message: Message, params: string[]) {
+    const { config } = message.client;
+
     const [chosenLanguage] = params;
     const language =
       chosenLanguage &&
       this.getLanguageMap().findKey((value, key) => [key, value].includes(chosenLanguage));
 
     if (!language) {
-      message.channel.send({ embeds: [this.help()] });
+      message.channel.send({ embeds: [this.help(config)] });
       return;
     }
 
-    this.config.set("language", [language]);
+    config.set("language", [language]);
     localize.setLocale(language);
 
     message.channel.send(
@@ -37,7 +38,7 @@ export class LanguageCommand extends ConfigCommand {
     );
   }
 
-  private help() {
+  private help(config: Config) {
     return new EmbedBuilder()
       .setColor("#0099ff")
       .setTitle(localize.t("commands.lang.title"))
@@ -52,7 +53,7 @@ export class LanguageCommand extends ConfigCommand {
           `:flag_jp: \`ja\` ${localize.t("language.ja")} - 日本人`,
           `:flag_nl: \`nl\` ${localize.t("language.nl")} - Nederlands`,
           "",
-          localize.t("commands.lang.usage", { command: `${this.config.prefix}lang` }),
+          localize.t("commands.lang.usage", { command: `${config.prefix}lang` }),
         ].join("\n")
       );
   }

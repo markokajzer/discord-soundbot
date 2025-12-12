@@ -1,9 +1,10 @@
-import QueueCommand from "../base/QueueCommand";
+import Command from "../Command";
 
-export class SkipCommand extends QueueCommand {
+export class SkipCommand extends Command {
   public readonly triggers = ["skip"];
 
-  public async run() {
-    this.queue.next();
+  public async run(message: Message) {
+    const { queue } = message.client;
+    queue.next();
   }
 }

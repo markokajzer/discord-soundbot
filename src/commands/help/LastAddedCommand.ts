@@ -2,7 +2,7 @@ import fs from "node:fs";
 
 import { getPathForSound, getSoundsWithExtension } from "~/util/SoundUtil";
 
-import Command from "../base/Command";
+import Command from "../Command";
 
 export class LastAddedCommand extends Command {
   public readonly triggers = ["lastadded"];

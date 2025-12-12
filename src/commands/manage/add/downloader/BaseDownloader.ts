@@ -6,7 +6,7 @@ import type BaseValidator from "../validator/BaseValidator";
 const HANDLED_ERRORS = [FormatError.name, ValidationError.name];
 
 export default abstract class BaseDownloader {
-  protected abstract readonly validator: BaseValidator;
+  protected abstract validator: BaseValidator;
 
   public abstract handle(message: Message, params: string[]): void;
 

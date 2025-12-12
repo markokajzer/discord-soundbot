@@ -1,21 +1,19 @@
-/* eslint-disable max-classes-per-file */
-
 import type { Attachment } from "discord.js";
-
 import type Config from "~/config/Config";
 import { AttachmentExtensionError, AttachmentSizeError } from "~/util/Errors";
-
 import BaseValidator from "./BaseValidator";
 
 export default class AttachmentValidator extends BaseValidator {
-  private readonly config: Config;
+  // @ts-expect-error -- Handled via `setConfig` and `throw` in `validate`
+  private config: Config;
 
-  constructor(config: Config) {
-    super();
+  public setConfig(config: Config) {
     this.config = config;
   }
 
   public validate(attachment: Attachment) {
+    if (!this.config) throw new Error("Configuration not set.");
+
     return this.validateAttachment(attachment);
   }
 

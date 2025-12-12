@@ -8,7 +8,7 @@ import localize from "~/util/i18n/localize";
 
 import type DownloadOptions from "../CommandOptions";
 import type { ConvertOptions } from "../CommandOptions";
-import type YoutubeValidator from "../validator/YoutubeValidator";
+import YoutubeValidator from "../validator/YoutubeValidator";
 import BaseDownloader from "./BaseDownloader";
 
 const unlink = util.promisify(fs.unlink);
@@ -16,9 +16,9 @@ const unlink = util.promisify(fs.unlink);
 export default class YoutubeDownloader extends BaseDownloader {
   protected readonly validator: YoutubeValidator;
 
-  constructor(youtubeValidator: YoutubeValidator) {
+  constructor() {
     super();
-    this.validator = youtubeValidator;
+    this.validator = new YoutubeValidator();
   }
 
   public async handle(message: Message, params: string[]) {

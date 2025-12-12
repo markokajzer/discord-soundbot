@@ -1,4 +1,4 @@
-import Command from "../base/Command";
+import Command from "../Command";
 
 export class PingCommand extends Command {
   public readonly triggers = ["ping"];
