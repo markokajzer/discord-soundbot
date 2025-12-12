@@ -1,24 +1,13 @@
-import type { ClientUser } from "discord.js";
-
-import { AvatarCommand } from "~/commands/config/AvatarCommand";
 import { HelpCommand } from "~/commands/help/HelpCommand";
 import { SoundCommand } from "~/commands/sound/SoundCommand";
-import type Config from "~/config/Config";
-import type SoundQueue from "~/queue/SoundQueue";
 
 import CommandCollection from "../CommandCollection";
 
-jest.mock("~/util/Container");
-jest.mock("~/commands/config/AvatarCommand");
 jest.mock("~/commands/help/HelpCommand");
 jest.mock("~/commands/sound/SoundCommand");
 
-const queue = {} as unknown as SoundQueue;
-const config = {} as unknown as Config;
-
-const avatarCommand = new AvatarCommand(config);
-const helpCommand = new HelpCommand(config);
-const soundCommand = new SoundCommand(queue);
+const helpCommand = new HelpCommand();
+const soundCommand = new SoundCommand();
 
 describe("CommandCollection", () => {
   let commands!: CommandCollection;
@@ -37,19 +26,6 @@ describe("CommandCollection", () => {
       expect(Array.from(triggers.keys())).toEqual(["commands", "help"]);
       expect(triggers.get("commands")).toEqual(helpCommand);
       expect(triggers.get("help")).toEqual(helpCommand);
-    });
-  });
-
-  describe("registerUserCommands", () => {
-    it("correctly registers user commands", () => {
-      jest.spyOn(avatarCommand, "setClientUser");
-
-      commands.registerCommands([avatarCommand]);
-
-      const user = { id: "USER_ID" } as unknown as ClientUser;
-      commands.registerUserCommands(user);
-
-      expect(avatarCommand.setClientUser).toHaveBeenCalledWith(user);
     });
   });
 

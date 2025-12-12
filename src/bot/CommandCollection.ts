@@ -9,8 +9,13 @@ export default class CommandCollection {
   private readonly commands: Command[] = [];
   private readonly soundCommand: Command;
 
-  constructor() {
-    this.loadCommands();
+  constructor(commands: Command[] = []) {
+    // For testing
+    if (commands.length) {
+      this.registerCommands(commands);
+    } else {
+      this.loadCommands();
+    }
     this.soundCommand = this.commands.find((cmd) => !cmd.triggers.length) as SoundCommand;
   }
 
