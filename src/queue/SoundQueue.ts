@@ -63,17 +63,16 @@ export default class SoundQueue {
     if (!this.currentSound) return;
     if (this.isEmpty()) return;
 
-    let deleteableMessages = this.queue
-      .map((item) => item.message)
-      .filter((message): message is Message => !!message);
-
     const { message: currentMessage } = this.currentSound;
-    if (currentMessage) {
-      deleteableMessages = deleteableMessages.filter((msg) => msg.id !== currentMessage.id);
-    }
+    const messagesToDelete = this.queue
+      .map((item) => item.message)
+      .filter((message) => !!message)
+      .filter((message) => message.id !== currentMessage?.id);
 
     // Do not try to delete the same sound multiple times (!combo)
-    Array.from(new Set(deleteableMessages)).forEach((message) => message.delete());
+    Array.from(new Set(messagesToDelete))
+      .filter((message) => !this.wasMessageAlreadyDeleted(message))
+      .forEach((message) => message.delete());
   }
 
   private async playNext() {
