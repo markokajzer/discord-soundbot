@@ -32,10 +32,6 @@ import {
   TagCommand,
   TagsCommand,
 } from "../commands/manage";
-import AttachmentDownloader from "../commands/manage/add/downloader/AttachmentDownloader";
-import YoutubeDownloader from "../commands/manage/add/downloader/YoutubeDownloader";
-import AttachmentValidator from "../commands/manage/add/validator/AttachmentValidator";
-import YoutubeValidator from "../commands/manage/add/validator/YoutubeValidator";
 import {
   ComboCommand,
   LoopCommand,
@@ -47,12 +43,6 @@ import {
 
 export const config = new Config();
 const queue = new SoundQueue(config);
-
-const attachmentValidator = new AttachmentValidator(config);
-const attachmentDownloader = new AttachmentDownloader(attachmentValidator);
-
-const youtubeValidator = new YoutubeValidator();
-const youtubeDownloader = new YoutubeDownloader(youtubeValidator);
 
 const commands = [
   new PingCommand(),
@@ -71,7 +61,7 @@ const commands = [
   new ExitCommand(),
 
   // SOUND ADMINISTRATION COMMANDS
-  new AddCommand(attachmentDownloader, youtubeDownloader),
+  new AddCommand(),
   new SoundsCommand(),
   new SearchCommand(),
   new ModifyCommand(),

@@ -6,18 +6,20 @@ import type { Attachment } from "discord.js";
 import { UnspecificError } from "~/util/Errors";
 import localize from "~/util/i18n/localize";
 
-import type AttachmentValidator from "../validator/AttachmentValidator";
+import AttachmentValidator from "../validator/AttachmentValidator";
 import BaseDownloader from "./BaseDownloader";
 
 export default class AttachmentDownloader extends BaseDownloader {
   protected readonly validator: AttachmentValidator;
 
-  constructor(attachmentValidator: AttachmentValidator) {
+  constructor() {
     super();
-    this.validator = attachmentValidator;
+    this.validator = new AttachmentValidator();
   }
 
   public async handle(message: Message) {
+    this.validator.setConfig(message.client.config);
+
     try {
       await this.addSounds(message);
     } catch (error) {
