@@ -5,6 +5,10 @@
   + `none` -> same as `deleteMessages: false`
   + `sounds` -> same as `deleteMessages: true`
   + `all` -> delete sound messages as well as all others
++ Simplify development by getting rid of 95% of Container pattern
++ Change `!stop` to consider `config.stayInChannel` setting
++ Add `!leave` command with previous behaviour of `!stop` -- Leave channel and clear queue
++ Add `!clear` command to clear the queue while continuing to play current sound
 
 ## 3.0.0 (2023-03-26)
 
@@ -14,7 +18,6 @@
   + This is the default behaviour for bots now, see [here](https://github.com/discordjs/discord.js/blob/51de9668e58865fe8be416d6e580644c37ce53eb/packages/voice/src/joinVoiceChannel.ts#L38)
 + Remove `volume` config option
   + This option impacts performance because the stream **always** has to be processed by `ffmpeg`, even if the volume was not changed, see [here](https://discordjs.guide/voice/audio-resources.html#not-using-inline-volume)
-
 
 **Features**
 
