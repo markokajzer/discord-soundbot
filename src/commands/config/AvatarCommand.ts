@@ -1,25 +1,18 @@
-import type { ClientUser } from "discord.js";
-
 import localize from "~/util/i18n/localize";
 
-import ConfigCommand from "../base/ConfigCommand";
-import type UserCommand from "../base/UserCommand";
+import Command from "../Command";
 
-export class AvatarCommand extends ConfigCommand implements UserCommand {
+export class AvatarCommand extends Command {
   public readonly triggers = ["avatar"];
   public readonly numberOfParameters = 1;
   public readonly usage = "Usage: !avatar [remove]";
   public readonly elevated = true;
 
-  protected user!: ClientUser;
-
-  public setClientUser(user: ClientUser) {
-    this.user = user;
-  }
-
   public async run(message: Message, params: string[]) {
+    const { user } = message.client;
+
     if (params.length === this.numberOfParameters && params[0] === "remove") {
-      this.user.setAvatar("");
+      user.setAvatar("");
       return;
     }
 
@@ -34,22 +27,24 @@ export class AvatarCommand extends ConfigCommand implements UserCommand {
     }
 
     // biome-ignore lint/style/noNonNullAssertion: ensured exactly one attachment above
-    this.user.setAvatar(message.attachments.first()!.url).catch(() => {
+    user.setAvatar(message.attachments.first()!.url).catch(() => {
       message.channel.send(localize.t("commands.avatar.errors.tooFast"));
     });
   }
 
   private listAvatar(message: Message) {
-    if (!this.user.avatarURL()) {
+    const { config, user } = message.client;
+
+    if (!user.avatarURL()) {
       message.channel.send(
-        localize.t("commands.avatar.errors.noAvatar", { prefix: this.config.prefix })
+        localize.t("commands.avatar.errors.noAvatar", { prefix: config.prefix })
       );
       return;
     }
 
     message.channel.send(
       localize.t("commands.avatar.url", {
-        url: this.user.displayAvatarURL({ size: 256 }),
+        url: user.displayAvatarURL({ size: 256 }),
       })
     );
   }

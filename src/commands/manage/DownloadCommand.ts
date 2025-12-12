@@ -2,7 +2,7 @@ import { AttachmentBuilder } from "discord.js";
 
 import { existsSound, getPathForSound } from "~/util/SoundUtil";
 
-import Command from "../base/Command";
+import Command from "../Command";
 
 export class DownloadCommand extends Command {
   public readonly triggers = ["download"];

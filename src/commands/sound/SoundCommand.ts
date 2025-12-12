@@ -2,9 +2,9 @@ import QueueItem from "~/queue/QueueItem";
 import localize from "~/util/i18n/localize";
 import { existsSound } from "~/util/SoundUtil";
 
-import QueueCommand from "../base/QueueCommand";
+import Command from "../Command";
 
-export class SoundCommand extends QueueCommand {
+export class SoundCommand extends Command {
   public readonly triggers = [];
 
   public async run(message: Message) {
@@ -19,6 +19,7 @@ export class SoundCommand extends QueueCommand {
       return;
     }
 
-    this.queue.add(new QueueItem(sound, voiceChannel, message));
+    const { queue } = message.client;
+    queue.add(new QueueItem(sound, voiceChannel, message));
   }
 }

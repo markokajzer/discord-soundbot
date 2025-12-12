@@ -1,7 +1,4 @@
-import type { ClientUser } from "discord.js";
-
-import type Command from "../commands/base/Command";
-import type UserCommand from "../commands/base/UserCommand";
+import type Command from "../commands/Command";
 import type { SoundCommand } from "../commands/sound";
 
 export default class CommandCollection {
@@ -18,13 +15,6 @@ export default class CommandCollection {
   public registerCommands(commands: Command[]) {
     this.commands.push(...commands);
     commands.forEach((command) => this.registerTriggers(command));
-  }
-
-  public registerUserCommands(user: ClientUser) {
-    // NOTE: Filter for user commands and set their user
-    // @ts-expect-error
-    const userCommands: UserCommand[] = this.commands.filter((command) => !!command.setClientUser);
-    userCommands.forEach((command) => command.setClientUser(user));
   }
 
   public get(command: string) {

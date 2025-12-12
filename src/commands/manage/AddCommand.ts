@@ -1,4 +1,4 @@
-import Command from "../base/Command";
+import Command from "../Command";
 import type AttachmentDownloader from "./add/downloader/AttachmentDownloader";
 import type YoutubeDownloader from "./add/downloader/YoutubeDownloader";
 

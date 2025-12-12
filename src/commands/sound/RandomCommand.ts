@@ -3,9 +3,9 @@ import * as soundsDb from "~/util/db/Sounds";
 import localize from "~/util/i18n/localize";
 import { getSounds } from "~/util/SoundUtil";
 
-import QueueCommand from "../base/QueueCommand";
+import Command from "../Command";
 
-export class RandomCommand extends QueueCommand {
+export class RandomCommand extends Command {
   public readonly triggers = ["random"];
   public readonly numberOfParameters = 1;
 
@@ -18,10 +18,11 @@ export class RandomCommand extends QueueCommand {
       return;
     }
 
+    const { queue } = message.client;
     const sounds =
       params.length === this.numberOfParameters ? soundsDb.withTag(params[0]) : getSounds();
-
     const random = sounds[Math.floor(Math.random() * sounds.length)];
-    this.queue.add(new QueueItem(random, voiceChannel, message));
+
+    queue.add(new QueueItem(random, voiceChannel, message));
   }
 }

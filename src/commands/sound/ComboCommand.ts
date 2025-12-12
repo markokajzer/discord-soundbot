@@ -2,9 +2,9 @@ import QueueItem from "~/queue/QueueItem";
 import localize from "~/util/i18n/localize";
 import { getSounds } from "~/util/SoundUtil";
 
-import QueueCommand from "../base/QueueCommand";
+import Command from "../Command";
 
-export class ComboCommand extends QueueCommand {
+export class ComboCommand extends Command {
   public readonly triggers = ["combo"];
   public readonly numberOfParameters = 1;
   public readonly usage = "Usage: !combo <sound1> ... <soundN>";
@@ -28,8 +28,9 @@ export class ComboCommand extends QueueCommand {
     params.forEach((sound) => {
       if (!sounds.includes(sound)) return;
 
+      const { queue } = message.client;
       const item = new QueueItem(sound, voiceChannel, message);
-      this.queue.add(item);
+      queue.add(item);
     });
   }
 }

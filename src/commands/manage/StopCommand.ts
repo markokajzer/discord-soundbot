@@ -1,13 +1,14 @@
-import QueueCommand from "../base/QueueCommand";
+import Command from "../Command";
 
-export class StopCommand extends QueueCommand {
+export class StopCommand extends Command {
   public readonly triggers = ["leave", "stop"];
 
   public async run(message: Message) {
     if (!message.guild) return;
     if (!message.guild.members.me) return;
 
-    this.queue.clear();
+    const { queue } = message.client;
+    queue.clear();
 
     message.guild.members.me.voice.disconnect();
   }

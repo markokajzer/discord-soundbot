@@ -2,9 +2,9 @@ import QueueItem from "~/queue/QueueItem";
 import localize from "~/util/i18n/localize";
 import { existsSound } from "~/util/SoundUtil";
 
-import QueueCommand from "../base/QueueCommand";
+import Command from "../Command";
 
-export class LoopCommand extends QueueCommand {
+export class LoopCommand extends Command {
   public readonly triggers = ["loop", "repeat"];
   public readonly numberOfParameters = 2;
   public readonly usage = "Usage: !loop <sound> <count>";
@@ -29,6 +29,7 @@ export class LoopCommand extends QueueCommand {
     const count = Number.parseInt(countAsString, 10) || Number.MAX_SAFE_INTEGER;
     const item = new QueueItem(sound, voiceChannel, message, count);
 
-    this.queue.add(item);
+    const { queue } = message.client;
+    queue.add(item);
   }
 }

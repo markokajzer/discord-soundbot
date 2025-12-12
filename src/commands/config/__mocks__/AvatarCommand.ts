@@ -1,13 +1,8 @@
-import Command from "../../base/Command";
-import type UserCommand from "../../base/UserCommand";
+import Command from "../../Command";
 
-export class AvatarCommand extends Command implements UserCommand {
+export class AvatarCommand extends Command {
   public readonly triggers = ["avatar"];
   public readonly elevated = true;
-
-  public setClientUser() {
-    // noop
-  }
 
   public async run() {
     // noop

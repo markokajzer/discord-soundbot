@@ -4,7 +4,7 @@ import * as sounds from "~/util/db/Sounds";
 import localize from "~/util/i18n/localize";
 import { existsSound, getPathForSound } from "~/util/SoundUtil";
 
-import Command from "../base/Command";
+import Command from "../Command";
 
 export class RemoveCommand extends Command {
   public readonly triggers = ["remove"];

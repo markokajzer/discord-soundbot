@@ -1,21 +1,12 @@
-import type { ClientUser } from "discord.js";
-
 import localize from "~/util/i18n/localize";
 
-import BaseConfigCommand from "../base/ConfigCommand";
-import type UserCommand from "../base/UserCommand";
+import Command from "../Command";
 
-export class ConfigCommand extends BaseConfigCommand implements UserCommand {
+export class ConfigCommand extends Command {
   public readonly triggers = ["config", "set"];
   public readonly numberOfParameters = 2;
   public readonly usage = "Usage: !config <option> <value>";
   public readonly elevated = true;
-
-  protected user!: ClientUser;
-
-  public setClientUser(user: ClientUser) {
-    this.user = user;
-  }
 
   public async run(message: Message, params: string[]) {
     if (params.length < this.numberOfParameters) {
@@ -23,28 +14,31 @@ export class ConfigCommand extends BaseConfigCommand implements UserCommand {
       return;
     }
 
+    const { config } = message.client;
     const [field, ...value] = params;
 
-    if (!this.config.has(field)) {
+    if (!config.has(field)) {
       message.channel.send(localize.t("commands.config.notFound", { field }));
       return;
     }
 
-    const configValue = this.config.set(field, value);
-    this.postProcess(field);
+    const configValue = config.set(field, value);
+    this.postProcess(message, field);
 
     message.channel.send(
       localize.t("commands.config.success", { field, value: configValue.toString() })
     );
   }
 
-  private postProcess(field: string) {
+  private postProcess(message: Message, field: string) {
+    const { config, user } = message.client;
+
     switch (field) {
       case "game":
-        this.user.setActivity(this.config.game);
+        user.setActivity(config.game);
         break;
       case "language":
-        localize.setLocale(this.config.language);
+        localize.setLocale(config.language);
         break;
       default:
         break;

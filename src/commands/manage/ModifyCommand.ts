@@ -7,7 +7,7 @@ import getSecondsFromTime from "~/util/getSecondsFromTime";
 import localize from "~/util/i18n/localize";
 import { existsSound, getExtensionForSound } from "~/util/SoundUtil";
 
-import Command from "../base/Command";
+import Command from "../Command";
 import type ErrorParams from "./modify/ErrorParams";
 import type FileInfo from "./modify/FileInfo";
 import MODIFIER_OPTIONS from "./modify/ModifierOptions";

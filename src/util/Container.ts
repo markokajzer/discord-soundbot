@@ -58,13 +58,13 @@ const commands = [
   new PingCommand(),
 
   // SOUND PLAYING RELATED COMMANDS
-  new SoundCommand(queue),
-  new ComboCommand(queue),
-  new RandomCommand(queue),
-  new LoopCommand(queue),
-  new NextCommand(queue),
-  new SkipCommand(queue),
-  new StopCommand(queue),
+  new SoundCommand(),
+  new ComboCommand(),
+  new RandomCommand(),
+  new LoopCommand(),
+  new NextCommand(),
+  new SkipCommand(),
+  new StopCommand(),
 
   // ENTRANCE / EXIT SOUNDS
   new EntranceCommand(),
@@ -72,7 +72,7 @@ const commands = [
 
   // SOUND ADMINISTRATION COMMANDS
   new AddCommand(attachmentDownloader, youtubeDownloader),
-  new SoundsCommand(config),
+  new SoundsCommand(),
   new SearchCommand(),
   new ModifyCommand(),
   new RenameCommand(),
@@ -82,15 +82,15 @@ const commands = [
   new DownloadCommand(),
 
   // HELP / INFO COMMANDS
-  new WelcomeCommand(config),
-  new HelpCommand(config),
+  new WelcomeCommand(),
+  new HelpCommand(),
   new LastAddedCommand(),
   new MostPlayedCommand(),
 
   // CONFIGURATION RELATED COMMANDS
-  new AvatarCommand(config),
-  new ConfigCommand(config),
-  new LanguageCommand(config),
+  new AvatarCommand(),
+  new ConfigCommand(),
+  new LanguageCommand(),
   new IgnoreCommand(),
   new UnignoreCommand(),
 ];
