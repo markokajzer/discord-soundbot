@@ -58,7 +58,8 @@
       "exists": "{sound} already exists!"
     },
     "unauthorized": "You need to be an admin or have an elevated role to perform this command",
-    "unspecific": "💥 Something went wrong! Please try again, or let the bot creator know what happened."
+    "unspecific": "💥 Something went wrong! Please try again, or let the bot creator know what happened.",
+    "unknown_channel": "Channel is not whitelisted.\nYou can interact with me in {channels}."
   },
   "help": {
     "avatar": "Set, show or remove the avatar",

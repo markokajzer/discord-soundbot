@@ -58,7 +58,8 @@
       "exists": "¡{sound} ya existe!"
     },
     "unauthorized": "Necesitas ser administrador o tener un rol elevado para ejecutar éste comando",
-    "unspecific": "💥 ¡Algo salió mal!, Por favor intenta de nuevo, o avisa al creador del bot lo que pasó"
+    "unspecific": "💥 ¡Algo salió mal!, Por favor intenta de nuevo, o avisa al creador del bot lo que pasó",
+    "unknown_channel": "Este canal no está en la lista blanca.\nPuedes interactuar conmigo en {channels}."
   },
   "help": {
     "avatar": "Establece, muestra o borra el avatar",

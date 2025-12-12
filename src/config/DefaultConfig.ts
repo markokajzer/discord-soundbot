@@ -4,8 +4,8 @@ const DEFAULT_CONFIG: ConfigInterface = {
   clientId: "",
   token: "",
 
-  // eslint-disable-next-line sort-keys-fix/sort-keys-fix
   acceptedExtensions: [".mp3", ".wav"],
+  channelWhitelist: [],
   cleanup: "none",
   elevatedRoles: [],
   game: "SoundBoard",

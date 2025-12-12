@@ -1,14 +1,20 @@
 ## Next (unreleased)
 
-+ Update all dependencies
+**Features**
+
 + Replaced `deleteMessages` config option with `cleanup`
   + `none` -> same as `deleteMessages: false`
   + `sounds` -> same as `deleteMessages: true`
   + `all` -> delete sound messages as well as all others
-+ Simplify development by getting rid of 95% of Container pattern
 + Change `!stop` to consider `config.stayInChannel` setting
 + Add `!leave` command with previous behaviour of `!stop` -- Leave channel and clear queue
 + Add `!clear` command to clear the queue while continuing to play current sound
++ Add `channelWhitelist` config option to restrict bot usage to specific channels
+
+**Under the hood**
+
++ Update all dependencies
++ Simplify development by getting rid of 95% of Container pattern
 + Update translations
 
 ## 3.0.0 (2023-03-26)

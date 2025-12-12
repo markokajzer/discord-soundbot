@@ -15,6 +15,8 @@ export default class MessageHandler {
     if (!this.isValidMessage(message)) return;
 
     const { config } = message.client;
+    if (this.unknownChannel(message)) return this.handleUnknownChannel(message);
+
     const messageToHandle = message;
     messageToHandle.content = message.content.substring(config.prefix.length);
 
@@ -35,6 +37,24 @@ export default class MessageHandler {
     if (ignoreList.exists(message.author.id)) return false;
 
     return true;
+  }
+
+  private unknownChannel(message: Message) {
+    const { config } = message.client;
+    if (!config.channelWhitelist.length) return false;
+
+    return !config.channelWhitelist.includes(message.channel.id);
+  }
+
+  private handleUnknownChannel(message: Message) {
+    const channelsOnThisGuild = message.client.config.channelWhitelist.map((id) =>
+      message.guild?.channels.cache.get(id)
+    );
+
+    message.author.send(
+      localize.t("errors.unknown_channel", { channels: channelsOnThisGuild.join(" ") })
+    );
+    message.delete();
   }
 
   private async execute(message: Message) {

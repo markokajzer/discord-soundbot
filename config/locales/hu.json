@@ -58,7 +58,8 @@
       "exists": "{sound} már létezik!"
     },
     "unauthorized": "Adminisztrátornak kell lenned, vagy emelt szintû szerepkörrel kell rendelkezned a parancs végrehajtásához",
-    "unspecific": "💥 Valami hiba történt! Kérlek próbáld újra, vagy jelezd a bot készítőjének, mi történt."
+    "unspecific": "💥 Valami hiba történt! Kérlek próbáld újra, vagy jelezd a bot készítőjének, mi történt.",
+    "unknown_channel": "Ez a csatorna nincs engedélyezve.\nA következő csatornákon tudsz velem kommunikálni: {channels}."
   },
   "help": {
     "avatar": "Beállítani, mutatni vagy törölni az avatárt",

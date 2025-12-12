@@ -5,6 +5,7 @@ export default interface ConfigInterface {
 
   clientId: string;
   token: string;
+
   language?: string;
   prefix?: string;
   acceptedExtensions?: string[];
@@ -14,4 +15,5 @@ export default interface ConfigInterface {
   timeout?: number;
   game?: string;
   elevatedRoles: string[];
+  channelWhitelist: string[];
 }

@@ -10,5 +10,6 @@
   "stayInChannel": false,
   "timeout": 10,
   "game": "SoundBoard",
-  "elevatedRoles": ["admin"]
+  "elevatedRoles": ["admin"],
+  "channelWhitelist": []
 }

@@ -58,7 +58,8 @@
       "exists": "{sound} bestaat al!"
     },
     "unauthorized": "Je moet een admin zijn of een verhoogde rol hebben om dit commando uit te voeren",
-    "unspecific": "💥 Er is iets mis gegaan!"
+    "unspecific": "💥 Er is iets mis gegaan!",
+    "unknown_channel": "Dit kanaal is niet toegestaan.\nJe kunt met me communiceren in {channels}."
   },
   "help": {
     "avatar": "Zet, toon of verwijder de avatar",

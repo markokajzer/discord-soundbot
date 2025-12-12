@@ -58,7 +58,8 @@
       "exists": "{sound} はすでに存在しています。"
     },
     "unauthorized": "このコマンドを実行するには管理者権限または上位ロールが必要です",
-    "unspecific": "💥 エラーが発生しました。"
+    "unspecific": "💥 エラーが発生しました。",
+    "unknown_channel": "このチャンネルは許可されていません。\n{channels} で操作してください。"
   },
   "help": {
     "avatar": "Botのアイコンを設定、表示、または削除します",

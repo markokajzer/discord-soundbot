@@ -9,6 +9,7 @@ import DEFAULT_CONFIG from "./DefaultConfig";
 export default class Config implements ConfigInterface {
   public clientId!: string;
   public token!: string;
+
   public language!: string;
   public prefix!: string;
   public acceptedExtensions!: string[];
@@ -18,6 +19,7 @@ export default class Config implements ConfigInterface {
   public timeout!: number;
   public game!: string;
   public elevatedRoles!: string[];
+  public channelWhitelist!: string[];
 
   private readonly CONFIG_PATH = path.join(process.cwd(), "config", "config.json");
   private readonly MODIFIABLE_FIELDS = [
@@ -30,6 +32,7 @@ export default class Config implements ConfigInterface {
     "timeout",
     "game",
     "elevatedRoles",
+    "channelWhitelist",
   ];
 
   private readonly JSON_KEYS = ["clientId", "token", ...this.MODIFIABLE_FIELDS];

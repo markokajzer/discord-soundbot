@@ -58,7 +58,8 @@
       "exists": "{sound} esiste gia'!"
     },
     "unauthorized": "Devi essere un amministratore o avere un ruolo elevato per eseguire questo comando",
-    "unspecific": "💥 Qualcosa e' andato storto!"
+    "unspecific": "💥 Qualcosa e' andato storto!",
+    "unknown_channel": "Questo canale non e' nella lista autorizzata.\nPuoi interagire con me in {channels}."
   },
   "help": {
     "avatar": "Mostra, cambia o rimuove l'avatar corrente",

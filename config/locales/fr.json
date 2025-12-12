@@ -58,7 +58,8 @@
       "exists": "{sound} existe déjà !"
     },
     "unauthorized": "Vous devez être administrateur ou avoir un rôle élevé pour exécuter cette commande",
-    "unspecific": "💥 Oups, une erreur s'est produite !"
+    "unspecific": "💥 Oups, une erreur s'est produite !",
+    "unknown_channel": "Ce salon n'est pas autorisé.\nVous pouvez interagir avec moi dans {channels}."
   },
   "help": {
     "avatar": "Définir, afficher ou supprimer l'avatar",

@@ -58,7 +58,8 @@
       "exists": "{sound} já existe!"
     },
     "unauthorized": "Você precisa ser administrador",
-    "unspecific": "💥 Algo deu errado! Por Favor tente novamente, ou deixe o criador do bot saber o que aconteceu."
+    "unspecific": "💥 Algo deu errado! Por Favor tente novamente, ou deixe o criador do bot saber o que aconteceu.",
+    "unknown_channel": "Este canal não está na lista de permitidos.\nVocê pode interagir comigo em {channels}."
   },
   "help": {
     "avatar": "Defina, mostre ou remova o avatar",

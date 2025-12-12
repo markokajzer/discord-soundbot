@@ -58,7 +58,8 @@
       "exists": "{sound} existiert bereits!"
     },
     "unauthorized": "Du musst Administrator sein oder eine erhöhte Rolle haben, um diesen Befehl auszuführen",
-    "unspecific": "💥 Da ist etwas schief gegangen! Versuch's noch einmal, oder gib dem Bot-Entwickler Bescheid."
+    "unspecific": "💥 Da ist etwas schief gegangen! Versuch's noch einmal, oder gib dem Bot-Entwickler Bescheid.",
+    "unknown_channel": "Dieser Channel ist nicht freigegeben.\nDu kannst mich in {channels} verwenden."
   },
   "help": {
     "avatar": "Setze, zeige oder lösche den Avatar",
