@@ -88,7 +88,9 @@
       "remove": "Remove specified sound",
       "rename": "Rename specified sound",
       "skip": "Skip the currently playing sound",
-      "stop": "Leave channel and clear the queue"
+      "stop": "Stop playing and leave the channel if confiured to do so",
+      "leave": "Stop playing and leave the channel",
+      "clear": "Clear the sound queue, but continue playing the current sound"
     },
     "tags": {
       "add": "Add tag to sound",
@@ -119,7 +121,8 @@
     "hu": "Hungarian",
     "it": "Italian",
     "ja": "Japanese",
-    "nl": "Dutch"
+    "nl": "Dutch",
+    "pt": "Portuguese"
   },
   "url": "Use the following URL to let the bot join your server!\nhttps://discordapp.com/oauth2/authorize?client_id={clientId}&scope=bot",
   "validation": {

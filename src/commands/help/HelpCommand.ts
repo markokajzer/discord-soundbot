@@ -39,7 +39,8 @@ export class HelpCommand extends Command {
       `remove <sound>                         ${localize.t("help.sounds.remove")}`,
       `download <sound>                       ${localize.t("help.sounds.download")}`,
       `stop                                   ${localize.t("help.sounds.stop")}`,
-      `leave                                  ${localize.t("help.sounds.stop")}`,
+      `leave                                  ${localize.t("help.sounds.leave")}`,
+      `clear                                  ${localize.t("help.sounds.clear")}`,
 
       `modify <sound> volume <value>`,
       `modify <sound> clip <start> <end?>`,

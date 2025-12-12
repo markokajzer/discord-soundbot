@@ -88,7 +88,9 @@
       "remove": "Remove o áudio especificado",
       "rename": "Renomeia o áudio especificado",
       "skip": "Pula o áudio que está tocando atualmente",
-      "stop": "Sai do canal de voz e limpa a lista de reprodução"
+      "stop": "Para a reprodução e sai do canal de voz se configurado",
+      "leave": "Para a reprodução e sai do canal de voz",
+      "clear": "Limpa a lista de reprodução, mas continua tocando o áudio atual"
     },
     "tags": {
       "add": "Adiciona uma tag em um áudio",

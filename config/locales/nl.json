@@ -19,7 +19,14 @@
       "remove": "Gestopt met het negeren van {user}!"
     },
     "lang": {
-      "title": "Beschikbare talen   💬"
+      "success": "Taal gewijzigd naar `{language}`!  {flag}",
+      "title": "Beschikbare talen   💬",
+      "usage": "Zeg **{command} <language>** om er een te kiezen!\nVoorbeeld: **{command} Italian** of **{command} nl**"
+    },
+    "modify": {
+      "error": "Er ging iets mis bij het wijzigen van `{modifier}` van {sound}!",
+      "notFound": "Geen modifier gevonden: `{modifier}`!",
+      "success": "`{modifier}` van {sound} succesvol gewijzigd!"
     },
     "remove": {
       "notFound": "{sound} niet gevonden!",
@@ -43,17 +50,28 @@
   "errors": {
     "format": {
       "sound": "💥📛 Bestandsnaam mag alleen letters en cijfers bevatten!",
+      "time": "💥⌚ De opgegeven tijd is niet in het formaat [[uu:]mm:]ss[.xxx].",
       "url": "💥🚋 URL is niet geldig!"
     },
+    "permissions": "Ik heb toestemming nodig om het kanaal te joinen.",
     "sounds": {
       "exists": "{sound} bestaat al!"
     },
+    "unauthorized": "Je moet een admin zijn of een verhoogde rol hebben om dit commando uit te voeren",
     "unspecific": "💥 Er is iets mis gegaan!"
   },
   "help": {
     "avatar": "Zet, toon of verwijder de avatar",
     "commands": "Toon dit bericht",
     "config": "Verander de configuratie",
+    "entrance": {
+      "remove": "Verwijder inkomstgeluid",
+      "set": "Speel het opgegeven geluid af wanneer je een kanaal binnenkomt"
+    },
+    "exit": {
+      "remove": "Verwijder vertrekgeluid",
+      "set": "Speel het opgegeven geluid af wanneer je een kanaal verlaat"
+    },
     "headline": "Begin je commando's met een `{prefix}` voor de volgende acties:",
     "ignore": "Negeer een gebruiker",
     "lastadded": "Toon nieuwste geluiden",
@@ -63,11 +81,16 @@
       "all": "Toon beschikbare geluiden",
       "combo": "Speel geluiden achter elkaar af",
       "download": "Verstuur een geluid naar de chat",
+      "loop": "Herhaal het opgegeven geluid <count> keer of eindeloos",
+      "next": "Onderbreek het huidige geluid met het opgegeven geluid",
       "play": "Speel een geluid af",
       "random": "Speel een willekeurig geluid af",
       "remove": "Verwijder een geluid",
       "rename": "Hernoem een geluid",
-      "stop": "Stop met afspelen en haal de afspeelwachtrij leeg"
+      "skip": "Sla het huidige geluid over",
+      "stop": "Stop met afspelen en verlaat het kanaal indien ingesteld",
+      "leave": "Stop met afspelen en verlaat het kanaal",
+      "clear": "Maak de wachtrij leeg, maar blijf het huidige geluid afspelen"
     },
     "tags": {
       "add": "Voeg een label toe aan een geluid",
@@ -98,7 +121,8 @@
     "hu": "Hongaars",
     "it": "Italiaans",
     "ja": "Japans",
-    "nl": "Nederlands"
+    "nl": "Nederlands",
+    "pt": "Portugees"
   },
   "url": "Gebruik de volgende link om de bot te laten verbinden met je server!\nhttps://discordapp.com/oauth2/authorize?client_id={clientId}&scope=bot",
   "validation": {

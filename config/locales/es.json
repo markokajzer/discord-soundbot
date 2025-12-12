@@ -81,13 +81,16 @@
       "all": "Muestra todos los sonidos disponibles",
       "combo": "Reproduce sonidos en sucesión",
       "download": "Envía el sonido especificado al chat",
+      "loop": "Repite el sonido especificado <count> veces o infinitamente",
       "next": "Interrumpe el sonido que se está reproduciendo especificando otro sonido",
       "play": "Reproduce el sonido indicado",
       "random": "Reproduce un sonido al azar",
       "remove": "Borra el sonido indicado",
       "rename": "Renombra el sonido indicado",
       "skip": "Salta el sonido que se está reproduciendo",
-      "stop": "Detener la reproducción y borrar la cola"
+      "stop": "Detener la reproducción y salir del canal si está configurado",
+      "leave": "Detener la reproducción y salir del canal",
+      "clear": "Limpiar la cola de sonidos, pero continuar reproduciendo el sonido actual"
     },
     "tags": {
       "add": "Agregar etiqueta (tag) a sonido",
@@ -118,7 +121,8 @@
     "hu": "Húngaro",
     "it": "Italiano",
     "ja": "Japonés",
-    "nl": "Holandés"
+    "nl": "Holandés",
+    "pt": "Portugués"
   },
   "url": "Use el siguiente enlace para invitar a unirse a tu servidor\nhttps://discordapp.com/oauth2/authorize?client_id={clientId}&scope=bot",
   "validation": {
@@ -127,5 +131,5 @@
       "size": "¡El archivo es demasiado grande!"
     }
   },
-  "welcome": "**¡Gracias por agregarme!**  🔥\n- Mi prefijo es `{prefix}`. ¿Quieres cambiarlo? Aquí puedes ver todas las opciones de configuración: **<https://github.com/markokajzer/discord-soundbot/wiki/Configuration>**.\n- You can see a list of commands with `{prefix}help.`\n- Get started by adding a sound. Use `{prefix}add` and drag in a sound file!\n- Need more help? Join the support server: **<https://discordapp.com/invite/JBw2BNx>**."
+  "welcome": "**¡Gracias por agregarme!**  🔥\n- Mi prefijo es `{prefix}`. ¿Quieres cambiarlo? Aquí puedes ver todas las opciones de configuración: **<https://github.com/markokajzer/discord-soundbot/wiki/Configuration>**.\n- Puedes ver la lista de comandos con `{prefix}help.`\n- Comienza agregando un sonido. ¡Usa `{prefix}add` y arrastra un archivo de sonido!\n- ¿Necesitas más ayuda? Únete al servidor de soporte: **<https://discordapp.com/invite/JBw2BNx>**."
 }

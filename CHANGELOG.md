@@ -9,6 +9,7 @@
 + Change `!stop` to consider `config.stayInChannel` setting
 + Add `!leave` command with previous behaviour of `!stop` -- Leave channel and clear queue
 + Add `!clear` command to clear the queue while continuing to play current sound
++ Update translations
 
 ## 3.0.0 (2023-03-26)
 

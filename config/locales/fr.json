@@ -19,7 +19,14 @@
       "remove": "L'utilisateur {user} n'est plus ignoré !"
     },
     "lang": {
-      "title": "Langues disponibles   💬"
+      "success": "Langue changée en `{language}` !  {flag}",
+      "title": "Langues disponibles   💬",
+      "usage": "Utilisez **{command} <language>** pour en choisir une !\nExemple : **{command} Italian** ou **{command} nl**"
+    },
+    "modify": {
+      "error": "Une erreur s'est produite lors de la modification de `{modifier}` de {sound} !",
+      "notFound": "Modificateur introuvable : `{modifier}` !",
+      "success": "`{modifier}` de {sound} modifié avec succès !"
     },
     "remove": {
       "notFound": "{sound} introuvable !",
@@ -43,11 +50,14 @@
   "errors": {
     "format": {
       "sound": "💥📛 Le nom de fichier ne doit contenir que des chiffres et des lettres !",
+      "time": "💥⌚ Le temps spécifié n'est pas au format [[hh:]mm:]ss[.xxx].",
       "url": "💥🚋 L'URL n'est pas valide !"
     },
+    "permissions": "J'ai besoin des permissions pour rejoindre le salon.",
     "sounds": {
       "exists": "{sound} existe déjà !"
     },
+    "unauthorized": "Vous devez être administrateur ou avoir un rôle élevé pour exécuter cette commande",
     "unspecific": "💥 Oups, une erreur s'est produite !"
   },
   "help": {
@@ -58,6 +68,10 @@
       "remove": "Supprime votre son d'entrée dans un salon",
       "set": "Joue le son spécifié lorsque vous entrez dans un salon"
     },
+    "exit": {
+      "remove": "Supprime votre son de sortie d'un salon",
+      "set": "Joue le son spécifié lorsque vous quittez un salon"
+    },
     "headline": "Utilisez le préfixe `{prefix}` avec les commandes suivantes :",
     "ignore": "Ignorer l'utilisateur spécifié",
     "lastadded": "Affiche les sons ajoutés le plus récemment",
@@ -67,11 +81,16 @@
       "all": "Afficher la liste des sons disponibles",
       "combo": "Jouer les sons successivement",
       "download": "Envoyer le son spécifié dant la discussion",
+      "loop": "Répéter le son spécifié <count> fois ou en boucle infinie",
+      "next": "Interrompre le son en cours avec le son spécifié",
       "play": "Jouer le son spécifié",
       "random": "Jouer un son aléatoire",
       "remove": "Supprimer le son spécifié",
       "rename": "Renommer le son spécifié",
-      "stop": "Arrêter le son et vider la file de lecture"
+      "skip": "Passer le son en cours de lecture",
+      "stop": "Arrêter la lecture et quitter le salon si configuré",
+      "leave": "Arrêter la lecture et quitter le salon",
+      "clear": "Vider la file d'attente, mais continuer la lecture du son actuel"
     },
     "tags": {
       "add": "Ajouter un tag au son",
@@ -95,14 +114,15 @@
     }
   },
   "language": {
-    "de": "Allemande",
-    "en": "anglais",
+    "de": "Allemand",
+    "en": "Anglais",
     "es": "Espagnol",
     "fr": "Français",
     "hu": "Hongrois",
     "it": "Italien",
     "ja": "Japonais",
-    "nl": "Nederlands"
+    "nl": "Néerlandais",
+    "pt": "Portugais"
   },
   "url": "Utilisez le lien suivant pour inviter le bot sur votre serveur !\nhttps://discordapp.com/oauth2/authorize?client_id={clientId}&scope=bot",
   "validation": {

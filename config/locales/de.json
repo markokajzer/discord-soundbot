@@ -19,7 +19,14 @@
       "remove": "Ignoriere {user} nicht länger!"
     },
     "lang": {
-      "title": "Verfügbare Sprachen   💬"
+      "success": "Sprache zu `{language}` geändert!  {flag}",
+      "title": "Verfügbare Sprachen   💬",
+      "usage": "Sag **{command} <language>** um eine auszuwählen!\nBeispiel: **{command} Italian** oder **{command} nl**"
+    },
+    "modify": {
+      "error": "Beim Ändern von `{modifier}` bei {sound} ist etwas schief gegangen!",
+      "notFound": "Kein solcher Modifikator: `{modifier}`!",
+      "success": "`{modifier}` von {sound} erfolgreich geändert!"
     },
     "remove": {
       "notFound": "{sound} nicht gefunden!",
@@ -46,9 +53,11 @@
       "time": "💥⌚ Die angegebene Zeit war nicht im Format [[hh:]mm:]ss[.xxx].",
       "url": "💥🚋 Gib eine YouTube-URL an."
     },
+    "permissions": "Ich brauche Berechtigungen, um dem Channel beizutreten.",
     "sounds": {
       "exists": "{sound} existiert bereits!"
     },
+    "unauthorized": "Du musst Administrator sein oder eine erhöhte Rolle haben, um diesen Befehl auszuführen",
     "unspecific": "💥 Da ist etwas schief gegangen! Versuch's noch einmal, oder gib dem Bot-Entwickler Bescheid."
   },
   "help": {
@@ -57,7 +66,11 @@
     "config": "Ändere die Einstellungen",
     "entrance": {
       "remove": "Entferne Beitrittssound",
-      "set": "Spiele den angegebenen Sound, wenn du einem Channel beitrittst."
+      "set": "Spiele den angegebenen Sound, wenn du einem Channel beitrittst"
+    },
+    "exit": {
+      "remove": "Entferne Austrittssound",
+      "set": "Spiele den angegebenen Sound, wenn du einen Channel verlässt"
     },
     "headline": "Benutze den Prefix `{prefix}` mit den folgenden Kommandos:",
     "ignore": "Ignoriere angegebenen Benutzer",
@@ -74,8 +87,10 @@
       "random": "Spiele einen zufälligen Sound",
       "remove": "Lösche den angegebenen Sound",
       "rename": "Benenne den angegebenen Sound",
-      "skip": "überspringe den aktuellen Sound",
-      "stop": "Hör auf zu spielen"
+      "skip": "Überspringe den aktuellen Sound",
+      "stop": "Stoppe die Wiedergabe und verlasse den Channel, falls so konfiguriert",
+      "leave": "Stoppe die Wiedergabe und verlasse den Channel",
+      "clear": "Leere die Warteschlange, aber spiele den aktuellen Sound weiter"
     },
     "tags": {
       "add": "Füge dem Sound einen Tag hinzu",
@@ -106,7 +121,8 @@
     "hu": "Ungarisch",
     "it": "Italienisch",
     "ja": "Japanisch",
-    "nl": "Niederländisch"
+    "nl": "Niederländisch",
+    "pt": "Portugiesisch"
   },
   "url": "Benutze den folgenden Link, um den Bot deinem Server hinzuzufügen!\nhttps://discordapp.com/oauth2/authorize?client_id={clientId}&scope=bot",
   "validation": {

@@ -19,7 +19,14 @@
       "remove": "Non sto piu' ignorando {user}!"
     },
     "lang": {
-      "title": "Lingue disponibili   💬"
+      "success": "Lingua cambiata in `{language}`!  {flag}",
+      "title": "Lingue disponibili   💬",
+      "usage": "Scrivi **{command} <language>** per sceglierne una!\nEsempio: **{command} Italian** o **{command} nl**"
+    },
+    "modify": {
+      "error": "Qualcosa e' andato storto durante la modifica di `{modifier}` di {sound}!",
+      "notFound": "Modificatore non trovato: `{modifier}`!",
+      "success": "`{modifier}` di {sound} modificato con successo!"
     },
     "remove": {
       "notFound": "{sound} non trovato!",
@@ -42,11 +49,15 @@
   },
   "errors": {
     "format": {
+      "sound": "💥📛 Il nome del file deve contenere solo lettere e numeri!",
+      "time": "💥⌚ Il tempo specificato non e' nel formato [[hh:]mm:]ss[.xxx].",
       "url": "💥🚋 L'URL non e' valido!"
     },
+    "permissions": "Ho bisogno dei permessi per entrare nel canale.",
     "sounds": {
       "exists": "{sound} esiste gia'!"
     },
+    "unauthorized": "Devi essere un amministratore o avere un ruolo elevato per eseguire questo comando",
     "unspecific": "💥 Qualcosa e' andato storto!"
   },
   "help": {
@@ -55,7 +66,11 @@
     "config": "Cambia la configurazione",
     "entrance": {
       "remove": "Rimuove il suono di entrata",
-      "set": "Imposta un suono di entrata"
+      "set": "Riproduce il suono specificato quando entri in un canale"
+    },
+    "exit": {
+      "remove": "Rimuove il suono di uscita",
+      "set": "Riproduce il suono specificato quando esci da un canale"
     },
     "headline": "Usa il prefisso `{prefix}` coi seguenti comandi:",
     "ignore": "Ignora un utente specifico",
@@ -66,11 +81,16 @@
       "all": "Mostra i suoni disponibili",
       "combo": "Riproduce suoni in successione",
       "download": "Manda il suono specificato come file scaricabile",
+      "loop": "Ripete il suono specificato <count> volte o all'infinito",
+      "next": "Interrompe il suono corrente con il suono specificato",
       "play": "Riproduce un suono specifico",
       "random": "Riproduce un suono casuale",
       "remove": "Rimuove il suono specificato",
       "rename": "Rinomina il suono specificato",
-      "stop": "Ferma la riproduzione e pulisce la coda"
+      "skip": "Salta il suono attualmente in riproduzione",
+      "stop": "Ferma la riproduzione ed esci dal canale se configurato",
+      "leave": "Ferma la riproduzione ed esci dal canale",
+      "clear": "Pulisce la coda, ma continua a riprodurre il suono attuale"
     },
     "tags": {
       "add": "Aggiungi un tag al suono",
@@ -99,9 +119,10 @@
     "es": "Spagnolo",
     "fr": "Francese",
     "hu": "Ungherese",
-    "it": "Italian",
+    "it": "Italiano",
     "ja": "Giapponese",
-    "nl": "Olandese"
+    "nl": "Olandese",
+    "pt": "Portoghese"
   },
   "url": "Usa il seguente URL per far entrare il BOT nel tuo server!\nhttps://discordapp.com/oauth2/authorize?client_id={clientId}&scope=bot",
   "validation": {

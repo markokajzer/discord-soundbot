@@ -19,7 +19,14 @@
       "remove": "{user} Nincs tovább figyelmenkívülhagyva!"
     },
     "lang": {
-      "title": "Elérhető nyelvek   💬"
+      "success": "Nyelv megváltoztatva: `{language}`!  {flag}",
+      "title": "Elérhető nyelvek   💬",
+      "usage": "Írd: **{command} <nyelv>** a választáshoz!\nPélda: **{command} Hungarian** vagy **{command} hu**"
+    },
+    "modify": {
+      "error": "Hiba történt a(z) {sound} `{modifier}` módosítása közben!",
+      "notFound": "Nincs ilyen módosító: `{modifier}`!",
+      "success": "A(z) {sound} `{modifier}` sikeresen módosítva!"
     },
     "remove": {
       "notFound": "{sound} nem taláható.",
@@ -42,17 +49,29 @@
   },
   "errors": {
     "format": {
-      "sound": "💥📛 A fájlnév csak betû és számkombinációkat tartalmazhat!",
+      "sound": "💥📛 A fájlnév csak betûket és számokat tartalmazhat!",
+      "time": "💥⌚ A megadott idő nem megfelelő formátumú: [[óó:]pp:]mm[.xxx].",
       "url": "💥🚋 Érvénytelen URL!"
     },
+    "permissions": "Engedélyre van szükségem a csatornához való csatlakozáshoz.",
     "sounds": {
-      "exists": "{sound} már elérhetõ!"
-    }
+      "exists": "{sound} már létezik!"
+    },
+    "unauthorized": "Adminisztrátornak kell lenned, vagy emelt szintû szerepkörrel kell rendelkezned a parancs végrehajtásához",
+    "unspecific": "💥 Valami hiba történt! Kérlek próbáld újra, vagy jelezd a bot készítőjének, mi történt."
   },
   "help": {
     "avatar": "Beállítani, mutatni vagy törölni az avatárt",
     "commands": "Szöveg kimutatása",
     "config": "Módosítsa a konfigurációt",
+    "entrance": {
+      "remove": "Belépési hang eltávolítása",
+      "set": "A megadott hang lejátszása, amikor csatlakozol egy csatornához"
+    },
+    "exit": {
+      "remove": "Kilépési hang eltávolítása",
+      "set": "A megadott hang lejátszása, amikor elhagyod a csatornát"
+    },
     "headline": "Elõtag használata `{prefix}` a következõ parancsokkal:",
     "ignore": "Tag figyelmenkívülhagyása",
     "lastadded": "Legutóbb játszott hang",
@@ -62,11 +81,16 @@
       "all": "Elérhetõ hangok",
       "combo": "Játsszon egymás után hangokat",
       "download": "Hang elküldése",
+      "loop": "A megadott hang <count> alkalommal vagy végtelenül ismétlése",
+      "next": "A jelenleg játszott hang megszakítása a megadott hanggal",
       "play": "Hang lejátszása",
-      "random": "Véletlen szám lejátszása",
+      "random": "Véletlen hang lejátszása",
       "remove": "Hang eltávolítása",
       "rename": "Hang átnevezése",
-      "stop": "Hang lejátszásának befejezése és várakozólista törlése"
+      "skip": "A jelenleg játszott hang átugrása",
+      "stop": "Állítsd le a lejátszást és hagyd el a csatornát, ha be van állítva",
+      "leave": "Állítsd le a lejátszást és hagyd el a csatornát",
+      "clear": "Töröld a várakozólistát, de folytasd az aktuális hang lejátszását"
     },
     "tags": {
       "add": "Megjegyzés adása a hangokhoz",
@@ -95,9 +119,10 @@
     "es": "Spanyol",
     "fr": "Francia",
     "hu": "Magyar",
-    "it": "Italiano",
+    "it": "Olasz",
     "ja": "Japán",
-    "nl": "Holland"
+    "nl": "Holland",
+    "pt": "Portugál"
   },
   "url": "Használd a következõ linket a bot meghívására \nhttps://discordapp.com/oauth2/authorize?client_id={clientId}&scope=bot",
   "validation": {
