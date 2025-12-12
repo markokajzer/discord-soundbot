@@ -1,17 +1,15 @@
 import Config from "~/config/Config";
 import SoundQueue from "~/queue/SoundQueue";
 
-import CommandCollection from "../bot/CommandCollection";
 import MessageHandler from "../bot/MessageHandler";
 import SoundBot from "../bot/SoundBot";
 
 export const config = new Config();
 const queue = new SoundQueue(config);
 
-const commandCollection = new CommandCollection();
-const messageHandler = new MessageHandler(commandCollection);
+const messageHandler = new MessageHandler();
 
-const soundBot = new SoundBot(config, commandCollection, messageHandler, queue);
+const soundBot = new SoundBot(config, messageHandler, queue);
 
 interface SoundBotContainer {
   config: Config;

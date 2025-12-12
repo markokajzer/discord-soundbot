@@ -19,21 +19,14 @@ import localize from "~/util/i18n/localize";
 import { getSounds } from "~/util/SoundUtil";
 
 import type Command from "../commands/Command";
-import type CommandCollection from "./CommandCollection";
 import type MessageHandler from "./MessageHandler";
 
 export default class SoundBot extends Client {
   public readonly config: Config;
   public readonly queue: SoundQueue;
-  private readonly commands: CommandCollection;
   private readonly messageHandler: MessageHandler;
 
-  constructor(
-    config: Config,
-    commands: CommandCollection,
-    messageHandler: MessageHandler,
-    queue: SoundQueue
-  ) {
+  constructor(config: Config, messageHandler: MessageHandler, queue: SoundQueue) {
     super({
       intents: [
         GatewayIntentBits.Guilds,
@@ -44,7 +37,6 @@ export default class SoundBot extends Client {
     });
 
     this.config = config;
-    this.commands = commands;
     this.messageHandler = messageHandler;
     this.queue = queue;
 
@@ -56,7 +48,7 @@ export default class SoundBot extends Client {
   }
 
   public registerAdditionalCommands(commands: Command[]) {
-    this.commands.registerCommands(commands);
+    this.messageHandler.registerCommands(commands);
   }
 
   private addEventListeners() {
