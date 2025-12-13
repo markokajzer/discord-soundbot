@@ -87,12 +87,17 @@ export default class SoundQueue {
     this.currentSound = this.queue.shift();
     if (!this.currentSound) throw Error("Queue was empty");
 
+    const wasConnectionDead =
+      !this.connection || this.connection.state.status === VoiceConnectionStatus.Destroyed;
+
     try {
       this.connection = joinVoiceChannel({
         adapterCreator: this.currentSound.channel.guild.voiceAdapterCreator,
         channelId: this.currentSound.channel.id,
         guildId: this.currentSound.channel.guild.id,
       });
+      // Handle commands where the bot leaves the channel, e.g. !stop, !leave
+      if (wasConnectionDead) this.connection.on("stateChange", this.signalDisconnected);
 
       this.playSound();
     } catch (error) {
@@ -108,9 +113,6 @@ export default class SoundQueue {
     const resource = createAudioResource(sound);
 
     this.connection.subscribe(this.player);
-    // Handle commands where the bot leaves the channel, e.g. !stop, !leave
-    this.connection.on("stateChange", this.signalDisconnected);
-
     this.player.play(resource);
   }
 
