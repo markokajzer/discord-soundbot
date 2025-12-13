@@ -24,8 +24,6 @@ This is a self-hosted Discord soundboard bot built with discord.js v14 and TypeS
 
 ### Core Components
 
-- **Container** (`src/util/Container.ts`): Dependency injection container that instantiates and wires up all commands, the queue, and the bot. All dependencies are created here as singletons.
-
 - **SoundBot** (`src/bot/SoundBot.ts`): Extends discord.js `Client`. Handles Discord events (ready, messageCreate, voiceStateUpdate, guildCreate) and delegates message handling.
 
 - **MessageHandler** (`src/bot/MessageHandler.ts`): Validates incoming messages (checks prefix, ignores bots/DMs/ignored users) and routes them to commands via CommandCollection.
@@ -36,11 +34,10 @@ This is a self-hosted Discord soundboard bot built with discord.js v14 and TypeS
 
 ### Command System
 
-Commands extend abstract base classes in `src/commands/base/`:
-- `Command`: Base class with `triggers[]`, optional `elevated` flag, and `run(message, params)` method
-- `QueueCommand`: Commands that interact with the SoundQueue
-- `ConfigCommand`: Commands that need Config access
-- `UserCommand`: Commands that need the ClientUser (e.g., AvatarCommand)
+Commands extend the abstract `Command` class (`src/commands/Command.ts`) which defines:
+- `triggers[]`: Command names that invoke this command
+- `elevated`: Boolean flag for admin-only commands
+- `run(message, params)`: Async method containing command logic
 
 Commands are organized by category:
 - `config/`: Bot configuration (avatar, language, ignore/unignore users)
@@ -64,11 +61,13 @@ import Config from "~/config/Config";
 
 ### Adding New Commands
 
-1. Create a new class extending the appropriate base command
+1. Create a new class extending the abstract `Command` class
 2. Define `triggers: string[]` for the command names
 3. Set `elevated = true` if restricted to admin roles
 4. Implement `run(message: Message, params?: string[])`
-5. Add the command instance to the array in `src/util/Container.ts`
+5. Place the file in the appropriate `src/commands/<category>/` directory with the naming convention `*Command.ts`
+
+Commands are auto-discovered at runtime by `CommandCollection` via glob pattern matching on `src/commands/*/*Command.js`.
 
 ## Configuration
 

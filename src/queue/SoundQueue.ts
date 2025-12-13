@@ -31,11 +31,8 @@ export default class SoundQueue {
     this.player = createAudioPlayer();
 
     this.player.on("stateChange", this.signalIdle);
-    // @ts-expect-error
     this.player.on("soundbot.idle", this.handleFinishedPlayingSound);
-    // @ts-expect-error
     this.player.on("soundbot.next", this.handleFinishedPlayingSound);
-    // @ts-expect-error
     this.player.on("soundbot.disconnected", this.handleFinishedPlayingSound);
   }
 
