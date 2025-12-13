@@ -6,6 +6,7 @@ import Command from "../Command";
 
 export class SoundCommand extends Command {
   public readonly triggers = [];
+  public readonly handlesDeletion = true;
 
   public async run(message: Message) {
     if (!message.member) return;

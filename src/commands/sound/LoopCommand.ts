@@ -8,6 +8,7 @@ export class LoopCommand extends Command {
   public readonly triggers = ["loop", "repeat"];
   public readonly numberOfParameters = 2;
   public readonly usage = "Usage: !loop <sound> <count>";
+  public readonly handlesDeletion = true;
 
   public async run(message: Message, params: string[]) {
     if (!message.member) return;
@@ -26,7 +27,7 @@ export class LoopCommand extends Command {
       return;
     }
 
-    const count = Number.parseInt(countAsString, 10) || Number.MAX_SAFE_INTEGER;
+    const count = Number.parseInt(countAsString) || Number.MAX_SAFE_INTEGER;
     const item = new QueueItem(sound, voiceChannel, message, count);
 
     const { queue } = message.client;

@@ -69,6 +69,8 @@ export default class MessageHandler {
     await commandToRun.run(message, params);
 
     const { config } = message.client;
-    if (config.cleanup === "all" && message.deletable) message.delete();
+    if (!commandToRun.handlesDeletion && config.cleanup === "all" && message.deletable) {
+      message.delete();
+    }
   }
 }

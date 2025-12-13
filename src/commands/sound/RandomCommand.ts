@@ -8,6 +8,7 @@ import Command from "../Command";
 export class RandomCommand extends Command {
   public readonly triggers = ["random"];
   public readonly numberOfParameters = 1;
+  public readonly handlesDeletion = true;
 
   public async run(message: Message, params: string[]) {
     if (!message.member) return;

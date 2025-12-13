@@ -8,6 +8,7 @@ export class ComboCommand extends Command {
   public readonly triggers = ["combo"];
   public readonly numberOfParameters = 1;
   public readonly usage = "Usage: !combo <sound1> ... <soundN>";
+  public readonly handlesDeletion = true;
 
   public async run(message: Message, params: string[]) {
     if (!message.member) return;
