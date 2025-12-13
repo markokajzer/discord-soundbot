@@ -58,6 +58,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "clean": "rm -rf dist",
+    "dev": "npm run build && node -r module-alias/register --trace-warnings dist/bin/soundbot.js",
     "format": "npx @biomejs/biome format --write .",
     "format:ci": "npx @biomejs/biome format .",
     "lint": "npx @biomejs/biome lint --write .",

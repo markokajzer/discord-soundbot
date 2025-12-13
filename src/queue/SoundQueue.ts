@@ -4,9 +4,9 @@ import {
   AudioPlayerStatus,
   createAudioPlayer,
   createAudioResource,
-  type DiscordGatewayAdapterCreator,
   joinVoiceChannel,
   type VoiceConnection,
+  type VoiceConnectionState,
   VoiceConnectionStatus,
 } from "@discordjs/voice";
 import { DiscordAPIError } from "discord.js";
@@ -15,7 +15,6 @@ import type Config from "~/config/Config";
 import * as sounds from "~/util/db/Sounds";
 import localize from "~/util/i18n/localize";
 import { getPathForSound } from "~/util/SoundUtil";
-
 import ChannelTimeout from "./ChannelTimeout";
 import QueueItem from "./QueueItem";
 
@@ -25,10 +24,19 @@ export default class SoundQueue {
   private readonly player: AudioPlayer;
   private queue: QueueItem[] = [];
   private currentSound: Nullable<QueueItem>;
+  private connection: Nullable<VoiceConnection>;
 
   constructor(config: Config) {
     this.config = config;
     this.player = createAudioPlayer();
+
+    this.player.on("stateChange", this.signalIdle);
+    // @ts-expect-error
+    this.player.on("soundbot.idle", this.handleFinishedPlayingSound);
+    // @ts-expect-error
+    this.player.on("soundbot.next", this.handleFinishedPlayingSound);
+    // @ts-expect-error
+    this.player.on("soundbot.disconnected", this.handleFinishedPlayingSound);
   }
 
   public add(item: QueueItem) {
@@ -43,7 +51,7 @@ export default class SoundQueue {
   }
 
   public next() {
-    this.player.emit("next");
+    this.player.emit("soundbot.next");
   }
 
   public clear() {
@@ -77,49 +85,53 @@ export default class SoundQueue {
 
   private async playNext() {
     this.currentSound = this.queue.shift();
-    if (!this.currentSound) throw new Error("Queue was empty");
+    if (!this.currentSound) throw Error("Queue was empty");
 
     try {
-      const connection = joinVoiceChannel({
-        adapterCreator: this.currentSound.channel.guild
-          .voiceAdapterCreator as DiscordGatewayAdapterCreator,
+      this.connection = joinVoiceChannel({
+        adapterCreator: this.currentSound.channel.guild.voiceAdapterCreator,
         channelId: this.currentSound.channel.id,
         guildId: this.currentSound.channel.guild.id,
       });
 
-      await this.playSound(connection);
-      this.handleFinishedPlayingSound(connection);
+      this.playSound();
     } catch (error) {
       this.handleError(error);
     }
   }
 
-  private playSound(connection: VoiceConnection): Promise<void> {
+  private playSound() {
     if (!this.currentSound) throw Error("No currentSound in context");
+    if (!this.connection) throw Error("No connection in context");
 
     const sound = getPathForSound(this.currentSound.name);
     const resource = createAudioResource(sound);
 
-    connection.subscribe(this.player);
+    this.connection.subscribe(this.player);
+    // Handle commands where the bot leaves the channel, e.g. !stop, !leave
+    this.connection.on("stateChange", this.signalDisconnected);
 
-    return new Promise((resolve) => {
-      this.player.play(resource);
-      this.player.on("stateChange", (oldState, newState) => {
-        // TODO: check if this runs multiple times when looping / playing multiple sounds
-        if (this.becameIdleAfterPlaying(oldState, newState)) resolve();
-      });
-      // @ts-expect-error
-      this.player.on("next", resolve);
-
-      // TODO: Forgot why we need this. Investigate.
-      connection.on("stateChange", (_, newState) => {
-        if (newState.status === VoiceConnectionStatus.Disconnected) resolve();
-      });
-    });
+    this.player.play(resource);
   }
 
-  private handleFinishedPlayingSound(connection: VoiceConnection) {
+  private signalIdle = (oldState: AudioPlayerState, newState: AudioPlayerState) => {
+    if (this.becameIdleAfterPlaying(oldState, newState)) {
+      this.player.emit("soundbot.idle");
+    }
+  };
+
+  private signalDisconnected = (
+    _oldState: VoiceConnectionState,
+    newState: VoiceConnectionState
+  ) => {
+    if (newState.status === VoiceConnectionStatus.Disconnected) {
+      this.player.emit("soundbot.disconnected");
+    }
+  };
+
+  private handleFinishedPlayingSound = () => {
     if (!this.currentSound) throw Error("No currentSound in context");
+    if (!this.connection) throw Error("No connection in context");
 
     const { name, channel, message, count } = this.currentSound;
     sounds.incrementCount(name);
@@ -138,12 +150,12 @@ export default class SoundQueue {
     }
 
     if (!this.config.stayInChannel) {
-      connection.destroy();
+      this.connection.destroy();
       return;
     }
 
-    if (this.config.timeout > 0) ChannelTimeout.start(connection);
-  }
+    if (this.config.timeout > 0) ChannelTimeout.start(this.connection);
+  };
 
   private async handleError(error: unknown) {
     if (
