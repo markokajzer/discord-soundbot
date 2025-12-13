@@ -1,5 +1,3 @@
-/* eslint-disable max-classes-per-file */
-
 import localize from "./i18n/localize";
 
 export class FormatError extends Error {

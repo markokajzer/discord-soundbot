@@ -96,7 +96,6 @@ export default class Config implements ConfigInterface {
   }
 
   private initializeWithSavedConfig() {
-    // eslint-disable-next-line
     const savedConfig = require(this.CONFIG_PATH);
     this.setFrom(savedConfig);
   }

@@ -1,5 +1,3 @@
-/* eslint-disable max-classes-per-file */
-
 import URL from "node:url";
 
 import { InvalidUrlError } from "~/util/Errors";

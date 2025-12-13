@@ -19,8 +19,8 @@ const localize: I18nProvider = {
   getLocale: i18n.getLocale,
   getLocales: i18n.getLocales,
   setLocale: i18n.setLocale,
-  t: i18n.__mf, // eslint-disable-line no-underscore-dangle
-  translate: i18n.__mf, // eslint-disable-line no-underscore-dangle
+  t: i18n.__mf,
+  translate: i18n.__mf,
 };
 
 export default localize;

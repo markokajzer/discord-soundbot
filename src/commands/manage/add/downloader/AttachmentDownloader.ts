@@ -32,8 +32,6 @@ export default class AttachmentDownloader extends BaseDownloader {
     for (const attachment of message.attachments.values()) {
       this.validator.validate(attachment);
 
-      // NOTE: This could be optimized, but it is okay to do it in succession and code is cleaner
-      // eslint-disable-next-line no-await-in-loop
       await this.fetchAndSaveSound(attachment);
 
       const name = attachment.name.split(".")[0];
