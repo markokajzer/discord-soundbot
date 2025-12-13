@@ -69,7 +69,10 @@ export class ModifyCommand extends Command {
       .output(tempFile);
 
     return new Promise((resolve, reject) => {
-      ffmpegCommand.on("end", resolve).on("error", reject).run();
+      ffmpegCommand
+        .on("end", () => resolve())
+        .on("error", reject)
+        .run();
     });
   }
 
@@ -84,7 +87,10 @@ export class ModifyCommand extends Command {
     if (end) ffmpegCommand = ffmpegCommand.setDuration(end - start);
 
     return new Promise((resolve, reject) => {
-      ffmpegCommand.on("end", resolve).on("error", reject).run();
+      ffmpegCommand
+        .on("end", () => resolve())
+        .on("error", reject)
+        .run();
     });
   }
 

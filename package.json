@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.3.8",
-    "@types/fluent-ffmpeg": "2.1.16",
+    "@types/fluent-ffmpeg": "^2.1.28",
     "@types/i18n": "^0.13.12",
     "@types/jest": "^30.0.0",
     "@types/lodash": "^4.17.21",
