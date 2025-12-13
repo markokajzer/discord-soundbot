@@ -15,7 +15,7 @@ export class MostPlayedCommand extends Command {
 
   private getFormattedMessage() {
     const sounds = soundsDb.mostPlayed();
-    if (!sounds.length) return undefined;
+    if (!sounds.length) return;
 
     const longestSound = this.findLongestWord(sounds.map((sound) => sound.name));
     const longestCount = this.findLongestWord(sounds.map((sound) => String(sound.count)));

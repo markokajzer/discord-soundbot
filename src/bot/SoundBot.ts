@@ -56,7 +56,7 @@ export default class SoundBot extends Client {
     this.on(Events.VoiceStateUpdate, this.onUserLeavesVoiceChannel);
     this.on(Events.VoiceStateUpdate, this.onUserJoinsVoiceChannel);
     this.on(Events.GuildCreate, this.onBotJoinsServer);
-    // this.on('error', error => console.log({ error }));
+    // this.on(Events.Error, (error) => console.log({ error }));
   }
 
   private onReady() {
@@ -107,7 +107,7 @@ export default class SoundBot extends Client {
   }
 
   private findFirstWritableChannel(guild: Guild) {
-    if (!guild.members.me) return undefined;
+    if (!guild.members.me) return;
 
     const channels = guild.channels.cache
       .filter((channel) => channel.type === ChannelType.GuildText)
@@ -118,7 +118,7 @@ export default class SoundBot extends Client {
         return Boolean(permissions?.has(PermissionFlagsBits.SendMessages));
       });
 
-    if (!channels.size) return undefined;
+    if (!channels.size) return;
     return channels.first() as TextChannel;
   }
 }
