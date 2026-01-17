@@ -1,6 +1,7 @@
 import { JSONFileSyncPreset } from "lowdb/node";
 
 import type Sound from "./models/Sound";
+import { queuedWrite } from "./WriteQueue";
 
 interface Schema {
   entrances: Record<string, string>;
@@ -17,5 +18,7 @@ const defaultData: Schema = {
 };
 
 const db = JSONFileSyncPreset<Schema>("db.json", defaultData);
+
+export const write = () => queuedWrite(() => db.write());
 
 export default db;

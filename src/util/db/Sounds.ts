@@ -1,4 +1,4 @@
-import db from "./connection";
+import db, { write } from "./connection";
 import Sound from "./models/Sound";
 
 export const findByName = (name: string) => db.data.sounds.find((s) => s.name === name);
@@ -7,7 +7,7 @@ export const exists = (name: string) => !!findByName(name);
 
 export const add = (sound: string) => {
   db.data.sounds.push(new Sound(sound));
-  db.write();
+  write();
 };
 
 export const rename = (oldName: string, newName: string) => {
@@ -15,13 +15,13 @@ export const rename = (oldName: string, newName: string) => {
 
   // biome-ignore lint/style/noNonNullAssertion: checking existence above
   findByName(oldName)!.name = newName;
-  db.write();
+  write();
 };
 
 export const remove = (name: string) => {
   const index = db.data.sounds.findIndex((s) => s.name === name);
   db.data.sounds.splice(index, 1);
-  db.write();
+  write();
 };
 
 export const incrementCount = (sound: string) => {
@@ -29,7 +29,7 @@ export const incrementCount = (sound: string) => {
 
   // biome-ignore lint/style/noNonNullAssertion: checking existence above
   findByName(sound)!.count += 1;
-  db.write();
+  write();
 };
 
 export const withTag = (tag: string) =>
@@ -45,7 +45,7 @@ export const addTags = (sound: string, tags: string[]) => {
       entry.tags.push(tag);
     }
   }
-  db.write();
+  write();
 };
 
 export const listTags = (sound: string) => {
@@ -60,7 +60,7 @@ export const clearTags = (sound: string) => {
 
   // biome-ignore lint/style/noNonNullAssertion: checking existence above
   findByName(sound)!.tags = [];
-  db.write();
+  write();
 };
 
 export const mostPlayed = (limit = 15) =>
