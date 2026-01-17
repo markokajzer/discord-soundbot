@@ -117,8 +117,10 @@ export default class Config implements ConfigInterface {
   }
 
   private writeToConfig() {
-    fs.writeFile(this.CONFIG_PATH, JSON.stringify(this, this.JSON_KEYS, 2), (error) => {
-      if (error) console.error(error);
-    });
+    try {
+      fs.writeFileSync(this.CONFIG_PATH, JSON.stringify(this, this.JSON_KEYS, 2));
+    } catch (error) {
+      console.error(error);
+    }
   }
 }
